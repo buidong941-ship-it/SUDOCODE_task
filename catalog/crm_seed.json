@@ -1,0 +1,551 @@
+{
+  "customers": [
+    {
+      "customer_id": "C001",
+      "name": "Hoa",
+      "honorific": "chị",
+      "phone": "0984726714",
+      "zalo_id": "zalo_hoa73",
+      "fb_id": "fb.hoa.479",
+      "region": "bac",
+      "orders": []
+    },
+    {
+      "customer_id": "C002",
+      "name": "Tuấn",
+      "honorific": "anh",
+      "phone": "0936270107",
+      "zalo_id": null,
+      "fb_id": null,
+      "region": "nam",
+      "orders": []
+    },
+    {
+      "customer_id": "C003",
+      "name": "Lan",
+      "honorific": "chị",
+      "phone": "0981933190",
+      "zalo_id": "zalo_lan79",
+      "fb_id": null,
+      "region": "trung",
+      "orders": []
+    },
+    {
+      "customer_id": "C004",
+      "name": "Minh",
+      "honorific": "anh",
+      "phone": "0952059972",
+      "zalo_id": null,
+      "fb_id": "fb.minh.658",
+      "region": "bac",
+      "orders": []
+    },
+    {
+      "customer_id": "C005",
+      "name": "Hương",
+      "honorific": "chị",
+      "phone": "0979298416",
+      "zalo_id": "zalo_hương95",
+      "fb_id": null,
+      "region": "bac",
+      "orders": []
+    },
+    {
+      "customer_id": "C006",
+      "name": "Nam",
+      "honorific": "anh",
+      "phone": "0929486628",
+      "zalo_id": null,
+      "fb_id": null,
+      "region": "bac",
+      "orders": []
+    },
+    {
+      "customer_id": "C007",
+      "name": "Thảo",
+      "honorific": "chị",
+      "phone": "0960161055",
+      "zalo_id": "zalo_thảo13",
+      "fb_id": "fb.thảo.126",
+      "region": "nam",
+      "orders": []
+    },
+    {
+      "customer_id": "C008",
+      "name": "Long",
+      "honorific": "anh",
+      "phone": "0975475177",
+      "zalo_id": null,
+      "fb_id": null,
+      "region": "nam",
+      "orders": []
+    },
+    {
+      "customer_id": "C009",
+      "name": "Ngọc",
+      "honorific": "chị",
+      "phone": "0992298369",
+      "zalo_id": "zalo_ngọc53",
+      "fb_id": null,
+      "region": "trung",
+      "orders": []
+    },
+    {
+      "customer_id": "C010",
+      "name": "Đức",
+      "honorific": "anh",
+      "phone": "0993186032",
+      "zalo_id": null,
+      "fb_id": "fb.đức.146",
+      "region": "nam",
+      "orders": []
+    },
+    {
+      "customer_id": "C011",
+      "name": "Mai",
+      "honorific": "chị",
+      "phone": "0980737028",
+      "zalo_id": "zalo_mai37",
+      "fb_id": null,
+      "region": "nam",
+      "orders": []
+    },
+    {
+      "customer_id": "C012",
+      "name": "Khoa",
+      "honorific": "anh",
+      "phone": "0922264686",
+      "zalo_id": null,
+      "fb_id": null,
+      "region": "bac",
+      "orders": []
+    },
+    {
+      "customer_id": "C013",
+      "name": "Trang",
+      "honorific": "chị",
+      "phone": "0964252477",
+      "zalo_id": "zalo_trang63",
+      "fb_id": "fb.trang.394",
+      "region": "trung",
+      "orders": []
+    },
+    {
+      "customer_id": "C014",
+      "name": "Huy",
+      "honorific": "anh",
+      "phone": "0925877188",
+      "zalo_id": null,
+      "fb_id": null,
+      "region": "trung",
+      "orders": []
+    },
+    {
+      "customer_id": "C015",
+      "name": "Vy",
+      "honorific": "chị",
+      "phone": "0913301756",
+      "zalo_id": "zalo_vy79",
+      "fb_id": null,
+      "region": "nam",
+      "orders": []
+    },
+    {
+      "customer_id": "C016",
+      "name": "Phúc",
+      "honorific": "anh",
+      "phone": "0920525898",
+      "zalo_id": null,
+      "fb_id": "fb.phúc.321",
+      "region": "bac",
+      "orders": []
+    },
+    {
+      "customer_id": "C017",
+      "name": "Hạnh",
+      "honorific": "chị",
+      "phone": "0994893949",
+      "zalo_id": "zalo_hạnh44",
+      "fb_id": null,
+      "region": "nam",
+      "orders": []
+    },
+    {
+      "customer_id": "C018",
+      "name": "Quân",
+      "honorific": "anh",
+      "phone": "0982141621",
+      "zalo_id": null,
+      "fb_id": null,
+      "region": "nam",
+      "orders": []
+    },
+    {
+      "customer_id": "C019",
+      "name": "Linh",
+      "honorific": "chị",
+      "phone": "0905218549",
+      "zalo_id": "zalo_linh18",
+      "fb_id": "fb.linh.398",
+      "region": "trung",
+      "orders": []
+    },
+    {
+      "customer_id": "C020",
+      "name": "Sơn",
+      "honorific": "anh",
+      "phone": "0924410646",
+      "zalo_id": null,
+      "fb_id": null,
+      "region": "bac",
+      "orders": []
+    },
+    {
+      "customer_id": "C021",
+      "name": "Yến",
+      "honorific": "chị",
+      "phone": "0901304118",
+      "zalo_id": "zalo_yến83",
+      "fb_id": null,
+      "region": "trung",
+      "orders": []
+    },
+    {
+      "customer_id": "C022",
+      "name": "Bảo",
+      "honorific": "anh",
+      "phone": "0957990659",
+      "zalo_id": null,
+      "fb_id": "fb.bảo.320",
+      "region": "nam",
+      "orders": []
+    },
+    {
+      "customer_id": "C023",
+      "name": "Thu",
+      "honorific": "chị",
+      "phone": "0976158464",
+      "zalo_id": "zalo_thu55",
+      "fb_id": null,
+      "region": "bac",
+      "orders": []
+    },
+    {
+      "customer_id": "C024",
+      "name": "Kiên",
+      "honorific": "anh",
+      "phone": "0960454146",
+      "zalo_id": null,
+      "fb_id": null,
+      "region": "trung",
+      "orders": []
+    },
+    {
+      "customer_id": "C025",
+      "name": "Nhung",
+      "honorific": "chị",
+      "phone": "0990853801",
+      "zalo_id": "zalo_nhung30",
+      "fb_id": "fb.nhung.733",
+      "region": "bac",
+      "orders": []
+    },
+    {
+      "customer_id": "C026",
+      "name": "Dũng",
+      "honorific": "anh",
+      "phone": "0910285940",
+      "zalo_id": null,
+      "fb_id": null,
+      "region": "trung",
+      "orders": []
+    },
+    {
+      "customer_id": "C027",
+      "name": "Chi",
+      "honorific": "chị",
+      "phone": "0992566636",
+      "zalo_id": "zalo_chi94",
+      "fb_id": null,
+      "region": "bac",
+      "orders": []
+    },
+    {
+      "customer_id": "C028",
+      "name": "Tú",
+      "honorific": "anh",
+      "phone": "0922808864",
+      "zalo_id": null,
+      "fb_id": "fb.tú.905",
+      "region": "bac",
+      "orders": []
+    },
+    {
+      "customer_id": "C029",
+      "name": "Hà",
+      "honorific": "chị",
+      "phone": "0930048764",
+      "zalo_id": "zalo_hà50",
+      "fb_id": null,
+      "region": "bac",
+      "orders": []
+    },
+    {
+      "customer_id": "C030",
+      "name": "Việt",
+      "honorific": "anh",
+      "phone": "0991280845",
+      "zalo_id": null,
+      "fb_id": null,
+      "region": "nam",
+      "orders": []
+    },
+    {
+      "customer_id": "C031",
+      "name": "Oanh",
+      "honorific": "chị",
+      "phone": "0985003703",
+      "zalo_id": "zalo_oanh96",
+      "fb_id": "fb.oanh.620",
+      "region": "bac",
+      "orders": [
+        {
+          "order_id": "OD188213",
+          "sku": "SKU-AP-X-2024",
+          "price_vnd": 4290000,
+          "date": "2026-02-17",
+          "status": "delivered"
+        }
+      ],
+      "sessions": [
+        {
+          "session_id": "S-OLD-1",
+          "date": "2026-02-17",
+          "channel": "hotline",
+          "summary": "Mua AirPure X bản 2024 giá 4.290.000đ, phòng 20m², địa chỉ giao: 12 ngõ 38 Hoàng Cầu, Đống Đa, Hà Nội",
+          "outcome": "chot_don"
+        }
+      ]
+    },
+    {
+      "customer_id": "C032",
+      "name": "Tâm",
+      "honorific": "chị",
+      "phone": "0965384535",
+      "zalo_id": null,
+      "fb_id": null,
+      "region": "trung",
+      "orders": [
+        {
+          "order_id": "OD301177",
+          "sku": "SKU-MB-PUMP1",
+          "price_vnd": 4290000,
+          "date": "2026-10-03",
+          "status": "shipping",
+          "tracking": "GHN7781234"
+        }
+      ]
+    },
+    {
+      "customer_id": "C033",
+      "name": "Loan",
+      "honorific": "chị",
+      "phone": "0977879432",
+      "zalo_id": "zalo_loan90",
+      "fb_id": null,
+      "region": "trung",
+      "orders": [],
+      "sessions": [
+        {
+          "session_id": "S-OLD-2",
+          "date": "2026-03-29",
+          "channel": "zalo_oa",
+          "summary": "Hỏi nồi chiên Xiaomi 4.5L, báo giá 1.590.000đ, khách nói 'để tết mua'",
+          "outcome": "hen_goi_lai"
+        }
+      ]
+    },
+    {
+      "customer_id": "C034",
+      "name": "Loan",
+      "honorific": "cô",
+      "phone": "0958421083",
+      "zalo_id": null,
+      "fb_id": "fb.hải.186",
+      "region": "trung",
+      "orders": [],
+      "shared_phone_with": "C035",
+      "sessions": [
+        {
+          "session_id": "S-OLD-3",
+          "date": "2026-10-09",
+          "channel": "hotline",
+          "summary": "Cô Loan hỏi máy lọc nước RO Karofi 9 lõi, nhà ở Cần Thơ, chờ con gái quyết",
+          "outcome": "hen_goi_lai"
+        }
+      ]
+    },
+    {
+      "customer_id": "C035",
+      "name": "Dung",
+      "honorific": "chị",
+      "phone": "0958421083",
+      "zalo_id": "zalo_dung99",
+      "fb_id": null,
+      "region": "nam",
+      "orders": [],
+      "shared_phone_with": "C034"
+    },
+    {
+      "customer_id": "C036",
+      "name": "Phương",
+      "honorific": "chị",
+      "phone": "0949066882",
+      "zalo_id": null,
+      "fb_id": null,
+      "region": "nam",
+      "orders": []
+    },
+    {
+      "customer_id": "C037",
+      "name": "Toàn",
+      "honorific": "anh",
+      "phone": "0911265844",
+      "zalo_id": "zalo_toàn15",
+      "fb_id": "fb.toàn.855",
+      "region": "nam",
+      "orders": []
+    },
+    {
+      "customer_id": "C038",
+      "name": "Diệp",
+      "honorific": "chị",
+      "phone": "0932448452",
+      "zalo_id": null,
+      "fb_id": null,
+      "region": "trung",
+      "orders": []
+    },
+    {
+      "customer_id": "C039",
+      "name": "Cường",
+      "honorific": "anh",
+      "phone": "0930976582",
+      "zalo_id": "zalo_cường76",
+      "fb_id": null,
+      "region": "bac",
+      "orders": []
+    },
+    {
+      "customer_id": "C040",
+      "name": "Quỳnh",
+      "honorific": "chị",
+      "phone": "0925822018",
+      "zalo_id": null,
+      "fb_id": "fb.quỳnh.783",
+      "region": "nam",
+      "orders": []
+    },
+    {
+      "customer_id": "C041",
+      "name": "Thắng",
+      "honorific": "anh",
+      "phone": "0905154382",
+      "zalo_id": "zalo_thắng86",
+      "fb_id": null,
+      "region": "nam",
+      "orders": []
+    },
+    {
+      "customer_id": "C042",
+      "name": "Nga",
+      "honorific": "chị",
+      "phone": "0932157116",
+      "zalo_id": null,
+      "fb_id": null,
+      "region": "trung",
+      "orders": []
+    },
+    {
+      "customer_id": "C043",
+      "name": "Tiến",
+      "honorific": "anh",
+      "phone": "0994157718",
+      "zalo_id": "zalo_tiến76",
+      "fb_id": "fb.tiến.352",
+      "region": "trung",
+      "orders": []
+    },
+    {
+      "customer_id": "C044",
+      "name": "Hiền",
+      "honorific": "chị",
+      "phone": "0979511174",
+      "zalo_id": null,
+      "fb_id": null,
+      "region": "trung",
+      "orders": []
+    },
+    {
+      "customer_id": "C045",
+      "name": "Lâm",
+      "honorific": "anh",
+      "phone": "0932568855",
+      "zalo_id": "zalo_lâm94",
+      "fb_id": null,
+      "region": "trung",
+      "orders": []
+    },
+    {
+      "customer_id": "C046",
+      "name": "Xuân",
+      "honorific": "chị",
+      "phone": "0965237355",
+      "zalo_id": null,
+      "fb_id": "fb.xuân.519",
+      "region": "nam",
+      "orders": []
+    },
+    {
+      "customer_id": "C047",
+      "name": "Đạt",
+      "honorific": "anh",
+      "phone": "0963279264",
+      "zalo_id": "zalo_đạt52",
+      "fb_id": null,
+      "region": "bac",
+      "orders": []
+    },
+    {
+      "customer_id": "C048",
+      "name": "Giang",
+      "honorific": "chị",
+      "phone": "0954742843",
+      "zalo_id": null,
+      "fb_id": null,
+      "region": "trung",
+      "orders": []
+    },
+    {
+      "customer_id": "C049",
+      "name": "Trung",
+      "honorific": "anh",
+      "phone": "0928144976",
+      "zalo_id": "zalo_trung61",
+      "fb_id": "fb.trung.122",
+      "region": "nam",
+      "orders": []
+    },
+    {
+      "customer_id": "C050",
+      "name": "Thủy",
+      "honorific": "chị",
+      "phone": "0956517883",
+      "zalo_id": null,
+      "fb_id": null,
+      "region": "trung",
+      "orders": []
+    }
+  ],
+  "notes": "customers[30..34] có lịch sử/đặc thù dùng cho ca khó: sessions cũ >6 tháng (TTL), đơn đang giao, 2 người chung SĐT"
+}

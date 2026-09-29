@@ -1,0 +1,72 @@
+{
+  "reference_date": "2026-10-15",
+  "rule": "qty có hiệu lực từ 'date' đến bản ghi kế tiếp của cùng sku; sku không có trong timeline dùng stock tĩnh trong products.json",
+  "events": [
+    {
+      "sku": "SKU-SN-RUN2-41-DEN",
+      "date": "2026-10-15",
+      "qty": 3,
+      "note": "tồn tại ngày tham chiếu"
+    },
+    {
+      "sku": "SKU-SN-RUN2-41-DEN",
+      "date": "2026-10-17",
+      "qty": 0,
+      "note": "hết hàng — kịch bản khách gọi lại size 41 hết"
+    },
+    {
+      "sku": "SKU-SN-RUN2-41-DEN",
+      "date": "2026-10-24",
+      "qty": 12,
+      "note": "nhập lại"
+    },
+    {
+      "sku": "SKU-AP-PRO",
+      "date": "2026-10-15",
+      "qty": 5
+    },
+    {
+      "sku": "SKU-AP-PRO",
+      "date": "2026-10-18",
+      "qty": 0,
+      "note": "hết hàng tạm thời"
+    },
+    {
+      "sku": "SKU-AP-PRO",
+      "date": "2026-10-21",
+      "qty": 8
+    },
+    {
+      "sku": "SKU-MB-STR1",
+      "date": "2026-10-15",
+      "qty": 2
+    },
+    {
+      "sku": "SKU-MB-STR1",
+      "date": "2026-10-25",
+      "qty": 0,
+      "note": "hết hàng khi khách quyết sau 10 ngày"
+    },
+    {
+      "sku": "SKU-XM-4P",
+      "date": "2026-10-15",
+      "qty": 0,
+      "note": "đang hết, dự kiến về"
+    },
+    {
+      "sku": "SKU-XM-4P",
+      "date": "2026-10-19",
+      "qty": 20
+    },
+    {
+      "sku": "SKU-JK-DWN-L-NAVY",
+      "date": "2026-09-15",
+      "qty": 6
+    },
+    {
+      "sku": "SKU-MB-STER",
+      "date": "2026-09-15",
+      "qty": 10
+    }
+  ]
+}

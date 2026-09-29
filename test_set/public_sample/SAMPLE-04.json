@@ -1,0 +1,62 @@
+{
+  "scenario_id": "SAMPLE-04",
+  "level": "M1",
+  "persona": "khach_da_kenh_fb_hotline",
+  "hard_case": null,
+  "customer_phone": "0994893949",
+  "customer_name": "Hạnh",
+  "honorific": "chị",
+  "notes": "Case 2: nhận diện FB ID ↔ SĐT. Agent hotline phải thấy giá đã báo bên Fanpage; nếu KM còn hiệu lực phải giữ giá.",
+  "calls": {
+    "call_1": {
+      "channel": "chat_fanpage",
+      "channel_identity": "fb.hạnh.274",
+      "customer_goal": "hoi gia giay qua inbox fanpage",
+      "customer_turns": [
+        "shop oi Giày chạy bộ RunLite 2 Pro gia bn v",
+        "co giam k",
+        "sdt minh 0994893949 de minh goi hotline sau nhe"
+      ],
+      "facts_established": {
+        "product_advised": "SKU-SN-RUN2",
+        "price_quoted_vnd": 1521000,
+        "promo_code": "RUN-10",
+        "channel": "fanpage",
+        "phone_provided": "0994893949"
+      },
+      "expected_outcome": "hen_goi_lai"
+    },
+    "call_2": {
+      "days_later": 1,
+      "channel": "hotline",
+      "customer_turns": [
+        "Alo, chị vừa nhắn Facebook bên em hỏi giày đó.",
+        "Bên Facebook báo chị giá 1521k đúng không? Còn giảm không?",
+        "Ok lấy size 41 màu đen, lên đơn cho chị."
+      ],
+      "must_carry_over": [
+        "product_advised",
+        "price_quoted_vnd",
+        "promo_code"
+      ],
+      "must_not_ask": [
+        "product_advised",
+        "price_quoted_vnd"
+      ],
+      "success_if": {
+        "tool_called": "order.create",
+        "args_match": {
+          "sku": "SKU-SN-RUN2-41-DEN",
+          "price_vnd": 1521000
+        }
+      },
+      "ground_truth_facts": {
+        "price_vnd": 1521000,
+        "list_price_vnd": 1690000,
+        "promo_active": true,
+        "in_stock": true,
+        "delivery_days": 2
+      }
+    }
+  }
+}

@@ -1,0 +1,319 @@
+{
+  "n_scenarios": 7,
+  "system": {
+    "repeat_question_rate": {
+      "value": 0.0,
+      "redundant": 0,
+      "total_questions": 6,
+      "examples": []
+    },
+    "context_carryover_rate": {
+      "value": 100.0,
+      "used": 21,
+      "required": 21
+    },
+    "task_success_rate": {
+      "value": 85.7,
+      "passed": 6,
+      "total": 7,
+      "hard_cases": {
+        "value": 66.7,
+        "total": 3
+      },
+      "failures": [
+        {
+          "scenario": "SAMPLE-07",
+          "call": "call_1",
+          "hard_case": "phien_ban_chinh_sach_cu",
+          "reasons": [
+            "thiếu must_say_any: 7 ngày | bảy ngày"
+          ]
+        }
+      ]
+    },
+    "hallucination_rate": {
+      "value": 0.0,
+      "wrong": 0,
+      "total_claims": 22,
+      "price_promo_only": {
+        "value": 0.0,
+        "wrong": 0,
+        "total": 13
+      },
+      "examples": []
+    },
+    "avg_turns_per_call": 3,
+    "calls_to_close": {
+      "value": 2,
+      "n_closed": 5,
+      "n_scenarios": 7
+    },
+    "guardrail_violations": {
+      "total": 0,
+      "by_type": {
+        "pii_in_memory_or_text": 0,
+        "over_escalation": 0,
+        "claims_human": 0,
+        "forbidden_pattern": 0
+      },
+      "examples": []
+    },
+    "memory_checks": [],
+    "latency": {
+      "n_turns": 39,
+      "warning": "Cần ≥ 100 lượt để p95 có ý nghĩa",
+      "ttft": {
+        "n": 39,
+        "p50_ms": 1614,
+        "p95_ms": 2484
+      },
+      "total": {
+        "n": 39,
+        "p50_ms": 4380,
+        "p95_ms": 6991
+      },
+      "ttfa": null,
+      "call_brief": {
+        "n": 6,
+        "p50_ms": 2576,
+        "p95_ms": 3956
+      }
+    }
+  },
+  "baseline": {
+    "repeat_question_rate": {
+      "value": 100.0,
+      "redundant": 14,
+      "total_questions": 14,
+      "examples": [
+        {
+          "scenario": "SAMPLE-01",
+          "call": "call_2",
+          "turn": 1,
+          "slot": "room_area_m2",
+          "type": "open",
+          "text": "hỏi room_area_m2"
+        },
+        {
+          "scenario": "SAMPLE-01",
+          "call": "call_2",
+          "turn": 1,
+          "slot": "budget_vnd",
+          "type": "open",
+          "text": "hỏi budget_vnd"
+        },
+        {
+          "scenario": "SAMPLE-01",
+          "call": "call_2",
+          "turn": 1,
+          "slot": "has_children",
+          "type": "open",
+          "text": "hỏi has_children"
+        },
+        {
+          "scenario": "SAMPLE-02",
+          "call": "call_2",
+          "turn": 1,
+          "slot": "product_advised",
+          "type": "open",
+          "text": "hỏi product_advised"
+        },
+        {
+          "scenario": "SAMPLE-02",
+          "call": "call_2",
+          "turn": 1,
+          "slot": "competitor_price_vnd",
+          "type": "open",
+          "text": "hỏi competitor_price_vnd"
+        },
+        {
+          "scenario": "SAMPLE-03",
+          "call": "call_2",
+          "turn": 1,
+          "slot": "product_advised",
+          "type": "open",
+          "text": "hỏi product_advised"
+        },
+        {
+          "scenario": "SAMPLE-03",
+          "call": "call_2",
+          "turn": 1,
+          "slot": "order_id",
+          "type": "open",
+          "text": "hỏi order_id"
+        },
+        {
+          "scenario": "SAMPLE-03",
+          "call": "call_2",
+          "turn": 1,
+          "slot": "color",
+          "type": "open",
+          "text": "hỏi color"
+        },
+        {
+          "scenario": "SAMPLE-04",
+          "call": "call_2",
+          "turn": 1,
+          "slot": "product_advised",
+          "type": "open",
+          "text": "hỏi product_advised"
+        },
+        {
+          "scenario": "SAMPLE-04",
+          "call": "call_2",
+          "turn": 1,
+          "slot": "price_quoted_vnd",
+          "type": "open",
+          "text": "hỏi price_quoted_vnd"
+        },
+        {
+          "scenario": "SAMPLE-05",
+          "call": "call_2",
+          "turn": 1,
+          "slot": "product_advised",
+          "type": "open",
+          "text": "hỏi product_advised"
+        },
+        {
+          "scenario": "SAMPLE-06",
+          "call": "call_2",
+          "turn": 1,
+          "slot": "room_area_m2",
+          "type": "open",
+          "text": "hỏi room_area_m2"
+        },
+        {
+          "scenario": "SAMPLE-06",
+          "call": "call_2",
+          "turn": 1,
+          "slot": "budget_vnd",
+          "type": "open",
+          "text": "hỏi budget_vnd"
+        },
+        {
+          "scenario": "SAMPLE-06",
+          "call": "call_2",
+          "turn": 1,
+          "slot": "product_advised",
+          "type": "open",
+          "text": "hỏi product_advised"
+        }
+      ]
+    },
+    "context_carryover_rate": {
+      "value": 4.8,
+      "used": 1,
+      "required": 21
+    },
+    "task_success_rate": {
+      "value": 85.7,
+      "passed": 6,
+      "total": 7,
+      "hard_cases": {
+        "value": 66.7,
+        "total": 3
+      },
+      "failures": [
+        {
+          "scenario": "SAMPLE-07",
+          "call": "call_1",
+          "hard_case": "phien_ban_chinh_sach_cu",
+          "reasons": [
+            "thiếu must_say_any: 7 ngày | bảy ngày"
+          ]
+        }
+      ]
+    },
+    "hallucination_rate": {
+      "value": 38.5,
+      "wrong": 5,
+      "total_claims": 13,
+      "price_promo_only": {
+        "value": 38.5,
+        "wrong": 5,
+        "total": 13
+      },
+      "examples": [
+        {
+          "scenario": "SAMPLE-01",
+          "call": "call_2",
+          "turn": 2,
+          "field": "price_vnd",
+          "claimed": 4700000,
+          "truth": 5200000
+        },
+        {
+          "scenario": "SAMPLE-05",
+          "call": "call_2",
+          "turn": 2,
+          "field": "promo_AP-SEP_active",
+          "claimed": true,
+          "truth": false
+        },
+        {
+          "scenario": "SAMPLE-06",
+          "call": "call_1",
+          "turn": 2,
+          "field": "price_vnd",
+          "claimed": 4990000,
+          "truth": 5490000
+        },
+        {
+          "scenario": "SAMPLE-06",
+          "call": "call_2",
+          "turn": 2,
+          "field": "price_vnd",
+          "claimed": 4990000,
+          "truth": 5490000
+        },
+        {
+          "scenario": "SAMPLE-06",
+          "call": "call_2",
+          "turn": 2,
+          "field": "promo_NAM-SHIP0_active",
+          "claimed": false,
+          "truth": true
+        }
+      ]
+    },
+    "avg_turns_per_call": 3,
+    "calls_to_close": {
+      "value": 2,
+      "n_closed": 5,
+      "n_scenarios": 7
+    },
+    "guardrail_violations": {
+      "total": 0,
+      "by_type": {
+        "pii_in_memory_or_text": 0,
+        "over_escalation": 0,
+        "claims_human": 0,
+        "forbidden_pattern": 0
+      },
+      "examples": []
+    },
+    "memory_checks": [],
+    "latency": {
+      "n_turns": 39,
+      "warning": "Cần ≥ 100 lượt để p95 có ý nghĩa",
+      "ttft": {
+        "n": 39,
+        "p50_ms": 1583,
+        "p95_ms": 2407
+      },
+      "total": {
+        "n": 39,
+        "p50_ms": 4878,
+        "p95_ms": 6614
+      },
+      "ttfa": null,
+      "call_brief": null
+    }
+  },
+  "comparison": {
+    "rqr_relative_reduction_pct": 100.0,
+    "meets_rqr_threshold_40pct": true,
+    "meets_tsr_70pct": true,
+    "meets_hr_price_5pct": true
+  }
+}

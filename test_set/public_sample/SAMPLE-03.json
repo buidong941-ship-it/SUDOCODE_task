@@ -1,0 +1,64 @@
+{
+  "scenario_id": "SAMPLE-03",
+  "level": "M1",
+  "persona": "khach_da_mua_doi_size",
+  "hard_case": null,
+  "customer_phone": "0922264686",
+  "customer_name": "Khoa",
+  "honorific": "anh",
+  "notes": "Cuộc 2 (Case 3 / C.6 Cuộc 3): hệ thống phải biết đơn nào, size/màu nào; áp chính sách đổi trả 7 ngày miễn phí đổi size lần đầu.",
+  "calls": {
+    "call_1": {
+      "customer_goal": "mua SKU-SN-CAS size 39 mau den",
+      "customer_turns": [
+        "Em ơi Giày sneaker Urban Classic còn size 39 màu den không?",
+        "Giá bao nhiêu, có giảm gì không em?",
+        "Ok em lên đơn cho anh, thanh toán COD nhé."
+      ],
+      "facts_established": {
+        "product_advised": "SKU-SN-CAS",
+        "variant_sku": "SKU-SN-CAS-39-DEN",
+        "size": 39,
+        "color": "den",
+        "price_quoted_vnd": 890000,
+        "order_id": "OD682761",
+        "payment": "COD"
+      },
+      "expected_outcome": "chot_don"
+    },
+    "call_2": {
+      "days_later": 4,
+      "customer_turns": [
+        "Alo, anh mới nhận giày hôm qua mà size 39 hơi chật.",
+        "Đổi lên size 40 được không em? Mất phí gì không?",
+        "Ừ em làm thủ tục đổi cho anh nhé."
+      ],
+      "must_carry_over": [
+        "order_id",
+        "variant_sku",
+        "size",
+        "color"
+      ],
+      "must_not_ask": [
+        "product_advised",
+        "order_id",
+        "color",
+        "payment"
+      ],
+      "success_if": {
+        "tool_called": "order.update",
+        "args_match": {
+          "order_id": "OD682761",
+          "new_variant_sku": "SKU-SN-CAS-40-DEN",
+          "action": "exchange_size"
+        }
+      },
+      "ground_truth_facts": {
+        "return_days": 7,
+        "exchange_fee_vnd": 0,
+        "new_size_in_stock": true,
+        "price_vnd": 890000
+      }
+    }
+  }
+}

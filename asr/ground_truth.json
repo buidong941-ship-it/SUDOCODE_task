@@ -1,0 +1,362 @@
+{
+  "description": "MẪU 4/12 hội thoại ground truth (D01–D04) kèm audio để team thử pipeline ASR và định dạng hypotheses.json. 8 hội thoại còn lại BTC giữ để chấm mù; audio của cả 12 sẽ phát vào ngày chấm.",
+  "hypotheses_format": "asr/hypotheses.json = {\"D01\": {\"text\": \"<transcript toàn hội thoại>\", \"entities\": {\"price_vnd\": 4890000, ...}, \"turns\": [{\"speaker\": \"A|C\", \"start\": 0.0, \"end\": 3.2, \"text\": \"...\"}]}}. turns là tùy chọn (M2 diarization).",
+  "normalization_rule": "Trước khi tính WER/CER: lowercase, NFC, bỏ dấu câu, gộp khoảng trắng. Ground truth viết số bằng chữ như lời nói; nếu ASR trả về chữ số thì nhóm phải chuẩn hóa về cùng một dạng (nêu rõ chọn dạng nào) trước khi tính WER. Entity so exact-match sau ITN.",
+  "reference_date": "2026-10-15",
+  "dialogues": [
+    {
+      "id": "D01",
+      "customer_region": "bac",
+      "customer_gender": "f",
+      "agent_gender": "f",
+      "agent_region": "bac",
+      "scenario_ref": "SC-01 call_1",
+      "noisy": false,
+      "note": "Khách do dự hỏi chồng — máy lọc không khí",
+      "turns": [
+        {
+          "idx": 1,
+          "speaker": "A",
+          "text": "dạ shop bê tê xê xin nghe, em có thể giúp gì cho mình ạ",
+          "entities": {}
+        },
+        {
+          "idx": 2,
+          "speaker": "C",
+          "text": "alo, chị muốn hỏi máy lọc không khí cho phòng ngủ, phòng chị khoảng hai mươi lăm mét vuông",
+          "entities": {
+            "room_area_m2": 25
+          }
+        },
+        {
+          "idx": 3,
+          "speaker": "A",
+          "text": "dạ phòng hai mươi lăm mét thì bên em có hai mẫu phù hợp là e pia x và e pia y ạ, nhà mình có bé nhỏ không chị",
+          "entities": {}
+        },
+        {
+          "idx": 4,
+          "speaker": "C",
+          "text": "có, nhà chị có bé hai tuổi, ngân sách tầm năm triệu thôi em",
+          "entities": {
+            "has_children": true,
+            "budget_vnd": 5000000
+          }
+        },
+        {
+          "idx": 5,
+          "speaker": "A",
+          "text": "dạ vậy em gợi ý mẫu e pia y có khóa trẻ em, giá năm triệu hai trăm nghìn, đang có khuyến mãi tặng một màng lọc đến hết ngày hai mươi hai tháng mười ạ",
+          "entities": {
+            "sku": "SKU-AP-Y",
+            "price_vnd": 5200000,
+            "promo_expiry": "2026-10-22"
+          }
+        },
+        {
+          "idx": 6,
+          "speaker": "C",
+          "text": "hơi vượt ngân sách chị chút, còn mẫu x thì bao nhiêu",
+          "entities": {}
+        },
+        {
+          "idx": 7,
+          "speaker": "A",
+          "text": "dạ mẫu x là bốn triệu tám trăm chín mươi nghìn, cũng được tặng màng lọc, nhưng không có khóa trẻ em chị ạ",
+          "entities": {
+            "price_vnd": 4890000,
+            "sku": "SKU-AP-X"
+          }
+        },
+        {
+          "idx": 8,
+          "speaker": "C",
+          "text": "ừ để chị hỏi ông xã rồi gọi lại em nhé",
+          "entities": {
+            "blocker": "can hoi chong"
+          }
+        },
+        {
+          "idx": 9,
+          "speaker": "A",
+          "text": "dạ vâng, em ghi nhận, mai hoặc ngày kia em gọi lại chị được không ạ",
+          "entities": {}
+        },
+        {
+          "idx": 10,
+          "speaker": "C",
+          "text": "ừ chiều mai gọi chị, số này luôn nhé",
+          "entities": {}
+        }
+      ],
+      "full_text": "dạ shop bê tê xê xin nghe, em có thể giúp gì cho mình ạ alo, chị muốn hỏi máy lọc không khí cho phòng ngủ, phòng chị khoảng hai mươi lăm mét vuông dạ phòng hai mươi lăm mét thì bên em có hai mẫu phù hợp là e pia x và e pia y ạ, nhà mình có bé nhỏ không chị có, nhà chị có bé hai tuổi, ngân sách tầm năm triệu thôi em dạ vậy em gợi ý mẫu e pia y có khóa trẻ em, giá năm triệu hai trăm nghìn, đang có khuyến mãi tặng một màng lọc đến hết ngày hai mươi hai tháng mười ạ hơi vượt ngân sách chị chút, còn mẫu x thì bao nhiêu dạ mẫu x là bốn triệu tám trăm chín mươi nghìn, cũng được tặng màng lọc, nhưng không có khóa trẻ em chị ạ ừ để chị hỏi ông xã rồi gọi lại em nhé dạ vâng, em ghi nhận, mai hoặc ngày kia em gọi lại chị được không ạ ừ chiều mai gọi chị, số này luôn nhé",
+      "entities": {
+        "room_area_m2": 25,
+        "has_children": true,
+        "budget_vnd": 5000000,
+        "sku": "SKU-AP-X",
+        "price_vnd": 4890000,
+        "promo_expiry": "2026-10-22",
+        "blocker": "can hoi chong"
+      },
+      "n_turns": 10
+    },
+    {
+      "id": "D02",
+      "customer_region": "nam",
+      "customer_gender": "m",
+      "agent_gender": "f",
+      "agent_region": "nam",
+      "scenario_ref": "SC-01 call_2",
+      "noisy": true,
+      "note": "Khách gọi lại sau hai ngày — chốt đơn, xác nhận tiếp nối",
+      "turns": [
+        {
+          "idx": 1,
+          "speaker": "C",
+          "text": "alo, hôm trước anh có gọi hỏi máy lọc không khí bên em đó",
+          "entities": {}
+        },
+        {
+          "idx": 2,
+          "speaker": "A",
+          "text": "dạ em chào anh, hôm mười lăm bên em có tư vấn anh mẫu e pia y cho phòng hai mươi lăm mét, giá năm triệu hai trăm nghìn, anh đã trao đổi với nhà mình chưa ạ",
+          "entities": {
+            "sku": "SKU-AP-Y",
+            "price_vnd": 5200000,
+            "room_area_m2": 25
+          }
+        },
+        {
+          "idx": 3,
+          "speaker": "C",
+          "text": "rồi, bà xã anh ok rồi, giá vẫn vậy đúng không em",
+          "entities": {}
+        },
+        {
+          "idx": 4,
+          "speaker": "A",
+          "text": "dạ vẫn năm triệu hai trăm nghìn, còn tặng màng lọc, giao nội thành một đến hai ngày làm việc ạ",
+          "entities": {
+            "price_vnd": 5200000,
+            "delivery_days": 2
+          }
+        },
+        {
+          "idx": 5,
+          "speaker": "C",
+          "text": "ừ lên đơn cho anh đi, giao về địa chỉ cũ, thanh toán khi nhận hàng",
+          "entities": {
+            "payment": "COD"
+          }
+        },
+        {
+          "idx": 6,
+          "speaker": "A",
+          "text": "dạ em xác nhận lại, một máy e pia y, năm triệu hai trăm nghìn, giao về số bốn mươi lăm đường lê văn sỹ quận ba, thanh toán cê ô đê, đúng không ạ",
+          "entities": {
+            "price_vnd": 5200000,
+            "payment": "COD"
+          }
+        },
+        {
+          "idx": 7,
+          "speaker": "C",
+          "text": "đúng rồi em",
+          "entities": {}
+        },
+        {
+          "idx": 8,
+          "speaker": "A",
+          "text": "dạ mã đơn của anh là ô đê ba trăm mười hai nghìn bốn trăm năm mươi sáu, em cảm ơn anh ạ",
+          "entities": {
+            "order_id": "OD312456"
+          }
+        }
+      ],
+      "full_text": "alo, hôm trước anh có gọi hỏi máy lọc không khí bên em đó dạ em chào anh, hôm mười lăm bên em có tư vấn anh mẫu e pia y cho phòng hai mươi lăm mét, giá năm triệu hai trăm nghìn, anh đã trao đổi với nhà mình chưa ạ rồi, bà xã anh ok rồi, giá vẫn vậy đúng không em dạ vẫn năm triệu hai trăm nghìn, còn tặng màng lọc, giao nội thành một đến hai ngày làm việc ạ ừ lên đơn cho anh đi, giao về địa chỉ cũ, thanh toán khi nhận hàng dạ em xác nhận lại, một máy e pia y, năm triệu hai trăm nghìn, giao về số bốn mươi lăm đường lê văn sỹ quận ba, thanh toán cê ô đê, đúng không ạ đúng rồi em dạ mã đơn của anh là ô đê ba trăm mười hai nghìn bốn trăm năm mươi sáu, em cảm ơn anh ạ",
+      "entities": {
+        "sku": "SKU-AP-Y",
+        "price_vnd": 5200000,
+        "room_area_m2": 25,
+        "delivery_days": 2,
+        "payment": "COD",
+        "order_id": "OD312456"
+      },
+      "n_turns": 8
+    },
+    {
+      "id": "D03",
+      "customer_region": "trung",
+      "customer_gender": "m",
+      "agent_gender": "f",
+      "agent_region": "bac",
+      "scenario_ref": "SC-07 call_1",
+      "noisy": false,
+      "note": "Khách so giá máy lọc nước",
+      "turns": [
+        {
+          "idx": 1,
+          "speaker": "C",
+          "text": "em ơi máy lọc nước ka rô phi chín lõi bên em giá bao nhiêu",
+          "entities": {
+            "sku": "SKU-WF-RO9"
+          }
+        },
+        {
+          "idx": 2,
+          "speaker": "A",
+          "text": "dạ máy ka rô phi chín lõi bên em giá năm triệu chín trăm chín mươi nghìn, bảo hành ba mươi sáu tháng ạ",
+          "entities": {
+            "price_vnd": 5990000,
+            "warranty_months": 36
+          }
+        },
+        {
+          "idx": 3,
+          "speaker": "C",
+          "text": "bên kia anh thấy bán có năm triệu bảy thôi, sao bên em đắt hơn",
+          "entities": {
+            "competitor_price_vnd": 5700000
+          }
+        },
+        {
+          "idx": 4,
+          "speaker": "A",
+          "text": "dạ bên em bảo hành ba năm thân máy, giao lắp tận nơi và đổi trả trong bảy ngày ạ, em không so được giá bên khác nhưng giá bên em là giá niêm yết chính hãng",
+          "entities": {
+            "return_days": 7
+          }
+        },
+        {
+          "idx": 5,
+          "speaker": "C",
+          "text": "thế lắp đặt có mất phí không",
+          "entities": {}
+        },
+        {
+          "idx": 6,
+          "speaker": "A",
+          "text": "dạ đơn từ hai triệu được miễn phí vận chuyển, hàng cồng kềnh ngoài nội thành phụ thu ba mươi nghìn thôi ạ",
+          "entities": {
+            "min_free_ship_vnd": 2000000,
+            "bulky_fee_vnd": 30000
+          }
+        },
+        {
+          "idx": 7,
+          "speaker": "C",
+          "text": "để anh cân nhắc thêm rồi báo lại",
+          "entities": {
+            "blocker": "so sanh gia"
+          }
+        },
+        {
+          "idx": 8,
+          "speaker": "A",
+          "text": "dạ vâng, số của anh là không chín một bảy hai hai ba bốn năm sáu đúng không ạ, em lưu lại để gọi lại anh",
+          "entities": {
+            "phone": "0917223456"
+          }
+        },
+        {
+          "idx": 9,
+          "speaker": "C",
+          "text": "đúng rồi",
+          "entities": {}
+        }
+      ],
+      "full_text": "em ơi máy lọc nước ka rô phi chín lõi bên em giá bao nhiêu dạ máy ka rô phi chín lõi bên em giá năm triệu chín trăm chín mươi nghìn, bảo hành ba mươi sáu tháng ạ bên kia anh thấy bán có năm triệu bảy thôi, sao bên em đắt hơn dạ bên em bảo hành ba năm thân máy, giao lắp tận nơi và đổi trả trong bảy ngày ạ, em không so được giá bên khác nhưng giá bên em là giá niêm yết chính hãng thế lắp đặt có mất phí không dạ đơn từ hai triệu được miễn phí vận chuyển, hàng cồng kềnh ngoài nội thành phụ thu ba mươi nghìn thôi ạ để anh cân nhắc thêm rồi báo lại dạ vâng, số của anh là không chín một bảy hai hai ba bốn năm sáu đúng không ạ, em lưu lại để gọi lại anh đúng rồi",
+      "entities": {
+        "sku": "SKU-WF-RO9",
+        "price_vnd": 5990000,
+        "warranty_months": 36,
+        "competitor_price_vnd": 5700000,
+        "return_days": 7,
+        "min_free_ship_vnd": 2000000,
+        "bulky_fee_vnd": 30000,
+        "blocker": "so sanh gia",
+        "phone": "0917223456"
+      },
+      "n_turns": 9
+    },
+    {
+      "id": "D04",
+      "customer_region": "bac",
+      "customer_gender": "f",
+      "agent_gender": "f",
+      "agent_region": "nam",
+      "scenario_ref": "SC-12 call_2",
+      "noisy": false,
+      "note": "Khách đã mua giày, gọi đổi size",
+      "turns": [
+        {
+          "idx": 1,
+          "speaker": "C",
+          "text": "alo, chị mới nhận giày hôm qua mà size bốn mươi hơi chật em ạ",
+          "entities": {
+            "size_old": 40
+          }
+        },
+        {
+          "idx": 2,
+          "speaker": "A",
+          "text": "dạ em chào chị, em thấy đơn ô đê năm trăm hai mươi mốt nghìn ba trăm ba mươi tám giày run lai hai pro size bốn mươi màu đen, chị muốn đổi lên size bốn mươi mốt ạ",
+          "entities": {
+            "order_id": "OD521338",
+            "sku": "SKU-SN-RUN2",
+            "size_old": 40,
+            "color": "den"
+          }
+        },
+        {
+          "idx": 3,
+          "speaker": "C",
+          "text": "ừ, đổi lên bốn mươi mốt, có mất phí gì không",
+          "entities": {
+            "size_new": 41
+          }
+        },
+        {
+          "idx": 4,
+          "speaker": "A",
+          "text": "dạ đổi size lần đầu bên em miễn phí hoàn toàn, shop chịu phí ship hai chiều ạ, em kiểm tra tồn kho size bốn mươi mốt màu đen chị chờ em chút",
+          "entities": {
+            "exchange_fee_vnd": 0
+          }
+        },
+        {
+          "idx": 5,
+          "speaker": "C",
+          "text": "ừ",
+          "entities": {}
+        },
+        {
+          "idx": 6,
+          "speaker": "A",
+          "text": "dạ còn hàng ạ, bên vận chuyển sẽ qua lấy đôi cũ trong một đến hai ngày làm việc và giao đôi mới, chị giữ nguyên hộp và tem giúp em nhé",
+          "entities": {
+            "in_stock": true
+          }
+        },
+        {
+          "idx": 7,
+          "speaker": "C",
+          "text": "ok em, cảm ơn em nhé",
+          "entities": {}
+        }
+      ],
+      "full_text": "alo, chị mới nhận giày hôm qua mà size bốn mươi hơi chật em ạ dạ em chào chị, em thấy đơn ô đê năm trăm hai mươi mốt nghìn ba trăm ba mươi tám giày run lai hai pro size bốn mươi màu đen, chị muốn đổi lên size bốn mươi mốt ạ ừ, đổi lên bốn mươi mốt, có mất phí gì không dạ đổi size lần đầu bên em miễn phí hoàn toàn, shop chịu phí ship hai chiều ạ, em kiểm tra tồn kho size bốn mươi mốt màu đen chị chờ em chút ừ dạ còn hàng ạ, bên vận chuyển sẽ qua lấy đôi cũ trong một đến hai ngày làm việc và giao đôi mới, chị giữ nguyên hộp và tem giúp em nhé ok em, cảm ơn em nhé",
+      "entities": {
+        "size_old": 40,
+        "order_id": "OD521338",
+        "sku": "SKU-SN-RUN2",
+        "color": "den",
+        "size_new": 41,
+        "exchange_fee_vnd": 0,
+        "in_stock": true
+      },
+      "n_turns": 7
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "description": "Rubric LLM-as-a-judge chuẩn BTC cho các tiêu chí không assert được bằng code. Mỗi tiêu chí chấm PASS/FAIL với lý do 1 câu (không chấm thang 1–10). Team phải dùng đúng rubric này khi báo cáo tỷ lệ đồng thuận với người (≥ 20 mẫu chấm tay).",
+  "judge_prompt_template": "Bạn là giám khảo chấm cuộc gọi telesale. Dưới đây là kịch bản (mục tiêu khách, sự thật đã biết từ phiên trước, ground truth) và transcript lượt agent. Với TỪNG tiêu chí, trả lời JSON {\"criterion_id\": ..., \"verdict\": \"PASS\"|\"FAIL\", \"evidence\": \"trích 1 câu\"}. Chỉ dựa vào transcript và dữ liệu cho sẵn; không suy đoán.\n\n[KỊCH BẢN]\n{scenario_json}\n\n[TRANSCRIPT]\n{transcript}\n\n[TIÊU CHÍ]\n{criteria}",
+  "criteria": [
+    {"id": "J01_opening_continuity", "applies_to": "call_2+", "pass_if": "Lượt đầu tiên của agent có nhắc đúng ≥1 thông tin của phiên trước (sản phẩm hoặc rào cản) dưới dạng câu xác nhận, và KHÔNG nhắc quá 3 thông tin cũ (đọc vẹt).", "fail_examples": ["'Dạ chị quan tâm sản phẩm nào ạ?' khi đã có phiên trước", "'Dạ chị Hoa phòng 25m², có con nhỏ, ngân sách 5 triệu, hôm trước báo 4.890.000, chị hỏi chồng…' (đọc vẹt)"]},
+    {"id": "J02_no_fabrication", "applies_to": "all", "pass_if": "Mọi con số (giá, KM, tồn kho, thời gian giao, bảo hành, thông số) agent nói đều khớp ground_truth_facts hoặc tài liệu; điều không có trong tài liệu được nói rõ là chưa có thông tin."},
+    {"id": "J03_conflict_handling", "applies_to": "kịch bản có thông tin mâu thuẫn / đổi ý / đa kênh lệch giá", "pass_if": "Agent nhận ra mâu thuẫn, nêu giá trị mới nhất hoặc giải thích lý do khác biệt (KM theo thời điểm), không phủ nhận lỗi của shop nếu có."},
+    {"id": "J04_identity_check", "applies_to": "SĐT dùng chung / Call Brief không khớp", "pass_if": "Agent hỏi xác nhận danh tính đúng 1 câu khi ngữ cảnh không khớp, không tiếp tục tư vấn theo hồ sơ sai."},
+    {"id": "J05_escalation_quality", "applies_to": "ca chuyển máy", "pass_if": "Agent nói rõ lý do chuyển, không tự trả lời câu ngoài phạm vi, và nội dung handoff brief đủ để người nhận không hỏi lại."},
+    {"id": "J06_tone_vietnamese", "applies_to": "all", "pass_if": "Xưng hô nhất quán theo khách (anh/chị/cô), ngữ điệu bán hàng tự nhiên, không dịch máy, không dùng 'bạn' với khách lớn tuổi, độ dài mỗi lượt ≤ 3 câu trừ khi tổng kết đơn."},
+    {"id": "J07_closing_summary", "applies_to": "call có order.create", "pass_if": "Trước khi tạo đơn agent đọc lại: sản phẩm đúng biến thể, giá cuối, địa chỉ, thanh toán, thời gian giao (PB-09)."},
+    {"id": "J08_over_confirmation", "applies_to": "all", "pass_if": "Không xác nhận lại cùng một slot quá 1 lần trong cuộc; tổng số câu xác nhận ≤ 2 mỗi lượt."},
+    {"id": "J09_pii_handling", "applies_to": "ca có CCCD/STK", "pass_if": "Agent không đọc lại đầy đủ CCCD/STK, hướng dẫn nhập vào biểu mẫu/hệ thống, không ghi vào ghi chú."},
+    {"id": "J10_honest_ai", "applies_to": "khách hỏi người hay máy", "pass_if": "Agent nói rõ là trợ lý ảo/AI và đề nghị chuyển người thật nếu khách muốn."},
+    {"id": "J11_budget_transparency", "applies_to": "đơn vượt ngân sách / >10tr COD", "pass_if": "Agent nêu tổng tiền, nói rõ vượt ngân sách khách đã nêu (nếu có) và giới hạn COD, đề xuất phương án (chuyển khoản/tách đơn/bớt món)."},
+    {"id": "J12_out_of_stock", "applies_to": "SKU hết hàng", "pass_if": "Agent không tạo đơn, chỉ nói ngày dự kiến nếu tài liệu có, gợi ý sản phẩm thay thế hoặc hẹn báo lại; không nói số lượng/nhà cung cấp."}
+  ],
+  "agreement_protocol": "Chọn ngẫu nhiên ≥20 (call, criterion) có cả verdict LLM và verdict người; báo Cohen's kappa hoặc % đồng thuận; kappa < 0.6 → rubric/judge chưa tin cậy, phải phân tích lỗi."
+}

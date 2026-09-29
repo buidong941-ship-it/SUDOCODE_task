@@ -1,0 +1,1198 @@
+{
+  "reference_date": "2026-10-15",
+  "currency": "VND",
+  "products": [
+    {
+      "sku": "SKU-AP-X",
+      "name": "Máy lọc không khí AirPure X",
+      "category": "gia-dung/may-loc-khong-khi",
+      "brand": "AirPure",
+      "list_price_vnd": 4890000,
+      "attributes": {
+        "room_area_m2": 25,
+        "features": "HEPA H13, cảm biến PM2.5, chế độ ngủ",
+        "warranty_months": 24,
+        "child_safe_lock": false
+      },
+      "stock": 40,
+      "variants": []
+    },
+    {
+      "sku": "SKU-AP-Y",
+      "name": "Máy lọc không khí AirPure Y",
+      "category": "gia-dung/may-loc-khong-khi",
+      "brand": "AirPure",
+      "list_price_vnd": 5200000,
+      "attributes": {
+        "room_area_m2": 30,
+        "features": "HEPA H13 + than hoạt tính, app điều khiển",
+        "warranty_months": 24,
+        "child_safe_lock": true
+      },
+      "stock": 15,
+      "variants": []
+    },
+    {
+      "sku": "SKU-AP-MINI",
+      "name": "Máy lọc không khí AirPure Mini",
+      "category": "gia-dung/may-loc-khong-khi",
+      "brand": "AirPure",
+      "list_price_vnd": 2190000,
+      "attributes": {
+        "room_area_m2": 12,
+        "features": "HEPA H11, để bàn",
+        "warranty_months": 24,
+        "child_safe_lock": false
+      },
+      "stock": 8,
+      "variants": []
+    },
+    {
+      "sku": "SKU-AP-PRO",
+      "name": "Máy lọc không khí AirPure Pro",
+      "category": "gia-dung/may-loc-khong-khi",
+      "brand": "AirPure",
+      "list_price_vnd": 7990000,
+      "attributes": {
+        "room_area_m2": 45,
+        "features": "HEPA H13, UV, diệt khuẩn",
+        "warranty_months": 24,
+        "child_safe_lock": true
+      },
+      "stock": 5,
+      "variants": []
+    },
+    {
+      "sku": "SKU-XM-4L",
+      "name": "Máy lọc không khí Xiaomi Smart 4 Lite",
+      "category": "gia-dung/may-loc-khong-khi",
+      "brand": "Xiaomi",
+      "list_price_vnd": 2990000,
+      "attributes": {
+        "room_area_m2": 43,
+        "features": "HEPA, app Mi Home",
+        "warranty_months": 24,
+        "child_safe_lock": false
+      },
+      "stock": 12,
+      "variants": []
+    },
+    {
+      "sku": "SKU-XM-4P",
+      "name": "Máy lọc không khí Xiaomi Smart 4 Pro",
+      "category": "gia-dung/may-loc-khong-khi",
+      "brand": "Xiaomi",
+      "list_price_vnd": 5490000,
+      "attributes": {
+        "room_area_m2": 60,
+        "features": "HEPA, màn OLED, app Mi Home",
+        "warranty_months": 24,
+        "child_safe_lock": false
+      },
+      "stock": 0,
+      "variants": []
+    },
+    {
+      "sku": "SKU-SS-AX40",
+      "name": "Máy lọc không khí Samsung AX40",
+      "category": "gia-dung/may-loc-khong-khi",
+      "brand": "Samsung",
+      "list_price_vnd": 6490000,
+      "attributes": {
+        "room_area_m2": 40,
+        "features": "HEPA, lọc khử mùi, cảm biến bụi",
+        "warranty_months": 24,
+        "child_safe_lock": true
+      },
+      "stock": 40,
+      "variants": []
+    },
+    {
+      "sku": "SKU-WF-RO9",
+      "name": "Máy lọc nước RO Karofi 9 lõi",
+      "category": "gia-dung/may-loc-nuoc",
+      "brand": "Karofi",
+      "list_price_vnd": 5990000,
+      "attributes": {
+        "stages": 9,
+        "warranty_months": 36
+      },
+      "stock": 5,
+      "variants": []
+    },
+    {
+      "sku": "SKU-WF-RO10",
+      "name": "Máy lọc nước RO Kangaroo 10 lõi",
+      "category": "gia-dung/may-loc-nuoc",
+      "brand": "Kangaroo",
+      "list_price_vnd": 6890000,
+      "attributes": {
+        "stages": 0,
+        "warranty_months": 36
+      },
+      "stock": 12,
+      "variants": []
+    },
+    {
+      "sku": "SKU-WF-UF",
+      "name": "Máy lọc nước UF Sunhouse",
+      "category": "gia-dung/may-loc-nuoc",
+      "brand": "Sunhouse",
+      "list_price_vnd": 3290000,
+      "attributes": {
+        "stages": 5,
+        "warranty_months": 36
+      },
+      "stock": 20,
+      "variants": []
+    },
+    {
+      "sku": "SKU-FAN-DC1",
+      "name": "Quạt đứng DC inverter Panasonic F-409",
+      "category": "gia-dung/quat",
+      "brand": "Panasonic",
+      "list_price_vnd": 2450000,
+      "attributes": {
+        "warranty_months": 12
+      },
+      "stock": 30,
+      "variants": []
+    },
+    {
+      "sku": "SKU-FAN-SEN",
+      "name": "Quạt đứng Senko TS16",
+      "category": "gia-dung/quat",
+      "brand": "Senko",
+      "list_price_vnd": 590000,
+      "attributes": {
+        "warranty_months": 12
+      },
+      "stock": 30,
+      "variants": []
+    },
+    {
+      "sku": "SKU-FAN-TWR",
+      "name": "Quạt tháp Xiaomi Tower Fan",
+      "category": "gia-dung/quat",
+      "brand": "Xiaomi",
+      "list_price_vnd": 1790000,
+      "attributes": {
+        "warranty_months": 12
+      },
+      "stock": 0,
+      "variants": []
+    },
+    {
+      "sku": "SKU-AF-4L",
+      "name": "Nồi chiên không dầu Lock&Lock 4L",
+      "category": "gia-dung/noi-chien",
+      "brand": "Lock&Lock",
+      "list_price_vnd": 1890000,
+      "attributes": {
+        "warranty_months": 12
+      },
+      "stock": 2,
+      "variants": []
+    },
+    {
+      "sku": "SKU-AF-6L",
+      "name": "Nồi chiên không dầu Philips 6.2L",
+      "category": "gia-dung/noi-chien",
+      "brand": "Philips",
+      "list_price_vnd": 3990000,
+      "attributes": {
+        "warranty_months": 12
+      },
+      "stock": 25,
+      "variants": []
+    },
+    {
+      "sku": "SKU-AF-XM",
+      "name": "Nồi chiên không dầu Xiaomi 4.5L",
+      "category": "gia-dung/noi-chien",
+      "brand": "Xiaomi",
+      "list_price_vnd": 1590000,
+      "attributes": {
+        "warranty_months": 12
+      },
+      "stock": 25,
+      "variants": []
+    },
+    {
+      "sku": "SKU-SN-RUN1",
+      "name": "Giày chạy bộ RunLite 1",
+      "category": "thoi-trang/giay",
+      "brand": "RunLite",
+      "list_price_vnd": 1290000,
+      "attributes": {
+        "material": "vải lưới + đế EVA",
+        "return_days": 7
+      },
+      "stock": 48,
+      "variants": [
+        {
+          "variant_sku": "SKU-SN-RUN1-38-DEN",
+          "size": 38,
+          "color": "den",
+          "price_delta_vnd": 0,
+          "stock": 9
+        },
+        {
+          "variant_sku": "SKU-SN-RUN1-38-TRANG",
+          "size": 38,
+          "color": "trang",
+          "price_delta_vnd": 0,
+          "stock": 5
+        },
+        {
+          "variant_sku": "SKU-SN-RUN1-38-XAM",
+          "size": 38,
+          "color": "xam",
+          "price_delta_vnd": 0,
+          "stock": 0
+        },
+        {
+          "variant_sku": "SKU-SN-RUN1-39-DEN",
+          "size": 39,
+          "color": "den",
+          "price_delta_vnd": 0,
+          "stock": 0
+        },
+        {
+          "variant_sku": "SKU-SN-RUN1-39-TRANG",
+          "size": 39,
+          "color": "trang",
+          "price_delta_vnd": 0,
+          "stock": 9
+        },
+        {
+          "variant_sku": "SKU-SN-RUN1-39-XAM",
+          "size": 39,
+          "color": "xam",
+          "price_delta_vnd": 0,
+          "stock": 0
+        },
+        {
+          "variant_sku": "SKU-SN-RUN1-40-DEN",
+          "size": 40,
+          "color": "den",
+          "price_delta_vnd": 0,
+          "stock": 0
+        },
+        {
+          "variant_sku": "SKU-SN-RUN1-40-TRANG",
+          "size": 40,
+          "color": "trang",
+          "price_delta_vnd": 0,
+          "stock": 2
+        },
+        {
+          "variant_sku": "SKU-SN-RUN1-40-XAM",
+          "size": 40,
+          "color": "xam",
+          "price_delta_vnd": 0,
+          "stock": 0
+        },
+        {
+          "variant_sku": "SKU-SN-RUN1-41-DEN",
+          "size": 41,
+          "color": "den",
+          "price_delta_vnd": 0,
+          "stock": 5
+        },
+        {
+          "variant_sku": "SKU-SN-RUN1-41-TRANG",
+          "size": 41,
+          "color": "trang",
+          "price_delta_vnd": 0,
+          "stock": 0
+        },
+        {
+          "variant_sku": "SKU-SN-RUN1-41-XAM",
+          "size": 41,
+          "color": "xam",
+          "price_delta_vnd": 0,
+          "stock": 5
+        },
+        {
+          "variant_sku": "SKU-SN-RUN1-42-DEN",
+          "size": 42,
+          "color": "den",
+          "price_delta_vnd": 0,
+          "stock": 2
+        },
+        {
+          "variant_sku": "SKU-SN-RUN1-42-TRANG",
+          "size": 42,
+          "color": "trang",
+          "price_delta_vnd": 0,
+          "stock": 0
+        },
+        {
+          "variant_sku": "SKU-SN-RUN1-42-XAM",
+          "size": 42,
+          "color": "xam",
+          "price_delta_vnd": 0,
+          "stock": 5
+        },
+        {
+          "variant_sku": "SKU-SN-RUN1-43-DEN",
+          "size": 43,
+          "color": "den",
+          "price_delta_vnd": 50000,
+          "stock": 2
+        },
+        {
+          "variant_sku": "SKU-SN-RUN1-43-TRANG",
+          "size": 43,
+          "color": "trang",
+          "price_delta_vnd": 50000,
+          "stock": 2
+        },
+        {
+          "variant_sku": "SKU-SN-RUN1-43-XAM",
+          "size": 43,
+          "color": "xam",
+          "price_delta_vnd": 50000,
+          "stock": 2
+        }
+      ]
+    },
+    {
+      "sku": "SKU-SN-RUN2",
+      "name": "Giày chạy bộ RunLite 2 Pro",
+      "category": "thoi-trang/giay",
+      "brand": "RunLite",
+      "list_price_vnd": 1690000,
+      "attributes": {
+        "material": "vải lưới + đế EVA",
+        "return_days": 7
+      },
+      "stock": 68,
+      "variants": [
+        {
+          "variant_sku": "SKU-SN-RUN2-38-DEN",
+          "size": 38,
+          "color": "den",
+          "price_delta_vnd": 0,
+          "stock": 5
+        },
+        {
+          "variant_sku": "SKU-SN-RUN2-38-TRANG",
+          "size": 38,
+          "color": "trang",
+          "price_delta_vnd": 0,
+          "stock": 9
+        },
+        {
+          "variant_sku": "SKU-SN-RUN2-38-XAM",
+          "size": 38,
+          "color": "xam",
+          "price_delta_vnd": 0,
+          "stock": 0
+        },
+        {
+          "variant_sku": "SKU-SN-RUN2-39-DEN",
+          "size": 39,
+          "color": "den",
+          "price_delta_vnd": 0,
+          "stock": 2
+        },
+        {
+          "variant_sku": "SKU-SN-RUN2-39-TRANG",
+          "size": 39,
+          "color": "trang",
+          "price_delta_vnd": 0,
+          "stock": 0
+        },
+        {
+          "variant_sku": "SKU-SN-RUN2-39-XAM",
+          "size": 39,
+          "color": "xam",
+          "price_delta_vnd": 0,
+          "stock": 9
+        },
+        {
+          "variant_sku": "SKU-SN-RUN2-40-DEN",
+          "size": 40,
+          "color": "den",
+          "price_delta_vnd": 0,
+          "stock": 9
+        },
+        {
+          "variant_sku": "SKU-SN-RUN2-40-TRANG",
+          "size": 40,
+          "color": "trang",
+          "price_delta_vnd": 0,
+          "stock": 2
+        },
+        {
+          "variant_sku": "SKU-SN-RUN2-40-XAM",
+          "size": 40,
+          "color": "xam",
+          "price_delta_vnd": 0,
+          "stock": 2
+        },
+        {
+          "variant_sku": "SKU-SN-RUN2-41-DEN",
+          "size": 41,
+          "color": "den",
+          "price_delta_vnd": 0,
+          "stock": 5
+        },
+        {
+          "variant_sku": "SKU-SN-RUN2-41-TRANG",
+          "size": 41,
+          "color": "trang",
+          "price_delta_vnd": 0,
+          "stock": 0
+        },
+        {
+          "variant_sku": "SKU-SN-RUN2-41-XAM",
+          "size": 41,
+          "color": "xam",
+          "price_delta_vnd": 0,
+          "stock": 9
+        },
+        {
+          "variant_sku": "SKU-SN-RUN2-42-DEN",
+          "size": 42,
+          "color": "den",
+          "price_delta_vnd": 0,
+          "stock": 2
+        },
+        {
+          "variant_sku": "SKU-SN-RUN2-42-TRANG",
+          "size": 42,
+          "color": "trang",
+          "price_delta_vnd": 0,
+          "stock": 0
+        },
+        {
+          "variant_sku": "SKU-SN-RUN2-42-XAM",
+          "size": 42,
+          "color": "xam",
+          "price_delta_vnd": 0,
+          "stock": 2
+        },
+        {
+          "variant_sku": "SKU-SN-RUN2-43-DEN",
+          "size": 43,
+          "color": "den",
+          "price_delta_vnd": 50000,
+          "stock": 2
+        },
+        {
+          "variant_sku": "SKU-SN-RUN2-43-TRANG",
+          "size": 43,
+          "color": "trang",
+          "price_delta_vnd": 50000,
+          "stock": 5
+        },
+        {
+          "variant_sku": "SKU-SN-RUN2-43-XAM",
+          "size": 43,
+          "color": "xam",
+          "price_delta_vnd": 50000,
+          "stock": 5
+        }
+      ]
+    },
+    {
+      "sku": "SKU-SN-CAS",
+      "name": "Giày sneaker Urban Classic",
+      "category": "thoi-trang/giay",
+      "brand": "Urban",
+      "list_price_vnd": 890000,
+      "attributes": {
+        "material": "vải lưới + đế EVA",
+        "return_days": 7
+      },
+      "stock": 109,
+      "variants": [
+        {
+          "variant_sku": "SKU-SN-CAS-38-DEN",
+          "size": 38,
+          "color": "den",
+          "price_delta_vnd": 0,
+          "stock": 0
+        },
+        {
+          "variant_sku": "SKU-SN-CAS-38-TRANG",
+          "size": 38,
+          "color": "trang",
+          "price_delta_vnd": 0,
+          "stock": 5
+        },
+        {
+          "variant_sku": "SKU-SN-CAS-38-XAM",
+          "size": 38,
+          "color": "xam",
+          "price_delta_vnd": 0,
+          "stock": 9
+        },
+        {
+          "variant_sku": "SKU-SN-CAS-39-DEN",
+          "size": 39,
+          "color": "den",
+          "price_delta_vnd": 0,
+          "stock": 9
+        },
+        {
+          "variant_sku": "SKU-SN-CAS-39-TRANG",
+          "size": 39,
+          "color": "trang",
+          "price_delta_vnd": 0,
+          "stock": 5
+        },
+        {
+          "variant_sku": "SKU-SN-CAS-39-XAM",
+          "size": 39,
+          "color": "xam",
+          "price_delta_vnd": 0,
+          "stock": 0
+        },
+        {
+          "variant_sku": "SKU-SN-CAS-40-DEN",
+          "size": 40,
+          "color": "den",
+          "price_delta_vnd": 0,
+          "stock": 5
+        },
+        {
+          "variant_sku": "SKU-SN-CAS-40-TRANG",
+          "size": 40,
+          "color": "trang",
+          "price_delta_vnd": 0,
+          "stock": 9
+        },
+        {
+          "variant_sku": "SKU-SN-CAS-40-XAM",
+          "size": 40,
+          "color": "xam",
+          "price_delta_vnd": 0,
+          "stock": 9
+        },
+        {
+          "variant_sku": "SKU-SN-CAS-41-DEN",
+          "size": 41,
+          "color": "den",
+          "price_delta_vnd": 0,
+          "stock": 5
+        },
+        {
+          "variant_sku": "SKU-SN-CAS-41-TRANG",
+          "size": 41,
+          "color": "trang",
+          "price_delta_vnd": 0,
+          "stock": 5
+        },
+        {
+          "variant_sku": "SKU-SN-CAS-41-XAM",
+          "size": 41,
+          "color": "xam",
+          "price_delta_vnd": 0,
+          "stock": 9
+        },
+        {
+          "variant_sku": "SKU-SN-CAS-42-DEN",
+          "size": 42,
+          "color": "den",
+          "price_delta_vnd": 0,
+          "stock": 2
+        },
+        {
+          "variant_sku": "SKU-SN-CAS-42-TRANG",
+          "size": 42,
+          "color": "trang",
+          "price_delta_vnd": 0,
+          "stock": 5
+        },
+        {
+          "variant_sku": "SKU-SN-CAS-42-XAM",
+          "size": 42,
+          "color": "xam",
+          "price_delta_vnd": 0,
+          "stock": 9
+        },
+        {
+          "variant_sku": "SKU-SN-CAS-43-DEN",
+          "size": 43,
+          "color": "den",
+          "price_delta_vnd": 50000,
+          "stock": 5
+        },
+        {
+          "variant_sku": "SKU-SN-CAS-43-TRANG",
+          "size": 43,
+          "color": "trang",
+          "price_delta_vnd": 50000,
+          "stock": 9
+        },
+        {
+          "variant_sku": "SKU-SN-CAS-43-XAM",
+          "size": 43,
+          "color": "xam",
+          "price_delta_vnd": 50000,
+          "stock": 9
+        }
+      ]
+    },
+    {
+      "sku": "SKU-SN-TRK",
+      "name": "Giày trekking HikePro",
+      "category": "thoi-trang/giay",
+      "brand": "HikePro",
+      "list_price_vnd": 1990000,
+      "attributes": {
+        "material": "vải lưới + đế EVA",
+        "return_days": 7
+      },
+      "stock": 63,
+      "variants": [
+        {
+          "variant_sku": "SKU-SN-TRK-38-DEN",
+          "size": 38,
+          "color": "den",
+          "price_delta_vnd": 0,
+          "stock": 0
+        },
+        {
+          "variant_sku": "SKU-SN-TRK-38-TRANG",
+          "size": 38,
+          "color": "trang",
+          "price_delta_vnd": 0,
+          "stock": 9
+        },
+        {
+          "variant_sku": "SKU-SN-TRK-38-XAM",
+          "size": 38,
+          "color": "xam",
+          "price_delta_vnd": 0,
+          "stock": 0
+        },
+        {
+          "variant_sku": "SKU-SN-TRK-39-DEN",
+          "size": 39,
+          "color": "den",
+          "price_delta_vnd": 0,
+          "stock": 0
+        },
+        {
+          "variant_sku": "SKU-SN-TRK-39-TRANG",
+          "size": 39,
+          "color": "trang",
+          "price_delta_vnd": 0,
+          "stock": 0
+        },
+        {
+          "variant_sku": "SKU-SN-TRK-39-XAM",
+          "size": 39,
+          "color": "xam",
+          "price_delta_vnd": 0,
+          "stock": 9
+        },
+        {
+          "variant_sku": "SKU-SN-TRK-40-DEN",
+          "size": 40,
+          "color": "den",
+          "price_delta_vnd": 0,
+          "stock": 0
+        },
+        {
+          "variant_sku": "SKU-SN-TRK-40-TRANG",
+          "size": 40,
+          "color": "trang",
+          "price_delta_vnd": 0,
+          "stock": 9
+        },
+        {
+          "variant_sku": "SKU-SN-TRK-40-XAM",
+          "size": 40,
+          "color": "xam",
+          "price_delta_vnd": 0,
+          "stock": 5
+        },
+        {
+          "variant_sku": "SKU-SN-TRK-41-DEN",
+          "size": 41,
+          "color": "den",
+          "price_delta_vnd": 0,
+          "stock": 5
+        },
+        {
+          "variant_sku": "SKU-SN-TRK-41-TRANG",
+          "size": 41,
+          "color": "trang",
+          "price_delta_vnd": 0,
+          "stock": 0
+        },
+        {
+          "variant_sku": "SKU-SN-TRK-41-XAM",
+          "size": 41,
+          "color": "xam",
+          "price_delta_vnd": 0,
+          "stock": 5
+        },
+        {
+          "variant_sku": "SKU-SN-TRK-42-DEN",
+          "size": 42,
+          "color": "den",
+          "price_delta_vnd": 0,
+          "stock": 0
+        },
+        {
+          "variant_sku": "SKU-SN-TRK-42-TRANG",
+          "size": 42,
+          "color": "trang",
+          "price_delta_vnd": 0,
+          "stock": 0
+        },
+        {
+          "variant_sku": "SKU-SN-TRK-42-XAM",
+          "size": 42,
+          "color": "xam",
+          "price_delta_vnd": 0,
+          "stock": 5
+        },
+        {
+          "variant_sku": "SKU-SN-TRK-43-DEN",
+          "size": 43,
+          "color": "den",
+          "price_delta_vnd": 50000,
+          "stock": 5
+        },
+        {
+          "variant_sku": "SKU-SN-TRK-43-TRANG",
+          "size": 43,
+          "color": "trang",
+          "price_delta_vnd": 50000,
+          "stock": 9
+        },
+        {
+          "variant_sku": "SKU-SN-TRK-43-XAM",
+          "size": 43,
+          "color": "xam",
+          "price_delta_vnd": 50000,
+          "stock": 2
+        }
+      ]
+    },
+    {
+      "sku": "SKU-JK-WND",
+      "name": "Áo khoác gió Windbreak",
+      "category": "thoi-trang/ao-khoac",
+      "brand": "Windbreak",
+      "list_price_vnd": 690000,
+      "attributes": {
+        "return_days": 7
+      },
+      "stock": 92,
+      "variants": [
+        {
+          "variant_sku": "SKU-JK-WND-S-DEN",
+          "size": "S",
+          "color": "den",
+          "price_delta_vnd": 0,
+          "stock": 12
+        },
+        {
+          "variant_sku": "SKU-JK-WND-S-NAVY",
+          "size": "S",
+          "color": "navy",
+          "price_delta_vnd": 0,
+          "stock": 4
+        },
+        {
+          "variant_sku": "SKU-JK-WND-S-BE",
+          "size": "S",
+          "color": "be",
+          "price_delta_vnd": 0,
+          "stock": 12
+        },
+        {
+          "variant_sku": "SKU-JK-WND-M-DEN",
+          "size": "M",
+          "color": "den",
+          "price_delta_vnd": 0,
+          "stock": 4
+        },
+        {
+          "variant_sku": "SKU-JK-WND-M-NAVY",
+          "size": "M",
+          "color": "navy",
+          "price_delta_vnd": 0,
+          "stock": 12
+        },
+        {
+          "variant_sku": "SKU-JK-WND-M-BE",
+          "size": "M",
+          "color": "be",
+          "price_delta_vnd": 0,
+          "stock": 12
+        },
+        {
+          "variant_sku": "SKU-JK-WND-L-DEN",
+          "size": "L",
+          "color": "den",
+          "price_delta_vnd": 0,
+          "stock": 12
+        },
+        {
+          "variant_sku": "SKU-JK-WND-L-NAVY",
+          "size": "L",
+          "color": "navy",
+          "price_delta_vnd": 0,
+          "stock": 12
+        },
+        {
+          "variant_sku": "SKU-JK-WND-L-BE",
+          "size": "L",
+          "color": "be",
+          "price_delta_vnd": 0,
+          "stock": 4
+        },
+        {
+          "variant_sku": "SKU-JK-WND-XL-DEN",
+          "size": "XL",
+          "color": "den",
+          "price_delta_vnd": 40000,
+          "stock": 4
+        },
+        {
+          "variant_sku": "SKU-JK-WND-XL-NAVY",
+          "size": "XL",
+          "color": "navy",
+          "price_delta_vnd": 40000,
+          "stock": 4
+        },
+        {
+          "variant_sku": "SKU-JK-WND-XL-BE",
+          "size": "XL",
+          "color": "be",
+          "price_delta_vnd": 40000,
+          "stock": 0
+        }
+      ]
+    },
+    {
+      "sku": "SKU-JK-DWN",
+      "name": "Áo phao lông vũ Warmly",
+      "category": "thoi-trang/ao-khoac",
+      "brand": "Warmly",
+      "list_price_vnd": 1490000,
+      "attributes": {
+        "return_days": 7
+      },
+      "stock": 56,
+      "variants": [
+        {
+          "variant_sku": "SKU-JK-DWN-S-DEN",
+          "size": "S",
+          "color": "den",
+          "price_delta_vnd": 0,
+          "stock": 4
+        },
+        {
+          "variant_sku": "SKU-JK-DWN-S-NAVY",
+          "size": "S",
+          "color": "navy",
+          "price_delta_vnd": 0,
+          "stock": 4
+        },
+        {
+          "variant_sku": "SKU-JK-DWN-S-BE",
+          "size": "S",
+          "color": "be",
+          "price_delta_vnd": 0,
+          "stock": 0
+        },
+        {
+          "variant_sku": "SKU-JK-DWN-M-DEN",
+          "size": "M",
+          "color": "den",
+          "price_delta_vnd": 0,
+          "stock": 0
+        },
+        {
+          "variant_sku": "SKU-JK-DWN-M-NAVY",
+          "size": "M",
+          "color": "navy",
+          "price_delta_vnd": 0,
+          "stock": 0
+        },
+        {
+          "variant_sku": "SKU-JK-DWN-M-BE",
+          "size": "M",
+          "color": "be",
+          "price_delta_vnd": 0,
+          "stock": 12
+        },
+        {
+          "variant_sku": "SKU-JK-DWN-L-DEN",
+          "size": "L",
+          "color": "den",
+          "price_delta_vnd": 0,
+          "stock": 12
+        },
+        {
+          "variant_sku": "SKU-JK-DWN-L-NAVY",
+          "size": "L",
+          "color": "navy",
+          "price_delta_vnd": 0,
+          "stock": 4
+        },
+        {
+          "variant_sku": "SKU-JK-DWN-L-BE",
+          "size": "L",
+          "color": "be",
+          "price_delta_vnd": 0,
+          "stock": 12
+        },
+        {
+          "variant_sku": "SKU-JK-DWN-XL-DEN",
+          "size": "XL",
+          "color": "den",
+          "price_delta_vnd": 40000,
+          "stock": 4
+        },
+        {
+          "variant_sku": "SKU-JK-DWN-XL-NAVY",
+          "size": "XL",
+          "color": "navy",
+          "price_delta_vnd": 40000,
+          "stock": 4
+        },
+        {
+          "variant_sku": "SKU-JK-DWN-XL-BE",
+          "size": "XL",
+          "color": "be",
+          "price_delta_vnd": 40000,
+          "stock": 0
+        }
+      ]
+    },
+    {
+      "sku": "SKU-MB-PUMP1",
+      "name": "Máy hút sữa điện đôi Spectra S1",
+      "category": "me-be",
+      "brand": "Spectra",
+      "list_price_vnd": 4290000,
+      "attributes": {
+        "warranty_months": 12
+      },
+      "stock": 6,
+      "variants": []
+    },
+    {
+      "sku": "SKU-MB-PUMP2",
+      "name": "Máy hút sữa điện đôi Medela Swing Maxi",
+      "category": "me-be",
+      "brand": "Medela",
+      "list_price_vnd": 5990000,
+      "attributes": {
+        "warranty_months": 12
+      },
+      "stock": 18,
+      "variants": []
+    },
+    {
+      "sku": "SKU-MB-STR1",
+      "name": "Xe đẩy gấp gọn Joie Pact",
+      "category": "me-be",
+      "brand": "Joie",
+      "list_price_vnd": 3490000,
+      "attributes": {
+        "max_weight_kg": 22,
+        "warranty_months": 12
+      },
+      "stock": 6,
+      "variants": []
+    },
+    {
+      "sku": "SKU-MB-STR2",
+      "name": "Xe đẩy 2 chiều Combi Sugocal",
+      "category": "me-be",
+      "brand": "Combi",
+      "list_price_vnd": 6790000,
+      "attributes": {
+        "max_weight_kg": 15,
+        "warranty_months": 12
+      },
+      "stock": 6,
+      "variants": []
+    },
+    {
+      "sku": "SKU-MB-MON",
+      "name": "Máy hâm sữa Fatz 4 chức năng",
+      "category": "me-be",
+      "brand": "Fatz",
+      "list_price_vnd": 490000,
+      "attributes": {
+        "warranty_months": 12
+      },
+      "stock": 18,
+      "variants": []
+    },
+    {
+      "sku": "SKU-MB-STER",
+      "name": "Máy tiệt trùng sấy khô Moaz Bebe",
+      "category": "me-be",
+      "brand": "Moaz",
+      "list_price_vnd": 1890000,
+      "attributes": {
+        "warranty_months": 12
+      },
+      "stock": 6,
+      "variants": []
+    },
+    {
+      "sku": "SKU-MB-BOT",
+      "name": "Bình sữa Pigeon PPSU 240ml",
+      "category": "me-be",
+      "brand": "Pigeon",
+      "list_price_vnd": 289000,
+      "attributes": {
+        "volume_ml": 240
+      },
+      "stock": 6,
+      "variants": []
+    },
+    {
+      "sku": "SKU-MB-CAR",
+      "name": "Ghế ngồi ô tô cho bé Chicco",
+      "category": "me-be",
+      "brand": "Chicco",
+      "list_price_vnd": 4990000,
+      "attributes": {
+        "warranty_months": 12
+      },
+      "stock": 18,
+      "variants": []
+    },
+    {
+      "sku": "SKU-AP-X-2024",
+      "name": "Máy lọc không khí AirPure X (bản 2024) — NGỪNG BÁN",
+      "category": "gia-dung/may-loc-khong-khi",
+      "brand": "AirPure",
+      "list_price_vnd": 4290000,
+      "attributes": {
+        "room_area_m2": 22,
+        "discontinued": true,
+        "successor_sku": "SKU-AP-X",
+        "warranty_months": 24
+      },
+      "stock": 0,
+      "variants": []
+    },
+    {
+      "sku": "SKU-SN-RUN1-OLD",
+      "name": "Giày chạy bộ RunLite 1 (2025) — NGỪNG BÁN",
+      "category": "thoi-trang/giay",
+      "brand": "RunLite",
+      "list_price_vnd": 1090000,
+      "attributes": {
+        "discontinued": true,
+        "successor_sku": "SKU-SN-RUN1"
+      },
+      "stock": 0,
+      "variants": []
+    },
+    {
+      "sku": "SKU-BDL-AIR",
+      "name": "Combo AirPure Y + 2 màng lọc",
+      "category": "gia-dung/combo",
+      "brand": "AirPure",
+      "list_price_vnd": 6390000,
+      "attributes": {
+        "bundle_of": [
+          "SKU-AP-Y",
+          "SKU-AP-FLT-X",
+          "SKU-AP-FLT-X"
+        ],
+        "saving_vnd": 190000,
+        "warranty_months": 24
+      },
+      "stock": 6,
+      "variants": []
+    },
+    {
+      "sku": "SKU-BDL-MOM",
+      "name": "Combo Spectra S1 + máy hâm sữa Fatz + 50 túi trữ sữa",
+      "category": "me-be",
+      "brand": "Spectra",
+      "list_price_vnd": 4790000,
+      "attributes": {
+        "bundle_of": [
+          "SKU-MB-PUMP1",
+          "SKU-MB-MON",
+          "SKU-MB-BAG"
+        ],
+        "saving_vnd": 109000,
+        "warranty_months": 12
+      },
+      "stock": 4,
+      "variants": []
+    },
+    {
+      "sku": "SKU-AP-FLT-X",
+      "name": "Màng lọc thay thế AirPure X/Y",
+      "category": "gia-dung/phu-kien",
+      "brand": "AirPure",
+      "list_price_vnd": 690000,
+      "attributes": {},
+      "stock": 30,
+      "variants": []
+    },
+    {
+      "sku": "SKU-AP-FLT-P",
+      "name": "Màng lọc thay thế AirPure Pro",
+      "category": "gia-dung/phu-kien",
+      "brand": "AirPure",
+      "list_price_vnd": 990000,
+      "attributes": {},
+      "stock": 60,
+      "variants": []
+    },
+    {
+      "sku": "SKU-XM-FLT",
+      "name": "Màng lọc thay thế Xiaomi Smart 4",
+      "category": "gia-dung/phu-kien",
+      "brand": "Xiaomi",
+      "list_price_vnd": 590000,
+      "attributes": {},
+      "stock": 60,
+      "variants": []
+    },
+    {
+      "sku": "SKU-WF-CORE",
+      "name": "Bộ lõi lọc thay thế RO 1-2-3",
+      "category": "gia-dung/phu-kien",
+      "brand": "Karofi",
+      "list_price_vnd": 390000,
+      "attributes": {},
+      "stock": 60,
+      "variants": []
+    },
+    {
+      "sku": "SKU-SN-SOCK",
+      "name": "Tất thể thao RunLite (3 đôi)",
+      "category": "thoi-trang/phu-kien",
+      "brand": "RunLite",
+      "list_price_vnd": 149000,
+      "attributes": {},
+      "stock": 30,
+      "variants": []
+    },
+    {
+      "sku": "SKU-MB-BAG",
+      "name": "Túi trữ sữa Sunmum 50 túi",
+      "category": "me-be",
+      "brand": "Sunmum",
+      "list_price_vnd": 119000,
+      "attributes": {},
+      "stock": 60,
+      "variants": []
+    }
+  ]
+}

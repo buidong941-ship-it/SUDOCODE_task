@@ -1,0 +1,169 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AgentTraceLine",
+  "description": "Định dạng log (JSONL, 1 dòng = 1 lượt agent) mà script chấm của BTC (eval/reference_eval.py) đọc. Nhóm chạy hệ thống trên bộ kịch bản và xuất ra file trace này cho cả 2 cấu hình: baseline (no-memory) và full. Việc trích 'questions' và 'claims' từ lời thoại là trách nhiệm của nhóm (regex/LLM extractor) — phải mô tả cách trích trong báo cáo; BTC có thể chấm tay đối chiếu ngẫu nhiên.",
+  "type": "object",
+  "required": [
+    "run_id",
+    "config",
+    "scenario_id",
+    "call",
+    "turn",
+    "customer_text",
+    "agent_text",
+    "questions",
+    "claims",
+    "tool_calls",
+    "latency"
+  ],
+  "properties": {
+    "run_id": {
+      "type": "string"
+    },
+    "config": {
+      "type": "string",
+      "enum": [
+        "baseline_no_memory",
+        "full"
+      ]
+    },
+    "scenario_id": {
+      "type": "string"
+    },
+    "call": {
+      "type": "string",
+      "enum": [
+        "call_1",
+        "call_2",
+        "call_3"
+      ]
+    },
+    "turn": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "customer_text": {
+      "type": "string"
+    },
+    "agent_text": {
+      "type": "string"
+    },
+    "questions": {
+      "type": "array",
+      "description": "Mỗi câu hỏi agent đặt ra trong lượt này, gán về slot. type=open là câu hỏi mở ('phòng chị bao nhiêu m²?'); type=confirm là câu xác nhận ('vẫn phòng 25m² đúng không ạ?').",
+      "items": {
+        "type": "object",
+        "required": [
+          "slot",
+          "type",
+          "text"
+        ],
+        "properties": {
+          "slot": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "open",
+              "confirm"
+            ]
+          },
+          "text": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "facts_used": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Slot từ phiên trước được dùng có ý nghĩa trong lượt này (trong lời thoại hoặc tham số tool) — dùng tính CCR"
+    },
+    "claims": {
+      "type": "array",
+      "description": "Phát ngôn có thể kiểm chứng: giá, KM, tồn kho, thời gian giao, bảo hành, chính sách.",
+      "items": {
+        "type": "object",
+        "required": [
+          "field",
+          "value"
+        ],
+        "properties": {
+          "field": {
+            "type": "string"
+          },
+          "value": {},
+          "text": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "tool_calls": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "args"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "args": {
+            "type": "object"
+          },
+          "result": {}
+        }
+      }
+    },
+    "latency": {
+      "type": "object",
+      "required": [
+        "ttft_ms",
+        "total_ms"
+      ],
+      "properties": {
+        "ttft_ms": {
+          "type": "integer"
+        },
+        "total_ms": {
+          "type": "integer"
+        },
+        "ttfa_ms": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
+      }
+    },
+    "call_brief_latency_ms": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "description": "Chỉ ở turn 1 của call_2/call_3"
+    },
+    "memory_writes": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "description": "BẮT BUỘC với kịch bản có memory_expectation (và khuyến nghị mọi lượt): các fact ghi/cập nhật/vô hiệu sau lượt này, dạng [{\"key\",\"value\",\"op\":\"set|supersede|delete\",\"source\":\"call_1#turn3\",\"customer_id\"}]. PII phải mask trước khi ghi."
+    },
+    "customer_input_mode": {
+      "type": "string",
+      "enum": [
+        "clean",
+        "asr_transcript",
+        "chat_teencode"
+      ],
+      "description": "Nếu kịch bản có customer_turns_asr thì hệ thống phải nhận customer_turns_asr và ghi mode tương ứng."
+    }
+  }
+}

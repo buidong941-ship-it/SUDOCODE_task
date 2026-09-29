@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CallBrief",
+  "description": "Call Brief nạp cho agent (và hiển thị trên UI) ngay khi nhận diện được khách gọi lại. Latency Call Brief đo từ sự kiện nhận diện SĐT đến khi object này sẵn sàng/hiển thị. Nhóm được thêm trường; required là tối thiểu để chấm Session Continuity.",
+  "type": "object",
+  "required": ["customer_phone", "is_returning", "n_previous_sessions", "last_session", "products_advised", "open_blockers", "must_not_ask", "suggested_opening", "generated_at", "latency_ms"],
+  "properties": {
+    "customer_phone": {"type": "string"},
+    "customer_name": {"type": ["string", "null"]},
+    "honorific": {"type": ["string", "null"], "description": "anh/chị/cô/chú theo phiên trước"},
+    "is_returning": {"type": "boolean"},
+    "n_previous_sessions": {"type": "integer"},
+    "last_session": {
+      "type": ["object", "null"],
+      "properties": {
+        "session_id": {"type": "string"}, "date": {"type": "string"}, "channel": {"type": "string"},
+        "summary": {"type": "string"}, "outcome": {"type": "string", "enum": ["hen_goi_lai", "chot_don", "tu_choi", "chuyen_may", "khac"]}
+      }
+    },
+    "profile_facts": {"type": "object", "description": "Sự thật bền vững: room_area_m2, has_children, budget_vnd, size, ... kèm nguồn", "additionalProperties": true},
+    "products_advised": {"type": "array", "items": {"type": "object", "properties": {"sku": {"type": "string"}, "price_quoted_vnd": {"type": "integer"}, "promo_code": {"type": ["string", "null"]}, "promo_still_active": {"type": ["boolean", "null"]}, "quoted_on": {"type": "string"}}}},
+    "orders": {"type": "array", "items": {"type": "object", "properties": {"order_id": {"type": "string"}, "variant_sku": {"type": "string"}, "status": {"type": "string"}}}},
+    "open_blockers": {"type": "array", "items": {"type": "string"}, "description": "Rào cản còn tồn đọng: 'chờ hỏi chồng', 'so sánh giá', ..."},
+    "open_questions": {"type": "array", "items": {"type": "string"}},
+    "must_not_ask": {"type": "array", "items": {"type": "string"}, "description": "Slot đã có giá trị hợp lệ — agent không được hỏi mở lại"},
+    "stale_warnings": {"type": "array", "items": {"type": "string"}, "description": "Cảnh báo: KM đã hết hạn, hàng đã hết, thông tin quá TTL"},
+    "suggested_opening": {"type": "string", "description": "Câu mở đầu xác nhận tiếp nối đề xuất"},
+    "suggested_next_action": {"type": "string"},
+    "generated_at": {"type": "string", "format": "date-time"},
+    "latency_ms": {"type": "integer", "description": "Thời gian từ sự kiện nhận diện SĐT đến khi brief sẵn sàng (end-to-end, gồm DB + LLM)"},
+    "precomputed_parts": {"type": "array", "items": {"type": "string"}, "description": "Phần nào được tính sẵn từ cuối phiên trước (khai báo minh bạch)"}
+  }
+}

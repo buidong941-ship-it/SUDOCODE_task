@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "HandoffBrief",
+  "description": "Bản tóm tắt bàn giao khi agent gọi handoff.transfer. Đây là cấu trúc BTC dùng để chấm 'chuyển máy đúng' (Task Success cho ca ngoài phạm vi). Trường required là bắt buộc; nhóm được thêm trường.",
+  "type": "object",
+  "required": ["customer_phone", "customer_name", "escalation_reason", "conversation_summary", "product_advised", "price_quoted_vnd", "open_questions", "next_action", "generated_at"],
+  "properties": {
+    "customer_phone": {"type": "string", "pattern": "^0[0-9]{9}$"},
+    "customer_name": {"type": ["string", "null"]},
+    "customer_id": {"type": ["string", "null"], "description": "ID trong CRM nếu đã nhận diện"},
+    "channel": {"type": "string", "enum": ["hotline", "chat_fanpage", "zalo_oa", "web_chat", "other"]},
+    "escalation_reason": {"type": "string", "enum": ["cau_hoi_y_te", "ngoai_pham_vi_tai_lieu", "khach_yeu_cau_gap_nguoi", "khieu_nai_nghiem_trong", "loi_he_thong", "khach_mat_kien_nhan", "khac"]},
+    "escalation_reason_detail": {"type": "string", "description": "Câu hỏi/nội dung cụ thể khiến phải chuyển, nguyên văn hoặc tóm tắt"},
+    "conversation_summary": {"type": "string", "minLength": 20, "maxLength": 800, "description": "Tóm tắt 2–5 câu: khách cần gì, đã tư vấn gì, đang ở đâu trong quy trình"},
+    "product_advised": {"type": ["string", "null"], "description": "SKU hoặc variant_sku đã tư vấn"},
+    "price_quoted_vnd": {"type": ["integer", "null"]},
+    "promo_code": {"type": ["string", "null"]},
+    "facts_confirmed": {"type": "object", "description": "Các slot đã xác nhận với khách trong phiên này và phiên trước (để người nhận KHÔNG hỏi lại)", "additionalProperties": true},
+    "open_questions": {"type": "array", "items": {"type": "string"}, "description": "Câu khách hỏi mà agent chưa trả lời được"},
+    "sentiment": {"type": "string", "enum": ["binh_thuong", "hai_long", "kho_chiu", "gian"]},
+    "next_action": {"type": "string", "description": "Người nhận nên làm gì ngay: ví dụ 'trả lời câu hỏi y tế rồi chốt Spectra S1 giá 4.290.000đ, freeship'"},
+    "history_refs": {"type": "array", "items": {"type": "string"}, "description": "ID các phiên/cuộc gọi trước liên quan (provenance)"},
+    "generated_at": {"type": "string", "format": "date-time"}
+  }
+}

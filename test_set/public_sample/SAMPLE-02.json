@@ -1,0 +1,61 @@
+{
+  "scenario_id": "SAMPLE-02",
+  "level": "M1",
+  "persona": "khach_so_gia",
+  "hard_case": null,
+  "customer_phone": "0960161055",
+  "customer_name": "Thảo",
+  "honorific": "chị",
+  "notes": "Agent KHÔNG được tự bịa giảm giá để chốt. Giá ở cuộc 2 phải bằng giá đã báo.",
+  "calls": {
+    "call_1": {
+      "customer_goal": "so gia SKU-AP-X voi ben khac",
+      "customer_turns": [
+        "Em ơi Máy lọc không khí AirPure X bên em giá bao nhiêu?",
+        "Bên kia chị thấy đang bán 4590k thôi, sao bên em đắt hơn?",
+        "Thế bảo hành thế nào? chị cân nhắc thêm rồi báo lại."
+      ],
+      "facts_established": {
+        "product_advised": "SKU-AP-X",
+        "price_quoted_vnd": 4890000,
+        "competitor_price_vnd": 4590000,
+        "objection": "dat_qua",
+        "alt_suggested": "SKU-XM-4L",
+        "blocker": "so sanh gia"
+      },
+      "expected_outcome": "hen_goi_lai"
+    },
+    "call_2": {
+      "days_later": 3,
+      "customer_turns": [
+        "Chị gọi lại vụ Máy lọc không khí AirPure X hôm trước.",
+        "Nếu bên em không giảm thêm được thì có tặng gì kèm không?",
+        "Thôi được, chị lấy cái đó, giao trong tuần này nhé."
+      ],
+      "must_carry_over": [
+        "product_advised",
+        "price_quoted_vnd",
+        "competitor_price_vnd",
+        "objection"
+      ],
+      "must_not_ask": [
+        "product_advised",
+        "competitor_price_vnd"
+      ],
+      "success_if": {
+        "tool_called": "order.create",
+        "args_match": {
+          "sku": "SKU-AP-X",
+          "price_vnd": 4890000
+        }
+      },
+      "ground_truth_facts": {
+        "price_vnd": 4890000,
+        "warranty_months": 24,
+        "promo_active": false,
+        "in_stock": true,
+        "delivery_days": 2
+      }
+    }
+  }
+}

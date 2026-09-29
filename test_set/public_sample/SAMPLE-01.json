@@ -1,0 +1,65 @@
+{
+  "scenario_id": "SAMPLE-01",
+  "level": "M1",
+  "persona": "khach_do_du_hoi_nguoi_nha",
+  "hard_case": null,
+  "customer_phone": "0984726714",
+  "customer_name": "Hoa",
+  "honorific": "chị",
+  "notes": "Kịch bản lõi Case 1. Cuộc 2 phải mở đầu bằng xác nhận tiếp nối, không hỏi lại diện tích/ngân sách/có trẻ nhỏ.",
+  "calls": {
+    "call_1": {
+      "customer_goal": "hoi may loc khong khi cho phong 25m2, co tre nho, ngan sach 5tr",
+      "customer_turns": [
+        "Alo, chị muốn hỏi máy lọc không khí cho phòng ngủ khoảng 25 mét vuông.",
+        "Nhà chị có bé nhỏ, ngân sách tầm 5 triệu thôi em.",
+        "Máy này có khuyến mãi gì không em?",
+        "Ừ để chị hỏi ông xã rồi gọi lại em nhé."
+      ],
+      "facts_established": {
+        "room_area_m2": 25,
+        "has_children": true,
+        "budget_vnd": 5700000,
+        "product_advised": "SKU-AP-Y",
+        "price_quoted_vnd": 5200000,
+        "promo_code": "GIFT-FILTER",
+        "promo_expiry": "2026-10-22",
+        "blocker": "can hoi chong"
+      },
+      "expected_outcome": "hen_goi_lai"
+    },
+    "call_2": {
+      "days_later": 2,
+      "customer_turns": [
+        "Alo, hôm trước chị có gọi hỏi máy lọc không khí đó em.",
+        "Ông xã chị đồng ý rồi, giá vẫn như hôm trước đúng không?",
+        "Ừ em lên đơn cho chị đi, giao về địa chỉ cũ nhé."
+      ],
+      "must_carry_over": [
+        "product_advised",
+        "price_quoted_vnd",
+        "room_area_m2",
+        "blocker"
+      ],
+      "must_not_ask": [
+        "room_area_m2",
+        "budget_vnd",
+        "has_children",
+        "product_advised"
+      ],
+      "success_if": {
+        "tool_called": "order.create",
+        "args_match": {
+          "sku": "SKU-AP-Y",
+          "price_vnd": 5200000
+        }
+      },
+      "ground_truth_facts": {
+        "price_vnd": 5200000,
+        "promo_active": true,
+        "in_stock": true,
+        "delivery_days": 2
+      }
+    }
+  }
+}

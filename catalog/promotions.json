@@ -1,0 +1,190 @@
+{
+  "reference_date": "2026-10-15",
+  "promotions": [
+    {
+      "promo_code": "GIFT-FILTER",
+      "name": "Tặng 1 màng lọc khi mua AirPure X/Y",
+      "applies_to": [
+        "SKU-AP-X",
+        "SKU-AP-Y"
+      ],
+      "type": "gift",
+      "gift_sku": "SKU-AP-FLT-X",
+      "discount_vnd": 0,
+      "start": "2026-09-25",
+      "end": "2026-10-22",
+      "stackable": false
+    },
+    {
+      "promo_code": "AIR-OCT",
+      "name": "Giảm 300.000đ máy lọc không khí AirPure Pro",
+      "applies_to": [
+        "SKU-AP-PRO"
+      ],
+      "type": "fixed",
+      "discount_vnd": 300000,
+      "start": "2026-10-05",
+      "end": "2026-10-30",
+      "stackable": false
+    },
+    {
+      "promo_code": "XM-COMBO",
+      "name": "Mua Xiaomi Smart 4 Pro tặng màng lọc",
+      "applies_to": [
+        "SKU-XM-4P"
+      ],
+      "type": "gift",
+      "gift_sku": "SKU-XM-FLT",
+      "discount_vnd": 0,
+      "start": "2026-10-10",
+      "end": "2026-11-14",
+      "stackable": false
+    },
+    {
+      "promo_code": "RUN-10",
+      "name": "Giảm 10% giày RunLite",
+      "applies_to": [
+        "SKU-SN-RUN1",
+        "SKU-SN-RUN2"
+      ],
+      "type": "percent",
+      "discount_percent": 10,
+      "discount_vnd": 0,
+      "start": "2026-10-12",
+      "end": "2026-10-25",
+      "stackable": false,
+      "conditions": {
+        "exclude_variant_size": [
+          43
+        ],
+        "once_per_customer": true
+      }
+    },
+    {
+      "promo_code": "AIR-2ND-50",
+      "name": "Mua máy lọc không khí thứ 2 trong cùng đơn giảm 50% máy rẻ hơn",
+      "applies_to": [
+        "category:gia-dung/may-loc-khong-khi"
+      ],
+      "type": "percent_second_item",
+      "discount_percent": 50,
+      "discount_vnd": 0,
+      "start": "2026-10-05",
+      "end": "2026-11-04",
+      "stackable": false,
+      "conditions": {
+        "min_qty": 2
+      }
+    },
+    {
+      "promo_code": "NAM-SHIP0",
+      "name": "Miễn ship gia dụng cho khách khu vực miền Nam",
+      "applies_to": [
+        "category:gia-dung"
+      ],
+      "type": "freeship",
+      "discount_vnd": 0,
+      "start": "2026-10-08",
+      "end": "2026-11-05",
+      "stackable": true,
+      "conditions": {
+        "region": [
+          "nam"
+        ]
+      }
+    },
+    {
+      "promo_code": "TRADE-IN-AP",
+      "name": "Thu cũ đổi mới: trừ 400.000đ khi đổi AirPure X bản 2024 lấy AirPure X/Y/Pro",
+      "applies_to": [
+        "SKU-AP-X",
+        "SKU-AP-Y",
+        "SKU-AP-PRO"
+      ],
+      "type": "fixed",
+      "discount_vnd": 400000,
+      "start": "2026-09-15",
+      "end": "2026-12-14",
+      "stackable": false,
+      "conditions": {
+        "requires_owned_sku": "SKU-AP-X-2024"
+      }
+    },
+    {
+      "promo_code": "MOM-FREESHIP",
+      "name": "Miễn phí vận chuyển ngành Mẹ & bé đơn từ 500k",
+      "applies_to": [
+        "category:me-be"
+      ],
+      "type": "freeship",
+      "discount_vnd": 0,
+      "min_order_vnd": 500000,
+      "start": "2026-09-15",
+      "end": "2026-11-29",
+      "stackable": true
+    },
+    {
+      "promo_code": "COD-0",
+      "name": "Miễn phí thu hộ COD toàn bộ đơn",
+      "applies_to": [
+        "*"
+      ],
+      "type": "freecod",
+      "discount_vnd": 0,
+      "start": "2026-08-16",
+      "end": "2026-12-14",
+      "stackable": true
+    },
+    {
+      "promo_code": "AP-SEP",
+      "name": "Giảm 500.000đ AirPure X (tháng 9)",
+      "applies_to": [
+        "SKU-AP-X"
+      ],
+      "type": "fixed",
+      "discount_vnd": 500000,
+      "start": "2026-08-31",
+      "end": "2026-09-30",
+      "stackable": false
+    },
+    {
+      "promo_code": "RUN2-SALE",
+      "name": "Giảm 20% RunLite 2 Pro",
+      "applies_to": [
+        "SKU-SN-RUN2"
+      ],
+      "type": "percent",
+      "discount_percent": 20,
+      "discount_vnd": 0,
+      "start": "2026-09-05",
+      "end": "2026-10-07",
+      "stackable": false
+    },
+    {
+      "promo_code": "PUMP-GIFT",
+      "name": "Tặng túi trữ sữa khi mua Spectra S1",
+      "applies_to": [
+        "SKU-MB-PUMP1"
+      ],
+      "type": "gift",
+      "gift_sku": "SKU-MB-BAG",
+      "discount_vnd": 0,
+      "start": "2026-09-15",
+      "end": "2026-10-13",
+      "stackable": true
+    },
+    {
+      "promo_code": "11-11",
+      "name": "Giảm 15% toàn ngành gia dụng dịp 11/11",
+      "applies_to": [
+        "category:gia-dung"
+      ],
+      "type": "percent",
+      "discount_percent": 15,
+      "discount_vnd": 0,
+      "start": "2026-11-11",
+      "end": "2026-11-12",
+      "stackable": false
+    }
+  ]
+}

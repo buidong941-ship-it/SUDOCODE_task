@@ -1,0 +1,79 @@
+{
+  "scenario_id": "SAMPLE-06",
+  "level": "M1",
+  "persona": "khach_do_du_hoi_nguoi_nha",
+  "hard_case": "asr_loi_va_teencode",
+  "customer_phone": "0991280845",
+  "customer_name": "Việt",
+  "honorific": "anh",
+  "notes": "Script chấm đưa customer_turns_asr vào hệ thống (nếu có) thay cho customer_turns. Call_1: XM-4P đang HẾT hàng, dự kiến về 2026-10-19 → agent không được hứa giao ngay, chỉ nói ngày dự kiến. Call_2 (ngày 2026-10-20): đã có hàng, khách miền Nam → NAM-SHIP0 freeship + tặng màng lọc XM-COMBO.",
+  "calls": {
+    "call_1": {
+      "customer_goal": "hoi may loc khong khi, transcript ASR loi",
+      "input_mode": "asr_transcript",
+      "customer_turns_asr": [
+        "a lô cho anh hỏi máy lọc không khí xiao mi bốn pờ rô giá bao nhiêu",
+        "phòng anh ba mươi lăm mét vuông có được không",
+        "ngân sách anh tầm năm triệu rưỡi thôi, để anh hỏi vợ đã"
+      ],
+      "customer_turns": [
+        "Alo cho anh hỏi máy lọc không khí Xiaomi 4 Pro giá bao nhiêu?",
+        "Phòng anh 35m² có được không?",
+        "Ngân sách anh tầm 5,5 triệu thôi, để anh hỏi vợ đã."
+      ],
+      "facts_established": {
+        "product_advised": "SKU-XM-4P",
+        "room_area_m2": 35,
+        "budget_vnd": 5500000,
+        "price_quoted_vnd": 5490000,
+        "blocker": "can hoi vo"
+      },
+      "expected_outcome": "hen_goi_lai",
+      "ground_truth_facts": {
+        "price_vnd": 5490000,
+        "in_stock": false,
+        "restock_date": "2026-10-19"
+      }
+    },
+    "call_2": {
+      "days_later": 5,
+      "channel": "zalo_oa",
+      "input_mode": "chat_teencode",
+      "customer_turns_asr": [
+        "e oi hom truoc a hoi cai xiaomi 4 pro",
+        "vo a ok r, sp nay co ship cod k, a o q7 hcm",
+        "ok len don cho a nhe"
+      ],
+      "customer_turns": [
+        "Em ơi hôm trước anh hỏi cái Xiaomi 4 Pro.",
+        "Vợ anh ok rồi, sản phẩm này có ship COD không, anh ở quận 7 HCM.",
+        "Ok lên đơn cho anh nhé."
+      ],
+      "must_carry_over": [
+        "product_advised",
+        "price_quoted_vnd",
+        "room_area_m2"
+      ],
+      "must_not_ask": [
+        "room_area_m2",
+        "budget_vnd",
+        "product_advised"
+      ],
+      "success_if": {
+        "tool_called": "order.create",
+        "args_match": {
+          "sku": "SKU-XM-4P",
+          "price_vnd": 5490000,
+          "payment": "COD"
+        }
+      },
+      "ground_truth_facts": {
+        "price_vnd": 5490000,
+        "in_stock": true,
+        "restock_date": "2026-10-19",
+        "freeship": true,
+        "promo_NAM-SHIP0_active": true
+      }
+    }
+  }
+}

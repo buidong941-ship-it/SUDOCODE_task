@@ -1,0 +1,166 @@
+{
+  "description": "Schema chuẩn cho các tool mock. Nhóm PHẢI giữ đúng tên tool và tên tham số bắt buộc để script chấm của BTC đối chiếu được success_if (args_match). Được thêm tham số tùy chọn. Tool đánh dấu M2 không bắt buộc ở M1. Logic tham chiếu (giá sau KM, điều kiện KM, tồn kho theo ngày, giới hạn COD, dời lịch ngày nghỉ) nằm trong eval/mock_tools.py — kết quả của nhóm phải khớp trên cùng đầu vào. Mọi tool nhận thêm `on` (YYYY-MM-DD, ngày của cuộc gọi).",
+  "tools": [
+    {
+      "name": "crm.get_customer",
+      "level": "M1",
+      "description": "Tra khách theo SĐT hoặc định danh kênh. Trả về customer + danh sách session/order trước.",
+      "input": {
+        "phone": "string?",
+        "zalo_id": "string?",
+        "fb_id": "string?"
+      },
+      "output": {
+        "found": "boolean",
+        "customer_id": "string?",
+        "name": "string?",
+        "honorific": "string?",
+        "phone": "string?",
+        "identities": "object",
+        "orders": "array",
+        "ambiguous": "boolean — true khi SĐT thuộc ≥2 hồ sơ, kèm candidates[]",
+        "sessions": "array (phiên cũ, có date để xét TTL)"
+      }
+    },
+    {
+      "name": "catalog.search",
+      "level": "M1",
+      "description": "Tìm sản phẩm trong catalog/products.json.",
+      "input": {
+        "query": "string?",
+        "category": "string?",
+        "sku": "string?",
+        "max_price_vnd": "int?",
+        "min_room_area_m2": "int?"
+      },
+      "output": {
+        "items": [
+          {
+            "sku": "string",
+            "name": "string",
+            "list_price_vnd": "int",
+            "attributes": "object",
+            "variants": "array"
+          }
+        ]
+      }
+    },
+    {
+      "name": "inventory.check",
+      "level": "M1",
+      "description": "Kiểm tra tồn kho của SKU hoặc variant_sku.",
+      "input": {
+        "sku": "string",
+        "on": "date?"
+      },
+      "output": {
+        "sku": "string",
+        "in_stock": "boolean",
+        "qty": "int",
+        "restock_expected": "date? (khi hết hàng và có lịch về)",
+        "discontinued": "boolean?",
+        "successor_sku": "string?"
+      }
+    },
+    {
+      "name": "order.create",
+      "level": "M1",
+      "description": "Tạo đơn. args_match trong kịch bản đối chiếu sku và price_vnd (giá SAU khuyến mãi hợp lệ).",
+      "input": {
+        "customer_phone": "string",
+        "sku": "string",
+        "qty": "int",
+        "price_vnd": "int",
+        "promo_code": "string?",
+        "payment": "COD|bank|momo|zalopay",
+        "address": "string?"
+      },
+      "output": {
+        "order_id": "string",
+        "status": "created",
+        "error": "out_of_stock | price_mismatch | cod_limit_exceeded",
+        "estimated_delivery": "date (đã trừ CN + ngày nghỉ)"
+      }
+    },
+    {
+      "name": "pricing.get_quote",
+      "level": "M1 (khuyến nghị) / M2",
+      "description": "Trả giá cuối kèm KM còn hiệu lực tại ngày `on` (mặc định hôm nay). Ở M1 nhóm có thể gộp logic này vào catalog.search + promotions.json.",
+      "input": {
+        "sku": "string",
+        "on": "date?",
+        "qty": "int?",
+        "customer_phone": "string? (xét once_per_customer, requires_owned_sku)",
+        "address": "string? (xét region)",
+        "basket_skus": "array? (xét AIR-2ND-50)"
+      },
+      "output": {
+        "list_price_vnd": "int",
+        "final_price_vnd": "int",
+        "applied_promos": "array",
+        "expired_promos": "array",
+        "ineligible_promos": "array [{promo_code, reason}]",
+        "not_applied_exclusive": "array",
+        "freeship": "boolean"
+      }
+    },
+    {
+      "name": "order.status",
+      "level": "M2",
+      "input": {
+        "order_id": "string?",
+        "customer_phone": "string?"
+      },
+      "output": {
+        "orders": "array"
+      }
+    },
+    {
+      "name": "order.update",
+      "level": "M1 (bắt buộc với persona đổi size) / M2",
+      "description": "Đổi size/sản phẩm hoặc trả hàng theo chính sách DT-03/DT-07.",
+      "input": {
+        "order_id": "string",
+        "action": "exchange_size|exchange_product|return|update_address",
+        "new_variant_sku": "string?",
+        "reason": "string?"
+      },
+      "output": {
+        "order_id": "string",
+        "status": "string",
+        "fee_vnd": "int"
+      }
+    },
+    {
+      "name": "schedule.callback",
+      "level": "M1",
+      "description": "Đặt lịch gọi lại theo thời điểm khách nêu.",
+      "input": {
+        "customer_phone": "string",
+        "callback_at": "datetime",
+        "note": "string?"
+      },
+      "output": {
+        "callback_id": "string",
+        "moved_from": "datetime? — khi lịch rơi vào ngày nghỉ/ngoài giờ, mock tự dời và agent PHẢI báo khách"
+      }
+    },
+    {
+      "name": "handoff.transfer",
+      "level": "M1",
+      "description": "Chuyển máy cho người thật kèm HandoffBrief đúng schemas/handoff_brief.schema.json. Không cần routing thật; mock trả về ticket_id.",
+      "input": {
+        "brief": "HandoffBrief"
+      },
+      "output": {
+        "ticket_id": "string",
+        "status": "queued"
+      }
+    },
+    {
+      "name": "memory.read / memory.write",
+      "level": "M1 (qua mcp-memory)",
+      "description": "Đọc/ghi các tầng bộ nhớ. Không quy định schema; nhóm tự thiết kế nhưng phải log được provenance (fact đến từ session nào)."
+    }
+  ]
+}

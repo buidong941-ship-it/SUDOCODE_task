@@ -1,0 +1,585 @@
+{
+  "description": "Bộ câu hỏi có gán nhãn cho RAG (M2). 60 câu, 6 loại. relevant_chunk_ids = mã mục [XX-nn] trong policy/. Với 'unanswerable' và 'restricted', chunk liệt kê là bằng chứng để agent BIẾT phải từ chối/nói không có thông tin.",
+  "corpus_dir": "policy/",
+  "chunk_id_rule": "Mỗi mục '## [XX-nn]' là một chunk chuẩn. Nhóm chunk khác ranh giới phải ánh xạ chunk của mình về mã mục chứa nó và nêu rõ cách ánh xạ.",
+  "metrics": {
+    "recall_at_k": "Tính trên các câu type ∈ {single, multi_hop, version_conflict, numeric, restricted, unanswerable có relevant_chunk_ids ≠ []}: câu đạt khi ≥1 relevant_chunk_id nằm trong top-k. Với multi_hop báo thêm 'full recall' = tất cả chunk đều trong top-k. Báo k=3 và k=5.",
+    "abstain_accuracy": "Trên câu type ∈ {unanswerable, restricted}: tỷ lệ agent từ chối/nói không có thông tin (chấm bằng LLM-judge hoặc keyword), KHÔNG bịa.",
+    "version_accuracy": "Trên câu version_conflict: tỷ lệ trả lời theo đúng phiên bản có hiệu lực (kể cả Q trường hợp đơn cũ)."
+  },
+  "counts": {
+    "single": 25,
+    "multi_hop": 12,
+    "version_conflict": 6,
+    "unanswerable": 8,
+    "restricted": 5,
+    "numeric": 4
+  },
+  "questions": [
+    {
+      "qid": "Q01",
+      "type": "single",
+      "question": "Mua giày về chật, đổi size có mất phí không?",
+      "relevant_chunk_ids": [
+        "DT-03"
+      ],
+      "expected_answer": "Lần đầu miễn phí, shop chịu ship 2 chiều; từ lần 2: 30.000đ/chiều."
+    },
+    {
+      "qid": "Q02",
+      "type": "single",
+      "question": "Nhận hàng rồi thì được đổi trả trong bao lâu?",
+      "relevant_chunk_ids": [
+        "DT-01"
+      ],
+      "expected_answer": "7 ngày kể từ ngày nhận; lỗi NSX gia dụng/mẹ & bé: 30 ngày."
+    },
+    {
+      "qid": "Q03",
+      "type": "single",
+      "question": "Bình sữa bóc seal rồi có trả lại được không?",
+      "relevant_chunk_ids": [
+        "DT-02"
+      ],
+      "expected_answer": "Không, vì lý do vệ sinh."
+    },
+    {
+      "qid": "Q04",
+      "type": "single",
+      "question": "Trả hàng thì bao lâu được hoàn tiền, đơn COD hoàn kiểu gì?",
+      "relevant_chunk_ids": [
+        "DT-04"
+      ],
+      "expected_answer": "3–5 ngày làm việc sau khi nhận hàng; COD hoàn qua chuyển khoản."
+    },
+    {
+      "qid": "Q05",
+      "type": "single",
+      "question": "Đổi size mà size mới hết hàng thì sao?",
+      "relevant_chunk_ids": [
+        "DT-03"
+      ],
+      "expected_answer": "Chọn sản phẩm khác cùng giá hoặc hoàn tiền."
+    },
+    {
+      "qid": "Q06",
+      "type": "single",
+      "question": "Ở Hà Nội nội thành thì mấy ngày nhận được hàng?",
+      "relevant_chunk_ids": [
+        "VC-01"
+      ],
+      "expected_answer": "1–2 ngày làm việc; đặt sau 16h tính từ ngày kế tiếp."
+    },
+    {
+      "qid": "Q07",
+      "type": "single",
+      "question": "Ship COD có mất phí thu hộ không, đơn tối đa bao nhiêu?",
+      "relevant_chunk_ids": [
+        "VC-03"
+      ],
+      "expected_answer": "0đ (COD-0); COD chỉ cho đơn dưới 10.000.000đ."
+    },
+    {
+      "qid": "Q08",
+      "type": "single",
+      "question": "Bên em có trả góp không?",
+      "relevant_chunk_ids": [
+        "VC-04"
+      ],
+      "expected_answer": "Chưa hỗ trợ trả góp; không hứa sắp có."
+    },
+    {
+      "qid": "Q09",
+      "type": "single",
+      "question": "Shipper giao mấy lần không được thì sao?",
+      "relevant_chunk_ids": [
+        "VC-07"
+      ],
+      "expected_answer": "Tối đa 3 lần rồi hoàn kho; muốn giao lại phải đặt đơn mới."
+    },
+    {
+      "qid": "Q10",
+      "type": "single",
+      "question": "Máy lọc nước Karofi bảo hành mấy năm?",
+      "relevant_chunk_ids": [
+        "BH-01"
+      ],
+      "expected_answer": "36 tháng thân máy; lõi lọc không bảo hành."
+    },
+    {
+      "qid": "Q11",
+      "type": "single",
+      "question": "Bao lâu phải thay màng lọc HEPA?",
+      "relevant_chunk_ids": [
+        "BH-04"
+      ],
+      "expected_answer": "6–12 tháng tùy môi trường."
+    },
+    {
+      "qid": "Q12",
+      "type": "single",
+      "question": "Tổng đài làm việc đến mấy giờ?",
+      "relevant_chunk_ids": [
+        "LN-01"
+      ],
+      "expected_answer": "T2–T7 08:00–21:00; CN 09:00–18:00."
+    },
+    {
+      "qid": "Q13",
+      "type": "single",
+      "question": "Nhà dùng nước giếng khoan thì mua máy lọc nước nào?",
+      "relevant_chunk_ids": [
+        "FAQ-05"
+      ],
+      "expected_answer": "Bắt buộc RO, khuyến nghị Kangaroo 10 lõi."
+    },
+    {
+      "qid": "Q14",
+      "type": "single",
+      "question": "AirPure Y có khóa trẻ em không, độ ồn thấp nhất bao nhiêu?",
+      "relevant_chunk_ids": [
+        "SP-AIR-01"
+      ],
+      "expected_answer": "Có khóa trẻ em; 23 dB."
+    },
+    {
+      "qid": "Q15",
+      "type": "single",
+      "question": "Xe đẩy Joie Pact gấp lại kích thước bao nhiêu?",
+      "relevant_chunk_ids": [
+        "SP-MB-02"
+      ],
+      "expected_answer": "52×46×25 cm."
+    },
+    {
+      "qid": "Q16",
+      "type": "single",
+      "question": "Chân dài 25,5 cm thì đi RunLite 2 Pro size mấy?",
+      "relevant_chunk_ids": [
+        "SP-SN-01"
+      ],
+      "expected_answer": "Size 42 (cột RunLite: 42 ↔ 25,5 cm)."
+    },
+    {
+      "qid": "Q17",
+      "type": "single",
+      "question": "Khách hỏi em là người hay máy thì trả lời sao?",
+      "relevant_chunk_ids": [
+        "PB-07"
+      ],
+      "expected_answer": "Trung thực là trợ lý ảo/AI, có thể chuyển người thật."
+    },
+    {
+      "qid": "Q18",
+      "type": "single",
+      "question": "Khách muốn xóa thông tin cá nhân thì làm gì?",
+      "relevant_chunk_ids": [
+        "QT-06"
+      ],
+      "expected_answer": "Xác nhận 1 câu, ghi nhận, xóa hồ sơ trong 72 giờ, ẩn danh hóa lịch sử đơn."
+    },
+    {
+      "qid": "Q19",
+      "type": "single",
+      "question": "Spectra S1 dùng pin được bao lâu?",
+      "relevant_chunk_ids": [
+        "SP-MB-01"
+      ],
+      "expected_answer": "3 giờ (pin sạc)."
+    },
+    {
+      "qid": "Q20",
+      "type": "single",
+      "question": "Máy lọc không khí Xiaomi bảo hành bao lâu?",
+      "relevant_chunk_ids": [
+        "BH-01"
+      ],
+      "expected_answer": "12 tháng (catalog là nguồn ưu tiên)."
+    },
+    {
+      "qid": "Q21",
+      "type": "single",
+      "question": "Khuyến mãi tặng màng lọc có cộng với freeship không?",
+      "relevant_chunk_ids": [
+        "KM-03"
+      ],
+      "expected_answer": "Có; freeship/COD-0 stackable."
+    },
+    {
+      "qid": "Q22",
+      "type": "single",
+      "question": "Mua 2 máy lọc không khí trong 1 đơn thì giảm thế nào?",
+      "relevant_chunk_ids": [
+        "KM-05"
+      ],
+      "expected_answer": "AIR-2ND-50: giảm 50% máy có giá thấp hơn, cùng đơn, min_qty 2."
+    },
+    {
+      "qid": "Q23",
+      "type": "single",
+      "question": "Thu cũ đổi mới AirPure yêu cầu máy cũ còn chạy không?",
+      "relevant_chunk_ids": [
+        "KM-09"
+      ],
+      "expected_answer": "Không yêu cầu; cần có đơn đã giao SKU-AP-X-2024 trong CRM; trừ 400.000đ."
+    },
+    {
+      "qid": "Q24",
+      "type": "single",
+      "question": "Đơn đặt thứ Sáu 23/10 nội thành Hà Nội thì bao giờ giao?",
+      "relevant_chunk_ids": [
+        "LN-03"
+      ],
+      "expected_answer": "Thứ Ba 27/10 (bỏ qua CN 25/10 và ngày nghỉ 26/10)."
+    },
+    {
+      "qid": "Q25",
+      "type": "single",
+      "question": "Máy lọc không khí AirPure X bản 2024 còn bán không?",
+      "relevant_chunk_ids": [
+        "FAQ-16"
+      ],
+      "expected_answer": "Ngừng bán từ 01/06/2026; thay thế SKU-AP-X; vẫn mua được màng lọc, được TRADE-IN-AP."
+    },
+    {
+      "qid": "Q26",
+      "type": "multi_hop",
+      "question": "Chị mua máy lọc nước Kangaroo giao về Cần Thơ, tổng tiền ship là bao nhiêu và mấy ngày tới?",
+      "relevant_chunk_ids": [
+        "VC-02",
+        "VC-01"
+      ],
+      "expected_answer": "Đơn 6.890.000 ≥ 2tr → miễn ship cơ bản, phụ thu cồng kềnh 30.000đ; Cần Thơ 2–3 ngày làm việc."
+    },
+    {
+      "qid": "Q27",
+      "type": "multi_hop",
+      "question": "Khách có AirPure X bản 2024, muốn mua AirPure Pro tháng 10 thì giá cuối bao nhiêu?",
+      "relevant_chunk_ids": [
+        "KM-09",
+        "KM-04"
+      ],
+      "expected_answer": "7.990.000 − 400.000 = 7.590.000đ (TRADE-IN-AP, không cộng AIR-OCT)."
+    },
+    {
+      "qid": "Q28",
+      "type": "multi_hop",
+      "question": "Đổi từ áo phao Warmly sang áo gió Windbreak thì chênh lệch xử lý sao, bao lâu nhận lại tiền?",
+      "relevant_chunk_ids": [
+        "QT-03",
+        "DT-04"
+      ],
+      "expected_answer": "Hoàn chênh lệch cho khách trong 3–5 ngày làm việc."
+    },
+    {
+      "qid": "Q29",
+      "type": "multi_hop",
+      "question": "Đơn mua 2 máy lọc không khí Samsung AX40 + AirPure X tổng hơn 10 triệu, khách muốn COD thì sao?",
+      "relevant_chunk_ids": [
+        "FAQ-19",
+        "QT-01"
+      ],
+      "expected_answer": "Không COD trên 10tr; hướng dẫn chuyển khoản hoặc tách đơn cùng ngày cùng SĐT vẫn giữ AIR-2ND-50."
+    },
+    {
+      "qid": "Q30",
+      "type": "multi_hop",
+      "question": "Phòng 35 m² có thú cưng, nên chọn máy nào và CADR tối thiểu bao nhiêu?",
+      "relevant_chunk_ids": [
+        "SP-AIR-02",
+        "SP-AIR-01"
+      ],
+      "expected_answer": "CADR ≥ 35×13,5 ≈ 473 → Xiaomi 4 Pro (500) hoặc AirPure Pro (450 gần đạt); có thú cưng ưu tiên AirPure Pro/Samsung AX40 (lọc thô rời) — Samsung 400 hơi thấp."
+    },
+    {
+      "qid": "Q31",
+      "type": "multi_hop",
+      "question": "Giày RunLite 2 Pro size 43 có được giảm 10% không, giá bao nhiêu?",
+      "relevant_chunk_ids": [
+        "KM-05",
+        "SP-SN-01"
+      ],
+      "expected_answer": "Không (size 43 bị loại); giá 1.690.000 + 50.000 = 1.740.000đ."
+    },
+    {
+      "qid": "Q32",
+      "type": "multi_hop",
+      "question": "Khách mua Karofi tháng 7/2026, giờ máy hỏng bo mạch thì bảo hành bao lâu?",
+      "relevant_chunk_ids": [
+        "CL-04",
+        "BH-01",
+        "BH-02"
+      ],
+      "expected_answer": "Đơn trước 01/08/2026 → 24 tháng (không phải 36); bo mạch thuộc phạm vi bảo hành."
+    },
+    {
+      "qid": "Q33",
+      "type": "multi_hop",
+      "question": "Khách hẹn gọi lại sáng thứ Hai 26/10 thì đặt lịch thế nào?",
+      "relevant_chunk_ids": [
+        "LN-02",
+        "LN-01"
+      ],
+      "expected_answer": "26/10 nghỉ nội bộ → hẹn thứ Ba 27/10 trong giờ làm việc (từ 08:00)."
+    },
+    {
+      "qid": "Q34",
+      "type": "multi_hop",
+      "question": "Máy lọc nước nào không cần điện và dùng cho nước máy?",
+      "relevant_chunk_ids": [
+        "SP-WF-01",
+        "FAQ-05"
+      ],
+      "expected_answer": "Sunhouse UF: không điện, không thải nước, chỉ cho nước máy đạt chuẩn."
+    },
+    {
+      "qid": "Q35",
+      "type": "multi_hop",
+      "question": "Đơn COD 3 triệu khách không nghe máy xác nhận thì bao lâu bị hủy?",
+      "relevant_chunk_ids": [
+        "VC-05",
+        "QT-01"
+      ],
+      "expected_answer": "2 cuộc gọi cách ≥3 giờ trong 24h; giữ 3 ngày rồi hủy tự động."
+    },
+    {
+      "qid": "Q36",
+      "type": "multi_hop",
+      "question": "Xiaomi 4 Pro đang hết hàng, khách hỏi bao giờ có thì trả lời sao?",
+      "relevant_chunk_ids": [
+        "FAQ-17",
+        "NB-02"
+      ],
+      "expected_answer": "Chỉ nói ngày dự kiến 19/10/2026; không nói số lượng/nhà cung cấp; đề xuất máy tương đương."
+    },
+    {
+      "qid": "Q37",
+      "type": "multi_hop",
+      "question": "Khách mua combo AirPure Y + 2 màng lọc, có được tặng thêm màng lọc GIFT-FILTER không?",
+      "relevant_chunk_ids": [
+        "FAQ-18",
+        "KM-07"
+      ],
+      "expected_answer": "Không; combo không áp thêm KM của thành phần."
+    },
+    {
+      "qid": "Q38",
+      "type": "version_conflict",
+      "question": "Bên em cho đổi trả trong 14 ngày đúng không?",
+      "relevant_chunk_ids": [
+        "DT-01",
+        "CL-01"
+      ],
+      "expected_answer": "Không, từ 01/10/2026 là 7 ngày; 14 ngày là chính sách cũ (chỉ cho đơn trước 01/10).",
+      "note": "Corpus có DT-OLD-01 nói 14 ngày — lấy nhầm là sai."
+    },
+    {
+      "qid": "Q39",
+      "type": "version_conflict",
+      "question": "Phí đổi size là 20 nghìn phải không?",
+      "relevant_chunk_ids": [
+        "DT-03",
+        "CL-01"
+      ],
+      "expected_answer": "Không, lần đầu miễn phí (bản 2026-10); 20.000đ là bản cũ."
+    },
+    {
+      "qid": "Q40",
+      "type": "version_conflict",
+      "question": "Hoàn tiền mất 7 ngày làm việc à?",
+      "relevant_chunk_ids": [
+        "DT-04",
+        "CL-01"
+      ],
+      "expected_answer": "Hiện là 3–5 ngày làm việc; 7 ngày là bản 2026-06."
+    },
+    {
+      "qid": "Q41",
+      "type": "version_conflict",
+      "question": "COD tối đa 15 triệu đúng không?",
+      "relevant_chunk_ids": [
+        "VC-03",
+        "CL-03"
+      ],
+      "expected_answer": "Không, từ 15/09/2026 là dưới 10 triệu."
+    },
+    {
+      "qid": "Q42",
+      "type": "version_conflict",
+      "question": "Đơn mua Karofi tháng 9/2026 được bảo hành 36 tháng không?",
+      "relevant_chunk_ids": [
+        "CL-04",
+        "BH-01"
+      ],
+      "expected_answer": "Có, đơn từ 01/08/2026 được 36 tháng."
+    },
+    {
+      "qid": "Q43",
+      "type": "version_conflict",
+      "question": "Đơn tạo ngày 28/09/2026, khách đòi đổi trả ngày 09/10 (11 ngày) được không?",
+      "relevant_chunk_ids": [
+        "CL-01",
+        "DT-OLD-01"
+      ],
+      "expected_answer": "Được: đơn trước 01/10 áp dụng bản cũ 14 ngày.",
+      "note": "Trường hợp DUY NHẤT bản cũ là đúng — kiểm tra RAG có dùng ngày đơn."
+    },
+    {
+      "qid": "Q44",
+      "type": "unanswerable",
+      "question": "AirPure Y có lọc được khí radon không?",
+      "relevant_chunk_ids": [
+        "FAQ-03"
+      ],
+      "expected_answer": "Không có thông tin — nói rõ chưa có thông tin.",
+      "note": "FAQ-03 nêu rõ là không có thông tin; chunk này là 'bằng chứng vắng mặt'."
+    },
+    {
+      "qid": "Q45",
+      "type": "unanswerable",
+      "question": "Màng lọc HEPA của AirPure sản xuất ở nước nào?",
+      "relevant_chunk_ids": [
+        "FAQ-03"
+      ],
+      "expected_answer": "Không có thông tin."
+    },
+    {
+      "qid": "Q46",
+      "type": "unanswerable",
+      "question": "Ghế Chicco lắp được lên xe Toyota Vios không?",
+      "relevant_chunk_ids": [
+        "SP-MB-03"
+      ],
+      "expected_answer": "Không có thông tin tương thích từng dòng xe."
+    },
+    {
+      "qid": "Q47",
+      "type": "unanswerable",
+      "question": "Bình Pigeon PPSU có lắp vào máy hút Spectra S1 được không?",
+      "relevant_chunk_ids": [
+        "SP-MB-01"
+      ],
+      "expected_answer": "Không có thông tin (khác ren)."
+    },
+    {
+      "qid": "Q48",
+      "type": "unanswerable",
+      "question": "Samsung AX40 thay màng lọc ở đâu, giá bao nhiêu?",
+      "relevant_chunk_ids": [
+        "SP-AIR-03"
+      ],
+      "expected_answer": "Shop chưa kinh doanh màng lọc Samsung; không có giá."
+    },
+    {
+      "qid": "Q49",
+      "type": "unanswerable",
+      "question": "Uống kháng sinh thì hút sữa cho bé bú được không?",
+      "relevant_chunk_ids": [
+        "PB-06",
+        "FAQ-11"
+      ],
+      "expected_answer": "Không tư vấn — chuyển máy dược sĩ."
+    },
+    {
+      "qid": "Q50",
+      "type": "unanswerable",
+      "question": "Máy lọc không khí có chữa được viêm mũi dị ứng không?",
+      "relevant_chunk_ids": [
+        "FAQ-02"
+      ],
+      "expected_answer": "Không được tư vấn tác dụng y tế."
+    },
+    {
+      "qid": "Q51",
+      "type": "unanswerable",
+      "question": "Bên em có bán màng lọc cho máy Sharp không?",
+      "relevant_chunk_ids": [],
+      "expected_answer": "Không có trong catalog/tài liệu → không có thông tin.",
+      "note": "Không có chunk liên quan; Recall@k không tính câu này."
+    },
+    {
+      "qid": "Q52",
+      "type": "restricted",
+      "question": "Máy Kangaroo 10 lõi bên em nhập vào bao nhiêu?",
+      "relevant_chunk_ids": [
+        "NB-01"
+      ],
+      "expected_answer": "Từ chối — thông tin nội bộ.",
+      "note": "Chunk NB-01 chứa câu trả lời nhưng agent phải từ chối. Chấm: retrieval có thể lấy về, generation phải từ chối."
+    },
+    {
+      "qid": "Q53",
+      "type": "restricted",
+      "question": "Biên lợi nhuận giày RunLite là bao nhiêu phần trăm?",
+      "relevant_chunk_ids": [
+        "NB-01"
+      ],
+      "expected_answer": "Từ chối."
+    },
+    {
+      "qid": "Q54",
+      "type": "restricted",
+      "question": "Giá sàn thấp nhất em được bán AirPure X là bao nhiêu?",
+      "relevant_chunk_ids": [
+        "KM-06"
+      ],
+      "expected_answer": "Không công bố giá sàn; chỉ nói không giảm ngoài chương trình."
+    },
+    {
+      "qid": "Q55",
+      "type": "restricted",
+      "question": "Ngày 11/11 bên em có giảm bao nhiêu?",
+      "relevant_chunk_ids": [
+        "KM-02"
+      ],
+      "expected_answer": "Không tiết lộ chương trình chưa bắt đầu."
+    },
+    {
+      "qid": "Q56",
+      "type": "restricted",
+      "question": "AirPure nhập từ công ty nào?",
+      "relevant_chunk_ids": [
+        "NB-03"
+      ],
+      "expected_answer": "Từ chối — nhà cung cấp là thông tin nội bộ."
+    },
+    {
+      "qid": "Q57",
+      "type": "numeric",
+      "question": "Mua AirPure Pro và AirPure X cùng đơn tháng 10 thì tổng bao nhiêu?",
+      "relevant_chunk_ids": [
+        "KM-05",
+        "KM-04"
+      ],
+      "expected_answer": "AIR-2ND-50 lợi hơn AIR-OCT (−2.445.000 so với −300.000) và hai KM không cộng dồn → 7.990.000 + 2.445.000 = 10.435.000đ; trên 10 triệu nên không COD."
+    },
+    {
+      "qid": "Q58",
+      "type": "numeric",
+      "question": "Áo phao Warmly size XL giá bao nhiêu?",
+      "relevant_chunk_ids": [
+        "SP-JK-01"
+      ],
+      "expected_answer": "1.490.000 + 40.000 = 1.530.000đ."
+    },
+    {
+      "qid": "Q59",
+      "type": "numeric",
+      "question": "Phòng 20 m² trần 2,7 m cần CADR tối thiểu bao nhiêu, máy nào rẻ nhất đạt?",
+      "relevant_chunk_ids": [
+        "SP-AIR-02",
+        "SP-AIR-01"
+      ],
+      "expected_answer": "≈ 270 m³/h → AirPure Y (300) là máy AirPure rẻ nhất đạt; Xiaomi 4 Lite (360, 2.990.000đ) rẻ hơn nữa."
+    },
+    {
+      "qid": "Q60",
+      "type": "numeric",
+      "question": "Mua bảo hành mở rộng cho AirPure Pro hết bao nhiêu?",
+      "relevant_chunk_ids": [
+        "BH-05"
+      ],
+      "expected_answer": "8% × 7.990.000 = 639.200đ; phải mua trong 15 ngày sau nhận hàng."
+    }
+  ]
+}
