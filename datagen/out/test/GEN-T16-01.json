@@ -1,0 +1,80 @@
+{
+  "scenario_id": "GEN-T16-01",
+  "level": "M1",
+  "persona": "khach_mua_nhieu_mon",
+  "hard_case": "nhieu_mon_vuot_cod_ngan_sach",
+  "customer_phone": "0936270107",
+  "customer_name": "Tuấn",
+  "honorific": "anh",
+  "notes": "Đơn 3 món: SKU-AP-PRO, SKU-AP-Y, SKU-AP-FLT-P. AIR-2ND-50 giảm 50% máy rẻ hơn (SKU-AP-Y) khi cùng đơn. Tổng 11.280.000đ > 10 triệu → không COD (VC-03), vượt ngân sách 10.000.000đ khách nêu.",
+  "calls": {
+    "call_1": {
+      "call_date": "2026-10-13",
+      "customer_goal": "mua 2 may loc khong khi + mang loc, ngan sach 10 triệu",
+      "customer_turns": [
+        "Alo em, anh cần mua máy lọc không khí cho hai phòng.",
+        "Phòng khách anh lấy AirPure Pro, giá bao nhiêu em?",
+        "Phòng ngủ thì AirPure Y được không, giá bao nhiêu?",
+        "Mua hai máy cùng lúc có được giảm gì không?",
+        "Lấy thêm cho anh một màng lọc thay thế cho máy AirPure Pro nhé.",
+        "Tổng cộng hết bao nhiêu em?",
+        "Ngân sách anh có 10 triệu thôi, vượt rồi nhỉ.",
+        "Thôi kệ, anh vẫn lấy đủ, máy tốt dùng lâu.",
+        "Thanh toán COD được không em?",
+        "Vậy anh chuyển khoản ngân hàng nhé.",
+        "Giao về 9 Đại lộ Bình Dương, Thủ Dầu Một, Bình Dương.",
+        "Ok em chốt giúp anh."
+      ],
+      "facts_established": {
+        "basket": [
+          "SKU-AP-PRO",
+          "SKU-AP-Y",
+          "SKU-AP-FLT-P"
+        ],
+        "budget_vnd": 10000000,
+        "address": "9 Đại lộ Bình Dương, Thủ Dầu Một, Bình Dương",
+        "payment": "bank"
+      },
+      "success_if": {
+        "tool_called": "order.create",
+        "args_match": {
+          "sku": "SKU-AP-PRO",
+          "price_vnd": 7690000,
+          "payment": "bank"
+        },
+        "also_ordered": [
+          "SKU-AP-PRO",
+          "SKU-AP-Y",
+          "SKU-AP-FLT-P"
+        ],
+        "total_match_vnd": 11280000
+      },
+      "ground_truth_facts": {
+        "total_vnd": 11280000,
+        "cod_allowed": false,
+        "cod_limit_vnd": 10000000,
+        "discounted_item_sku": "SKU-AP-Y",
+        "discounted_item_price_vnd": 2600000
+      },
+      "expected_outcome": "chot_don"
+    }
+  },
+  "_meta": {
+    "template_id": "T16-nhieu-mon-vuot-cod",
+    "instance": 0,
+    "seed": 42,
+    "split": "test",
+    "customer_id": "C002",
+    "synthetic_customer": false,
+    "address": "9 Đại lộ Bình Dương, Thủ Dầu Một, Bình Dương",
+    "dates": {
+      "call_1": "2026-10-13"
+    },
+    "choices": {
+      "cust": "C002",
+      "p1": "SKU-AP-PRO",
+      "p2": "SKU-AP-Y",
+      "d1": "2026-10-13"
+    }
+  }
+}

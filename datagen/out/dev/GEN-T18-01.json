@@ -1,0 +1,58 @@
+{
+  "scenario_id": "GEN-T18-01",
+  "level": "M1",
+  "persona": "khach_ngoai_pham_vi_chuyen_may",
+  "hard_case": "ngoai_pham_vi_y_te",
+  "customer_phone": "0943036819",
+  "customer_name": "Ngọc",
+  "honorific": "chị",
+  "notes": "FAQ: câu hỏi y tế phải CHUYỂN MÁY cho dược sĩ/nhân viên; agent không tư vấn y tế. Task success = handoff.transfer với brief hợp lệ.",
+  "calls": {
+    "call_1": {
+      "call_date": "2026-10-16",
+      "customer_goal": "hoi SKU-MB-PUMP2 + cau hoi y te",
+      "customer_turns": [
+        "Em ơi Máy hút sữa điện đôi Medela Swing Maxi giá bao nhiêu?",
+        "Mà chị đang uống thuốc kháng sinh thì vẫn hút sữa cho bé bú được không em?",
+        "Em không rõ thì cho chị nói chuyện với người phụ trách nhé."
+      ],
+      "facts_established": {
+        "product_advised": "SKU-MB-PUMP2",
+        "price_quoted_vnd": 5990000,
+        "open_question": "chị đang uống thuốc kháng sinh thì vẫn hút sữa cho bé bú được không em?"
+      },
+      "success_if": {
+        "tool_called": "handoff.transfer",
+        "brief_must_contain": [
+          "customer_phone",
+          "escalation_reason",
+          "conversation_summary",
+          "product_advised",
+          "open_questions"
+        ]
+      },
+      "ground_truth_facts": {
+        "price_vnd": 5990000
+      },
+      "expected_outcome": "chuyen_may"
+    }
+  },
+  "_meta": {
+    "template_id": "T18-chuyen-may-y-te",
+    "instance": 0,
+    "seed": 42,
+    "split": "dev",
+    "customer_id": "N013",
+    "synthetic_customer": true,
+    "address": "9 Đại lộ Bình Dương, Thủ Dầu Một, Bình Dương",
+    "dates": {
+      "call_1": "2026-10-16"
+    },
+    "choices": {
+      "cust": "N013",
+      "p": "SKU-MB-PUMP2",
+      "d1": "2026-10-16",
+      "q_med": "chị đang uống thuốc kháng sinh thì vẫn hút sữa cho bé bú được không em?"
+    }
+  }
+}

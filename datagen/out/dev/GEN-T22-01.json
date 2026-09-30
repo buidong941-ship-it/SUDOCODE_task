@@ -1,0 +1,101 @@
+{
+  "scenario_id": "GEN-T22-01",
+  "level": "M1",
+  "persona": "khach_goi_lan_3_het_kien_nhan",
+  "hard_case": "goi_lan_3_het_kien_nhan",
+  "customer_phone": "0926275870",
+  "customer_name": "Thảo",
+  "honorific": "chị",
+  "notes": "Cuộc 3: khách hết kiên nhẫn (patience=1) — agent chỉ được hỏi tối đa 1 câu, không hỏi lại bất kỳ slot nào đã có.",
+  "calls": {
+    "call_1": {
+      "call_date": "2026-10-13",
+      "customer_goal": "hoi máy lọc nước cho nha 3 nguoi",
+      "customer_turns": [
+        "Em ơi chị cần máy lọc nước cho nhà 3 người, chị đang xem RO Kangaroo 10 lõi.",
+        "Giá bao nhiêu, bảo hành mấy năm em?",
+        "Để chị xem thêm đã."
+      ],
+      "facts_established": {
+        "product_advised": "SKU-WF-RO10",
+        "household_size": 3,
+        "price_quoted_vnd": 6890000
+      },
+      "expected_outcome": "hen_goi_lai"
+    },
+    "call_2": {
+      "days_later": 3,
+      "customer_turns": [
+        "Alo, chị hỏi RO Kangaroo 10 lõi hôm trước đây.",
+        "Giao về 30 Phan Đình Phùng, Quy Nhơn, Bình Định thì mấy ngày em?",
+        "Ừ để cuối tuần chị quyết."
+      ],
+      "must_carry_over": [
+        "product_advised",
+        "price_quoted_vnd"
+      ],
+      "must_not_ask": [
+        "product_advised",
+        "household_size"
+      ],
+      "facts_established": {
+        "address": "30 Phan Đình Phùng, Quy Nhơn, Bình Định"
+      },
+      "expected_outcome": "hen_goi_lai"
+    },
+    "call_3": {
+      "days_later": 2,
+      "customer_turns": [
+        "Chị gọi lần thứ ba rồi đấy, lên đơn RO Kangaroo 10 lõi luôn cho chị, COD, địa chỉ như hôm trước.",
+        "Nhanh giúp chị nhé."
+      ],
+      "must_carry_over": [
+        "product_advised",
+        "price_quoted_vnd",
+        "address"
+      ],
+      "must_not_ask": [
+        "product_advised",
+        "household_size",
+        "address",
+        "price_quoted_vnd"
+      ],
+      "success_if": {
+        "tool_called": "order.create",
+        "args_match": {
+          "sku": "SKU-WF-RO10",
+          "price_vnd": 6890000,
+          "payment": "COD"
+        },
+        "max_agent_questions": 1
+      },
+      "ground_truth_facts": {
+        "price_vnd": 6890000,
+        "in_stock": true,
+        "delivery_days": 4
+      },
+      "expected_outcome": "chot_don"
+    }
+  },
+  "_meta": {
+    "template_id": "T22-goi-lan-3-het-kien-nhan",
+    "instance": 0,
+    "seed": 42,
+    "split": "dev",
+    "customer_id": "N039",
+    "synthetic_customer": true,
+    "address": "30 Phan Đình Phùng, Quy Nhơn, Bình Định",
+    "dates": {
+      "call_1": "2026-10-13",
+      "call_2": "2026-10-16",
+      "call_3": "2026-10-18"
+    },
+    "choices": {
+      "cust": "N039",
+      "p": "SKU-WF-RO10",
+      "d1": "2026-10-13",
+      "g1": 3,
+      "g2": 2
+    }
+  }
+}

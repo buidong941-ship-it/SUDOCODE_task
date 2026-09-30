@@ -1,0 +1,86 @@
+{
+  "scenario_id": "GEN-T27-02",
+  "level": "M1",
+  "persona": "khach_hoi_nhieu_khong_mua",
+  "hard_case": null,
+  "customer_phone": "0949066882",
+  "customer_name": "Phương",
+  "honorific": "chị",
+  "notes": "Khách miền Nam → NAM-SHIP0 (freeship theo địa chỉ giao, stackable). Cuộc 2 chốt, không hỏi lại số người/địa chỉ.",
+  "calls": {
+    "call_1": {
+      "call_date": "2026-10-17",
+      "customer_goal": "hoi Nồi chiên không dầu Philips 6.2L cho nha 2 nguoi",
+      "customer_turns": [
+        "Em ơi Nồi chiên không dầu Philips 6.2L nhà 2 người dùng có hợp không?",
+        "Giá bao nhiêu, giao về 120 Nguyễn Thị Thập, Quận 7, TP HCM có mất phí ship không em?",
+        "Bảo hành mấy tháng em?",
+        "Để chị xem thêm vài mẫu đã nhé."
+      ],
+      "facts_established": {
+        "product_advised": "SKU-AF-6L",
+        "household_size": 2,
+        "address": "120 Nguyễn Thị Thập, Quận 7, TP HCM",
+        "price_quoted_vnd": 3990000,
+        "blocker": "xem them"
+      },
+      "expected_outcome": "hen_goi_lai",
+      "ground_truth_facts": {
+        "price_vnd": 3990000,
+        "freeship": true,
+        "promo_NAM-SHIP0_active": true,
+        "warranty_months": 12
+      }
+    },
+    "call_2": {
+      "days_later": 1,
+      "customer_turns": [
+        "Alo em, chị gọi lại về Philips 6.2L hôm trước.",
+        "Ok chị lấy, giao chỗ cũ nhé, COD."
+      ],
+      "must_carry_over": [
+        "product_advised",
+        "price_quoted_vnd",
+        "address"
+      ],
+      "must_not_ask": [
+        "product_advised",
+        "household_size",
+        "address"
+      ],
+      "success_if": {
+        "tool_called": "order.create",
+        "args_match": {
+          "sku": "SKU-AF-6L",
+          "price_vnd": 3990000,
+          "payment": "COD"
+        }
+      },
+      "ground_truth_facts": {
+        "price_vnd": 3990000,
+        "freeship": true,
+        "in_stock": true,
+        "delivery_days": 2
+      }
+    }
+  },
+  "_meta": {
+    "template_id": "T27-gia-dung-mien-nam",
+    "instance": 1,
+    "seed": 42,
+    "split": "dev",
+    "customer_id": "C036",
+    "synthetic_customer": false,
+    "address": "120 Nguyễn Thị Thập, Quận 7, TP HCM",
+    "dates": {
+      "call_1": "2026-10-17",
+      "call_2": "2026-10-18"
+    },
+    "choices": {
+      "cust": "C036",
+      "p": "SKU-AF-6L",
+      "d1": "2026-10-17",
+      "gap": 1
+    }
+  }
+}

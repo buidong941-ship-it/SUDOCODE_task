@@ -1,0 +1,137 @@
+{
+  "seed": 42,
+  "scenarios": [
+    {
+      "scenario_id": "RE-SAMPLE-01",
+      "split": "reproduce",
+      "template_id": "T01-do-du-hoi-nguoi-nha",
+      "hard_case": null,
+      "persona": "khach_do_du_hoi_nguoi_nha",
+      "level": "M1",
+      "customer_phone": "0984726714",
+      "n_calls": 2,
+      "n_turns": 7,
+      "channels": [
+        "hotline",
+        "hotline"
+      ],
+      "input_modes": [
+        "text",
+        "text"
+      ]
+    },
+    {
+      "scenario_id": "RE-SAMPLE-02",
+      "split": "reproduce",
+      "template_id": "T02-so-gia",
+      "hard_case": null,
+      "persona": "khach_so_gia",
+      "level": "M1",
+      "customer_phone": "0960161055",
+      "n_calls": 2,
+      "n_turns": 6,
+      "channels": [
+        "hotline",
+        "hotline"
+      ],
+      "input_modes": [
+        "text",
+        "text"
+      ]
+    },
+    {
+      "scenario_id": "RE-SAMPLE-03",
+      "split": "reproduce",
+      "template_id": "T03-doi-size",
+      "hard_case": null,
+      "persona": "khach_da_mua_doi_size",
+      "level": "M1",
+      "customer_phone": "0922264686",
+      "n_calls": 2,
+      "n_turns": 6,
+      "channels": [
+        "hotline",
+        "hotline"
+      ],
+      "input_modes": [
+        "text",
+        "text"
+      ]
+    },
+    {
+      "scenario_id": "RE-SAMPLE-04",
+      "split": "reproduce",
+      "template_id": "T04-da-kenh-fb-hotline",
+      "hard_case": null,
+      "persona": "khach_da_kenh_fb_hotline",
+      "level": "M1",
+      "customer_phone": "0994893949",
+      "n_calls": 2,
+      "n_turns": 6,
+      "channels": [
+        "chat_fanpage",
+        "hotline"
+      ],
+      "input_modes": [
+        "text",
+        "text"
+      ]
+    },
+    {
+      "scenario_id": "RE-SAMPLE-05",
+      "split": "reproduce",
+      "template_id": "T05-km-het-han",
+      "hard_case": "doi_khuyen_mai_het_han",
+      "persona": "khach_so_gia",
+      "level": "M1",
+      "customer_phone": "0976158464",
+      "n_calls": 2,
+      "n_turns": 5,
+      "channels": [
+        "hotline",
+        "hotline"
+      ],
+      "input_modes": [
+        "text",
+        "text"
+      ]
+    },
+    {
+      "scenario_id": "RE-SAMPLE-06",
+      "split": "reproduce",
+      "template_id": "T06-asr-het-hang-ve-hang",
+      "hard_case": "asr_loi_va_teencode",
+      "persona": "khach_do_du_hoi_nguoi_nha",
+      "level": "M1",
+      "customer_phone": "0991280845",
+      "n_calls": 2,
+      "n_turns": 6,
+      "channels": [
+        "hotline",
+        "zalo_oa"
+      ],
+      "input_modes": [
+        "asr_transcript",
+        "chat_teencode"
+      ]
+    },
+    {
+      "scenario_id": "RE-SAMPLE-07",
+      "split": "reproduce",
+      "template_id": "T07-chinh-sach-cu",
+      "hard_case": "phien_ban_chinh_sach_cu",
+      "persona": "khach_hoi_ngoai_tai_lieu",
+      "level": "M1",
+      "customer_phone": "0905154382",
+      "n_calls": 1,
+      "n_turns": 3,
+      "channels": [
+        "hotline"
+      ],
+      "input_modes": [
+        "text"
+      ]
+    }
+  ],
+  "failures": []
+}

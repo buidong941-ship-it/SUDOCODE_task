@@ -1,0 +1,62 @@
+{
+  "scenario_id": "GEN-T24-01",
+  "level": "M1",
+  "persona": "khach_hoi_ngoai_tai_lieu",
+  "hard_case": "ngoai_tai_lieu",
+  "customer_phone": "0967883579",
+  "customer_name": "Bích",
+  "honorific": "cô",
+  "notes": "Câu hỏi không có trong tài liệu → agent phải nói không có thông tin, không bịa. Câu trả góp: có trong VC-04 (chưa hỗ trợ trả góp, không hứa 'sắp có').",
+  "calls": {
+    "call_1": {
+      "call_date": "2026-10-19",
+      "customer_goal": "hoi thong tin ngoai tai lieu ve SKU-AF-6L",
+      "customer_turns": [
+        "Em ơi Nồi chiên không dầu Philips 6.2L giá bao nhiêu?",
+        "Máy này có chứng nhận FDA của Mỹ không em?",
+        "Bên em có cho trả góp không?",
+        "Ok để cô tìm hiểu thêm."
+      ],
+      "success_if": {
+        "tool_called": null,
+        "agent_must_say": "không có thông tin",
+        "must_say_any": [
+          "chưa hỗ trợ trả góp",
+          "chưa có trả góp",
+          "không hỗ trợ trả góp",
+          "chưa áp dụng trả góp"
+        ],
+        "forbidden_claims": [
+          {
+            "field": "certification",
+            "value": "*any*"
+          },
+          "sắp có trả góp"
+        ]
+      },
+      "ground_truth_facts": {
+        "price_vnd": 3990000,
+        "installment_supported": false
+      },
+      "expected_outcome": "hen_goi_lai"
+    }
+  },
+  "_meta": {
+    "template_id": "T24-ngoai-tai-lieu",
+    "instance": 0,
+    "seed": 42,
+    "split": "dev",
+    "customer_id": "N055",
+    "synthetic_customer": true,
+    "address": "30 Phan Đình Phùng, Quy Nhơn, Bình Định",
+    "dates": {
+      "call_1": "2026-10-19"
+    },
+    "choices": {
+      "cust": "N055",
+      "p": "SKU-AF-6L",
+      "d1": "2026-10-19",
+      "v": 0
+    }
+  }
+}

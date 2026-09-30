@@ -1,0 +1,81 @@
+{
+  "scenario_id": "GEN-T10-01",
+  "level": "M1",
+  "persona": "khach_quay_lai_sau_8_thang",
+  "hard_case": "quay_lai_sau_8_thang",
+  "customer_phone": "0985003703",
+  "customer_name": "Oanh",
+  "honorific": "chị",
+  "notes": "Khách C031 mua SKU-AP-X-2024 ngày 2026-02-17 (đã NGỪNG BÁN, successor SKU-AP-X). Địa chỉ cũ quá TTL → phải xác nhận lại, không tự dùng. TRADE-IN-AP (−400k) có lợi hơn AIR-OCT/GIFT-FILTER → giá 7.590.000đ.",
+  "calls": {
+    "call_1": {
+      "call_date": "2026-10-16",
+      "customer_goal": "doi may cu AP-X-2024 lay SKU-AP-PRO",
+      "seed_history": [
+        {
+          "session_id": "S-OLD-1",
+          "date": "2026-02-17",
+          "channel": "hotline",
+          "summary": "Mua AirPure X bản 2024 giá 4.290.000đ, phòng 20m², địa chỉ giao: 12 ngõ 38 Hoàng Cầu, Đống Đa, Hà Nội",
+          "outcome": "chot_don"
+        }
+      ],
+      "customer_turns": [
+        "Alo em, chị mua máy lọc AirPure X bên em hồi tháng 2, giờ chị muốn đổi lên máy mới.",
+        "Mẫu y như cũ còn không em? Không thì chị lấy AirPure Pro.",
+        "Bên em có chương trình thu cũ đổi mới không?",
+        "Ok lên đơn cho chị, giao về địa chỉ cũ nhé.",
+        "À chị chuyển nhà rồi, giờ ở 15 Xuân Thủy, Cầu Giấy, Hà Nội."
+      ],
+      "must_not_ask": [
+        "owned_product"
+      ],
+      "success_if": {
+        "tool_called": "order.create",
+        "args_match": {
+          "sku": "SKU-AP-PRO",
+          "price_vnd": 7590000
+        },
+        "must_say_any": [
+          "ngừng kinh doanh",
+          "ngừng bán",
+          "không còn kinh doanh",
+          "không còn bán",
+          "đã ngừng"
+        ]
+      },
+      "memory_expectation": {
+        "address": "15 Xuân Thủy, Cầu Giấy, Hà Nội",
+        "superseded": "12 ngõ 38 Hoàng Cầu, Đống Đa, Hà Nội",
+        "address_ttl_check": true
+      },
+      "ground_truth_facts": {
+        "price_vnd": 7590000,
+        "list_price_vnd": 7990000,
+        "promo_TRADE-IN-AP_active": true,
+        "in_stock": true,
+        "discontinued_sku": "SKU-AP-X-2024",
+        "successor_sku": "SKU-AP-X"
+      },
+      "expected_outcome": "chot_don"
+    }
+  },
+  "_meta": {
+    "template_id": "T10-quay-lai-8-thang",
+    "instance": 0,
+    "seed": 42,
+    "split": "test",
+    "customer_id": "C031",
+    "synthetic_customer": false,
+    "address": "15 Xuân Thủy, Cầu Giấy, Hà Nội",
+    "dates": {
+      "call_1": "2026-10-16"
+    },
+    "choices": {
+      "cust": "C031",
+      "p": "SKU-AP-PRO",
+      "d1": "2026-10-16",
+      "new_address": "15 Xuân Thủy, Cầu Giấy, Hà Nội"
+    }
+  }
+}

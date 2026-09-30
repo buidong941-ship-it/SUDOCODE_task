@@ -1,0 +1,128 @@
+{
+  "scenario_id": "GEN-T25-01",
+  "level": "M1",
+  "persona": "khach_da_kenh_mau_thuan",
+  "hard_case": "3_kenh_bao_gia_lech",
+  "customer_phone": "0964898031",
+  "customer_name": "Đức",
+  "honorific": "anh",
+  "notes": "Fanpage (2026-10-22) báo 1.161.000đ theo RUN-10; Zalo (2026-10-29) báo 1.290.000đ vì RUN-10 hết 25/10. Hotline phải hợp nhất 3 kênh, giải thích lệch do KM theo thời điểm (PB-07), chốt đúng giá hiện tại.",
+  "calls": {
+    "call_1": {
+      "call_date": "2026-10-22",
+      "channel": "chat_fanpage",
+      "channel_identity": "fb.duc.339",
+      "customer_goal": "hoi gia SKU-SN-RUN1 qua fanpage",
+      "customer_turns": [
+        "shop oi Giày chạy bộ RunLite 1 size 40 màu trắng gia bn",
+        "co giam k shop",
+        "ok de minh xem"
+      ],
+      "facts_established": {
+        "product_advised": "SKU-SN-RUN1",
+        "price_quoted_vnd": 1161000,
+        "promo_code": "RUN-10",
+        "channel": "fanpage"
+      },
+      "expected_outcome": "hen_goi_lai"
+    },
+    "call_2": {
+      "days_later": 7,
+      "channel": "zalo_oa",
+      "channel_identity": "zalo_duc84",
+      "input_mode": "chat_teencode",
+      "customer_turns_asr": [
+        "e oi runlite 1 size 40 gia bn v",
+        "sao ben facebook bao re hon",
+        "ok de a xem"
+      ],
+      "customer_turns": [
+        "Em ơi RunLite 1 size 40 giá bao nhiêu vậy?",
+        "Sao bên Facebook báo rẻ hơn?",
+        "Ok để anh xem."
+      ],
+      "must_carry_over": [
+        "product_advised",
+        "price_quoted_vnd",
+        "promo_code"
+      ],
+      "must_not_ask": [
+        "product_advised"
+      ],
+      "facts_established": {
+        "price_quoted_vnd": 1290000,
+        "channel": "zalo"
+      },
+      "ground_truth_facts": {
+        "price_vnd": 1290000,
+        "promo_RUN-10_active": false
+      },
+      "expected_outcome": "hen_goi_lai"
+    },
+    "call_3": {
+      "days_later": 1,
+      "channel": "hotline",
+      "customer_turns": [
+        "Alo, anh hỏi RunLite 1: Facebook báo 1161k, Zalo lại báo 1290k, rốt cuộc giá nào vậy em?",
+        "Sao mỗi chỗ nói một kiểu thế?",
+        "Thôi lấy giá 1290k cũng được, lên đơn cho anh."
+      ],
+      "must_carry_over": [
+        "product_advised",
+        "price_quoted_vnd",
+        "promo_code"
+      ],
+      "must_not_ask": [
+        "product_advised",
+        "price_quoted_vnd"
+      ],
+      "success_if": {
+        "tool_called": "order.create",
+        "args_match": {
+          "sku": "SKU-SN-RUN1-40-TRANG",
+          "price_vnd": 1290000
+        },
+        "must_say_any": [
+          "hết hạn",
+          "kết thúc",
+          "hết khuyến mãi",
+          "hết chương trình",
+          "đã hết"
+        ],
+        "forbidden_claims": [
+          {
+            "field": "price_vnd",
+            "value": 1161000
+          }
+        ]
+      },
+      "ground_truth_facts": {
+        "price_vnd": 1290000,
+        "promo_RUN-10_active": false,
+        "in_stock": true
+      },
+      "expected_outcome": "chot_don"
+    }
+  },
+  "_meta": {
+    "template_id": "T25-3-kenh-bao-gia-lech",
+    "instance": 0,
+    "seed": 42,
+    "split": "dev",
+    "customer_id": "N063",
+    "synthetic_customer": true,
+    "address": "25 Nguyễn Trãi, Thanh Xuân, Hà Nội",
+    "dates": {
+      "call_1": "2026-10-22",
+      "call_2": "2026-10-29",
+      "call_3": "2026-10-30"
+    },
+    "choices": {
+      "cust": "N063",
+      "p": "SKU-SN-RUN1-40-TRANG",
+      "d1": "2026-10-22",
+      "g1": 7,
+      "g2": 1
+    }
+  }
+}

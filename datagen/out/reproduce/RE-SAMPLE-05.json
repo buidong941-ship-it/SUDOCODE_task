@@ -1,0 +1,76 @@
+{
+  "scenario_id": "RE-SAMPLE-05",
+  "level": "M1",
+  "persona": "khach_so_gia",
+  "hard_case": "doi_khuyen_mai_het_han",
+  "customer_phone": "0976158464",
+  "customer_name": "Thu",
+  "honorific": "chị",
+  "notes": "Agent KHÔNG được báo lại giá cũ 4.390.000đ; phải nói KM AP-SEP đã hết (30/09), giá hiện tại 4.890.000đ, có thể giới thiệu GIFT-FILTER còn hiệu lực.",
+  "calls": {
+    "call_1": {
+      "call_date": "2026-09-25",
+      "customer_goal": "hoi SKU-AP-X luc con KM AP-SEP",
+      "customer_turns": [
+        "Em ơi AirPure X đang giảm 500k đúng không?",
+        "Ok để chị tính rồi gọi lại."
+      ],
+      "facts_established": {
+        "product_advised": "SKU-AP-X",
+        "price_quoted_vnd": 4390000,
+        "promo_code": "AP-SEP",
+        "promo_expiry": "2026-09-30"
+      },
+      "expected_outcome": "hen_goi_lai"
+    },
+    "call_2": {
+      "days_later": 20,
+      "customer_turns": [
+        "Chị gọi lại lấy cái AirPure X giảm 500k hôm trước nhé.",
+        "Sao hôm trước em bảo giảm 500k mà?",
+        "Thế giờ có gì bù không? Thôi cũng được, lên đơn."
+      ],
+      "must_carry_over": [
+        "product_advised",
+        "price_quoted_vnd",
+        "promo_code"
+      ],
+      "must_not_ask": [
+        "product_advised"
+      ],
+      "success_if": {
+        "tool_called": "order.create",
+        "args_match": {
+          "sku": "SKU-AP-X",
+          "price_vnd": 4890000
+        }
+      },
+      "ground_truth_facts": {
+        "price_vnd": 4890000,
+        "promo_AP-SEP_active": false,
+        "promo_GIFT-FILTER_active": true,
+        "in_stock": true
+      }
+    }
+  },
+  "_meta": {
+    "template_id": "T05-km-het-han",
+    "instance": 0,
+    "seed": 42,
+    "split": "reproduce",
+    "customer_id": "C023",
+    "synthetic_customer": false,
+    "address": "25 Nguyễn Trãi, Thanh Xuân, Hà Nội",
+    "dates": {
+      "call_1": "2026-09-25",
+      "call_2": "2026-10-15"
+    },
+    "choices": {
+      "cust": "C023",
+      "p": "SKU-AP-X",
+      "d1": "2026-09-25",
+      "gap": 20
+    },
+    "reproduces": "SAMPLE-05"
+  }
+}

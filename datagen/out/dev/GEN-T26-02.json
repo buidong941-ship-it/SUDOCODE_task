@@ -1,0 +1,83 @@
+{
+  "scenario_id": "GEN-T26-02",
+  "level": "M1",
+  "persona": "khach_do_du_hoi_nguoi_nha",
+  "hard_case": null,
+  "customer_phone": "0905218549",
+  "customer_name": "Linh",
+  "honorific": "chị",
+  "notes": "Mẹ & bé: KM freeship MOM-FREESHIP (đơn ≥500k) cộng dồn; không tư vấn y tế. Cuộc 2 không hỏi lại tuổi bé / sản phẩm.",
+  "calls": {
+    "call_1": {
+      "call_date": "2026-10-20",
+      "customer_goal": "hoi Combo Spectra S1 + máy hâm sữa Fatz + 50 túi trữ sữa cho be 6 tháng",
+      "customer_turns": [
+        "Em ơi chị đang tìm Combo Spectra S1 + máy hâm sữa Fatz + 50 túi trữ sữa, bé nhà chị 6 tháng.",
+        "Giá bao nhiêu em, có được miễn ship không?",
+        "Bảo hành bao lâu em?",
+        "Để chị bàn với chồng tối nay rồi chị nhắn lại."
+      ],
+      "facts_established": {
+        "product_advised": "SKU-BDL-MOM",
+        "baby_age": "6 tháng",
+        "price_quoted_vnd": 4790000,
+        "blocker": "can hoi chong"
+      },
+      "expected_outcome": "hen_goi_lai",
+      "ground_truth_facts": {
+        "price_vnd": 4790000,
+        "warranty_months": 12,
+        "freeship": true
+      }
+    },
+    "call_2": {
+      "days_later": 1,
+      "customer_turns": [
+        "Alo em, hôm trước chị hỏi Combo Spectra S1 + máy hâm sữa Fatz + 50 túi trữ sữa cho bé đó.",
+        "Chồng chị ok rồi, em lên đơn giao về 12 Lê Lợi, TP Huế nhé.",
+        "Thanh toán khi nhận hàng nhé em."
+      ],
+      "must_carry_over": [
+        "product_advised",
+        "price_quoted_vnd",
+        "baby_age"
+      ],
+      "must_not_ask": [
+        "product_advised",
+        "baby_age"
+      ],
+      "success_if": {
+        "tool_called": "order.create",
+        "args_match": {
+          "sku": "SKU-BDL-MOM",
+          "price_vnd": 4790000,
+          "payment": "COD"
+        }
+      },
+      "ground_truth_facts": {
+        "price_vnd": 4790000,
+        "in_stock": true,
+        "freeship": true
+      }
+    }
+  },
+  "_meta": {
+    "template_id": "T26-me-be-qua-tang",
+    "instance": 1,
+    "seed": 42,
+    "split": "dev",
+    "customer_id": "C019",
+    "synthetic_customer": false,
+    "address": "12 Lê Lợi, TP Huế",
+    "dates": {
+      "call_1": "2026-10-20",
+      "call_2": "2026-10-21"
+    },
+    "choices": {
+      "cust": "C019",
+      "p": "SKU-BDL-MOM",
+      "d1": "2026-10-20",
+      "gap": 1
+    }
+  }
+}

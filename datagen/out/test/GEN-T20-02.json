@@ -1,0 +1,86 @@
+{
+  "scenario_id": "GEN-T20-02",
+  "level": "M1",
+  "persona": "khach_da_mua_doi_size",
+  "hard_case": "doi_san_pham_hoan_chenh_lech",
+  "customer_phone": "0913369222",
+  "customer_name": "Thảo",
+  "honorific": "chị",
+  "notes": "Đổi SKU-XM-4P (5.490.000đ) sang SKU-AP-X (4.890.000đ) trong 7 ngày → hoàn chênh lệch 600.000đ, 3–5 ngày làm việc (DT-04).",
+  "calls": {
+    "call_1": {
+      "call_date": "2026-10-19",
+      "customer_goal": "mua SKU-XM-4P",
+      "customer_turns": [
+        "Em ơi Máy lọc không khí Xiaomi Smart 4 Pro giá bao nhiêu?",
+        "Ok lên đơn cho chị, COD, giao về 56 Nguyễn Văn Linh, Hải Châu, Đà Nẵng."
+      ],
+      "facts_established": {
+        "product_advised": "SKU-XM-4P",
+        "price_quoted_vnd": 5490000,
+        "order_id": "OD774286",
+        "payment": "COD",
+        "address": "56 Nguyễn Văn Linh, Hải Châu, Đà Nẵng"
+      },
+      "expected_outcome": "chot_don"
+    },
+    "call_2": {
+      "days_later": 5,
+      "customer_turns": [
+        "Alo em, chị nhận Xiaomi Smart 4 Pro rồi, chưa dùng, nhưng thấy to quá, chị muốn đổi sang AirPure X.",
+        "Đổi thì bên em hoàn lại tiền chênh cho chị đúng không, bao nhiêu em?",
+        "Ok em làm giúp chị."
+      ],
+      "must_carry_over": [
+        "order_id",
+        "product_advised",
+        "price_quoted_vnd"
+      ],
+      "must_not_ask": [
+        "order_id",
+        "product_advised",
+        "address"
+      ],
+      "success_if": {
+        "tool_called": "order.update",
+        "args_match": {
+          "order_id": "OD774286",
+          "action": "exchange_product",
+          "new_variant_sku": "SKU-AP-X"
+        },
+        "must_say_any": [
+          "600,000",
+          "600.000",
+          "600000",
+          "600k"
+        ]
+      },
+      "ground_truth_facts": {
+        "refund_vnd": 600000,
+        "refund_days": "3-5 ngày làm việc",
+        "exchange_fee_vnd": 0,
+        "price_vnd": 4890000
+      }
+    }
+  },
+  "_meta": {
+    "template_id": "T20-doi-san-pham-hoan-chenh-lech",
+    "instance": 1,
+    "seed": 42,
+    "split": "test",
+    "customer_id": "N028",
+    "synthetic_customer": true,
+    "address": "56 Nguyễn Văn Linh, Hải Châu, Đà Nẵng",
+    "dates": {
+      "call_1": "2026-10-19",
+      "call_2": "2026-10-24"
+    },
+    "choices": {
+      "cust": "N028",
+      "p": "SKU-XM-4P",
+      "p2": "SKU-AP-X",
+      "d1": "2026-10-19",
+      "gap": 5
+    }
+  }
+}

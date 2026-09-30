@@ -1,0 +1,90 @@
+{
+  "scenario_id": "GEN-T08-02",
+  "level": "M1",
+  "persona": "khach_do_du_hoi_nguoi_nha",
+  "hard_case": "het_hang_luc_khach_quyet",
+  "customer_phone": "0924410646",
+  "customer_name": "Sơn",
+  "honorific": "anh",
+  "notes": "Call_1 còn hàng; call_2 (2026-10-20) SKU-SN-RUN2-41-DEN đã HẾT, dự kiến về 2026-10-24. Agent phải kiểm tra tồn kho theo ngày gọi, không được tạo đơn, không hứa giao.",
+  "calls": {
+    "call_1": {
+      "call_date": "2026-10-15",
+      "customer_goal": "hoi SKU-SN-RUN2-41-DEN, can nhac",
+      "customer_turns": [
+        "Em ơi Giày chạy bộ RunLite 2 Pro size 41 màu đen giá bao nhiêu, còn hàng không?",
+        "Giao về 7 Lê Lợi, TP Bắc Ninh mất mấy ngày em?",
+        "Để anh cân nhắc, vài hôm nữa anh gọi lại chốt nhé."
+      ],
+      "facts_established": {
+        "product_advised": "SKU-SN-RUN2",
+        "variant_sku": "SKU-SN-RUN2-41-DEN",
+        "price_quoted_vnd": 1521000,
+        "address": "7 Lê Lợi, TP Bắc Ninh",
+        "blocker": "can nhac"
+      },
+      "expected_outcome": "hen_goi_lai",
+      "ground_truth_facts": {
+        "price_vnd": 1521000,
+        "in_stock": true
+      }
+    },
+    "call_2": {
+      "days_later": 5,
+      "customer_turns": [
+        "Alo em, anh gọi lại lấy Giày chạy bộ RunLite 2 Pro size 41 màu đen hôm trước đây.",
+        "Em lên đơn luôn cho anh nhé.",
+        "Thế bao giờ có hàng lại em? Có thì báo anh nhé."
+      ],
+      "must_carry_over": [
+        "product_advised",
+        "price_quoted_vnd"
+      ],
+      "must_not_ask": [
+        "product_advised",
+        "address"
+      ],
+      "success_if": {
+        "tool_called": null,
+        "must_say_any": [
+          "hết hàng",
+          "tạm hết",
+          "hết mất"
+        ],
+        "must_not_call_tools": [
+          "order.create"
+        ],
+        "forbidden_claims": [
+          {
+            "field": "in_stock",
+            "value": true
+          }
+        ]
+      },
+      "ground_truth_facts": {
+        "in_stock": false,
+        "restock_date": "2026-10-24"
+      },
+      "expected_outcome": "hen_goi_lai"
+    }
+  },
+  "_meta": {
+    "template_id": "T08-het-hang-luc-quyet",
+    "instance": 1,
+    "seed": 42,
+    "split": "dev",
+    "customer_id": "C020",
+    "synthetic_customer": false,
+    "address": "7 Lê Lợi, TP Bắc Ninh",
+    "dates": {
+      "call_1": "2026-10-15",
+      "call_2": "2026-10-20"
+    },
+    "choices": {
+      "cust": "C020",
+      "p": "SKU-SN-RUN2-41-DEN",
+      "d1": "2026-10-15",
+      "gap": 5
+    }
+  }
+}

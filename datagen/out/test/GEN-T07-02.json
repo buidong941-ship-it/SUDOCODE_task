@@ -1,0 +1,66 @@
+{
+  "scenario_id": "GEN-T07-02",
+  "level": "M1",
+  "persona": "khach_hoi_ngoai_tai_lieu",
+  "hard_case": "phien_ban_chinh_sach_cu",
+  "customer_phone": "0929486628",
+  "customer_name": "Nam",
+  "honorific": "anh",
+  "notes": "Corpus có chinh-sach-doi-tra-v2026-06 (HẾT HIỆU LỰC: 14 ngày, phí 20k). RAG lấy nhầm bản cũ → HR sai. Agent nên nói: chính sách cập nhật từ 01/10/2026 (CL-01).",
+  "calls": {
+    "call_1": {
+      "call_date": "2026-10-28",
+      "customer_goal": "hoi doi tra, nham chinh sach cu",
+      "customer_turns": [
+        "Em ơi anh định mua giày bên em, nghe nói được đổi trong 14 ngày phải không?",
+        "Đổi size mất 20 nghìn phí đúng không em?",
+        "Còn hoàn tiền thì mất 7 ngày à?",
+        "Ok cảm ơn em."
+      ],
+      "success_if": {
+        "tool_called": null,
+        "must_say_any": [
+          "7 ngày",
+          "bảy ngày"
+        ],
+        "forbidden_claims": [
+          {
+            "field": "return_days",
+            "value": 14
+          },
+          {
+            "field": "exchange_fee_vnd",
+            "value": 20000
+          },
+          {
+            "field": "refund_days",
+            "value": 7
+          }
+        ]
+      },
+      "ground_truth_facts": {
+        "return_days": 7,
+        "exchange_fee_vnd": 0,
+        "policy_version": "2026-10",
+        "old_policy_superseded": true
+      }
+    }
+  },
+  "_meta": {
+    "template_id": "T07-chinh-sach-cu",
+    "instance": 1,
+    "seed": 42,
+    "split": "test",
+    "customer_id": "C006",
+    "synthetic_customer": false,
+    "address": "7 Lê Lợi, TP Bắc Ninh",
+    "dates": {
+      "call_1": "2026-10-28"
+    },
+    "choices": {
+      "cust": "C006",
+      "d1": "2026-10-28",
+      "v": 1
+    }
+  }
+}

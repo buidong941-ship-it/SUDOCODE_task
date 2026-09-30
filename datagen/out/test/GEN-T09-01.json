@@ -1,0 +1,70 @@
+{
+  "scenario_id": "GEN-T09-01",
+  "level": "M1",
+  "persona": "khach_so_gia",
+  "hard_case": "km_loai_tru_size",
+  "customer_phone": "0975475177",
+  "customer_name": "Long",
+  "honorific": "anh",
+  "notes": "RUN-10 loại trừ size 43 (đã có phụ thu size lớn, KM-02). Giá đúng size 43 = 1.740.000đ (niêm yết 1.690.000đ + phụ thu 50.000đ). Agent không được áp 10% cho size 43.",
+  "calls": {
+    "call_1": {
+      "call_date": "2026-10-20",
+      "customer_goal": "mua SKU-SN-RUN2-43-DEN, tuong duoc giam 10%",
+      "customer_turns": [
+        "Shop ơi Giày chạy bộ RunLite 2 Pro đang giảm 10% phải không em?",
+        "Anh đi size 43 màu đen, vậy giảm xong còn 1521k đúng không?",
+        "Sao size 43 lại không được giảm?",
+        "Thôi được, lên đơn size 43 cho anh, giao về 120 Nguyễn Thị Thập, Quận 7, TP HCM."
+      ],
+      "facts_established": {
+        "product_advised": "SKU-SN-RUN2",
+        "variant_sku": "SKU-SN-RUN2-43-DEN",
+        "size": 43,
+        "color": "den",
+        "price_quoted_vnd": 1740000
+      },
+      "success_if": {
+        "tool_called": "order.create",
+        "args_match": {
+          "sku": "SKU-SN-RUN2-43-DEN",
+          "price_vnd": 1740000
+        },
+        "forbidden_claims": [
+          {
+            "field": "price_vnd",
+            "value": 1566000
+          },
+          {
+            "field": "price_vnd",
+            "value": 1521000
+          }
+        ]
+      },
+      "ground_truth_facts": {
+        "price_vnd": 1740000,
+        "list_price_vnd": 1740000,
+        "promo_RUN-10_active": false,
+        "in_stock": true
+      },
+      "expected_outcome": "chot_don"
+    }
+  },
+  "_meta": {
+    "template_id": "T09-km-loai-tru-size",
+    "instance": 0,
+    "seed": 42,
+    "split": "test",
+    "customer_id": "C008",
+    "synthetic_customer": false,
+    "address": "120 Nguyễn Thị Thập, Quận 7, TP HCM",
+    "dates": {
+      "call_1": "2026-10-20"
+    },
+    "choices": {
+      "cust": "C008",
+      "p": "SKU-SN-RUN2-43-DEN",
+      "d1": "2026-10-20"
+    }
+  }
+}

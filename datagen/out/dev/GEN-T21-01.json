@@ -1,0 +1,117 @@
+{
+  "scenario_id": "GEN-T21-01",
+  "level": "M1",
+  "persona": "khach_goi_lan_3_het_kien_nhan",
+  "hard_case": "3_phien_thong_tin_thay_doi",
+  "customer_phone": "0925679581",
+  "customer_name": "Hằng",
+  "honorific": "cô",
+  "notes": "Địa chỉ đổi từ '120 Nguyễn Thị Thập, Quận 7, TP HCM' (call_1) sang '33 Lê Duẩn, Hải Châu, Đà Nẵng' (call_2) → giá trị cũ bị supersede. Call_3 hỏi trạng thái: dự kiến giao 2026-10-20 (thứ ba), không được nhắc địa chỉ cũ.",
+  "calls": {
+    "call_1": {
+      "call_date": "2026-10-16",
+      "customer_goal": "hoi SKU-WF-RO9",
+      "customer_turns": [
+        "Em ơi Máy lọc nước RO Karofi 9 lõi giá bao nhiêu?",
+        "Giao về 120 Nguyễn Thị Thập, Quận 7, TP HCM thì mất mấy ngày em?",
+        "Để cô nghĩ thêm rồi gọi lại."
+      ],
+      "facts_established": {
+        "product_advised": "SKU-WF-RO9",
+        "price_quoted_vnd": 5990000,
+        "address": "120 Nguyễn Thị Thập, Quận 7, TP HCM"
+      },
+      "expected_outcome": "hen_goi_lai"
+    },
+    "call_2": {
+      "days_later": 2,
+      "customer_turns": [
+        "Alo em, cô lấy RO Karofi 9 lõi hôm trước nhé.",
+        "Nhưng cô mới chuyển nhà, giờ giao về 33 Lê Duẩn, Hải Châu, Đà Nẵng nhé.",
+        "Thanh toán khi nhận hàng."
+      ],
+      "must_carry_over": [
+        "product_advised",
+        "price_quoted_vnd"
+      ],
+      "must_not_ask": [
+        "product_advised"
+      ],
+      "facts_established": {
+        "address": "33 Lê Duẩn, Hải Châu, Đà Nẵng",
+        "payment": "COD"
+      },
+      "success_if": {
+        "tool_called": "order.create",
+        "args_match": {
+          "sku": "SKU-WF-RO9",
+          "price_vnd": 5990000,
+          "payment": "COD"
+        }
+      },
+      "memory_expectation": {
+        "address": "33 Lê Duẩn, Hải Châu, Đà Nẵng",
+        "superseded": "120 Nguyễn Thị Thập, Quận 7, TP HCM"
+      },
+      "ground_truth_facts": {
+        "price_vnd": 5990000,
+        "in_stock": true,
+        "estimated_delivery": "2026-10-20"
+      },
+      "expected_outcome": "chot_don"
+    },
+    "call_3": {
+      "days_later": 1,
+      "customer_turns": [
+        "Em ơi đơn RO Karofi 9 lõi của cô bao giờ giao tới?",
+        "Nhớ giao đúng địa chỉ mới nhé."
+      ],
+      "must_carry_over": [
+        "address",
+        "product_advised"
+      ],
+      "must_not_ask": [
+        "address",
+        "product_advised",
+        "payment"
+      ],
+      "success_if": {
+        "tool_called": null,
+        "must_say_any": [
+          "20/10",
+          "thứ ba"
+        ],
+        "forbidden_claims": [
+          "120 Nguyễn Thị Thập"
+        ],
+        "max_agent_questions": 1
+      },
+      "ground_truth_facts": {
+        "estimated_delivery": "2026-10-20"
+      },
+      "expected_outcome": "hen_goi_lai"
+    }
+  },
+  "_meta": {
+    "template_id": "T21-3-phien-thay-doi-thong-tin",
+    "instance": 0,
+    "seed": 42,
+    "split": "dev",
+    "customer_id": "N030",
+    "synthetic_customer": true,
+    "address": "33 Lê Duẩn, Hải Châu, Đà Nẵng",
+    "dates": {
+      "call_1": "2026-10-16",
+      "call_2": "2026-10-18",
+      "call_3": "2026-10-19"
+    },
+    "choices": {
+      "cust": "N030",
+      "p": "SKU-WF-RO9",
+      "d1": "2026-10-16",
+      "g1": 2,
+      "g2": 1,
+      "addr_b": "33 Lê Duẩn, Hải Châu, Đà Nẵng"
+    }
+  }
+}

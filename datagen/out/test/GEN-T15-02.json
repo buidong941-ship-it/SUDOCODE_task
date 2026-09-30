@@ -1,0 +1,67 @@
+{
+  "scenario_id": "GEN-T15-02",
+  "level": "M1",
+  "persona": "khach_do_du_hoi_nguoi_nha",
+  "hard_case": "hen_goi_lai_ngay_nghi",
+  "customer_phone": "0979511174",
+  "customer_name": "Hiền",
+  "honorific": "chị",
+  "notes": "Khách hẹn 'thứ hai tuần sau' = 26/10/2026 là ngày nghỉ nội bộ (LN-02) → phải dời sang thứ ba 27/10 10:00 và báo khách (ITN thời gian tương đối từ ngày 2026-10-19).",
+  "calls": {
+    "call_1": {
+      "call_date": "2026-10-19",
+      "customer_goal": "hoi SKU-AP-Y, hen goi lai thu hai tuan sau",
+      "customer_turns": [
+        "Em ơi Máy lọc không khí AirPure Y còn hàng không, giá bao nhiêu?",
+        "Chị đang bận, thứ hai tuần sau khoảng 10 giờ em gọi lại cho chị được không?",
+        "Ừ vậy nhé em."
+      ],
+      "facts_established": {
+        "product_advised": "SKU-AP-Y",
+        "price_quoted_vnd": 5200000,
+        "callback_requested": "2026-10-26T10:00"
+      },
+      "success_if": {
+        "tool_called": "schedule.callback",
+        "args_match": {
+          "customer_phone": "0979511174"
+        },
+        "must_say_any": [
+          "27/10",
+          "thứ ba",
+          "ngày 27"
+        ],
+        "forbidden_claims": [
+          {
+            "field": "callback_at",
+            "value": "2026-10-26T10:00"
+          }
+        ]
+      },
+      "ground_truth_facts": {
+        "price_vnd": 5200000,
+        "callback_at": "2026-10-27T10:00",
+        "holiday": "2026-10-26"
+      },
+      "expected_outcome": "hen_goi_lai"
+    }
+  },
+  "_meta": {
+    "template_id": "T15-hen-goi-lai-ngay-nghi",
+    "instance": 1,
+    "seed": 42,
+    "split": "test",
+    "customer_id": "C044",
+    "synthetic_customer": false,
+    "address": "88 Trần Phú, Nha Trang, Khánh Hòa",
+    "dates": {
+      "call_1": "2026-10-19"
+    },
+    "choices": {
+      "cust": "C044",
+      "p": "SKU-AP-Y",
+      "d1": "2026-10-19",
+      "hour": 10
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "scenario_id": "GEN-T19-01",
+  "level": "M2",
+  "persona": "khach_da_mua_doi_size",
+  "hard_case": null,
+  "customer_phone": "0965384535",
+  "customer_name": "Tâm",
+  "honorific": "chị",
+  "notes": "Khách C032 có đơn OD301177 (SKU-MB-PUMP1) đang giao, mã vận đơn GHN7781234. Agent phải tra đơn theo SĐT, không hỏi lại mã đơn/sản phẩm.",
+  "calls": {
+    "call_1": {
+      "call_date": "2026-10-17",
+      "customer_goal": "hoi trang thai don dang giao",
+      "customer_turns": [
+        "Alo em, đơn máy hút sữa của chị giao đến đâu rồi?",
+        "Mã vận đơn là gì em, để chị tự tra?",
+        "Ok cảm ơn em."
+      ],
+      "must_not_ask": [
+        "order_id",
+        "product_advised"
+      ],
+      "success_if": {
+        "tool_called": "order.status",
+        "must_say_any": [
+          "GHN7781234"
+        ]
+      },
+      "ground_truth_facts": {
+        "order_id": "OD301177",
+        "order_status": "shipping",
+        "tracking": "GHN7781234"
+      },
+      "expected_outcome": "hen_goi_lai"
+    }
+  },
+  "_meta": {
+    "template_id": "T19-trang-thai-don",
+    "instance": 0,
+    "seed": 42,
+    "split": "dev",
+    "customer_id": "C032",
+    "synthetic_customer": false,
+    "address": "30 Phan Đình Phùng, Quy Nhơn, Bình Định",
+    "dates": {
+      "call_1": "2026-10-17"
+    },
+    "choices": {
+      "cust": "C032",
+      "d1": "2026-10-17"
+    }
+  }
+}

@@ -1,0 +1,464 @@
+[
+  {
+    "template_id": "T01-do-du-hoi-nguoi-nha",
+    "instances": 3,
+    "choose": {
+      "cust": "customers()",
+      "p": "products(category='gia-dung/may-loc-khong-khi')",
+      "d1": "days('2026-10-13','2026-10-20')",
+      "gap": "range(1,5)"
+    },
+    "dates": {"call_1": "d1", "call_2": "add(d1,gap)"},
+    "let": {
+      "address": "cust.address",
+      "price": "final(p.vsku,'call_1')",
+      "promo_code": "best_promo(p.vsku,'call_1')",
+      "area": "pick([a for a in (15,20,25,30,35,40) if a <= p.attrs['room_area_m2']])",
+      "has_children": "bool(p.attrs.get('child_safe_lock', False))",
+      "budget": "price + 500000",
+      "spouse": "'ông xã' if cust.honorific in ('chị','cô') else 'bà xã'",
+      "blocker": "'can hoi chong' if cust.honorific in ('chị','cô') else 'can hoi vo'"
+    },
+    "require": [
+      "area is not None",
+      "in_stock(p.vsku,'call_1')", "in_stock(p.vsku,'call_2')",
+      "promo_code is not None", "promo_active(promo_code,'call_2')",
+      "final(p.vsku,'call_2') == price"
+    ],
+    "reproduce": {"id": "SAMPLE-01", "fix": {"cust": "customers(ids=['C001'],reuse=True)", "p": "products(skus=['SKU-AP-Y'])", "d1": "['2026-10-15']", "gap": "[2]", "area": "25", "budget": "5700000"}},
+    "scenario": {
+      "level": "M1", "persona": "khach_do_du_hoi_nguoi_nha", "hard_case": null,
+      "notes": "Kịch bản lõi Case 1. Cuộc 2 phải mở đầu bằng xác nhận tiếp nối, không hỏi lại diện tích/ngân sách/có trẻ nhỏ.",
+      "calls": {
+        "call_1": {
+          "customer_goal": "hoi {{p.name}} cho phong {{area}}m2, ngan sach {{trieu(budget)}}",
+          "customer_turns": [
+            "Alo, {{cust.xh}} muốn hỏi máy lọc không khí cho phòng ngủ khoảng {{area}} mét vuông, {{cust.xh}} đang xem mẫu {{p.short}}.",
+            "{{('Nhà ' + cust.xh + ' có bé nhỏ, ngân sách') if has_children else ('Ngân sách ' + cust.xh)}} tầm {{trieu(budget)}} thôi em.",
+            "Máy này có khuyến mãi gì không em?",
+            "Ừ để {{cust.xh}} hỏi {{spouse}} rồi gọi lại em nhé."
+          ],
+          "facts_established": {
+            "room_area_m2": "{{area}}", "has_children": "{{has_children}}", "budget_vnd": "{{budget}}",
+            "product_advised": "{{p.sku}}", "price_quoted_vnd": "{{price}}", "promo_code": "{{promo_code}}",
+            "promo_expiry": "{{promo_end(promo_code)}}", "blocker": "{{blocker}}"
+          },
+          "expected_outcome": "hen_goi_lai"
+        },
+        "call_2": {
+          "customer_turns": [
+            "Alo, hôm trước {{cust.xh}} có gọi hỏi máy lọc không khí đó em.",
+            "{{spouse[0].upper() + spouse[1:]}} {{cust.xh}} đồng ý rồi, giá vẫn như hôm trước đúng không?",
+            "Ừ em lên đơn cho {{cust.xh}} đi, giao về {{address}} nhé."
+          ],
+          "must_carry_over": ["product_advised", "price_quoted_vnd", "room_area_m2", "blocker"],
+          "must_not_ask": ["room_area_m2", "budget_vnd", "has_children", "product_advised"],
+          "success_if": {"tool_called": "order.create", "args_match": {"sku": "{{p.vsku}}", "price_vnd": "{{final(p.vsku,'call_2')}}"}},
+          "ground_truth_facts": {"price_vnd": "{{final(p.vsku,'call_2')}}", "promo_active": true, "in_stock": true, "delivery_days": "{{region_days(address)}}"}
+        }
+      }
+    }
+  },
+  {
+    "template_id": "T02-so-gia",
+    "instances": 3,
+    "choose": {
+      "cust": "customers()",
+      "p": "products(category='gia-dung', variants=False, min_price=1500000)",
+      "d1": "days('2026-10-13','2026-10-20')",
+      "gap": "range(2,6)",
+      "cdrop": "[200000, 300000, 400000]"
+    },
+    "dates": {"call_1": "d1", "call_2": "add(d1,gap)"},
+    "let": {
+      "address": "cust.address",
+      "price": "final(p.vsku,'call_1')",
+      "competitor": "price - cdrop",
+      "alts": "[a for a in products(category=p.category, variants=False) if a.sku != p.sku and a.list < p.list and in_stock(a.vsku,'call_1')]",
+      "alt": "sorted(alts, key=lambda a: a.list)[-1] if alts else None",
+      "promo_active2": "any(promo(c)['type'] in ('fixed','percent','percent_second_item','gift') for c in promos(p.vsku,'call_2'))"
+    },
+    "require": ["in_stock(p.vsku,'call_1')", "in_stock(p.vsku,'call_2')", "final(p.vsku,'call_2') == price"],
+    "reproduce": {"id": "SAMPLE-02", "fix": {"cust": "customers(ids=['C007'],reuse=True)", "p": "products(skus=['SKU-AP-X'])", "d1": "['2026-10-15']", "gap": "[3]", "cdrop": "[300000]"}},
+    "scenario": {
+      "level": "M1", "persona": "khach_so_gia", "hard_case": null,
+      "notes": "Agent KHÔNG được tự bịa giảm giá để chốt, không xác nhận/phủ nhận giá đối thủ (PB-02). Giá ở cuộc 2 phải bằng giá đã báo.",
+      "calls": {
+        "call_1": {
+          "customer_goal": "so gia {{p.sku}} voi ben khac",
+          "customer_turns": [
+            "Em ơi {{p.name}} bên em giá bao nhiêu?",
+            "Bên kia {{cust.xh}} thấy đang bán {{k(competitor)}} thôi, sao bên em đắt hơn?",
+            "Thế bảo hành thế nào? {{cust.Xh}} cân nhắc thêm rồi báo lại."
+          ],
+          "facts_established": {
+            "product_advised": "{{p.sku}}", "price_quoted_vnd": "{{price}}", "competitor_price_vnd": "{{competitor}}",
+            "objection": "dat_qua", "alt_suggested": "{{alt.sku if alt else DROP}}", "blocker": "so sanh gia"
+          },
+          "expected_outcome": "hen_goi_lai"
+        },
+        "call_2": {
+          "customer_turns": [
+            "{{cust.Xh}} gọi lại vụ {{p.name}} hôm trước.",
+            "Nếu bên em không giảm thêm được thì có tặng gì kèm không?",
+            "Thôi được, {{cust.xh}} lấy cái đó, giao về {{address}} trong tuần này nhé."
+          ],
+          "must_carry_over": ["product_advised", "price_quoted_vnd", "competitor_price_vnd", "objection"],
+          "must_not_ask": ["product_advised", "competitor_price_vnd"],
+          "success_if": {"tool_called": "order.create", "args_match": {"sku": "{{p.vsku}}", "price_vnd": "{{price}}"}},
+          "ground_truth_facts": {
+            "price_vnd": "{{price}}", "warranty_months": "{{p.attrs.get('warranty_months', DROP)}}",
+            "promo_active": "{{promo_active2}}", "in_stock": true, "delivery_days": "{{region_days(address)}}"
+          }
+        }
+      }
+    }
+  },
+  {
+    "template_id": "T03-doi-size",
+    "no_sunday": ["call_2"],
+    "instances": 3,
+    "choose": {
+      "cust": "customers()",
+      "p": "products(category='thoi-trang')",
+      "d1": "days('2026-10-13','2026-10-22')",
+      "gap": "range(2,7)"
+    },
+    "dates": {"call_1": "d1", "call_2": "add(d1,gap)"},
+    "let": {
+      "newp": "next_size(p)",
+      "price": "final(p.vsku,'call_1')",
+      "item": "'giày' if '/giay' in p.category else 'áo'",
+      "oid": "new_order_id()"
+    },
+    "require": [
+      "newp is not None", "in_stock(p.vsku,'call_1')", "in_stock(newp.vsku,'call_2')",
+      "final(newp.vsku,'call_2') == price",
+      "not any(promo(c).get('conditions', {}).get('once_per_customer') for c in promos(p.vsku,'call_1'))"
+    ],
+    "reproduce": {"id": "SAMPLE-03", "fix": {"cust": "customers(ids=['C012'],reuse=True)", "p": "products(skus=['SKU-SN-CAS'], size_in=[39], color_in=['den'])", "d1": "['2026-10-15']", "gap": "[4]", "oid": "'OD682761'"}},
+    "scenario": {
+      "level": "M1", "persona": "khach_da_mua_doi_size", "hard_case": null,
+      "notes": "Cuộc 2 (Case 3): hệ thống phải biết đơn nào, size/màu nào; áp chính sách đổi trả 7 ngày miễn phí đổi size lần đầu (DT-03).",
+      "calls": {
+        "call_1": {
+          "customer_goal": "mua {{p.sku}} size {{p.size}} mau {{p.color}}",
+          "customer_turns": [
+            "Em ơi {{p.name}} còn size {{p.size}} màu {{p.color_vi}} không?",
+            "Giá bao nhiêu, có giảm gì không em?",
+            "Ok em lên đơn cho {{cust.xh}}, thanh toán COD nhé."
+          ],
+          "facts_established": {
+            "product_advised": "{{p.sku}}", "variant_sku": "{{p.vsku}}", "size": "{{p.size}}", "color": "{{p.color}}",
+            "price_quoted_vnd": "{{price}}", "order_id": "{{oid}}", "payment": "COD"
+          },
+          "expected_outcome": "chot_don"
+        },
+        "call_2": {
+          "customer_turns": [
+            "Alo, {{cust.xh}} mới nhận {{item}} hôm qua mà size {{p.size}} {{'hơi chật' if item == 'giày' else 'hơi bé'}}.",
+            "Đổi lên size {{newp.size}} được không em? Mất phí gì không?",
+            "Ừ em làm thủ tục đổi cho {{cust.xh}} nhé."
+          ],
+          "must_carry_over": ["order_id", "variant_sku", "size", "color"],
+          "must_not_ask": ["product_advised", "order_id", "color", "payment"],
+          "success_if": {"tool_called": "order.update", "args_match": {"order_id": "{{oid}}", "new_variant_sku": "{{newp.vsku}}", "action": "exchange_size"}},
+          "ground_truth_facts": {"return_days": 7, "exchange_fee_vnd": 0, "new_size_in_stock": true, "price_vnd": "{{price}}"}
+        }
+      }
+    }
+  },
+  {
+    "template_id": "T04-da-kenh-fb-hotline",
+    "instances": 3,
+    "choose": {
+      "cust": "customers(need=['fb_id'])",
+      "p": "products()",
+      "d1": "days('2026-10-12','2026-10-22')",
+      "gap": "range(1,3)"
+    },
+    "dates": {"call_1": "d1", "call_2": "add(d1,gap)"},
+    "let": {
+      "price": "final(p.sku,'call_1')",
+      "promo_code": "best_promo(p.sku,'call_1')",
+      "item": "'giày' if '/giay' in p.category else 'áo' if 'thoi-trang' in p.category else 'máy'",
+      "size_phrase": "('lấy size ' + str(p.size) + ' màu ' + p.color_vi + ', ') if p.size else ''"
+    },
+    "require": [
+      "disc(p.sku,'call_1') > 0", "in_stock(p.vsku,'call_1')", "in_stock(p.vsku,'call_2')",
+      "final(p.vsku,'call_2') == price"
+    ],
+    "reproduce": {"id": "SAMPLE-04", "fix": {"cust": "customers(ids=['C017'],reuse=True)", "p": "products(skus=['SKU-SN-RUN2'], size_in=[41], color_in=['den'])", "d1": "['2026-10-15']", "gap": "[1]"}},
+    "scenario": {
+      "level": "M1", "persona": "khach_da_kenh_fb_hotline", "hard_case": null,
+      "notes": "Case 2: nhận diện FB ID ↔ SĐT. Agent hotline phải thấy giá đã báo bên Fanpage; KM còn hiệu lực phải giữ giá.",
+      "calls": {
+        "call_1": {
+          "channel": "chat_fanpage",
+          "customer_goal": "hoi gia {{item}} qua inbox fanpage",
+          "customer_turns": [
+            "shop oi {{p.name}} gia bn v",
+            "co giam k",
+            "sdt minh {{cust.phone}} de minh goi hotline sau nhe"
+          ],
+          "facts_established": {
+            "product_advised": "{{p.sku}}", "price_quoted_vnd": "{{price}}", "promo_code": "{{promo_code}}",
+            "channel": "fanpage", "phone_provided": "{{cust.phone}}"
+          },
+          "expected_outcome": "hen_goi_lai"
+        },
+        "call_2": {
+          "channel": "hotline",
+          "customer_turns": [
+            "Alo, {{cust.xh}} vừa nhắn Facebook bên em hỏi {{item}} đó.",
+            "Bên Facebook báo {{cust.xh}} giá {{k(price)}} đúng không? Còn giảm không?",
+            "Ok {{size_phrase}}lên đơn cho {{cust.xh}}."
+          ],
+          "must_carry_over": ["product_advised", "price_quoted_vnd", "promo_code"],
+          "must_not_ask": ["product_advised", "price_quoted_vnd"],
+          "success_if": {"tool_called": "order.create", "args_match": {"sku": "{{p.vsku}}", "price_vnd": "{{price}}"}},
+          "ground_truth_facts": {"price_vnd": "{{price}}", "list_price_vnd": "{{p.price_list}}", "promo_active": true, "in_stock": true, "delivery_days": "{{region_days(cust.address)}}"}
+        }
+      }
+    }
+  },
+  {
+    "template_id": "T05-km-het-han",
+    "instances": 3,
+    "choose": {
+      "cust": "customers()",
+      "p": "products()",
+      "d1": "days('2026-09-20','2026-10-24')",
+      "gap": "range(3,22)"
+    },
+    "dates": {"call_1": "d1", "call_2": "add(d1,gap)"},
+    "let": {
+      "promo_old": "best_promo(p.vsku,'call_1')",
+      "promo_new": "best_promo(p.vsku,'call_2')",
+      "price1": "final(p.vsku,'call_1')",
+      "price2": "final(p.vsku,'call_2')",
+      "label": "promo_label(promo_old)",
+      "pname": "p.short + ((' size ' + str(p.size) + ' màu ' + p.color_vi) if p.size else '')"
+    },
+    "require": [
+      "D['call_2'] <= '2026-10-31'",
+      "disc(p.vsku,'call_1') > 0", "not promo_active(promo_old,'call_2')", "price2 > price1",
+      "in_stock(p.vsku,'call_2')"
+    ],
+    "reproduce": {"id": "SAMPLE-05", "fix": {"cust": "customers(ids=['C023'],reuse=True)", "p": "products(skus=['SKU-AP-X'])", "d1": "['2026-09-25']", "gap": "[20]"}},
+    "scenario": {
+      "level": "M1", "persona": "khach_so_gia", "hard_case": "doi_khuyen_mai_het_han",
+      "notes": "Agent KHÔNG được báo lại giá cũ {{vnd(price1)}}; phải nói KM {{promo_old}} đã hết ({{ddmm(promo_end(promo_old))}}), giá hiện tại {{vnd(price2)}}{{(', có thể giới thiệu ' + promo_new + ' còn hiệu lực') if promo_new else ''}}.",
+      "calls": {
+        "call_1": {
+          "customer_goal": "hoi {{p.sku}} luc con KM {{promo_old}}",
+          "customer_turns": [
+            "Em ơi {{pname}} đang giảm {{label}} đúng không?",
+            "Ok để {{cust.xh}} tính rồi gọi lại."
+          ],
+          "facts_established": {
+            "product_advised": "{{p.sku}}", "variant_sku": "{{p.vsku if p.size else DROP}}", "price_quoted_vnd": "{{price1}}",
+            "promo_code": "{{promo_old}}", "promo_expiry": "{{promo_end(promo_old)}}"
+          },
+          "expected_outcome": "hen_goi_lai"
+        },
+        "call_2": {
+          "customer_turns": [
+            "{{cust.Xh}} gọi lại lấy cái {{p.short}} giảm {{label}} hôm trước nhé.",
+            "Sao hôm trước em bảo giảm {{label}} mà?",
+            "Thế giờ có gì bù không? Thôi cũng được, lên đơn."
+          ],
+          "must_carry_over": ["product_advised", "price_quoted_vnd", "promo_code"],
+          "must_not_ask": ["product_advised"],
+          "success_if": {"tool_called": "order.create", "args_match": {"sku": "{{p.vsku}}", "price_vnd": "{{price2}}"}},
+          "ground_truth_facts": {
+            "price_vnd": "{{price2}}",
+            "{{'promo_' + promo_old + '_active'}}": false,
+            "{{('promo_' + promo_new + '_active') if promo_new else DROP}}": true,
+            "in_stock": true
+          }
+        }
+      }
+    }
+  },
+  {
+    "template_id": "T06-asr-het-hang-ve-hang",
+    "instances": 3,
+    "choose": {
+      "cust": "customers(need=['zalo_id'])",
+      "p": "products(skus=['SKU-XM-4P','SKU-AP-PRO'])",
+      "d1": "days('2026-10-13','2026-10-22')",
+      "gap": "range(1,7)"
+    },
+    "dates": {"call_1": "d1", "call_2": "add(d1,gap)"},
+    "let": {
+      "address": "cust.address",
+      "restock_date": "restock(p.vsku,'call_1')",
+      "price1": "final(p.vsku,'call_1')",
+      "price2": "final(p.vsku,'call_2')",
+      "area": "pick([a for a in (20,25,30,35,40,45) if a <= p.attrs['room_area_m2']])",
+      "budget": "((price1 + 499999) // 500000) * 500000",
+      "wife": "'vợ' if cust.honorific == 'anh' else 'chồng'",
+      "c1": "['Alo cho ' + cust.xh + ' hỏi máy lọc không khí ' + p.short + ' giá bao nhiêu?', 'Phòng ' + cust.xh + ' ' + str(area) + 'm² có được không?', 'Ngân sách ' + cust.xh + ' tầm ' + trieu(budget) + ' thôi, để ' + cust.xh + ' hỏi ' + wife + ' đã.']",
+      "c1_asr": "['a lô cho ' + cust.xh + ' hỏi máy lọc không khí ' + spoken(p.short) + ' giá bao nhiêu', 'phòng ' + cust.xh + ' ' + num_words(area) + ' mét vuông có được không', 'ngân sách ' + cust.xh + ' tầm ' + trieu_words(budget) + ' thôi để ' + cust.xh + ' hỏi ' + wife + ' đã']",
+      "c2": "['Em ơi hôm trước ' + cust.xh + ' hỏi cái ' + p.short + '.', wife[0].upper() + wife[1:] + ' ' + cust.xh + ' ok rồi, sản phẩm này có ship COD không, ' + cust.xh + ' ở ' + address + '.', 'Ok lên đơn cho ' + cust.xh + ' nhé.']"
+    },
+    "require": [
+      "area is not None", "not in_stock(p.vsku,'call_1')", "restock_date is not None", "in_stock(p.vsku,'call_2')",
+      "price2 < 10000000"
+    ],
+    "reproduce": {"id": "SAMPLE-06", "fix": {"cust": "customers(ids=['C030'],reuse=True)", "p": "products(skus=['SKU-XM-4P'])", "d1": "['2026-10-15']", "gap": "[5]", "area": "35"}},
+    "scenario": {
+      "level": "M1", "persona": "khach_do_du_hoi_nguoi_nha", "hard_case": "asr_loi_va_teencode",
+      "notes": "Script chấm đưa customer_turns_asr vào hệ thống. Call_1: {{p.sku}} đang HẾT hàng, dự kiến về {{restock_date}} → agent không được hứa giao ngay. Call_2 ({{D['call_2']}}): đã có hàng; KM áp dụng: {{', '.join(promos(p.vsku,'call_2'))}}.",
+      "calls": {
+        "call_1": {
+          "customer_goal": "hoi may loc khong khi, transcript ASR loi",
+          "input_mode": "asr_transcript",
+          "customer_turns_asr": "{{c1_asr}}",
+          "customer_turns": "{{c1}}",
+          "facts_established": {
+            "product_advised": "{{p.sku}}", "room_area_m2": "{{area}}", "budget_vnd": "{{budget}}",
+            "price_quoted_vnd": "{{price1}}", "blocker": "{{'can hoi vo' if wife == 'vợ' else 'can hoi chong'}}"
+          },
+          "expected_outcome": "hen_goi_lai",
+          "ground_truth_facts": {"price_vnd": "{{price1}}", "in_stock": false, "restock_date": "{{restock_date}}"}
+        },
+        "call_2": {
+          "channel": "zalo_oa",
+          "input_mode": "chat_teencode",
+          "customer_turns_asr": "{{[teen(t) for t in c2]}}",
+          "customer_turns": "{{c2}}",
+          "must_carry_over": ["product_advised", "price_quoted_vnd", "room_area_m2"],
+          "must_not_ask": ["room_area_m2", "budget_vnd", "product_advised"],
+          "success_if": {"tool_called": "order.create", "args_match": {"sku": "{{p.vsku}}", "price_vnd": "{{price2}}", "payment": "COD"}},
+          "ground_truth_facts": {
+            "price_vnd": "{{price2}}", "in_stock": true, "restock_date": "{{restock_date}}", "freeship": "{{q(p.vsku,'call_2')['freeship']}}",
+            "{{'promo_NAM-SHIP0_active' if 'NAM-SHIP0' in promos(p.vsku,'call_2') else DROP}}": true
+          }
+        }
+      }
+    }
+  },
+  {
+    "template_id": "T07-chinh-sach-cu",
+    "instances": 2,
+    "choose": {"cust": "customers()", "d1": "days('2026-10-02','2026-10-30')", "v": "[0, 1]"},
+    "dates": {"call_1": "d1"},
+    "let": {
+      "turns": "[['Bên em cho đổi trả trong 14 ngày đúng không? ' + cust.Xh + ' đọc trên web thấy thế.', 'Thế phí đổi size 20 nghìn à?', 'Ok ' + cust.xh + ' hiểu rồi.'], ['Em ơi ' + cust.xh + ' định mua giày bên em, nghe nói được đổi trong 14 ngày phải không?', 'Đổi size mất 20 nghìn phí đúng không em?', 'Còn hoàn tiền thì mất 7 ngày à?', 'Ok cảm ơn em.']][v]"
+    },
+    "reproduce": {"id": "SAMPLE-07", "fix": {"cust": "customers(ids=['C041'],reuse=True)", "d1": "['2026-10-15']", "v": "[0]"}},
+    "scenario": {
+      "level": "M1", "persona": "khach_hoi_ngoai_tai_lieu", "hard_case": "phien_ban_chinh_sach_cu",
+      "notes": "Corpus có chinh-sach-doi-tra-v2026-06 (HẾT HIỆU LỰC: 14 ngày, phí 20k). RAG lấy nhầm bản cũ → HR sai. Agent nên nói: chính sách cập nhật từ 01/10/2026 (CL-01).",
+      "calls": {
+        "call_1": {
+          "customer_goal": "hoi doi tra, nham chinh sach cu",
+          "customer_turns": "{{turns}}",
+          "success_if": {
+            "tool_called": null,
+            "must_say_any": ["7 ngày", "bảy ngày"],
+            "forbidden_claims": [
+              {"field": "return_days", "value": 14},
+              {"field": "exchange_fee_vnd", "value": 20000},
+              "{{({'field': 'refund_days', 'value': 7}) if v == 1 else DROP}}"
+            ]
+          },
+          "ground_truth_facts": {"return_days": 7, "exchange_fee_vnd": 0, "policy_version": "2026-10", "old_policy_superseded": true}
+        }
+      }
+    }
+  },
+  {
+    "template_id": "T26-me-be-qua-tang",
+    "instances": 2,
+    "choose": {
+      "cust": "customers(honorific='chị')",
+      "p": "products(category='me-be', variants=False, min_price=1000000)",
+      "d1": "days('2026-10-13','2026-10-24')",
+      "gap": "range(1,5)"
+    },
+    "dates": {"call_1": "d1", "call_2": "add(d1,gap)"},
+    "let": {
+      "address": "cust.address",
+      "price": "final(p.vsku,'call_1')",
+      "baby_age": "pick(['2 tháng', '4 tháng', '6 tháng', '1 tuổi'])",
+      "applied": "promos(p.vsku,'call_2')"
+    },
+    "require": ["in_stock(p.vsku,'call_1')", "in_stock(p.vsku,'call_2')", "final(p.vsku,'call_2') == price"],
+    "scenario": {
+      "level": "M1", "persona": "khach_do_du_hoi_nguoi_nha", "hard_case": null,
+      "notes": "Mẹ & bé: KM freeship MOM-FREESHIP (đơn ≥500k) cộng dồn; không tư vấn y tế. Cuộc 2 không hỏi lại tuổi bé / sản phẩm.",
+      "calls": {
+        "call_1": {
+          "customer_goal": "hoi {{p.name}} cho be {{baby_age}}",
+          "customer_turns": [
+            "Em ơi chị đang tìm {{p.name}}, bé nhà chị {{baby_age}}.",
+            "Giá bao nhiêu em, có được miễn ship không?",
+            "Bảo hành bao lâu em?",
+            "Để chị bàn với chồng tối nay rồi chị nhắn lại."
+          ],
+          "facts_established": {"product_advised": "{{p.sku}}", "baby_age": "{{baby_age}}", "price_quoted_vnd": "{{price}}", "blocker": "can hoi chong"},
+          "expected_outcome": "hen_goi_lai",
+          "ground_truth_facts": {"price_vnd": "{{price}}", "warranty_months": "{{p.attrs.get('warranty_months', DROP)}}", "freeship": "{{q(p.vsku,'call_1')['freeship']}}"}
+        },
+        "call_2": {
+          "customer_turns": [
+            "Alo em, hôm trước chị hỏi {{p.short}} cho bé đó.",
+            "Chồng chị ok rồi, em lên đơn giao về {{address}} nhé.",
+            "Thanh toán khi nhận hàng nhé em."
+          ],
+          "must_carry_over": ["product_advised", "price_quoted_vnd", "baby_age"],
+          "must_not_ask": ["product_advised", "baby_age"],
+          "success_if": {"tool_called": "order.create", "args_match": {"sku": "{{p.vsku}}", "price_vnd": "{{price}}", "payment": "COD"}},
+          "ground_truth_facts": {
+            "price_vnd": "{{price}}", "in_stock": true, "freeship": "{{q(p.vsku,'call_2')['freeship']}}",
+            "{{'promo_PUMP-GIFT_active' if 'PUMP-GIFT' in applied else DROP}}": true
+          }
+        }
+      }
+    }
+  },
+  {
+    "template_id": "T27-gia-dung-mien-nam",
+    "instances": 2,
+    "choose": {
+      "cust": "customers(region='nam')",
+      "p": "products(category=['gia-dung/noi-chien','gia-dung/quat','gia-dung/may-loc-nuoc'], variants=False)",
+      "d1": "days('2026-10-13','2026-10-24')",
+      "gap": "range(1,4)"
+    },
+    "dates": {"call_1": "d1", "call_2": "add(d1,gap)"},
+    "let": {"address": "cust.address", "price": "final(p.vsku,'call_1')", "people": "pick([2, 3, 4, 5])"},
+    "require": ["in_stock(p.vsku,'call_1')", "in_stock(p.vsku,'call_2')", "final(p.vsku,'call_2') == price", "'NAM-SHIP0' in promos(p.vsku,'call_1')"],
+    "scenario": {
+      "level": "M1", "persona": "khach_hoi_nhieu_khong_mua", "hard_case": null,
+      "notes": "Khách miền Nam → NAM-SHIP0 (freeship theo địa chỉ giao, stackable). Cuộc 2 chốt, không hỏi lại số người/địa chỉ.",
+      "calls": {
+        "call_1": {
+          "customer_goal": "hoi {{p.name}} cho nha {{people}} nguoi",
+          "customer_turns": [
+            "Em ơi {{p.name}} nhà {{people}} người dùng có hợp không?",
+            "Giá bao nhiêu, giao về {{address}} có mất phí ship không em?",
+            "Bảo hành mấy tháng em?",
+            "Để {{cust.xh}} xem thêm vài mẫu đã nhé."
+          ],
+          "facts_established": {"product_advised": "{{p.sku}}", "household_size": "{{people}}", "address": "{{address}}", "price_quoted_vnd": "{{price}}", "blocker": "xem them"},
+          "expected_outcome": "hen_goi_lai",
+          "ground_truth_facts": {"price_vnd": "{{price}}", "freeship": true, "promo_NAM-SHIP0_active": true, "warranty_months": "{{p.attrs.get('warranty_months', DROP)}}"}
+        },
+        "call_2": {
+          "customer_turns": [
+            "Alo em, {{cust.xh}} gọi lại về {{p.short}} hôm trước.",
+            "Ok {{cust.xh}} lấy, giao chỗ cũ nhé, COD."
+          ],
+          "must_carry_over": ["product_advised", "price_quoted_vnd", "address"],
+          "must_not_ask": ["product_advised", "household_size", "address"],
+          "success_if": {"tool_called": "order.create", "args_match": {"sku": "{{p.vsku}}", "price_vnd": "{{price}}", "payment": "COD"}},
+          "ground_truth_facts": {"price_vnd": "{{price}}", "freeship": true, "in_stock": true, "delivery_days": "{{region_days(address)}}"}
+        }
+      }
+    }
+  }
+]

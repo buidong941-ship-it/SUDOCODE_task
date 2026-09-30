@@ -1,0 +1,82 @@
+{
+  "scenario_id": "GEN-T02-03",
+  "level": "M1",
+  "persona": "khach_so_gia",
+  "hard_case": null,
+  "customer_phone": "0932157116",
+  "customer_name": "Nga",
+  "honorific": "chị",
+  "notes": "Agent KHÔNG được tự bịa giảm giá để chốt, không xác nhận/phủ nhận giá đối thủ (PB-02). Giá ở cuộc 2 phải bằng giá đã báo.",
+  "calls": {
+    "call_1": {
+      "call_date": "2026-10-20",
+      "customer_goal": "so gia SKU-FAN-DC1 voi ben khac",
+      "customer_turns": [
+        "Em ơi Quạt đứng DC inverter Panasonic F-409 bên em giá bao nhiêu?",
+        "Bên kia chị thấy đang bán 2250k thôi, sao bên em đắt hơn?",
+        "Thế bảo hành thế nào? Chị cân nhắc thêm rồi báo lại."
+      ],
+      "facts_established": {
+        "product_advised": "SKU-FAN-DC1",
+        "price_quoted_vnd": 2450000,
+        "competitor_price_vnd": 2250000,
+        "objection": "dat_qua",
+        "alt_suggested": "SKU-FAN-SEN",
+        "blocker": "so sanh gia"
+      },
+      "expected_outcome": "hen_goi_lai"
+    },
+    "call_2": {
+      "days_later": 2,
+      "customer_turns": [
+        "Chị gọi lại vụ Quạt đứng DC inverter Panasonic F-409 hôm trước.",
+        "Nếu bên em không giảm thêm được thì có tặng gì kèm không?",
+        "Thôi được, chị lấy cái đó, giao về 88 Trần Phú, Nha Trang, Khánh Hòa trong tuần này nhé."
+      ],
+      "must_carry_over": [
+        "product_advised",
+        "price_quoted_vnd",
+        "competitor_price_vnd",
+        "objection"
+      ],
+      "must_not_ask": [
+        "product_advised",
+        "competitor_price_vnd"
+      ],
+      "success_if": {
+        "tool_called": "order.create",
+        "args_match": {
+          "sku": "SKU-FAN-DC1",
+          "price_vnd": 2450000
+        }
+      },
+      "ground_truth_facts": {
+        "price_vnd": 2450000,
+        "warranty_months": 12,
+        "promo_active": false,
+        "in_stock": true,
+        "delivery_days": 4
+      }
+    }
+  },
+  "_meta": {
+    "template_id": "T02-so-gia",
+    "instance": 2,
+    "seed": 42,
+    "split": "dev",
+    "customer_id": "C042",
+    "synthetic_customer": false,
+    "address": "88 Trần Phú, Nha Trang, Khánh Hòa",
+    "dates": {
+      "call_1": "2026-10-20",
+      "call_2": "2026-10-22"
+    },
+    "choices": {
+      "cust": "C042",
+      "p": "SKU-FAN-DC1",
+      "d1": "2026-10-20",
+      "gap": 2,
+      "cdrop": 200000
+    }
+  }
+}

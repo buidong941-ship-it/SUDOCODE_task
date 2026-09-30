@@ -1,0 +1,85 @@
+{
+  "scenario_id": "GEN-T01-02",
+  "level": "M1",
+  "persona": "khach_do_du_hoi_nguoi_nha",
+  "hard_case": null,
+  "customer_phone": "0982141621",
+  "customer_name": "Quân",
+  "honorific": "anh",
+  "notes": "Kịch bản lõi Case 1. Cuộc 2 phải mở đầu bằng xác nhận tiếp nối, không hỏi lại diện tích/ngân sách/có trẻ nhỏ.",
+  "calls": {
+    "call_1": {
+      "call_date": "2026-10-15",
+      "customer_goal": "hoi Máy lọc không khí AirPure X cho phong 20m2, ngan sach 5 triệu 390",
+      "customer_turns": [
+        "Alo, anh muốn hỏi máy lọc không khí cho phòng ngủ khoảng 20 mét vuông, anh đang xem mẫu AirPure X.",
+        "Ngân sách anh tầm 5 triệu 390 thôi em.",
+        "Máy này có khuyến mãi gì không em?",
+        "Ừ để anh hỏi bà xã rồi gọi lại em nhé."
+      ],
+      "facts_established": {
+        "room_area_m2": 20,
+        "has_children": false,
+        "budget_vnd": 5390000,
+        "product_advised": "SKU-AP-X",
+        "price_quoted_vnd": 4890000,
+        "promo_code": "GIFT-FILTER",
+        "promo_expiry": "2026-10-22",
+        "blocker": "can hoi vo"
+      },
+      "expected_outcome": "hen_goi_lai"
+    },
+    "call_2": {
+      "days_later": 1,
+      "customer_turns": [
+        "Alo, hôm trước anh có gọi hỏi máy lọc không khí đó em.",
+        "Bà xã anh đồng ý rồi, giá vẫn như hôm trước đúng không?",
+        "Ừ em lên đơn cho anh đi, giao về 9 Đại lộ Bình Dương, Thủ Dầu Một, Bình Dương nhé."
+      ],
+      "must_carry_over": [
+        "product_advised",
+        "price_quoted_vnd",
+        "room_area_m2",
+        "blocker"
+      ],
+      "must_not_ask": [
+        "room_area_m2",
+        "budget_vnd",
+        "has_children",
+        "product_advised"
+      ],
+      "success_if": {
+        "tool_called": "order.create",
+        "args_match": {
+          "sku": "SKU-AP-X",
+          "price_vnd": 4890000
+        }
+      },
+      "ground_truth_facts": {
+        "price_vnd": 4890000,
+        "promo_active": true,
+        "in_stock": true,
+        "delivery_days": 4
+      }
+    }
+  },
+  "_meta": {
+    "template_id": "T01-do-du-hoi-nguoi-nha",
+    "instance": 1,
+    "seed": 42,
+    "split": "dev",
+    "customer_id": "C018",
+    "synthetic_customer": false,
+    "address": "9 Đại lộ Bình Dương, Thủ Dầu Một, Bình Dương",
+    "dates": {
+      "call_1": "2026-10-15",
+      "call_2": "2026-10-16"
+    },
+    "choices": {
+      "cust": "C018",
+      "p": "SKU-AP-X",
+      "d1": "2026-10-15",
+      "gap": 1
+    }
+  }
+}

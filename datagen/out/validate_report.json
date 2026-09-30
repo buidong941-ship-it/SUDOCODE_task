@@ -1,0 +1,526 @@
+{
+  "errors": 0,
+  "warnings": 0,
+  "scenarios": [
+    {
+      "scenario_id": "GEN-T01-01",
+      "file": "out/dev\\GEN-T01-01.json",
+      "issues": []
+    },
+    {
+      "scenario_id": "GEN-T01-02",
+      "file": "out/dev\\GEN-T01-02.json",
+      "issues": []
+    },
+    {
+      "scenario_id": "GEN-T01-03",
+      "file": "out/dev\\GEN-T01-03.json",
+      "issues": []
+    },
+    {
+      "scenario_id": "GEN-T02-01",
+      "file": "out/dev\\GEN-T02-01.json",
+      "issues": []
+    },
+    {
+      "scenario_id": "GEN-T02-02",
+      "file": "out/dev\\GEN-T02-02.json",
+      "issues": []
+    },
+    {
+      "scenario_id": "GEN-T02-03",
+      "file": "out/dev\\GEN-T02-03.json",
+      "issues": []
+    },
+    {
+      "scenario_id": "GEN-T03-01",
+      "file": "out/dev\\GEN-T03-01.json",
+      "issues": []
+    },
+    {
+      "scenario_id": "GEN-T03-02",
+      "file": "out/dev\\GEN-T03-02.json",
+      "issues": []
+    },
+    {
+      "scenario_id": "GEN-T03-03",
+      "file": "out/dev\\GEN-T03-03.json",
+      "issues": []
+    },
+    {
+      "scenario_id": "GEN-T04-01",
+      "file": "out/dev\\GEN-T04-01.json",
+      "issues": []
+    },
+    {
+      "scenario_id": "GEN-T04-02",
+      "file": "out/dev\\GEN-T04-02.json",
+      "issues": []
+    },
+    {
+      "scenario_id": "GEN-T04-03",
+      "file": "out/dev\\GEN-T04-03.json",
+      "issues": []
+    },
+    {
+      "scenario_id": "GEN-T05-01",
+      "file": "out/dev\\GEN-T05-01.json",
+      "issues": []
+    },
+    {
+      "scenario_id": "GEN-T05-02",
+      "file": "out/dev\\GEN-T05-02.json",
+      "issues": []
+    },
+    {
+      "scenario_id": "GEN-T05-03",
+      "file": "out/dev\\GEN-T05-03.json",
+      "issues": []
+    },
+    {
+      "scenario_id": "GEN-T06-01",
+      "file": "out/dev\\GEN-T06-01.json",
+      "issues": []
+    },
+    {
+      "scenario_id": "GEN-T06-02",
+      "file": "out/dev\\GEN-T06-02.json",
+      "issues": []
+    },
+    {
+      "scenario_id": "GEN-T06-03",
+      "file": "out/dev\\GEN-T06-03.json",
+      "issues": []
+    },
+    {
+      "scenario_id": "GEN-T08-01",
+      "file": "out/dev\\GEN-T08-01.json",
+      "issues": []
+    },
+    {
+      "scenario_id": "GEN-T08-02",
+      "file": "out/dev\\GEN-T08-02.json",
+      "issues": []
+    },
+    {
+      "scenario_id": "GEN-T08-03",
+      "file": "out/dev\\GEN-T08-03.json",
+      "issues": []
+    },
+    {
+      "scenario_id": "GEN-T11-01",
+      "file": "out/dev\\GEN-T11-01.json",
+      "issues": []
+    },
+    {
+      "scenario_id": "GEN-T12-01",
+      "file": "out/dev\\GEN-T12-01.json",
+      "issues": [
+        {
+          "level": "INFO",
+          "where": "call_2",
+          "code": "gt_unchecked",
+          "msg": "không tự kiểm được: ['refund_days']"
+        }
+      ]
+    },
+    {
+      "scenario_id": "GEN-T12-02",
+      "file": "out/dev\\GEN-T12-02.json",
+      "issues": [
+        {
+          "level": "INFO",
+          "where": "call_2",
+          "code": "gt_unchecked",
+          "msg": "không tự kiểm được: ['refund_days']"
+        }
+      ]
+    },
+    {
+      "scenario_id": "GEN-T17-01",
+      "file": "out/dev\\GEN-T17-01.json",
+      "issues": [
+        {
+          "level": "INFO",
+          "where": "call_1",
+          "code": "gt_unchecked",
+          "msg": "không tự kiểm được: ['price_vnd', 'data_deletion_hours']"
+        },
+        {
+          "level": "INFO",
+          "where": "call_2",
+          "code": "gt_unchecked",
+          "msg": "không tự kiểm được: ['price_vnd']"
+        }
+      ]
+    },
+    {
+      "scenario_id": "GEN-T17-02",
+      "file": "out/dev\\GEN-T17-02.json",
+      "issues": [
+        {
+          "level": "INFO",
+          "where": "call_1",
+          "code": "gt_unchecked",
+          "msg": "không tự kiểm được: ['price_vnd', 'data_deletion_hours']"
+        },
+        {
+          "level": "INFO",
+          "where": "call_2",
+          "code": "gt_unchecked",
+          "msg": "không tự kiểm được: ['price_vnd']"
+        }
+      ]
+    },
+    {
+      "scenario_id": "GEN-T18-01",
+      "file": "out/dev\\GEN-T18-01.json",
+      "issues": []
+    },
+    {
+      "scenario_id": "GEN-T18-02",
+      "file": "out/dev\\GEN-T18-02.json",
+      "issues": []
+    },
+    {
+      "scenario_id": "GEN-T19-01",
+      "file": "out/dev\\GEN-T19-01.json",
+      "issues": [
+        {
+          "level": "INFO",
+          "where": "call_1",
+          "code": "gt_unchecked",
+          "msg": "không tự kiểm được: ['order_id', 'order_status', 'tracking']"
+        }
+      ]
+    },
+    {
+      "scenario_id": "GEN-T21-01",
+      "file": "out/dev\\GEN-T21-01.json",
+      "issues": []
+    },
+    {
+      "scenario_id": "GEN-T21-02",
+      "file": "out/dev\\GEN-T21-02.json",
+      "issues": []
+    },
+    {
+      "scenario_id": "GEN-T22-01",
+      "file": "out/dev\\GEN-T22-01.json",
+      "issues": []
+    },
+    {
+      "scenario_id": "GEN-T22-02",
+      "file": "out/dev\\GEN-T22-02.json",
+      "issues": []
+    },
+    {
+      "scenario_id": "GEN-T23-01",
+      "file": "out/dev\\GEN-T23-01.json",
+      "issues": [
+        {
+          "level": "INFO",
+          "where": "call_2",
+          "code": "gt_unchecked",
+          "msg": "không tự kiểm được: ['callback_at']"
+        }
+      ]
+    },
+    {
+      "scenario_id": "GEN-T23-02",
+      "file": "out/dev\\GEN-T23-02.json",
+      "issues": [
+        {
+          "level": "INFO",
+          "where": "call_2",
+          "code": "gt_unchecked",
+          "msg": "không tự kiểm được: ['callback_at']"
+        }
+      ]
+    },
+    {
+      "scenario_id": "GEN-T24-01",
+      "file": "out/dev\\GEN-T24-01.json",
+      "issues": [
+        {
+          "level": "INFO",
+          "where": "call_1",
+          "code": "gt_unchecked",
+          "msg": "không tự kiểm được: ['price_vnd', 'installment_supported']"
+        }
+      ]
+    },
+    {
+      "scenario_id": "GEN-T24-02",
+      "file": "out/dev\\GEN-T24-02.json",
+      "issues": [
+        {
+          "level": "INFO",
+          "where": "call_1",
+          "code": "gt_unchecked",
+          "msg": "không tự kiểm được: ['price_vnd', 'installment_supported']"
+        }
+      ]
+    },
+    {
+      "scenario_id": "GEN-T25-01",
+      "file": "out/dev\\GEN-T25-01.json",
+      "issues": []
+    },
+    {
+      "scenario_id": "GEN-T25-02",
+      "file": "out/dev\\GEN-T25-02.json",
+      "issues": []
+    },
+    {
+      "scenario_id": "GEN-T26-01",
+      "file": "out/dev\\GEN-T26-01.json",
+      "issues": []
+    },
+    {
+      "scenario_id": "GEN-T26-02",
+      "file": "out/dev\\GEN-T26-02.json",
+      "issues": []
+    },
+    {
+      "scenario_id": "GEN-T27-01",
+      "file": "out/dev\\GEN-T27-01.json",
+      "issues": []
+    },
+    {
+      "scenario_id": "GEN-T27-02",
+      "file": "out/dev\\GEN-T27-02.json",
+      "issues": []
+    },
+    {
+      "scenario_id": "GEN-T07-01",
+      "file": "out/test\\GEN-T07-01.json",
+      "issues": [
+        {
+          "level": "INFO",
+          "where": "call_1",
+          "code": "gt_unchecked",
+          "msg": "không tự kiểm được: ['policy_version', 'old_policy_superseded']"
+        }
+      ]
+    },
+    {
+      "scenario_id": "GEN-T07-02",
+      "file": "out/test\\GEN-T07-02.json",
+      "issues": [
+        {
+          "level": "INFO",
+          "where": "call_1",
+          "code": "gt_unchecked",
+          "msg": "không tự kiểm được: ['policy_version', 'old_policy_superseded']"
+        }
+      ]
+    },
+    {
+      "scenario_id": "GEN-T09-01",
+      "file": "out/test\\GEN-T09-01.json",
+      "issues": []
+    },
+    {
+      "scenario_id": "GEN-T09-02",
+      "file": "out/test\\GEN-T09-02.json",
+      "issues": []
+    },
+    {
+      "scenario_id": "GEN-T10-01",
+      "file": "out/test\\GEN-T10-01.json",
+      "issues": [
+        {
+          "level": "INFO",
+          "where": "call_1",
+          "code": "gt_unchecked",
+          "msg": "không tự kiểm được: ['discontinued_sku', 'successor_sku']"
+        }
+      ]
+    },
+    {
+      "scenario_id": "GEN-T13-01",
+      "file": "out/test\\GEN-T13-01.json",
+      "issues": []
+    },
+    {
+      "scenario_id": "GEN-T13-02",
+      "file": "out/test\\GEN-T13-02.json",
+      "issues": []
+    },
+    {
+      "scenario_id": "GEN-T14-01",
+      "file": "out/test\\GEN-T14-01.json",
+      "issues": []
+    },
+    {
+      "scenario_id": "GEN-T14-02",
+      "file": "out/test\\GEN-T14-02.json",
+      "issues": []
+    },
+    {
+      "scenario_id": "GEN-T15-01",
+      "file": "out/test\\GEN-T15-01.json",
+      "issues": [
+        {
+          "level": "INFO",
+          "where": "call_1",
+          "code": "gt_unchecked",
+          "msg": "không tự kiểm được: ['callback_at', 'holiday']"
+        }
+      ]
+    },
+    {
+      "scenario_id": "GEN-T15-02",
+      "file": "out/test\\GEN-T15-02.json",
+      "issues": [
+        {
+          "level": "INFO",
+          "where": "call_1",
+          "code": "gt_unchecked",
+          "msg": "không tự kiểm được: ['callback_at', 'holiday']"
+        }
+      ]
+    },
+    {
+      "scenario_id": "GEN-T16-01",
+      "file": "out/test\\GEN-T16-01.json",
+      "issues": [
+        {
+          "level": "INFO",
+          "where": "call_1",
+          "code": "gt_unchecked",
+          "msg": "không tự kiểm được: ['cod_allowed', 'cod_limit_vnd', 'discounted_item_sku', 'discounted_item_price_vnd']"
+        }
+      ]
+    },
+    {
+      "scenario_id": "GEN-T16-02",
+      "file": "out/test\\GEN-T16-02.json",
+      "issues": [
+        {
+          "level": "INFO",
+          "where": "call_1",
+          "code": "gt_unchecked",
+          "msg": "không tự kiểm được: ['cod_allowed', 'cod_limit_vnd', 'discounted_item_sku', 'discounted_item_price_vnd']"
+        }
+      ]
+    },
+    {
+      "scenario_id": "GEN-T20-01",
+      "file": "out/test\\GEN-T20-01.json",
+      "issues": [
+        {
+          "level": "INFO",
+          "where": "call_2",
+          "code": "gt_unchecked",
+          "msg": "không tự kiểm được: ['refund_days']"
+        }
+      ]
+    },
+    {
+      "scenario_id": "GEN-T20-02",
+      "file": "out/test\\GEN-T20-02.json",
+      "issues": [
+        {
+          "level": "INFO",
+          "where": "call_2",
+          "code": "gt_unchecked",
+          "msg": "không tự kiểm được: ['refund_days']"
+        }
+      ]
+    }
+  ],
+  "global": {
+    "errors": [],
+    "warnings": []
+  },
+  "coverage": {
+    "totals": {
+      "scenarios": 58,
+      "calls": 104,
+      "hard": 39,
+      "turns": 341,
+      "multi_channel_customers": 8
+    },
+    "hard_case": {
+      "(thường)": 19,
+      "doi_khuyen_mai_het_han": 3,
+      "asr_loi_va_teencode": 3,
+      "het_hang_luc_khach_quyet": 3,
+      "chung_sdt_memory_poisoning": 1,
+      "pii_cccd_stk": 2,
+      "hoi_ai_hay_nguoi_xoa_du_lieu": 2,
+      "ngoai_pham_vi_y_te": 2,
+      "3_phien_thong_tin_thay_doi": 2,
+      "goi_lan_3_het_kien_nhan": 2,
+      "ngoai_tai_lieu": 2,
+      "3_kenh_bao_gia_lech": 2,
+      "phien_ban_chinh_sach_cu": 2,
+      "km_loai_tru_size": 2,
+      "quay_lai_sau_8_thang": 1,
+      "ep_gia_do_gia_nhap": 2,
+      "binh_luan_gia_doi_thu": 2,
+      "hen_goi_lai_ngay_nghi": 2,
+      "nhieu_mon_vuot_cod_ngan_sach": 2,
+      "doi_san_pham_hoan_chenh_lech": 2
+    },
+    "persona": {
+      "khach_do_du_hoi_nguoi_nha": 13,
+      "khach_so_gia": 12,
+      "khach_da_mua_doi_size": 8,
+      "khach_da_kenh_fb_hotline": 3,
+      "hai_nguoi_chung_sdt": 1,
+      "khach_ngoai_pham_vi_chuyen_may": 4,
+      "khach_goi_lan_3_het_kien_nhan": 4,
+      "khach_hoi_nhieu_khong_mua": 4,
+      "khach_hoi_ngoai_tai_lieu": 4,
+      "khach_da_kenh_mau_thuan": 2,
+      "khach_quay_lai_sau_8_thang": 1,
+      "khach_mua_nhieu_mon": 2
+    },
+    "level": {
+      "M1": 57,
+      "M2": 1
+    },
+    "split": {
+      "dev": 43,
+      "test": 15
+    },
+    "channel": {
+      "hotline": 94,
+      "chat_fanpage": 5,
+      "zalo_oa": 5
+    },
+    "input_mode": {
+      "text": 96,
+      "asr_transcript": 3,
+      "chat_teencode": 5
+    },
+    "outcome": {
+      "hen_goi_lai": 52,
+      "-": 28,
+      "chot_don": 20,
+      "tu_choi": 2,
+      "chuyen_may": 2
+    },
+    "tool_called": {
+      "(không chấm)": 41,
+      "order.create": 32,
+      "order.update": 7,
+      "None": 17,
+      "handoff.transfer": 2,
+      "order.status": 1,
+      "schedule.callback": 4
+    },
+    "category": {
+      "gia-dung/may-loc-khong-khi": 28,
+      "gia-dung/quat": 4,
+      "thoi-trang/giay": 24,
+      "me-be": 11,
+      "gia-dung/may-loc-nuoc": 7,
+      "gia-dung/noi-chien": 3
+    }
+  },
+  "diff": []
+}

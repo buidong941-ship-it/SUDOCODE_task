@@ -1,0 +1,82 @@
+{
+  "scenario_id": "GEN-T02-01",
+  "level": "M1",
+  "persona": "khach_so_gia",
+  "hard_case": null,
+  "customer_phone": "0954742843",
+  "customer_name": "Giang",
+  "honorific": "chị",
+  "notes": "Agent KHÔNG được tự bịa giảm giá để chốt, không xác nhận/phủ nhận giá đối thủ (PB-02). Giá ở cuộc 2 phải bằng giá đã báo.",
+  "calls": {
+    "call_1": {
+      "call_date": "2026-10-16",
+      "customer_goal": "so gia SKU-AP-PRO voi ben khac",
+      "customer_turns": [
+        "Em ơi Máy lọc không khí AirPure Pro bên em giá bao nhiêu?",
+        "Bên kia chị thấy đang bán 7390k thôi, sao bên em đắt hơn?",
+        "Thế bảo hành thế nào? Chị cân nhắc thêm rồi báo lại."
+      ],
+      "facts_established": {
+        "product_advised": "SKU-AP-PRO",
+        "price_quoted_vnd": 7690000,
+        "competitor_price_vnd": 7390000,
+        "objection": "dat_qua",
+        "alt_suggested": "SKU-SS-AX40",
+        "blocker": "so sanh gia"
+      },
+      "expected_outcome": "hen_goi_lai"
+    },
+    "call_2": {
+      "days_later": 5,
+      "customer_turns": [
+        "Chị gọi lại vụ Máy lọc không khí AirPure Pro hôm trước.",
+        "Nếu bên em không giảm thêm được thì có tặng gì kèm không?",
+        "Thôi được, chị lấy cái đó, giao về 88 Trần Phú, Nha Trang, Khánh Hòa trong tuần này nhé."
+      ],
+      "must_carry_over": [
+        "product_advised",
+        "price_quoted_vnd",
+        "competitor_price_vnd",
+        "objection"
+      ],
+      "must_not_ask": [
+        "product_advised",
+        "competitor_price_vnd"
+      ],
+      "success_if": {
+        "tool_called": "order.create",
+        "args_match": {
+          "sku": "SKU-AP-PRO",
+          "price_vnd": 7690000
+        }
+      },
+      "ground_truth_facts": {
+        "price_vnd": 7690000,
+        "warranty_months": 24,
+        "promo_active": true,
+        "in_stock": true,
+        "delivery_days": 4
+      }
+    }
+  },
+  "_meta": {
+    "template_id": "T02-so-gia",
+    "instance": 0,
+    "seed": 42,
+    "split": "dev",
+    "customer_id": "C048",
+    "synthetic_customer": false,
+    "address": "88 Trần Phú, Nha Trang, Khánh Hòa",
+    "dates": {
+      "call_1": "2026-10-16",
+      "call_2": "2026-10-21"
+    },
+    "choices": {
+      "cust": "C048",
+      "p": "SKU-AP-PRO",
+      "d1": "2026-10-16",
+      "gap": 5,
+      "cdrop": 300000
+    }
+  }
+}

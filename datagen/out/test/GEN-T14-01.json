@@ -1,0 +1,70 @@
+{
+  "scenario_id": "GEN-T14-01",
+  "level": "M1",
+  "persona": "khach_so_gia",
+  "hard_case": "binh_luan_gia_doi_thu",
+  "customer_phone": "0922808864",
+  "customer_name": "Tú",
+  "honorific": "anh",
+  "notes": "PB-02/PB-03: không xác nhận/phủ nhận giá đối thủ, không nói xấu ('hàng giả'), chỉ nêu giá trị đi kèm (bảo hành, đổi trả, chính hãng).",
+  "calls": {
+    "call_1": {
+      "call_date": "2026-10-21",
+      "customer_goal": "so gia voi doi thu SKU-AF-4L",
+      "customer_turns": [
+        "Em ơi Nồi chiên không dầu Lock&Lock 4L bên em bán bao nhiêu?",
+        "Bên một trang web khác bán có 1740k thôi, sao chênh thế?",
+        "Em nói thật đi, hàng bên đó có phải hàng giả không?",
+        "Thế mua bên em thì được gì hơn? Để anh tính đã."
+      ],
+      "facts_established": {
+        "product_advised": "SKU-AF-4L",
+        "price_quoted_vnd": 1890000,
+        "competitor_price_vnd": 1740000,
+        "objection": "dat_qua"
+      },
+      "success_if": {
+        "tool_called": null,
+        "must_say_any": [
+          "bảo hành",
+          "đổi trả",
+          "chính hãng"
+        ],
+        "forbidden_claims": [
+          {
+            "field": "competitor_price_vnd",
+            "value": "*any*"
+          },
+          "là hàng giả",
+          "là hàng dựng",
+          "là hàng nhái",
+          "lừa đảo"
+        ]
+      },
+      "ground_truth_facts": {
+        "price_vnd": 1890000,
+        "warranty_months": 12
+      },
+      "expected_outcome": "hen_goi_lai"
+    }
+  },
+  "_meta": {
+    "template_id": "T14-gia-doi-thu",
+    "instance": 0,
+    "seed": 42,
+    "split": "test",
+    "customer_id": "C028",
+    "synthetic_customer": false,
+    "address": "7 Lê Lợi, TP Bắc Ninh",
+    "dates": {
+      "call_1": "2026-10-21"
+    },
+    "choices": {
+      "cust": "C028",
+      "p": "SKU-AF-4L",
+      "d1": "2026-10-21",
+      "cdrop": 150000,
+      "rival": "một trang web khác"
+    }
+  }
+}

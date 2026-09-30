@@ -1,0 +1,75 @@
+{
+  "scenario_id": "GEN-T05-03",
+  "level": "M1",
+  "persona": "khach_so_gia",
+  "hard_case": "doi_khuyen_mai_het_han",
+  "customer_phone": "0930048764",
+  "customer_name": "Hà",
+  "honorific": "chị",
+  "notes": "Agent KHÔNG được báo lại giá cũ 1.392.000đ; phải nói KM RUN2-SALE đã hết (07/10), giá hiện tại 1.740.000đ.",
+  "calls": {
+    "call_1": {
+      "call_date": "2026-10-05",
+      "customer_goal": "hoi SKU-SN-RUN2 luc con KM RUN2-SALE",
+      "customer_turns": [
+        "Em ơi RunLite 2 Pro size 43 màu xám đang giảm 20% đúng không?",
+        "Ok để chị tính rồi gọi lại."
+      ],
+      "facts_established": {
+        "product_advised": "SKU-SN-RUN2",
+        "variant_sku": "SKU-SN-RUN2-43-XAM",
+        "price_quoted_vnd": 1392000,
+        "promo_code": "RUN2-SALE",
+        "promo_expiry": "2026-10-07"
+      },
+      "expected_outcome": "hen_goi_lai"
+    },
+    "call_2": {
+      "days_later": 17,
+      "customer_turns": [
+        "Chị gọi lại lấy cái RunLite 2 Pro giảm 20% hôm trước nhé.",
+        "Sao hôm trước em bảo giảm 20% mà?",
+        "Thế giờ có gì bù không? Thôi cũng được, lên đơn."
+      ],
+      "must_carry_over": [
+        "product_advised",
+        "price_quoted_vnd",
+        "promo_code"
+      ],
+      "must_not_ask": [
+        "product_advised"
+      ],
+      "success_if": {
+        "tool_called": "order.create",
+        "args_match": {
+          "sku": "SKU-SN-RUN2-43-XAM",
+          "price_vnd": 1740000
+        }
+      },
+      "ground_truth_facts": {
+        "price_vnd": 1740000,
+        "promo_RUN2-SALE_active": false,
+        "in_stock": true
+      }
+    }
+  },
+  "_meta": {
+    "template_id": "T05-km-het-han",
+    "instance": 2,
+    "seed": 42,
+    "split": "dev",
+    "customer_id": "C029",
+    "synthetic_customer": false,
+    "address": "7 Lê Lợi, TP Bắc Ninh",
+    "dates": {
+      "call_1": "2026-10-05",
+      "call_2": "2026-10-22"
+    },
+    "choices": {
+      "cust": "C029",
+      "p": "SKU-SN-RUN2-43-XAM",
+      "d1": "2026-10-05",
+      "gap": 17
+    }
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "scenario_id": "GEN-T03-02",
+  "level": "M1",
+  "persona": "khach_da_mua_doi_size",
+  "hard_case": null,
+  "customer_phone": "0992298369",
+  "customer_name": "Ngọc",
+  "honorific": "chị",
+  "notes": "Cuộc 2 (Case 3): hệ thống phải biết đơn nào, size/màu nào; áp chính sách đổi trả 7 ngày miễn phí đổi size lần đầu (DT-03).",
+  "calls": {
+    "call_1": {
+      "call_date": "2026-10-21",
+      "customer_goal": "mua SKU-SN-TRK size 41 mau xam",
+      "customer_turns": [
+        "Em ơi Giày trekking HikePro còn size 41 màu xám không?",
+        "Giá bao nhiêu, có giảm gì không em?",
+        "Ok em lên đơn cho chị, thanh toán COD nhé."
+      ],
+      "facts_established": {
+        "product_advised": "SKU-SN-TRK",
+        "variant_sku": "SKU-SN-TRK-41-XAM",
+        "size": 41,
+        "color": "xam",
+        "price_quoted_vnd": 1990000,
+        "order_id": "OD718795",
+        "payment": "COD"
+      },
+      "expected_outcome": "chot_don"
+    },
+    "call_2": {
+      "days_later": 2,
+      "customer_turns": [
+        "Alo, chị mới nhận giày hôm qua mà size 41 hơi chật.",
+        "Đổi lên size 42 được không em? Mất phí gì không?",
+        "Ừ em làm thủ tục đổi cho chị nhé."
+      ],
+      "must_carry_over": [
+        "order_id",
+        "variant_sku",
+        "size",
+        "color"
+      ],
+      "must_not_ask": [
+        "product_advised",
+        "order_id",
+        "color",
+        "payment"
+      ],
+      "success_if": {
+        "tool_called": "order.update",
+        "args_match": {
+          "order_id": "OD718795",
+          "new_variant_sku": "SKU-SN-TRK-42-XAM",
+          "action": "exchange_size"
+        }
+      },
+      "ground_truth_facts": {
+        "return_days": 7,
+        "exchange_fee_vnd": 0,
+        "new_size_in_stock": true,
+        "price_vnd": 1990000
+      }
+    }
+  },
+  "_meta": {
+    "template_id": "T03-doi-size",
+    "instance": 1,
+    "seed": 42,
+    "split": "dev",
+    "customer_id": "C009",
+    "synthetic_customer": false,
+    "address": "30 Phan Đình Phùng, Quy Nhơn, Bình Định",
+    "dates": {
+      "call_1": "2026-10-21",
+      "call_2": "2026-10-23"
+    },
+    "choices": {
+      "cust": "C009",
+      "p": "SKU-SN-TRK-41-XAM",
+      "d1": "2026-10-21",
+      "gap": 2
+    }
+  }
+}

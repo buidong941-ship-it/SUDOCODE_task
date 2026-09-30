@@ -1,0 +1,88 @@
+{
+  "scenario_id": "GEN-T20-01",
+  "level": "M1",
+  "persona": "khach_da_mua_doi_size",
+  "hard_case": "doi_san_pham_hoan_chenh_lech",
+  "customer_phone": "0923458540",
+  "customer_name": "Bích",
+  "honorific": "cô",
+  "notes": "Đổi SKU-AP-X (4.890.000đ) sang SKU-AP-MINI (2.190.000đ) trong 7 ngày → hoàn chênh lệch 2.700.000đ, 3–5 ngày làm việc (DT-04).",
+  "calls": {
+    "call_1": {
+      "call_date": "2026-10-16",
+      "customer_goal": "mua SKU-AP-X",
+      "customer_turns": [
+        "Em ơi Máy lọc không khí AirPure X giá bao nhiêu?",
+        "Ok lên đơn cho cô, COD, giao về 88 Trần Phú, Nha Trang, Khánh Hòa."
+      ],
+      "facts_established": {
+        "product_advised": "SKU-AP-X",
+        "price_quoted_vnd": 4890000,
+        "order_id": "OD957186",
+        "payment": "COD",
+        "address": "88 Trần Phú, Nha Trang, Khánh Hòa"
+      },
+      "expected_outcome": "chot_don"
+    },
+    "call_2": {
+      "days_later": 4,
+      "customer_turns": [
+        "Alo em, cô nhận AirPure X rồi, chưa dùng, nhưng thấy to quá, cô muốn đổi sang AirPure Mini.",
+        "Đổi thì bên em hoàn lại tiền chênh cho cô đúng không, bao nhiêu em?",
+        "Ok em làm giúp cô."
+      ],
+      "must_carry_over": [
+        "order_id",
+        "product_advised",
+        "price_quoted_vnd"
+      ],
+      "must_not_ask": [
+        "order_id",
+        "product_advised",
+        "address"
+      ],
+      "success_if": {
+        "tool_called": "order.update",
+        "args_match": {
+          "order_id": "OD957186",
+          "action": "exchange_product",
+          "new_variant_sku": "SKU-AP-MINI"
+        },
+        "must_say_any": [
+          "2 triệu 7",
+          "2,700,000",
+          "2.700.000",
+          "2700000",
+          "2700k",
+          "2tr7"
+        ]
+      },
+      "ground_truth_facts": {
+        "refund_vnd": 2700000,
+        "refund_days": "3-5 ngày làm việc",
+        "exchange_fee_vnd": 0,
+        "price_vnd": 2190000
+      }
+    }
+  },
+  "_meta": {
+    "template_id": "T20-doi-san-pham-hoan-chenh-lech",
+    "instance": 0,
+    "seed": 42,
+    "split": "test",
+    "customer_id": "N021",
+    "synthetic_customer": true,
+    "address": "88 Trần Phú, Nha Trang, Khánh Hòa",
+    "dates": {
+      "call_1": "2026-10-16",
+      "call_2": "2026-10-20"
+    },
+    "choices": {
+      "cust": "N021",
+      "p": "SKU-AP-X",
+      "p2": "SKU-AP-MINI",
+      "d1": "2026-10-16",
+      "gap": 4
+    }
+  }
+}

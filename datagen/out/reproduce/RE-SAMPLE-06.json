@@ -1,0 +1,100 @@
+{
+  "scenario_id": "RE-SAMPLE-06",
+  "level": "M1",
+  "persona": "khach_do_du_hoi_nguoi_nha",
+  "hard_case": "asr_loi_va_teencode",
+  "customer_phone": "0991280845",
+  "customer_name": "Việt",
+  "honorific": "anh",
+  "notes": "Script chấm đưa customer_turns_asr vào hệ thống. Call_1: SKU-XM-4P đang HẾT hàng, dự kiến về 2026-10-19 → agent không được hứa giao ngay. Call_2 (2026-10-20): đã có hàng; KM áp dụng: NAM-SHIP0, COD-0, XM-COMBO.",
+  "calls": {
+    "call_1": {
+      "call_date": "2026-10-15",
+      "customer_goal": "hoi may loc khong khi, transcript ASR loi",
+      "input_mode": "asr_transcript",
+      "customer_turns_asr": [
+        "a lô cho anh hỏi máy lọc không khí xiao mi sờ mát bốn pờ rô giá bao nhiêu",
+        "phòng anh ba mươi lăm mét vuông có được không",
+        "ngân sách anh tầm năm triệu rưỡi thôi để anh hỏi vợ đã"
+      ],
+      "customer_turns": [
+        "Alo cho anh hỏi máy lọc không khí Xiaomi Smart 4 Pro giá bao nhiêu?",
+        "Phòng anh 35m² có được không?",
+        "Ngân sách anh tầm 5 triệu 5 thôi, để anh hỏi vợ đã."
+      ],
+      "facts_established": {
+        "product_advised": "SKU-XM-4P",
+        "room_area_m2": 35,
+        "budget_vnd": 5500000,
+        "price_quoted_vnd": 5490000,
+        "blocker": "can hoi vo"
+      },
+      "expected_outcome": "hen_goi_lai",
+      "ground_truth_facts": {
+        "price_vnd": 5490000,
+        "in_stock": false,
+        "restock_date": "2026-10-19"
+      }
+    },
+    "call_2": {
+      "days_later": 5,
+      "channel": "zalo_oa",
+      "input_mode": "chat_teencode",
+      "customer_turns_asr": [
+        "e oi hom truoc a hoi cai xiaomi smart 4 pro",
+        "vo a ok r, sp nay co ship cod k, a o 9 dai lo binh duong, thu dau mot, binh duong",
+        "ok len don cho a nhe"
+      ],
+      "customer_turns": [
+        "Em ơi hôm trước anh hỏi cái Xiaomi Smart 4 Pro.",
+        "Vợ anh ok rồi, sản phẩm này có ship COD không, anh ở 9 Đại lộ Bình Dương, Thủ Dầu Một, Bình Dương.",
+        "Ok lên đơn cho anh nhé."
+      ],
+      "must_carry_over": [
+        "product_advised",
+        "price_quoted_vnd",
+        "room_area_m2"
+      ],
+      "must_not_ask": [
+        "room_area_m2",
+        "budget_vnd",
+        "product_advised"
+      ],
+      "success_if": {
+        "tool_called": "order.create",
+        "args_match": {
+          "sku": "SKU-XM-4P",
+          "price_vnd": 5490000,
+          "payment": "COD"
+        }
+      },
+      "ground_truth_facts": {
+        "price_vnd": 5490000,
+        "in_stock": true,
+        "restock_date": "2026-10-19",
+        "freeship": true,
+        "promo_NAM-SHIP0_active": true
+      }
+    }
+  },
+  "_meta": {
+    "template_id": "T06-asr-het-hang-ve-hang",
+    "instance": 0,
+    "seed": 42,
+    "split": "reproduce",
+    "customer_id": "C030",
+    "synthetic_customer": false,
+    "address": "9 Đại lộ Bình Dương, Thủ Dầu Một, Bình Dương",
+    "dates": {
+      "call_1": "2026-10-15",
+      "call_2": "2026-10-20"
+    },
+    "choices": {
+      "cust": "C030",
+      "p": "SKU-XM-4P",
+      "d1": "2026-10-15",
+      "gap": 5
+    },
+    "reproduces": "SAMPLE-06"
+  }
+}
