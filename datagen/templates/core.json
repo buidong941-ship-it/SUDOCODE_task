@@ -1,7 +1,7 @@
 [
   {
     "template_id": "T01-do-du-hoi-nguoi-nha",
-    "instances": 3,
+    "instances": 4,
     "choose": {
       "cust": "customers()",
       "p": "products(category='gia-dung/may-loc-khong-khi')",
@@ -15,7 +15,7 @@
       "promo_code": "best_promo(p.vsku,'call_1')",
       "area": "pick([a for a in (15,20,25,30,35,40) if a <= p.attrs['room_area_m2']])",
       "has_children": "bool(p.attrs.get('child_safe_lock', False))",
-      "budget": "price + 500000",
+      "budget": "((price + 500000) // 500000) * 500000",
       "spouse": "'ông xã' if cust.honorific in ('chị','cô') else 'bà xã'",
       "blocker": "'can hoi chong' if cust.honorific in ('chị','cô') else 'can hoi vo'"
     },
@@ -61,7 +61,7 @@
   },
   {
     "template_id": "T02-so-gia",
-    "instances": 3,
+    "instances": 4,
     "choose": {
       "cust": "customers()",
       "p": "products(category='gia-dung', variants=False, min_price=1500000)",
@@ -117,7 +117,7 @@
   {
     "template_id": "T03-doi-size",
     "no_sunday": ["call_2"],
-    "instances": 3,
+    "instances": 4,
     "choose": {
       "cust": "customers()",
       "p": "products(category='thoi-trang')",
@@ -170,7 +170,7 @@
   },
   {
     "template_id": "T04-da-kenh-fb-hotline",
-    "instances": 3,
+    "instances": 5,
     "choose": {
       "cust": "customers(need=['fb_id'])",
       "p": "products()",
@@ -372,7 +372,7 @@
   },
   {
     "template_id": "T26-me-be-qua-tang",
-    "instances": 2,
+    "instances": 3,
     "choose": {
       "cust": "customers(honorific='chị')",
       "p": "products(category='me-be', variants=False, min_price=1000000)",
@@ -422,7 +422,7 @@
   },
   {
     "template_id": "T27-gia-dung-mien-nam",
-    "instances": 2,
+    "instances": 3,
     "choose": {
       "cust": "customers(region='nam')",
       "p": "products(category=['gia-dung/noi-chien','gia-dung/quat','gia-dung/may-loc-nuoc'], variants=False)",

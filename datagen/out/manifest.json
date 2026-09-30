@@ -3,6 +3,23 @@
   "scenarios": [
     {
       "scenario_id": "GEN-T10-01",
+      "split": "dev",
+      "template_id": "T10-quay-lai-8-thang",
+      "hard_case": "quay_lai_sau_8_thang",
+      "persona": "khach_quay_lai_sau_8_thang",
+      "level": "M1",
+      "customer_phone": "0985003703",
+      "n_calls": 1,
+      "n_turns": 5,
+      "channels": [
+        "hotline"
+      ],
+      "input_modes": [
+        "text"
+      ]
+    },
+    {
+      "scenario_id": "GEN-T10-02",
       "split": "test",
       "template_id": "T10-quay-lai-8-thang",
       "hard_case": "quay_lai_sau_8_thang",
@@ -21,6 +38,25 @@
     {
       "scenario_id": "GEN-T11-01",
       "split": "dev",
+      "template_id": "T11-chung-sdt",
+      "hard_case": "chung_sdt_memory_poisoning",
+      "persona": "hai_nguoi_chung_sdt",
+      "level": "M1",
+      "customer_phone": "0958421083",
+      "n_calls": 2,
+      "n_turns": 6,
+      "channels": [
+        "hotline",
+        "hotline"
+      ],
+      "input_modes": [
+        "text",
+        "text"
+      ]
+    },
+    {
+      "scenario_id": "GEN-T11-02",
+      "split": "test",
       "template_id": "T11-chung-sdt",
       "hard_case": "chung_sdt_memory_poisoning",
       "persona": "hai_nguoi_chung_sdt",
@@ -112,15 +148,15 @@
       ]
     },
     {
-      "scenario_id": "GEN-T02-01",
+      "scenario_id": "GEN-T01-04",
       "split": "dev",
-      "template_id": "T02-so-gia",
+      "template_id": "T01-do-du-hoi-nguoi-nha",
       "hard_case": null,
-      "persona": "khach_so_gia",
+      "persona": "khach_do_du_hoi_nguoi_nha",
       "level": "M1",
-      "customer_phone": "0954742843",
+      "customer_phone": "0930976582",
       "n_calls": 2,
-      "n_turns": 6,
+      "n_turns": 7,
       "channels": [
         "hotline",
         "hotline"
@@ -131,7 +167,7 @@
       ]
     },
     {
-      "scenario_id": "GEN-T02-02",
+      "scenario_id": "GEN-T02-01",
       "split": "dev",
       "template_id": "T02-so-gia",
       "hard_case": null,
@@ -150,7 +186,7 @@
       ]
     },
     {
-      "scenario_id": "GEN-T02-03",
+      "scenario_id": "GEN-T02-02",
       "split": "dev",
       "template_id": "T02-so-gia",
       "hard_case": null,
@@ -169,13 +205,51 @@
       ]
     },
     {
+      "scenario_id": "GEN-T02-03",
+      "split": "dev",
+      "template_id": "T02-so-gia",
+      "hard_case": null,
+      "persona": "khach_so_gia",
+      "level": "M1",
+      "customer_phone": "0932448452",
+      "n_calls": 2,
+      "n_turns": 6,
+      "channels": [
+        "hotline",
+        "hotline"
+      ],
+      "input_modes": [
+        "text",
+        "text"
+      ]
+    },
+    {
+      "scenario_id": "GEN-T02-04",
+      "split": "dev",
+      "template_id": "T02-so-gia",
+      "hard_case": null,
+      "persona": "khach_so_gia",
+      "level": "M1",
+      "customer_phone": "0913301756",
+      "n_calls": 2,
+      "n_turns": 6,
+      "channels": [
+        "hotline",
+        "hotline"
+      ],
+      "input_modes": [
+        "text",
+        "text"
+      ]
+    },
+    {
       "scenario_id": "GEN-T03-01",
       "split": "dev",
       "template_id": "T03-doi-size",
       "hard_case": null,
       "persona": "khach_da_mua_doi_size",
       "level": "M1",
-      "customer_phone": "0925877188",
+      "customer_phone": "0992566636",
       "n_calls": 2,
       "n_turns": 6,
       "channels": [
@@ -213,7 +287,26 @@
       "hard_case": null,
       "persona": "khach_da_mua_doi_size",
       "level": "M1",
-      "customer_phone": "0990853801",
+      "customer_phone": "0932568855",
+      "n_calls": 2,
+      "n_turns": 6,
+      "channels": [
+        "hotline",
+        "hotline"
+      ],
+      "input_modes": [
+        "text",
+        "text"
+      ]
+    },
+    {
+      "scenario_id": "GEN-T03-04",
+      "split": "dev",
+      "template_id": "T03-doi-size",
+      "hard_case": null,
+      "persona": "khach_da_mua_doi_size",
+      "level": "M1",
+      "customer_phone": "0956517883",
       "n_calls": 2,
       "n_turns": 6,
       "channels": [
@@ -270,7 +363,45 @@
       "hard_case": null,
       "persona": "khach_da_kenh_fb_hotline",
       "level": "M1",
-      "customer_phone": "0965237355",
+      "customer_phone": "0994157718",
+      "n_calls": 2,
+      "n_turns": 6,
+      "channels": [
+        "chat_fanpage",
+        "hotline"
+      ],
+      "input_modes": [
+        "text",
+        "text"
+      ]
+    },
+    {
+      "scenario_id": "GEN-T04-04",
+      "split": "dev",
+      "template_id": "T04-da-kenh-fb-hotline",
+      "hard_case": null,
+      "persona": "khach_da_kenh_fb_hotline",
+      "level": "M1",
+      "customer_phone": "0905218549",
+      "n_calls": 2,
+      "n_turns": 6,
+      "channels": [
+        "chat_fanpage",
+        "hotline"
+      ],
+      "input_modes": [
+        "text",
+        "text"
+      ]
+    },
+    {
+      "scenario_id": "GEN-T04-05",
+      "split": "dev",
+      "template_id": "T04-da-kenh-fb-hotline",
+      "hard_case": null,
+      "persona": "khach_da_kenh_fb_hotline",
+      "level": "M1",
+      "customer_phone": "0911265844",
       "n_calls": 2,
       "n_turns": 6,
       "channels": [
@@ -289,7 +420,7 @@
       "hard_case": "doi_khuyen_mai_het_han",
       "persona": "khach_so_gia",
       "level": "M1",
-      "customer_phone": "0930976582",
+      "customer_phone": "0963279264",
       "n_calls": 2,
       "n_turns": 5,
       "channels": [
@@ -308,7 +439,7 @@
       "hard_case": "doi_khuyen_mai_het_han",
       "persona": "khach_so_gia",
       "level": "M1",
-      "customer_phone": "0925822018",
+      "customer_phone": "0981933190",
       "n_calls": 2,
       "n_turns": 5,
       "channels": [
@@ -322,12 +453,12 @@
     },
     {
       "scenario_id": "GEN-T05-03",
-      "split": "dev",
+      "split": "test",
       "template_id": "T05-km-het-han",
       "hard_case": "doi_khuyen_mai_het_han",
       "persona": "khach_so_gia",
       "level": "M1",
-      "customer_phone": "0930048764",
+      "customer_phone": "0975475177",
       "n_calls": 2,
       "n_turns": 5,
       "channels": [
@@ -346,7 +477,7 @@
       "hard_case": "asr_loi_va_teencode",
       "persona": "khach_do_du_hoi_nguoi_nha",
       "level": "M1",
-      "customer_phone": "0911265844",
+      "customer_phone": "0930048764",
       "n_calls": 2,
       "n_turns": 6,
       "channels": [
@@ -365,7 +496,7 @@
       "hard_case": "asr_loi_va_teencode",
       "persona": "khach_do_du_hoi_nguoi_nha",
       "level": "M1",
-      "customer_phone": "0979298416",
+      "customer_phone": "0990853801",
       "n_calls": 2,
       "n_turns": 6,
       "channels": [
@@ -379,12 +510,12 @@
     },
     {
       "scenario_id": "GEN-T06-03",
-      "split": "dev",
+      "split": "test",
       "template_id": "T06-asr-het-hang-ve-hang",
       "hard_case": "asr_loi_va_teencode",
       "persona": "khach_do_du_hoi_nguoi_nha",
       "level": "M1",
-      "customer_phone": "0994157718",
+      "customer_phone": "0980737028",
       "n_calls": 2,
       "n_turns": 6,
       "channels": [
@@ -398,14 +529,14 @@
     },
     {
       "scenario_id": "GEN-T07-01",
-      "split": "test",
+      "split": "dev",
       "template_id": "T07-chinh-sach-cu",
       "hard_case": "phien_ban_chinh_sach_cu",
       "persona": "khach_hoi_ngoai_tai_lieu",
       "level": "M1",
-      "customer_phone": "0932568855",
+      "customer_phone": "0924410646",
       "n_calls": 1,
-      "n_turns": 3,
+      "n_turns": 4,
       "channels": [
         "hotline"
       ],
@@ -420,9 +551,9 @@
       "hard_case": "phien_ban_chinh_sach_cu",
       "persona": "khach_hoi_ngoai_tai_lieu",
       "level": "M1",
-      "customer_phone": "0929486628",
+      "customer_phone": "0964252477",
       "n_calls": 1,
-      "n_turns": 4,
+      "n_turns": 3,
       "channels": [
         "hotline"
       ],
@@ -432,12 +563,12 @@
     },
     {
       "scenario_id": "GEN-T26-01",
-      "split": "dev",
+      "split": "test",
       "template_id": "T26-me-be-qua-tang",
       "hard_case": null,
       "persona": "khach_do_du_hoi_nguoi_nha",
       "level": "M1",
-      "customer_phone": "0932448452",
+      "customer_phone": "0901304118",
       "n_calls": 2,
       "n_turns": 7,
       "channels": [
@@ -451,12 +582,31 @@
     },
     {
       "scenario_id": "GEN-T26-02",
-      "split": "dev",
+      "split": "test",
       "template_id": "T26-me-be-qua-tang",
       "hard_case": null,
       "persona": "khach_do_du_hoi_nguoi_nha",
       "level": "M1",
-      "customer_phone": "0905218549",
+      "customer_phone": "0965237355",
+      "n_calls": 2,
+      "n_turns": 7,
+      "channels": [
+        "hotline",
+        "hotline"
+      ],
+      "input_modes": [
+        "text",
+        "text"
+      ]
+    },
+    {
+      "scenario_id": "GEN-T26-03",
+      "split": "test",
+      "template_id": "T26-me-be-qua-tang",
+      "hard_case": null,
+      "persona": "khach_do_du_hoi_nguoi_nha",
+      "level": "M1",
+      "customer_phone": "0979511174",
       "n_calls": 2,
       "n_turns": 7,
       "channels": [
@@ -475,7 +625,7 @@
       "hard_case": null,
       "persona": "khach_hoi_nhieu_khong_mua",
       "level": "M1",
-      "customer_phone": "0980737028",
+      "customer_phone": "0949066882",
       "n_calls": 2,
       "n_turns": 6,
       "channels": [
@@ -494,7 +644,26 @@
       "hard_case": null,
       "persona": "khach_hoi_nhieu_khong_mua",
       "level": "M1",
-      "customer_phone": "0949066882",
+      "customer_phone": "0925822018",
+      "n_calls": 2,
+      "n_turns": 6,
+      "channels": [
+        "hotline",
+        "hotline"
+      ],
+      "input_modes": [
+        "text",
+        "text"
+      ]
+    },
+    {
+      "scenario_id": "GEN-T27-03",
+      "split": "dev",
+      "template_id": "T27-gia-dung-mien-nam",
+      "hard_case": null,
+      "persona": "khach_hoi_nhieu_khong_mua",
+      "level": "M1",
+      "customer_phone": "0936270107",
       "n_calls": 2,
       "n_turns": 6,
       "channels": [
@@ -513,7 +682,7 @@
       "hard_case": "het_hang_luc_khach_quyet",
       "persona": "khach_do_du_hoi_nguoi_nha",
       "level": "M1",
-      "customer_phone": "0956517883",
+      "customer_phone": "0979298416",
       "n_calls": 2,
       "n_turns": 6,
       "channels": [
@@ -532,7 +701,7 @@
       "hard_case": "het_hang_luc_khach_quyet",
       "persona": "khach_do_du_hoi_nguoi_nha",
       "level": "M1",
-      "customer_phone": "0924410646",
+      "customer_phone": "0929486628",
       "n_calls": 2,
       "n_turns": 6,
       "channels": [
@@ -546,12 +715,12 @@
     },
     {
       "scenario_id": "GEN-T08-03",
-      "split": "dev",
+      "split": "test",
       "template_id": "T08-het-hang-luc-quyet",
       "hard_case": "het_hang_luc_khach_quyet",
       "persona": "khach_do_du_hoi_nguoi_nha",
       "level": "M1",
-      "customer_phone": "0992566636",
+      "customer_phone": "0922808864",
       "n_calls": 2,
       "n_turns": 6,
       "channels": [
@@ -565,12 +734,12 @@
     },
     {
       "scenario_id": "GEN-T09-01",
-      "split": "test",
+      "split": "dev",
       "template_id": "T09-km-loai-tru-size",
       "hard_case": "km_loai_tru_size",
       "persona": "khach_so_gia",
       "level": "M1",
-      "customer_phone": "0975475177",
+      "customer_phone": "0925877188",
       "n_calls": 1,
       "n_turns": 4,
       "channels": [
@@ -587,7 +756,7 @@
       "hard_case": "km_loai_tru_size",
       "persona": "khach_so_gia",
       "level": "M1",
-      "customer_phone": "0910285940",
+      "customer_phone": "0954742843",
       "n_calls": 1,
       "n_turns": 4,
       "channels": [
@@ -604,7 +773,7 @@
       "hard_case": "pii_cccd_stk",
       "persona": "khach_da_mua_doi_size",
       "level": "M1",
-      "customer_phone": "0901304118",
+      "customer_phone": "0910285940",
       "n_calls": 2,
       "n_turns": 6,
       "channels": [
@@ -618,12 +787,12 @@
     },
     {
       "scenario_id": "GEN-T12-02",
-      "split": "dev",
+      "split": "test",
       "template_id": "T12-pii-hoan-tien",
       "hard_case": "pii_cccd_stk",
       "persona": "khach_da_mua_doi_size",
       "level": "M1",
-      "customer_phone": "0964252477",
+      "customer_phone": "0920525898",
       "n_calls": 2,
       "n_turns": 6,
       "channels": [
@@ -637,12 +806,12 @@
     },
     {
       "scenario_id": "GEN-T13-01",
-      "split": "test",
+      "split": "dev",
       "template_id": "T13-ep-gia-do-gia-nhap",
       "hard_case": "ep_gia_do_gia_nhap",
       "persona": "khach_so_gia",
       "level": "M1",
-      "customer_phone": "0913301756",
+      "customer_phone": "0903051614",
       "n_calls": 1,
       "n_turns": 5,
       "channels": [
@@ -659,7 +828,7 @@
       "hard_case": "ep_gia_do_gia_nhap",
       "persona": "khach_so_gia",
       "level": "M1",
-      "customer_phone": "0920525898",
+      "customer_phone": "0990280303",
       "n_calls": 1,
       "n_turns": 5,
       "channels": [
@@ -671,12 +840,12 @@
     },
     {
       "scenario_id": "GEN-T14-01",
-      "split": "test",
+      "split": "dev",
       "template_id": "T14-gia-doi-thu",
       "hard_case": "binh_luan_gia_doi_thu",
       "persona": "khach_so_gia",
       "level": "M1",
-      "customer_phone": "0922808864",
+      "customer_phone": "0937574318",
       "n_calls": 1,
       "n_turns": 4,
       "channels": [
@@ -693,7 +862,7 @@
       "hard_case": "binh_luan_gia_doi_thu",
       "persona": "khach_so_gia",
       "level": "M1",
-      "customer_phone": "0963279264",
+      "customer_phone": "0911439438",
       "n_calls": 1,
       "n_turns": 4,
       "channels": [
@@ -705,12 +874,12 @@
     },
     {
       "scenario_id": "GEN-T15-01",
-      "split": "test",
+      "split": "dev",
       "template_id": "T15-hen-goi-lai-ngay-nghi",
       "hard_case": "hen_goi_lai_ngay_nghi",
       "persona": "khach_do_du_hoi_nguoi_nha",
       "level": "M1",
-      "customer_phone": "0981933190",
+      "customer_phone": "0945761819",
       "n_calls": 1,
       "n_turns": 3,
       "channels": [
@@ -727,7 +896,7 @@
       "hard_case": "hen_goi_lai_ngay_nghi",
       "persona": "khach_do_du_hoi_nguoi_nha",
       "level": "M1",
-      "customer_phone": "0979511174",
+      "customer_phone": "0923458540",
       "n_calls": 1,
       "n_turns": 3,
       "channels": [
@@ -739,12 +908,12 @@
     },
     {
       "scenario_id": "GEN-T16-01",
-      "split": "test",
+      "split": "dev",
       "template_id": "T16-nhieu-mon-vuot-cod",
       "hard_case": "nhieu_mon_vuot_cod_ngan_sach",
       "persona": "khach_mua_nhieu_mon",
       "level": "M1",
-      "customer_phone": "0936270107",
+      "customer_phone": "0960632648",
       "n_calls": 1,
       "n_turns": 12,
       "channels": [
@@ -761,7 +930,7 @@
       "hard_case": "nhieu_mon_vuot_cod_ngan_sach",
       "persona": "khach_mua_nhieu_mon",
       "level": "M1",
-      "customer_phone": "0921199318",
+      "customer_phone": "0902597553",
       "n_calls": 1,
       "n_turns": 12,
       "channels": [
@@ -778,7 +947,7 @@
       "hard_case": "hoi_ai_hay_nguoi_xoa_du_lieu",
       "persona": "khach_ngoai_pham_vi_chuyen_may",
       "level": "M1",
-      "customer_phone": "0955303661",
+      "customer_phone": "0935808290",
       "n_calls": 2,
       "n_turns": 6,
       "channels": [
@@ -792,12 +961,12 @@
     },
     {
       "scenario_id": "GEN-T17-02",
-      "split": "dev",
+      "split": "test",
       "template_id": "T17-ai-hay-nguoi-xoa-du-lieu",
       "hard_case": "hoi_ai_hay_nguoi_xoa_du_lieu",
       "persona": "khach_ngoai_pham_vi_chuyen_may",
       "level": "M1",
-      "customer_phone": "0937574318",
+      "customer_phone": "0983742715",
       "n_calls": 2,
       "n_turns": 6,
       "channels": [
@@ -816,7 +985,7 @@
       "hard_case": "ngoai_pham_vi_y_te",
       "persona": "khach_ngoai_pham_vi_chuyen_may",
       "level": "M1",
-      "customer_phone": "0943036819",
+      "customer_phone": "0973023790",
       "n_calls": 1,
       "n_turns": 3,
       "channels": [
@@ -828,12 +997,12 @@
     },
     {
       "scenario_id": "GEN-T18-02",
-      "split": "dev",
+      "split": "test",
       "template_id": "T18-chuyen-may-y-te",
       "hard_case": "ngoai_pham_vi_y_te",
       "persona": "khach_ngoai_pham_vi_chuyen_may",
       "level": "M1",
-      "customer_phone": "0919770736",
+      "customer_phone": "0904474270",
       "n_calls": 1,
       "n_turns": 3,
       "channels": [
@@ -845,12 +1014,12 @@
     },
     {
       "scenario_id": "GEN-T20-01",
-      "split": "test",
+      "split": "dev",
       "template_id": "T20-doi-san-pham-hoan-chenh-lech",
       "hard_case": "doi_san_pham_hoan_chenh_lech",
       "persona": "khach_da_mua_doi_size",
       "level": "M1",
-      "customer_phone": "0923458540",
+      "customer_phone": "0941139782",
       "n_calls": 2,
       "n_turns": 5,
       "channels": [
@@ -869,7 +1038,7 @@
       "hard_case": "doi_san_pham_hoan_chenh_lech",
       "persona": "khach_da_mua_doi_size",
       "level": "M1",
-      "customer_phone": "0913369222",
+      "customer_phone": "0907525158",
       "n_calls": 2,
       "n_turns": 5,
       "channels": [
@@ -888,7 +1057,7 @@
       "hard_case": "3_phien_thong_tin_thay_doi",
       "persona": "khach_goi_lan_3_het_kien_nhan",
       "level": "M1",
-      "customer_phone": "0925679581",
+      "customer_phone": "0968233856",
       "n_calls": 3,
       "n_turns": 8,
       "channels": [
@@ -904,12 +1073,12 @@
     },
     {
       "scenario_id": "GEN-T21-02",
-      "split": "dev",
+      "split": "test",
       "template_id": "T21-3-phien-thay-doi-thong-tin",
       "hard_case": "3_phien_thong_tin_thay_doi",
       "persona": "khach_goi_lan_3_het_kien_nhan",
       "level": "M1",
-      "customer_phone": "0949478650",
+      "customer_phone": "0964898031",
       "n_calls": 3,
       "n_turns": 8,
       "channels": [
@@ -930,7 +1099,7 @@
       "hard_case": "goi_lan_3_het_kien_nhan",
       "persona": "khach_goi_lan_3_het_kien_nhan",
       "level": "M1",
-      "customer_phone": "0926275870",
+      "customer_phone": "0920219321",
       "n_calls": 3,
       "n_turns": 8,
       "channels": [
@@ -946,12 +1115,12 @@
     },
     {
       "scenario_id": "GEN-T22-02",
-      "split": "dev",
+      "split": "test",
       "template_id": "T22-goi-lan-3-het-kien-nhan",
       "hard_case": "goi_lan_3_het_kien_nhan",
       "persona": "khach_goi_lan_3_het_kien_nhan",
       "level": "M1",
-      "customer_phone": "0999097116",
+      "customer_phone": "0909290205",
       "n_calls": 3,
       "n_turns": 8,
       "channels": [
@@ -972,7 +1141,7 @@
       "hard_case": null,
       "persona": "khach_hoi_nhieu_khong_mua",
       "level": "M1",
-      "customer_phone": "0965923071",
+      "customer_phone": "0984625663",
       "n_calls": 2,
       "n_turns": 7,
       "channels": [
@@ -991,7 +1160,7 @@
       "hard_case": null,
       "persona": "khach_hoi_nhieu_khong_mua",
       "level": "M1",
-      "customer_phone": "0974041451",
+      "customer_phone": "0901082189",
       "n_calls": 2,
       "n_turns": 7,
       "channels": [
@@ -1010,7 +1179,7 @@
       "hard_case": "ngoai_tai_lieu",
       "persona": "khach_hoi_ngoai_tai_lieu",
       "level": "M1",
-      "customer_phone": "0967883579",
+      "customer_phone": "0939847400",
       "n_calls": 1,
       "n_turns": 4,
       "channels": [
@@ -1022,12 +1191,12 @@
     },
     {
       "scenario_id": "GEN-T24-02",
-      "split": "dev",
+      "split": "test",
       "template_id": "T24-ngoai-tai-lieu",
       "hard_case": "ngoai_tai_lieu",
       "persona": "khach_hoi_ngoai_tai_lieu",
       "level": "M1",
-      "customer_phone": "0968233856",
+      "customer_phone": "0908270640",
       "n_calls": 1,
       "n_turns": 4,
       "channels": [
@@ -1044,7 +1213,7 @@
       "hard_case": "3_kenh_bao_gia_lech",
       "persona": "khach_da_kenh_mau_thuan",
       "level": "M1",
-      "customer_phone": "0964898031",
+      "customer_phone": "0969575833",
       "n_calls": 3,
       "n_turns": 9,
       "channels": [
@@ -1060,12 +1229,12 @@
     },
     {
       "scenario_id": "GEN-T25-02",
-      "split": "dev",
+      "split": "test",
       "template_id": "T25-3-kenh-bao-gia-lech",
       "hard_case": "3_kenh_bao_gia_lech",
       "persona": "khach_da_kenh_mau_thuan",
       "level": "M1",
-      "customer_phone": "0956686740",
+      "customer_phone": "0970266397",
       "n_calls": 3,
       "n_turns": 9,
       "channels": [

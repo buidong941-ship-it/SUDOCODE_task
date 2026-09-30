@@ -10,17 +10,17 @@
   "calls": {
     "call_1": {
       "call_date": "2026-10-17",
-      "customer_goal": "hoi Máy lọc không khí AirPure Pro cho phong 25m2, ngan sach 8 triệu 190",
+      "customer_goal": "hoi Máy lọc không khí AirPure Pro cho phong 25m2, ngan sach 8 triệu",
       "customer_turns": [
         "Alo, anh muốn hỏi máy lọc không khí cho phòng ngủ khoảng 25 mét vuông, anh đang xem mẫu AirPure Pro.",
-        "Nhà anh có bé nhỏ, ngân sách tầm 8 triệu 190 thôi em.",
+        "Nhà anh có bé nhỏ, ngân sách tầm 8 triệu thôi em.",
         "Máy này có khuyến mãi gì không em?",
         "Ừ để anh hỏi bà xã rồi gọi lại em nhé."
       ],
       "facts_established": {
         "room_area_m2": 25,
         "has_children": true,
-        "budget_vnd": 8190000,
+        "budget_vnd": 8000000,
         "product_advised": "SKU-AP-PRO",
         "price_quoted_vnd": 7690000,
         "promo_code": "AIR-OCT",
@@ -34,7 +34,7 @@
       "customer_turns": [
         "Alo, hôm trước anh có gọi hỏi máy lọc không khí đó em.",
         "Bà xã anh đồng ý rồi, giá vẫn như hôm trước đúng không?",
-        "Ừ em lên đơn cho anh đi, giao về 45 Cách Mạng Tháng 8, Quận 3, TP HCM nhé."
+        "Ừ em lên đơn cho anh đi, giao về 162 Phạm Văn Thuận, Biên Hòa, Đồng Nai nhé."
       ],
       "must_carry_over": [
         "product_advised",
@@ -59,7 +59,7 @@
         "price_vnd": 7690000,
         "promo_active": true,
         "in_stock": true,
-        "delivery_days": 2
+        "delivery_days": 4
       }
     }
   },
@@ -70,7 +70,7 @@
     "split": "dev",
     "customer_id": "C049",
     "synthetic_customer": false,
-    "address": "45 Cách Mạng Tháng 8, Quận 3, TP HCM",
+    "address": "162 Phạm Văn Thuận, Biên Hòa, Đồng Nai",
     "dates": {
       "call_1": "2026-10-17",
       "call_2": "2026-10-21"
@@ -80,6 +80,7 @@
       "p": "SKU-AP-PRO",
       "d1": "2026-10-17",
       "gap": 4
-    }
+    },
+    "split_by": "template"
   }
 }

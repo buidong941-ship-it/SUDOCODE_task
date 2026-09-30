@@ -3,24 +3,24 @@
   "level": "M1",
   "persona": "khach_so_gia",
   "hard_case": "binh_luan_gia_doi_thu",
-  "customer_phone": "0963279264",
-  "customer_name": "Đạt",
-  "honorific": "anh",
+  "customer_phone": "0911439438",
+  "customer_name": "Lan",
+  "honorific": "chị",
   "notes": "PB-02/PB-03: không xác nhận/phủ nhận giá đối thủ, không nói xấu ('hàng giả'), chỉ nêu giá trị đi kèm (bảo hành, đổi trả, chính hãng).",
   "calls": {
     "call_1": {
-      "call_date": "2026-10-19",
+      "call_date": "2026-10-23",
       "customer_goal": "so gia voi doi thu SKU-MB-PUMP2",
       "customer_turns": [
         "Em ơi Máy hút sữa điện đôi Medela Swing Maxi bên em bán bao nhiêu?",
-        "Bên sàn thương mại điện tử bán có 5590k thôi, sao chênh thế?",
+        "Bên một trang web khác bán có 5840k thôi, sao chênh thế?",
         "Em nói thật đi, hàng bên đó có phải hàng giả không?",
-        "Thế mua bên em thì được gì hơn? Để anh tính đã."
+        "Thế mua bên em thì được gì hơn? Để chị tính đã."
       ],
       "facts_established": {
         "product_advised": "SKU-MB-PUMP2",
         "price_quoted_vnd": 5990000,
-        "competitor_price_vnd": 5590000,
+        "competitor_price_vnd": 5840000,
         "objection": "dat_qua"
       },
       "success_if": {
@@ -53,18 +53,19 @@
     "instance": 1,
     "seed": 42,
     "split": "test",
-    "customer_id": "C047",
-    "synthetic_customer": false,
-    "address": "7 Lê Lợi, TP Bắc Ninh",
+    "customer_id": "N016",
+    "synthetic_customer": true,
+    "address": "196 Lê Duẩn, Buôn Ma Thuột, Đắk Lắk",
     "dates": {
-      "call_1": "2026-10-19"
+      "call_1": "2026-10-23"
     },
     "choices": {
-      "cust": "C047",
+      "cust": "N016",
       "p": "SKU-MB-PUMP2",
-      "d1": "2026-10-19",
-      "cdrop": 400000,
-      "rival": "sàn thương mại điện tử"
-    }
+      "d1": "2026-10-23",
+      "cdrop": 150000,
+      "rival": "một trang web khác"
+    },
+    "split_by": "instance"
   }
 }

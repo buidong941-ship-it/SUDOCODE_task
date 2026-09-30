@@ -3,19 +3,19 @@
   "level": "M1",
   "persona": "khach_hoi_nhieu_khong_mua",
   "hard_case": null,
-  "customer_phone": "0974041451",
-  "customer_name": "Hà",
-  "honorific": "chị",
+  "customer_phone": "0901082189",
+  "customer_name": "Bích",
+  "honorific": "cô",
   "notes": "Khách hỏi nhiều chi tiết kỹ thuật (spec-*.md), không bịa thông số. Cuộc 2 hẹn gọi lại ngày mai (2026-10-22 15:00) — thời gian tương đối cần ITN.",
   "calls": {
     "call_1": {
       "call_date": "2026-10-19",
       "customer_goal": "hoi thong so SKU-XM-4P",
       "customer_turns": [
-        "Em ơi cho chị hỏi Máy lọc không khí Xiaomi Smart 4 Pro giá bao nhiêu?",
+        "Em ơi cho cô hỏi Máy lọc không khí Xiaomi Smart 4 Pro giá bao nhiêu?",
         "Bảo hành bao lâu, có bảo hành tận nhà không em?",
         "Thông số chính của máy là gì em?",
-        "Để chị so với mấy mẫu khác đã."
+        "Để cô so với mấy mẫu khác đã."
       ],
       "facts_established": {
         "product_advised": "SKU-XM-4P",
@@ -31,9 +31,9 @@
     "call_2": {
       "days_later": 2,
       "customer_turns": [
-        "Alo em, chị vẫn đang phân vân Xiaomi Smart 4 Pro.",
+        "Alo em, cô vẫn đang phân vân Xiaomi Smart 4 Pro.",
         "Có mẫu nào rẻ hơn mà tương đương không em?",
-        "Thôi mai khoảng 15 giờ em gọi lại cho chị nhé."
+        "Thôi mai khoảng 15 giờ em gọi lại cho cô nhé."
       ],
       "must_carry_over": [
         "product_advised",
@@ -45,7 +45,7 @@
       "success_if": {
         "tool_called": "schedule.callback",
         "args_match": {
-          "customer_phone": "0974041451",
+          "customer_phone": "0901082189",
           "callback_at": "2026-10-22T15:00"
         }
       },
@@ -61,19 +61,20 @@
     "instance": 1,
     "seed": 42,
     "split": "dev",
-    "customer_id": "N051",
+    "customer_id": "N079",
     "synthetic_customer": true,
-    "address": "25 Nguyễn Trãi, Thanh Xuân, Hà Nội",
+    "address": "123 Quang Trung, Gò Vấp, TP HCM",
     "dates": {
       "call_1": "2026-10-19",
       "call_2": "2026-10-21"
     },
     "choices": {
-      "cust": "N051",
+      "cust": "N079",
       "p": "SKU-XM-4P",
       "d1": "2026-10-19",
       "gap": 2,
       "hour": 15
-    }
+    },
+    "split_by": "template"
   }
 }

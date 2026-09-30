@@ -23,7 +23,14 @@ import argparse, collections, copy, glob, json, os, re, sys
 from datetime import date, timedelta
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-DEFAULT_BTC = os.path.join(HERE, "..", "BTC", "BTC-Data-Vong1-TEAMS")
+def _default_btc():
+    """Gói BTC nằm ở gốc repo (../eval/mock_tools.py); giữ đường dẫn cũ ../BTC/BTC-Data-Vong1-TEAMS làm dự phòng."""
+    for c in (os.path.join(HERE, ".."), os.path.join(HERE, "..", "BTC", "BTC-Data-Vong1-TEAMS")):
+        if os.path.exists(os.path.join(c, "eval", "mock_tools.py")): return os.path.abspath(c)
+    return os.path.abspath(os.path.join(HERE, ".."))
+
+
+DEFAULT_BTC = _default_btc()
 
 TOP_REQUIRED = ["scenario_id", "level", "persona", "hard_case", "customer_phone", "customer_name", "honorific", "calls"]
 TOP_ALLOWED = set(TOP_REQUIRED) | {"notes"}
@@ -512,7 +519,23 @@ def main():
     phones = collections.defaultdict(list)
     for s in scs: phones[s["customer_phone"]].append(s["scenario_id"])
     glob_issues = [f"scenario_id trùng: {k} ×{v}" for k, v in ids.items() if v > 1]
-    glob_warn = [f"SĐT {p} dùng ở {len(v)} kịch bản: {v}" for p, v in phones.items() if len(v) > 1]
+    tpl_of = {s["scenario_id"]: (s.get("_meta") or {}).get("template_id") for s in scs}
+    # cùng một template cố ý dùng lại khách đặc thù trong CRM (chung SĐT, khách 8 tháng) → không cảnh báo;
+    # harness phải reset bộ nhớ giữa các kịch bản
+    glob_warn = [f"SĐT {p} dùng ở {len(v)} kịch bản: {v}" for p, v in phones.items()
+                 if len(v) > 1 and not (tpl_of[v[0]] and len({tpl_of[x] for x in v}) == 1)]
+    addrs = collections.defaultdict(set)
+    for s in scs:
+        ad = (s.get("_meta") or {}).get("address")
+        if ad: addrs[ad].add(s["customer_phone"])
+    glob_warn += [f"địa chỉ '{ad}' dùng cho {len(ph)} khách khác nhau: {sorted(ph)}" for ad, ph in addrs.items() if len(ph) > 1]
+    sides = collections.defaultdict(set)
+    for s in scs:
+        sp = (s.get("_meta") or {}).get("split")
+        if sp in ("dev", "test"): sides[s.get("hard_case") or "(thường)"].add(sp)
+    if set().union(*sides.values()) == {"dev", "test"}:   # chỉ kiểm khi tập có cả dev lẫn test
+        glob_warn += [f"loại ca '{hc}' chỉ có ở {next(iter(v))} → vòng cải tiến không phủ được / không đo được"
+                      for hc, v in sides.items() if len(v) == 1]
 
     n_err = n_warn = 0
     for sc, R in reports:
@@ -546,7 +569,7 @@ def main():
 
     if a.report:
         json.dump({"errors": n_err, "warnings": n_warn,
-                   "scenarios": [{"scenario_id": R.sid, "file": sc["_file"], "issues": R.items} for sc, R in reports],
+                   "scenarios": [{"scenario_id": R.sid, "file": sc["_file"].replace(os.sep, "/"), "issues": R.items} for sc, R in reports],
                    "global": {"errors": glob_issues, "warnings": glob_warn},
                    "coverage": {"totals": cov, **{k: dict(v) for k, v in per.items()}},
                    "diff": [{"scenario_id": s, "reproduces": r, "diffs": d} for s, r, d in diffs]},

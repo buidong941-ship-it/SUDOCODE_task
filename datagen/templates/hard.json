@@ -96,7 +96,7 @@
   },
   {
     "template_id": "T10-quay-lai-8-thang",
-    "instances": 1,
+    "instances": 2,
     "choose": {
       "cust": "customers(ids=['C031'], reuse=True)",
       "p": "products(skus=['SKU-AP-X','SKU-AP-Y','SKU-AP-PRO'])",
@@ -141,7 +141,7 @@
   },
   {
     "template_id": "T11-chung-sdt",
-    "instances": 1,
+    "instances": 2,
     "choose": {
       "cust": "customers(ids=['C035'], reuse=True)",
       "p": "products(category=['gia-dung/noi-chien','gia-dung/quat'], variants=False)",
@@ -357,7 +357,7 @@
           ],
           "facts_established": {"product_advised": "{{p.sku}}", "price_quoted_vnd": "{{price}}", "callback_requested": "2026-10-26T{{hh}}:00"},
           "success_if": {
-            "tool_called": "schedule.callback", "args_match": {"customer_phone": "{{cust.phone}}"},
+            "tool_called": "schedule.callback", "args_match": {"customer_phone": "{{cust.phone}}", "callback_at": "2026-10-27T{{hh}}:00"},
             "must_say_any": ["27/10", "thứ ba", "ngày 27"],
             "forbidden_claims": [{"field": "callback_at", "value": "2026-10-26T{{hh}}:00"}]
           },

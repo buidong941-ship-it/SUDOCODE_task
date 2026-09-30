@@ -1,5 +1,5 @@
 {
-  "scenario_id": "GEN-T11-01",
+  "scenario_id": "GEN-T11-02",
   "level": "M1",
   "persona": "hai_nguoi_chung_sdt",
   "hard_case": "chung_sdt_memory_poisoning",
@@ -9,25 +9,25 @@
   "notes": "SĐT 0958421083 dùng chung C034 (cô Loan, hỏi RO9 ngày 09/10) và C035 (chị Dung). crm.get_customer trả ambiguous → agent phải xác nhận danh tính; call_1 ghi vào hồ sơ Dung, call_2 là cô Loan — không được lẫn sản phẩm/địa chỉ giữa hai người.",
   "calls": {
     "call_1": {
-      "call_date": "2026-10-22",
-      "customer_goal": "chi Dung dat SKU-FAN-DC1",
+      "call_date": "2026-10-16",
+      "customer_goal": "chi Dung dat SKU-AF-4L",
       "customer_turns": [
-        "Alo em, chị là Dung, chị muốn đặt Quạt đứng DC inverter Panasonic F-409.",
+        "Alo em, chị là Dung, chị muốn đặt Nồi chiên không dầu Lock&Lock 4L.",
         "Giá bao nhiêu em? Giao về 58 Phan Xích Long, Phú Nhuận, TP HCM nhé.",
         "Ok em lên đơn luôn cho chị, COD."
       ],
       "facts_established": {
         "speaker_customer_id": "C035",
-        "product_advised": "SKU-FAN-DC1",
-        "price_quoted_vnd": 2450000,
+        "product_advised": "SKU-AF-4L",
+        "price_quoted_vnd": 1890000,
         "address": "58 Phan Xích Long, Phú Nhuận, TP HCM",
         "payment": "COD"
       },
       "success_if": {
         "tool_called": "order.create",
         "args_match": {
-          "sku": "SKU-FAN-DC1",
-          "price_vnd": 2450000
+          "sku": "SKU-AF-4L",
+          "price_vnd": 1890000
         },
         "forbidden_claims": [
           "cô Loan",
@@ -35,17 +35,17 @@
         ]
       },
       "memory_expectation": {
-        "product_advised": "SKU-FAN-DC1",
+        "product_advised": "SKU-AF-4L",
         "must_not_write_to": "C034"
       },
       "ground_truth_facts": {
-        "price_vnd": 2450000,
+        "price_vnd": 1890000,
         "in_stock": true
       },
       "expected_outcome": "chot_don"
     },
     "call_2": {
-      "days_later": 2,
+      "days_later": 4,
       "customer_turns": [
         "Alo, cô là Loan đây, hôm trước cô hỏi cái máy lọc nước cho nhà ở Cần Thơ.",
         "Con gái cô đồng ý rồi, giá bao nhiêu cháu?",
@@ -75,7 +75,7 @@
         },
         "forbidden_claims": [
           "chị Dung",
-          "DC inverter Panasonic F-409"
+          "Lock&Lock 4L"
         ]
       },
       "memory_expectation": {
@@ -93,21 +93,21 @@
   },
   "_meta": {
     "template_id": "T11-chung-sdt",
-    "instance": 0,
+    "instance": 1,
     "seed": 42,
-    "split": "dev",
+    "split": "test",
     "customer_id": "C035",
     "synthetic_customer": false,
     "address": "58 Phan Xích Long, Phú Nhuận, TP HCM",
     "dates": {
-      "call_1": "2026-10-22",
-      "call_2": "2026-10-24"
+      "call_1": "2026-10-16",
+      "call_2": "2026-10-20"
     },
     "choices": {
       "cust": "C035",
-      "p": "SKU-FAN-DC1",
-      "d1": "2026-10-22",
-      "gap": 2
+      "p": "SKU-AF-4L",
+      "d1": "2026-10-16",
+      "gap": 4
     },
     "split_by": "instance"
   }

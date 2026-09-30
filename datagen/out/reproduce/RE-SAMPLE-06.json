@@ -20,7 +20,7 @@
       "customer_turns": [
         "Alo cho anh hỏi máy lọc không khí Xiaomi Smart 4 Pro giá bao nhiêu?",
         "Phòng anh 35m² có được không?",
-        "Ngân sách anh tầm 5 triệu 5 thôi, để anh hỏi vợ đã."
+        "Ngân sách anh tầm 5 triệu rưỡi thôi, để anh hỏi vợ đã."
       ],
       "facts_established": {
         "product_advised": "SKU-XM-4P",
@@ -42,12 +42,12 @@
       "input_mode": "chat_teencode",
       "customer_turns_asr": [
         "e oi hom truoc a hoi cai xiaomi smart 4 pro",
-        "vo a ok r, sp nay co ship cod k, a o 9 dai lo binh duong, thu dau mot, binh duong",
+        "vo a ok r, sp nay co ship cod k, a o 168 cach mang thang 8, quan 3, tp hcm",
         "ok len don cho a nhe"
       ],
       "customer_turns": [
         "Em ơi hôm trước anh hỏi cái Xiaomi Smart 4 Pro.",
-        "Vợ anh ok rồi, sản phẩm này có ship COD không, anh ở 9 Đại lộ Bình Dương, Thủ Dầu Một, Bình Dương.",
+        "Vợ anh ok rồi, sản phẩm này có ship COD không, anh ở 168 Cách Mạng Tháng 8, Quận 3, TP HCM.",
         "Ok lên đơn cho anh nhé."
       ],
       "must_carry_over": [
@@ -84,7 +84,7 @@
     "split": "reproduce",
     "customer_id": "C030",
     "synthetic_customer": false,
-    "address": "9 Đại lộ Bình Dương, Thủ Dầu Một, Bình Dương",
+    "address": "168 Cách Mạng Tháng 8, Quận 3, TP HCM",
     "dates": {
       "call_1": "2026-10-15",
       "call_2": "2026-10-20"

@@ -3,13 +3,13 @@
   "level": "M1",
   "persona": "khach_so_gia",
   "hard_case": "doi_khuyen_mai_het_han",
-  "customer_phone": "0930976582",
-  "customer_name": "Cường",
+  "customer_phone": "0963279264",
+  "customer_name": "Đạt",
   "honorific": "anh",
   "notes": "Agent KHÔNG được báo lại giá cũ 1.161.000đ; phải nói KM RUN-10 đã hết (25/10), giá hiện tại 1.290.000đ.",
   "calls": {
     "call_1": {
-      "call_date": "2026-10-14",
+      "call_date": "2026-10-16",
       "customer_goal": "hoi SKU-SN-RUN1 luc con KM RUN-10",
       "customer_turns": [
         "Em ơi RunLite 1 size 42 màu đen đang giảm 10% đúng không?",
@@ -25,7 +25,7 @@
       "expected_outcome": "hen_goi_lai"
     },
     "call_2": {
-      "days_later": 15,
+      "days_later": 12,
       "customer_turns": [
         "Anh gọi lại lấy cái RunLite 1 giảm 10% hôm trước nhé.",
         "Sao hôm trước em bảo giảm 10% mà?",
@@ -58,18 +58,19 @@
     "instance": 0,
     "seed": 42,
     "split": "dev",
-    "customer_id": "C039",
+    "customer_id": "C047",
     "synthetic_customer": false,
-    "address": "25 Nguyễn Trãi, Thanh Xuân, Hà Nội",
+    "address": "188 Nguyễn Trãi, Thanh Xuân, Hà Nội",
     "dates": {
-      "call_1": "2026-10-14",
-      "call_2": "2026-10-29"
+      "call_1": "2026-10-16",
+      "call_2": "2026-10-28"
     },
     "choices": {
-      "cust": "C039",
+      "cust": "C047",
       "p": "SKU-SN-RUN1-42-DEN",
-      "d1": "2026-10-14",
-      "gap": 15
-    }
+      "d1": "2026-10-16",
+      "gap": 12
+    },
+    "split_by": "instance"
   }
 }

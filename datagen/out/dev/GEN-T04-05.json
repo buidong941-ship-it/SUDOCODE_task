@@ -1,39 +1,39 @@
 {
-  "scenario_id": "GEN-T04-01",
+  "scenario_id": "GEN-T04-05",
   "level": "M1",
   "persona": "khach_da_kenh_fb_hotline",
   "hard_case": null,
-  "customer_phone": "0993186032",
-  "customer_name": "Đức",
+  "customer_phone": "0911265844",
+  "customer_name": "Toàn",
   "honorific": "anh",
   "notes": "Case 2: nhận diện FB ID ↔ SĐT. Agent hotline phải thấy giá đã báo bên Fanpage; KM còn hiệu lực phải giữ giá.",
   "calls": {
     "call_1": {
-      "call_date": "2026-10-18",
+      "call_date": "2026-10-16",
       "channel": "chat_fanpage",
-      "channel_identity": "fb.đức.146",
+      "channel_identity": "fb.toàn.855",
       "customer_goal": "hoi gia giày qua inbox fanpage",
       "customer_turns": [
         "shop oi Giày chạy bộ RunLite 2 Pro gia bn v",
         "co giam k",
-        "sdt minh 0993186032 de minh goi hotline sau nhe"
+        "sdt minh 0911265844 de minh goi hotline sau nhe"
       ],
       "facts_established": {
         "product_advised": "SKU-SN-RUN2",
         "price_quoted_vnd": 1521000,
         "promo_code": "RUN-10",
         "channel": "fanpage",
-        "phone_provided": "0993186032"
+        "phone_provided": "0911265844"
       },
       "expected_outcome": "hen_goi_lai"
     },
     "call_2": {
-      "days_later": 1,
+      "days_later": 2,
       "channel": "hotline",
       "customer_turns": [
         "Alo, anh vừa nhắn Facebook bên em hỏi giày đó.",
         "Bên Facebook báo anh giá 1521k đúng không? Còn giảm không?",
-        "Ok lấy size 38 màu đen, lên đơn cho anh."
+        "Ok lấy size 40 màu xám, lên đơn cho anh."
       ],
       "must_carry_over": [
         "product_advised",
@@ -47,7 +47,7 @@
       "success_if": {
         "tool_called": "order.create",
         "args_match": {
-          "sku": "SKU-SN-RUN2-38-DEN",
+          "sku": "SKU-SN-RUN2-40-XAM",
           "price_vnd": 1521000
         }
       },
@@ -62,21 +62,21 @@
   },
   "_meta": {
     "template_id": "T04-da-kenh-fb-hotline",
-    "instance": 0,
+    "instance": 4,
     "seed": 42,
     "split": "dev",
-    "customer_id": "C010",
+    "customer_id": "C037",
     "synthetic_customer": false,
-    "address": "70 Cách Mạng Tháng 8, Quận 3, TP HCM",
+    "address": "10 Nguyễn Thị Thập, Quận 7, TP HCM",
     "dates": {
-      "call_1": "2026-10-18",
-      "call_2": "2026-10-19"
+      "call_1": "2026-10-16",
+      "call_2": "2026-10-18"
     },
     "choices": {
-      "cust": "C010",
-      "p": "SKU-SN-RUN2-38-DEN",
-      "d1": "2026-10-18",
-      "gap": 1
+      "cust": "C037",
+      "p": "SKU-SN-RUN2-40-XAM",
+      "d1": "2026-10-16",
+      "gap": 2
     },
     "split_by": "template"
   }

@@ -3,7 +3,7 @@
   "level": "M1",
   "persona": "khach_hoi_ngoai_tai_lieu",
   "hard_case": "ngoai_tai_lieu",
-  "customer_phone": "0968233856",
+  "customer_phone": "0908270640",
   "customer_name": "Khang",
   "honorific": "anh",
   "notes": "Câu hỏi không có trong tài liệu → agent phải nói không có thông tin, không bịa. Câu trả góp: có trong VC-04 (chưa hỗ trợ trả góp, không hứa 'sắp có').",
@@ -45,18 +45,19 @@
     "template_id": "T24-ngoai-tai-lieu",
     "instance": 1,
     "seed": 42,
-    "split": "dev",
-    "customer_id": "N058",
+    "split": "test",
+    "customer_id": "N086",
     "synthetic_customer": true,
-    "address": "12 Lê Lợi, TP Huế",
+    "address": "173 Kim Mã, Ba Đình, Hà Nội",
     "dates": {
       "call_1": "2026-10-20"
     },
     "choices": {
-      "cust": "N058",
+      "cust": "N086",
       "p": "SKU-AF-4L",
       "d1": "2026-10-20",
       "v": 1
-    }
+    },
+    "split_by": "instance"
   }
 }

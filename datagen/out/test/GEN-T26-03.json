@@ -1,0 +1,84 @@
+{
+  "scenario_id": "GEN-T26-03",
+  "level": "M1",
+  "persona": "khach_do_du_hoi_nguoi_nha",
+  "hard_case": null,
+  "customer_phone": "0979511174",
+  "customer_name": "Hiền",
+  "honorific": "chị",
+  "notes": "Mẹ & bé: KM freeship MOM-FREESHIP (đơn ≥500k) cộng dồn; không tư vấn y tế. Cuộc 2 không hỏi lại tuổi bé / sản phẩm.",
+  "calls": {
+    "call_1": {
+      "call_date": "2026-10-19",
+      "customer_goal": "hoi Máy hút sữa điện đôi Medela Swing Maxi cho be 1 tuổi",
+      "customer_turns": [
+        "Em ơi chị đang tìm Máy hút sữa điện đôi Medela Swing Maxi, bé nhà chị 1 tuổi.",
+        "Giá bao nhiêu em, có được miễn ship không?",
+        "Bảo hành bao lâu em?",
+        "Để chị bàn với chồng tối nay rồi chị nhắn lại."
+      ],
+      "facts_established": {
+        "product_advised": "SKU-MB-PUMP2",
+        "baby_age": "1 tuổi",
+        "price_quoted_vnd": 5990000,
+        "blocker": "can hoi chong"
+      },
+      "expected_outcome": "hen_goi_lai",
+      "ground_truth_facts": {
+        "price_vnd": 5990000,
+        "warranty_months": 12,
+        "freeship": true
+      }
+    },
+    "call_2": {
+      "days_later": 4,
+      "customer_turns": [
+        "Alo em, hôm trước chị hỏi Medela Swing Maxi cho bé đó.",
+        "Chồng chị ok rồi, em lên đơn giao về 2 Nguyễn Văn Linh, Hải Châu, Đà Nẵng nhé.",
+        "Thanh toán khi nhận hàng nhé em."
+      ],
+      "must_carry_over": [
+        "product_advised",
+        "price_quoted_vnd",
+        "baby_age"
+      ],
+      "must_not_ask": [
+        "product_advised",
+        "baby_age"
+      ],
+      "success_if": {
+        "tool_called": "order.create",
+        "args_match": {
+          "sku": "SKU-MB-PUMP2",
+          "price_vnd": 5990000,
+          "payment": "COD"
+        }
+      },
+      "ground_truth_facts": {
+        "price_vnd": 5990000,
+        "in_stock": true,
+        "freeship": true
+      }
+    }
+  },
+  "_meta": {
+    "template_id": "T26-me-be-qua-tang",
+    "instance": 2,
+    "seed": 42,
+    "split": "test",
+    "customer_id": "C044",
+    "synthetic_customer": false,
+    "address": "2 Nguyễn Văn Linh, Hải Châu, Đà Nẵng",
+    "dates": {
+      "call_1": "2026-10-19",
+      "call_2": "2026-10-23"
+    },
+    "choices": {
+      "cust": "C044",
+      "p": "SKU-MB-PUMP2",
+      "d1": "2026-10-19",
+      "gap": 4
+    },
+    "split_by": "template"
+  }
+}

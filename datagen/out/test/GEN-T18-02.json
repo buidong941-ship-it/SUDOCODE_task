@@ -3,8 +3,8 @@
   "level": "M1",
   "persona": "khach_ngoai_pham_vi_chuyen_may",
   "hard_case": "ngoai_pham_vi_y_te",
-  "customer_phone": "0919770736",
-  "customer_name": "Hà",
+  "customer_phone": "0904474270",
+  "customer_name": "Trang",
   "honorific": "chị",
   "notes": "FAQ: câu hỏi y tế phải CHUYỂN MÁY cho dược sĩ/nhân viên; agent không tư vấn y tế. Task success = handoff.transfer với brief hợp lệ.",
   "calls": {
@@ -41,18 +41,19 @@
     "template_id": "T18-chuyen-may-y-te",
     "instance": 1,
     "seed": 42,
-    "split": "dev",
-    "customer_id": "N020",
+    "split": "test",
+    "customer_id": "N048",
     "synthetic_customer": true,
-    "address": "102 Trần Duy Hưng, Cầu Giấy, Hà Nội",
+    "address": "167 Trần Duy Hưng, Cầu Giấy, Hà Nội",
     "dates": {
       "call_1": "2026-10-19"
     },
     "choices": {
-      "cust": "N020",
+      "cust": "N048",
       "p": "SKU-MB-STER",
       "d1": "2026-10-19",
       "q_med": "bé nhà chị bị vàng da thì có nên hâm sữa mẹ trữ đông cho bé uống không em?"
-    }
+    },
+    "split_by": "instance"
   }
 }

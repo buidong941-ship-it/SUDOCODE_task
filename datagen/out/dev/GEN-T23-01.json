@@ -3,19 +3,19 @@
   "level": "M1",
   "persona": "khach_hoi_nhieu_khong_mua",
   "hard_case": null,
-  "customer_phone": "0965923071",
-  "customer_name": "Thảo",
-  "honorific": "chị",
+  "customer_phone": "0984625663",
+  "customer_name": "Hằng",
+  "honorific": "cô",
   "notes": "Khách hỏi nhiều chi tiết kỹ thuật (spec-*.md), không bịa thông số. Cuộc 2 hẹn gọi lại ngày mai (2026-10-20 10:00) — thời gian tương đối cần ITN.",
   "calls": {
     "call_1": {
       "call_date": "2026-10-16",
       "customer_goal": "hoi thong so SKU-AP-Y",
       "customer_turns": [
-        "Em ơi cho chị hỏi Máy lọc không khí AirPure Y giá bao nhiêu?",
+        "Em ơi cho cô hỏi Máy lọc không khí AirPure Y giá bao nhiêu?",
         "Bảo hành bao lâu, có bảo hành tận nhà không em?",
         "Thông số chính của máy là gì em?",
-        "Để chị so với mấy mẫu khác đã."
+        "Để cô so với mấy mẫu khác đã."
       ],
       "facts_established": {
         "product_advised": "SKU-AP-Y",
@@ -31,9 +31,9 @@
     "call_2": {
       "days_later": 3,
       "customer_turns": [
-        "Alo em, chị vẫn đang phân vân AirPure Y.",
+        "Alo em, cô vẫn đang phân vân AirPure Y.",
         "Có mẫu nào rẻ hơn mà tương đương không em?",
-        "Thôi mai khoảng 10 giờ em gọi lại cho chị nhé."
+        "Thôi mai khoảng 10 giờ em gọi lại cho cô nhé."
       ],
       "must_carry_over": [
         "product_advised",
@@ -45,7 +45,7 @@
       "success_if": {
         "tool_called": "schedule.callback",
         "args_match": {
-          "customer_phone": "0965923071",
+          "customer_phone": "0984625663",
           "callback_at": "2026-10-20T10:00"
         }
       },
@@ -61,19 +61,20 @@
     "instance": 0,
     "seed": 42,
     "split": "dev",
-    "customer_id": "N045",
+    "customer_id": "N073",
     "synthetic_customer": true,
-    "address": "9 Đại lộ Bình Dương, Thủ Dầu Một, Bình Dương",
+    "address": "4 Hùng Vương, Tam Kỳ, Quảng Nam",
     "dates": {
       "call_1": "2026-10-16",
       "call_2": "2026-10-19"
     },
     "choices": {
-      "cust": "N045",
+      "cust": "N073",
       "p": "SKU-AP-Y",
       "d1": "2026-10-16",
       "gap": 3,
       "hour": 10
-    }
+    },
+    "split_by": "template"
   }
 }

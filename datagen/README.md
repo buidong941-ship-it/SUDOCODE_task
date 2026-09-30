@@ -13,15 +13,18 @@ python resolver.py --seed 7 --out out_seed7 # bộ khác, cùng template
 python resolver.py --reproduce             # tái tạo 7 SAMPLE của BTC → out/reproduce (kiểm tra resolver)
 
 python validate.py out/dev out/test --report out/validate_report.json
-python validate.py out/reproduce --diff-against ../BTC/BTC-Data-Vong1-TEAMS/test_set/public_sample
-python validate.py ../BTC/BTC-Data-Vong1-TEAMS/test_set/public_sample   # kiểm cả dữ liệu BTC
+python validate.py out/reproduce --diff-against ../test_set/public_sample
+python validate.py ../test_set/public_sample   # kiểm cả dữ liệu BTC
 ```
+Gói dữ liệu BTC được tìm tự động ở gốc repo (`../eval/mock_tools.py`); dùng `--btc <thư mục>` nếu để chỗ khác.
 Windows: đặt `PYTHONIOENCODING=utf-8` nếu terminal lỗi Unicode.
 
 ## Nguyên tắc
 - Giá, KM, tồn kho, ngày về hàng, ngày giao đều lấy từ `eval/mock_tools.py` của BTC. Không lấy từ LLM, không viết tay.
 - Template khai báo **ràng buộc** (`require`); resolver dùng DFS có seed để tìm khách, SKU và ngày thoả ràng buộc. Nhờ đó mỗi template sinh được nhiều kịch bản khác nhau.
-- Chia dev/test **theo template** (`split` hoặc hash với `--test-ratio`) để tránh rò rỉ khi làm vòng cải tiến.
+- Chia dev/test **theo template** để tránh rò rỉ câu chữ khi làm vòng cải tiến, nhưng tính **trong từng nhóm `hard_case`** (`plan_splits` trong `resolver.py`): nhóm ≥ 2 template luôn có ≥ 1 template ở dev và ≥ 1 ở test; nhóm chỉ 1 template thì chia theo instance (bản cuối vào test, ghi `_meta.split_by = "instance"`). Nhờ vậy loại ca nào cũng vừa được phát triển vừa được đo. Viết thêm template thứ hai cho các nhóm này để bỏ hẳn chia theo instance.
+- Địa chỉ khách sinh theo SĐT và không trùng giữa hai khách; địa chỉ viết cứng trong template được giữ riêng.
+- Harness chỉ được đọc lượt khách, kênh, ngày gọi — **không** đọc `_meta`, `facts_established`, `ground_truth_facts`, `success_if`. Bộ nhớ phải reset giữa các kịch bản (template T10/T11 cố ý dùng lại cùng khách CRM).
 - `customer_turns` hiện là câu mẫu có điền giá trị. Bước sau là dùng LLM viết lại cho tự nhiên (giữ nguyên các slot), rồi chạy lại `validate.py`.
 
 ## Template

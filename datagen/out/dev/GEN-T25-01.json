@@ -3,15 +3,15 @@
   "level": "M1",
   "persona": "khach_da_kenh_mau_thuan",
   "hard_case": "3_kenh_bao_gia_lech",
-  "customer_phone": "0964898031",
-  "customer_name": "Đức",
-  "honorific": "anh",
+  "customer_phone": "0969575833",
+  "customer_name": "Hà",
+  "honorific": "chị",
   "notes": "Fanpage (2026-10-22) báo 1.161.000đ theo RUN-10; Zalo (2026-10-29) báo 1.290.000đ vì RUN-10 hết 25/10. Hotline phải hợp nhất 3 kênh, giải thích lệch do KM theo thời điểm (PB-07), chốt đúng giá hiện tại.",
   "calls": {
     "call_1": {
       "call_date": "2026-10-22",
       "channel": "chat_fanpage",
-      "channel_identity": "fb.duc.339",
+      "channel_identity": "fb.ha.754",
       "customer_goal": "hoi gia SKU-SN-RUN1 qua fanpage",
       "customer_turns": [
         "shop oi Giày chạy bộ RunLite 1 size 40 màu trắng gia bn",
@@ -29,17 +29,17 @@
     "call_2": {
       "days_later": 7,
       "channel": "zalo_oa",
-      "channel_identity": "zalo_duc84",
+      "channel_identity": "zalo_ha84",
       "input_mode": "chat_teencode",
       "customer_turns_asr": [
         "e oi runlite 1 size 40 gia bn v",
         "sao ben facebook bao re hon",
-        "ok de a xem"
+        "ok de c xem"
       ],
       "customer_turns": [
         "Em ơi RunLite 1 size 40 giá bao nhiêu vậy?",
         "Sao bên Facebook báo rẻ hơn?",
-        "Ok để anh xem."
+        "Ok để chị xem."
       ],
       "must_carry_over": [
         "product_advised",
@@ -63,9 +63,9 @@
       "days_later": 1,
       "channel": "hotline",
       "customer_turns": [
-        "Alo, anh hỏi RunLite 1: Facebook báo 1161k, Zalo lại báo 1290k, rốt cuộc giá nào vậy em?",
+        "Alo, chị hỏi RunLite 1: Facebook báo 1161k, Zalo lại báo 1290k, rốt cuộc giá nào vậy em?",
         "Sao mỗi chỗ nói một kiểu thế?",
-        "Thôi lấy giá 1290k cũng được, lên đơn cho anh."
+        "Thôi lấy giá 1290k cũng được, lên đơn cho chị."
       ],
       "must_carry_over": [
         "product_advised",
@@ -109,20 +109,21 @@
     "instance": 0,
     "seed": 42,
     "split": "dev",
-    "customer_id": "N063",
+    "customer_id": "N091",
     "synthetic_customer": true,
-    "address": "25 Nguyễn Trãi, Thanh Xuân, Hà Nội",
+    "address": "144 Lê Duẩn, Buôn Ma Thuột, Đắk Lắk",
     "dates": {
       "call_1": "2026-10-22",
       "call_2": "2026-10-29",
       "call_3": "2026-10-30"
     },
     "choices": {
-      "cust": "N063",
+      "cust": "N091",
       "p": "SKU-SN-RUN1-40-TRANG",
       "d1": "2026-10-22",
       "g1": 7,
       "g2": 1
-    }
+    },
+    "split_by": "instance"
   }
 }

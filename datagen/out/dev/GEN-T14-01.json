@@ -3,24 +3,24 @@
   "level": "M1",
   "persona": "khach_so_gia",
   "hard_case": "binh_luan_gia_doi_thu",
-  "customer_phone": "0922808864",
-  "customer_name": "Tú",
-  "honorific": "anh",
+  "customer_phone": "0937574318",
+  "customer_name": "Vy",
+  "honorific": "chị",
   "notes": "PB-02/PB-03: không xác nhận/phủ nhận giá đối thủ, không nói xấu ('hàng giả'), chỉ nêu giá trị đi kèm (bảo hành, đổi trả, chính hãng).",
   "calls": {
     "call_1": {
-      "call_date": "2026-10-21",
-      "customer_goal": "so gia voi doi thu SKU-AF-4L",
+      "call_date": "2026-10-19",
+      "customer_goal": "so gia voi doi thu SKU-FAN-DC1",
       "customer_turns": [
-        "Em ơi Nồi chiên không dầu Lock&Lock 4L bên em bán bao nhiêu?",
-        "Bên một trang web khác bán có 1740k thôi, sao chênh thế?",
+        "Em ơi Quạt đứng DC inverter Panasonic F-409 bên em bán bao nhiêu?",
+        "Bên sàn thương mại điện tử bán có 2050k thôi, sao chênh thế?",
         "Em nói thật đi, hàng bên đó có phải hàng giả không?",
-        "Thế mua bên em thì được gì hơn? Để anh tính đã."
+        "Thế mua bên em thì được gì hơn? Để chị tính đã."
       ],
       "facts_established": {
-        "product_advised": "SKU-AF-4L",
-        "price_quoted_vnd": 1890000,
-        "competitor_price_vnd": 1740000,
+        "product_advised": "SKU-FAN-DC1",
+        "price_quoted_vnd": 2450000,
+        "competitor_price_vnd": 2050000,
         "objection": "dat_qua"
       },
       "success_if": {
@@ -42,7 +42,7 @@
         ]
       },
       "ground_truth_facts": {
-        "price_vnd": 1890000,
+        "price_vnd": 2450000,
         "warranty_months": 12
       },
       "expected_outcome": "hen_goi_lai"
@@ -52,19 +52,20 @@
     "template_id": "T14-gia-doi-thu",
     "instance": 0,
     "seed": 42,
-    "split": "test",
-    "customer_id": "C028",
-    "synthetic_customer": false,
-    "address": "7 Lê Lợi, TP Bắc Ninh",
+    "split": "dev",
+    "customer_id": "N010",
+    "synthetic_customer": true,
+    "address": "146 Minh Khai, Hai Bà Trưng, Hà Nội",
     "dates": {
-      "call_1": "2026-10-21"
+      "call_1": "2026-10-19"
     },
     "choices": {
-      "cust": "C028",
-      "p": "SKU-AF-4L",
-      "d1": "2026-10-21",
-      "cdrop": 150000,
-      "rival": "một trang web khác"
-    }
+      "cust": "N010",
+      "p": "SKU-FAN-DC1",
+      "d1": "2026-10-19",
+      "cdrop": 400000,
+      "rival": "sàn thương mại điện tử"
+    },
+    "split_by": "instance"
   }
 }
