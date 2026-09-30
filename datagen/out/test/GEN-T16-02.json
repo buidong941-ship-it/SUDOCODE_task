@@ -3,36 +3,36 @@
   "level": "M1",
   "persona": "khach_mua_nhieu_mon",
   "hard_case": "nhieu_mon_vuot_cod_ngan_sach",
-  "customer_phone": "0921199318",
-  "customer_name": "Mai",
-  "honorific": "chị",
-  "notes": "Đơn 3 món: SKU-AP-PRO, SKU-XM-4P, SKU-AP-FLT-P. AIR-2ND-50 giảm 50% máy rẻ hơn (SKU-XM-4P) khi cùng đơn. Tổng 11.425.000đ > 10 triệu → không COD (VC-03), vượt ngân sách 10.000.000đ khách nêu.",
+  "customer_phone": "0902597553",
+  "customer_name": "Long",
+  "honorific": "anh",
+  "notes": "Đơn 3 món: SKU-AP-PRO, SKU-AP-Y, SKU-AP-FLT-P. AIR-2ND-50 giảm 50% máy rẻ hơn (SKU-AP-Y) khi cùng đơn. Tổng 11.280.000đ > 10 triệu → không COD (VC-03), vượt ngân sách 10.000.000đ khách nêu.",
   "calls": {
     "call_1": {
-      "call_date": "2026-10-24",
+      "call_date": "2026-10-14",
       "customer_goal": "mua 2 may loc khong khi + mang loc, ngan sach 10 triệu",
       "customer_turns": [
-        "Alo em, chị cần mua máy lọc không khí cho hai phòng.",
-        "Phòng khách chị lấy AirPure Pro, giá bao nhiêu em?",
-        "Phòng ngủ thì Xiaomi Smart 4 Pro được không, giá bao nhiêu?",
+        "Alo em, anh cần mua máy lọc không khí cho hai phòng.",
+        "Phòng khách anh lấy AirPure Pro, giá bao nhiêu em?",
+        "Phòng ngủ thì AirPure Y được không, giá bao nhiêu?",
         "Mua hai máy cùng lúc có được giảm gì không?",
-        "Lấy thêm cho chị một màng lọc thay thế cho máy AirPure Pro nhé.",
+        "Lấy thêm cho anh một màng lọc thay thế cho máy AirPure Pro nhé.",
         "Tổng cộng hết bao nhiêu em?",
-        "Ngân sách chị có 10 triệu thôi, vượt rồi nhỉ.",
-        "Thôi kệ, chị vẫn lấy đủ, máy tốt dùng lâu.",
+        "Ngân sách anh có 10 triệu thôi, vượt rồi nhỉ.",
+        "Thôi kệ, anh vẫn lấy đủ, máy tốt dùng lâu.",
         "Thanh toán COD được không em?",
-        "Vậy chị chuyển khoản ngân hàng nhé.",
-        "Giao về 30 Phan Đình Phùng, Quy Nhơn, Bình Định.",
-        "Ok em chốt giúp chị."
+        "Vậy anh chuyển khoản ngân hàng nhé.",
+        "Giao về 46 Trần Hưng Đạo, Ninh Kiều, Cần Thơ.",
+        "Ok em chốt giúp anh."
       ],
       "facts_established": {
         "basket": [
           "SKU-AP-PRO",
-          "SKU-XM-4P",
+          "SKU-AP-Y",
           "SKU-AP-FLT-P"
         ],
         "budget_vnd": 10000000,
-        "address": "30 Phan Đình Phùng, Quy Nhơn, Bình Định",
+        "address": "46 Trần Hưng Đạo, Ninh Kiều, Cần Thơ",
         "payment": "bank"
       },
       "success_if": {
@@ -44,17 +44,17 @@
         },
         "also_ordered": [
           "SKU-AP-PRO",
-          "SKU-XM-4P",
+          "SKU-AP-Y",
           "SKU-AP-FLT-P"
         ],
-        "total_match_vnd": 11425000
+        "total_match_vnd": 11280000
       },
       "ground_truth_facts": {
-        "total_vnd": 11425000,
+        "total_vnd": 11280000,
         "cod_allowed": false,
         "cod_limit_vnd": 10000000,
-        "discounted_item_sku": "SKU-XM-4P",
-        "discounted_item_price_vnd": 2745000
+        "discounted_item_sku": "SKU-AP-Y",
+        "discounted_item_price_vnd": 2600000
       },
       "expected_outcome": "chot_don"
     }
@@ -64,17 +64,18 @@
     "instance": 1,
     "seed": 42,
     "split": "test",
-    "customer_id": "N003",
+    "customer_id": "N031",
     "synthetic_customer": true,
-    "address": "30 Phan Đình Phùng, Quy Nhơn, Bình Định",
+    "address": "46 Trần Hưng Đạo, Ninh Kiều, Cần Thơ",
     "dates": {
-      "call_1": "2026-10-24"
+      "call_1": "2026-10-14"
     },
     "choices": {
-      "cust": "N003",
+      "cust": "N031",
       "p1": "SKU-AP-PRO",
-      "p2": "SKU-XM-4P",
-      "d1": "2026-10-24"
-    }
+      "p2": "SKU-AP-Y",
+      "d1": "2026-10-14"
+    },
+    "split_by": "instance"
   }
 }

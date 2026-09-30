@@ -1,37 +1,38 @@
 {
-  "scenario_id": "GEN-T08-02",
+  "scenario_id": "GEN-T08-03",
   "level": "M1",
   "persona": "khach_do_du_hoi_nguoi_nha",
   "hard_case": "het_hang_luc_khach_quyet",
-  "customer_phone": "0929486628",
-  "customer_name": "Nam",
+  "customer_phone": "0922808864",
+  "customer_name": "Tú",
   "honorific": "anh",
-  "notes": "Call_1 còn hàng; call_2 (2026-10-27) SKU-MB-STR1 đã HẾT, chưa có ngày về (NB-02: không được lộ lý do nhà cung cấp). Agent phải kiểm tra tồn kho theo ngày gọi, không được tạo đơn, không hứa giao.",
+  "notes": "Call_1 còn hàng; call_2 (2026-10-23) SKU-SN-RUN2-41-DEN đã HẾT, dự kiến về 2026-10-24. Agent phải kiểm tra tồn kho theo ngày gọi, không được tạo đơn, không hứa giao.",
   "calls": {
     "call_1": {
-      "call_date": "2026-10-24",
-      "customer_goal": "hoi SKU-MB-STR1, can nhac",
+      "call_date": "2026-10-13",
+      "customer_goal": "hoi SKU-SN-RUN2-41-DEN, can nhac",
       "customer_turns": [
-        "Em ơi Xe đẩy gấp gọn Joie Pact giá bao nhiêu, còn hàng không?",
-        "Giao về 139 Quang Trung, Hà Đông, Hà Nội mất mấy ngày em?",
+        "Em ơi Giày chạy bộ RunLite 2 Pro size 41 màu đen giá bao nhiêu, còn hàng không?",
+        "Giao về 135 Lê Lợi, TP Bắc Ninh, Bắc Ninh mất mấy ngày em?",
         "Để anh cân nhắc, vài hôm nữa anh gọi lại chốt nhé."
       ],
       "facts_established": {
-        "product_advised": "SKU-MB-STR1",
-        "price_quoted_vnd": 3490000,
-        "address": "139 Quang Trung, Hà Đông, Hà Nội",
+        "product_advised": "SKU-SN-RUN2",
+        "variant_sku": "SKU-SN-RUN2-41-DEN",
+        "price_quoted_vnd": 1521000,
+        "address": "135 Lê Lợi, TP Bắc Ninh, Bắc Ninh",
         "blocker": "can nhac"
       },
       "expected_outcome": "hen_goi_lai",
       "ground_truth_facts": {
-        "price_vnd": 3490000,
+        "price_vnd": 1521000,
         "in_stock": true
       }
     },
     "call_2": {
-      "days_later": 3,
+      "days_later": 10,
       "customer_turns": [
-        "Alo em, anh gọi lại lấy Xe đẩy gấp gọn Joie Pact hôm trước đây.",
+        "Alo em, anh gọi lại lấy Giày chạy bộ RunLite 2 Pro size 41 màu đen hôm trước đây.",
         "Em lên đơn luôn cho anh nhé.",
         "Thế bao giờ có hàng lại em? Có thì báo anh nhé."
       ],
@@ -61,28 +62,29 @@
         ]
       },
       "ground_truth_facts": {
-        "in_stock": false
+        "in_stock": false,
+        "restock_date": "2026-10-24"
       },
       "expected_outcome": "hen_goi_lai"
     }
   },
   "_meta": {
     "template_id": "T08-het-hang-luc-quyet",
-    "instance": 1,
+    "instance": 2,
     "seed": 42,
-    "split": "dev",
-    "customer_id": "C006",
+    "split": "test",
+    "customer_id": "C028",
     "synthetic_customer": false,
-    "address": "139 Quang Trung, Hà Đông, Hà Nội",
+    "address": "135 Lê Lợi, TP Bắc Ninh, Bắc Ninh",
     "dates": {
-      "call_1": "2026-10-24",
-      "call_2": "2026-10-27"
+      "call_1": "2026-10-13",
+      "call_2": "2026-10-23"
     },
     "choices": {
-      "cust": "C006",
-      "p": "SKU-MB-STR1",
-      "d1": "2026-10-24",
-      "gap": 3
+      "cust": "C028",
+      "p": "SKU-SN-RUN2-41-DEN",
+      "d1": "2026-10-13",
+      "gap": 10
     },
     "split_by": "instance"
   }

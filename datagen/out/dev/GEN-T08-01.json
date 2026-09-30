@@ -3,35 +3,35 @@
   "level": "M1",
   "persona": "khach_do_du_hoi_nguoi_nha",
   "hard_case": "het_hang_luc_khach_quyet",
-  "customer_phone": "0956517883",
-  "customer_name": "Thủy",
+  "customer_phone": "0979298416",
+  "customer_name": "Hương",
   "honorific": "chị",
-  "notes": "Call_1 còn hàng; call_2 (2026-10-25) SKU-MB-STR1 đã HẾT, chưa có ngày về (NB-02: không được lộ lý do nhà cung cấp). Agent phải kiểm tra tồn kho theo ngày gọi, không được tạo đơn, không hứa giao.",
+  "notes": "Call_1 còn hàng; call_2 (2026-10-19) SKU-AP-PRO đã HẾT, dự kiến về 2026-10-21. Agent phải kiểm tra tồn kho theo ngày gọi, không được tạo đơn, không hứa giao.",
   "calls": {
     "call_1": {
-      "call_date": "2026-10-16",
-      "customer_goal": "hoi SKU-MB-STR1, can nhac",
+      "call_date": "2026-10-15",
+      "customer_goal": "hoi SKU-AP-PRO, can nhac",
       "customer_turns": [
-        "Em ơi Xe đẩy gấp gọn Joie Pact giá bao nhiêu, còn hàng không?",
-        "Giao về 12 Lê Lợi, TP Huế mất mấy ngày em?",
+        "Em ơi Máy lọc không khí AirPure Pro giá bao nhiêu, còn hàng không?",
+        "Giao về 153 Hùng Vương, TP Việt Trì, Phú Thọ mất mấy ngày em?",
         "Để chị cân nhắc, vài hôm nữa chị gọi lại chốt nhé."
       ],
       "facts_established": {
-        "product_advised": "SKU-MB-STR1",
-        "price_quoted_vnd": 3490000,
-        "address": "12 Lê Lợi, TP Huế",
+        "product_advised": "SKU-AP-PRO",
+        "price_quoted_vnd": 7690000,
+        "address": "153 Hùng Vương, TP Việt Trì, Phú Thọ",
         "blocker": "can nhac"
       },
       "expected_outcome": "hen_goi_lai",
       "ground_truth_facts": {
-        "price_vnd": 3490000,
+        "price_vnd": 7690000,
         "in_stock": true
       }
     },
     "call_2": {
-      "days_later": 9,
+      "days_later": 4,
       "customer_turns": [
-        "Alo em, chị gọi lại lấy Xe đẩy gấp gọn Joie Pact hôm trước đây.",
+        "Alo em, chị gọi lại lấy Máy lọc không khí AirPure Pro hôm trước đây.",
         "Em lên đơn luôn cho chị nhé.",
         "Thế bao giờ có hàng lại em? Có thì báo chị nhé."
       ],
@@ -61,7 +61,8 @@
         ]
       },
       "ground_truth_facts": {
-        "in_stock": false
+        "in_stock": false,
+        "restock_date": "2026-10-21"
       },
       "expected_outcome": "hen_goi_lai"
     }
@@ -71,18 +72,19 @@
     "instance": 0,
     "seed": 42,
     "split": "dev",
-    "customer_id": "C050",
+    "customer_id": "C005",
     "synthetic_customer": false,
-    "address": "12 Lê Lợi, TP Huế",
+    "address": "153 Hùng Vương, TP Việt Trì, Phú Thọ",
     "dates": {
-      "call_1": "2026-10-16",
-      "call_2": "2026-10-25"
+      "call_1": "2026-10-15",
+      "call_2": "2026-10-19"
     },
     "choices": {
-      "cust": "C050",
-      "p": "SKU-MB-STR1",
-      "d1": "2026-10-16",
-      "gap": 9
-    }
+      "cust": "C005",
+      "p": "SKU-AP-PRO",
+      "d1": "2026-10-15",
+      "gap": 4
+    },
+    "split_by": "instance"
   }
 }

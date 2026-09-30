@@ -1,33 +1,33 @@
 {
-  "scenario_id": "GEN-T09-02",
+  "scenario_id": "GEN-T09-01",
   "level": "M1",
   "persona": "khach_so_gia",
   "hard_case": "km_loai_tru_size",
-  "customer_phone": "0954742843",
-  "customer_name": "Giang",
-  "honorific": "chị",
+  "customer_phone": "0925877188",
+  "customer_name": "Huy",
+  "honorific": "anh",
   "notes": "RUN-10 loại trừ size 43 (đã có phụ thu size lớn, KM-02). Giá đúng size 43 = 1.340.000đ (niêm yết 1.290.000đ + phụ thu 50.000đ). Agent không được áp 10% cho size 43.",
   "calls": {
     "call_1": {
-      "call_date": "2026-10-18",
-      "customer_goal": "mua SKU-SN-RUN1-43-DEN, tuong duoc giam 10%",
+      "call_date": "2026-10-15",
+      "customer_goal": "mua SKU-SN-RUN1-43-XAM, tuong duoc giam 10%",
       "customer_turns": [
         "Shop ơi Giày chạy bộ RunLite 1 đang giảm 10% phải không em?",
-        "Chị đi size 43 màu đen, vậy giảm xong còn 1161k đúng không?",
+        "Anh đi size 43 màu xám, vậy giảm xong còn 1161k đúng không?",
         "Sao size 43 lại không được giảm?",
-        "Thôi được, lên đơn size 43 cho chị, giao về 88 Lê Duẩn, Buôn Ma Thuột, Đắk Lắk."
+        "Thôi được, lên đơn size 43 cho anh, giao về 193 Ngô Quyền, Sơn Trà, Đà Nẵng."
       ],
       "facts_established": {
         "product_advised": "SKU-SN-RUN1",
-        "variant_sku": "SKU-SN-RUN1-43-DEN",
+        "variant_sku": "SKU-SN-RUN1-43-XAM",
         "size": 43,
-        "color": "den",
+        "color": "xam",
         "price_quoted_vnd": 1340000
       },
       "success_if": {
         "tool_called": "order.create",
         "args_match": {
-          "sku": "SKU-SN-RUN1-43-DEN",
+          "sku": "SKU-SN-RUN1-43-XAM",
           "price_vnd": 1340000
         },
         "forbidden_claims": [
@@ -52,19 +52,19 @@
   },
   "_meta": {
     "template_id": "T09-km-loai-tru-size",
-    "instance": 1,
+    "instance": 0,
     "seed": 42,
-    "split": "test",
-    "customer_id": "C048",
+    "split": "dev",
+    "customer_id": "C014",
     "synthetic_customer": false,
-    "address": "88 Lê Duẩn, Buôn Ma Thuột, Đắk Lắk",
+    "address": "193 Ngô Quyền, Sơn Trà, Đà Nẵng",
     "dates": {
-      "call_1": "2026-10-18"
+      "call_1": "2026-10-15"
     },
     "choices": {
-      "cust": "C048",
-      "p": "SKU-SN-RUN1-43-DEN",
-      "d1": "2026-10-18"
+      "cust": "C014",
+      "p": "SKU-SN-RUN1-43-XAM",
+      "d1": "2026-10-15"
     },
     "split_by": "instance"
   }

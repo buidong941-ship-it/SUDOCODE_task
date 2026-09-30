@@ -3,15 +3,15 @@
   "level": "M1",
   "persona": "khach_da_kenh_mau_thuan",
   "hard_case": "3_kenh_bao_gia_lech",
-  "customer_phone": "0956686740",
-  "customer_name": "Hà",
-  "honorific": "chị",
+  "customer_phone": "0970266397",
+  "customer_name": "Hùng",
+  "honorific": "anh",
   "notes": "Fanpage (2026-10-25) báo 1.161.000đ theo RUN-10; Zalo (2026-10-31) báo 1.290.000đ vì RUN-10 hết 25/10. Hotline phải hợp nhất 3 kênh, giải thích lệch do KM theo thời điểm (PB-07), chốt đúng giá hiện tại.",
   "calls": {
     "call_1": {
       "call_date": "2026-10-25",
       "channel": "chat_fanpage",
-      "channel_identity": "fb.ha.608",
+      "channel_identity": "fb.hung.556",
       "customer_goal": "hoi gia SKU-SN-RUN1 qua fanpage",
       "customer_turns": [
         "shop oi Giày chạy bộ RunLite 1 size 41 màu đen gia bn",
@@ -29,17 +29,17 @@
     "call_2": {
       "days_later": 6,
       "channel": "zalo_oa",
-      "channel_identity": "zalo_ha25",
+      "channel_identity": "zalo_hung63",
       "input_mode": "chat_teencode",
       "customer_turns_asr": [
         "e oi runlite 1 size 41 gia bn v",
         "sao ben facebook bao re hon",
-        "ok de c xem"
+        "ok de a xem"
       ],
       "customer_turns": [
         "Em ơi RunLite 1 size 41 giá bao nhiêu vậy?",
         "Sao bên Facebook báo rẻ hơn?",
-        "Ok để chị xem."
+        "Ok để anh xem."
       ],
       "must_carry_over": [
         "product_advised",
@@ -63,9 +63,9 @@
       "days_later": 2,
       "channel": "hotline",
       "customer_turns": [
-        "Alo, chị hỏi RunLite 1: Facebook báo 1161k, Zalo lại báo 1290k, rốt cuộc giá nào vậy em?",
+        "Alo, anh hỏi RunLite 1: Facebook báo 1161k, Zalo lại báo 1290k, rốt cuộc giá nào vậy em?",
         "Sao mỗi chỗ nói một kiểu thế?",
-        "Thôi lấy giá 1290k cũng được, lên đơn cho chị."
+        "Thôi lấy giá 1290k cũng được, lên đơn cho anh."
       ],
       "must_carry_over": [
         "product_advised",
@@ -108,21 +108,22 @@
     "template_id": "T25-3-kenh-bao-gia-lech",
     "instance": 1,
     "seed": 42,
-    "split": "dev",
-    "customer_id": "N068",
+    "split": "test",
+    "customer_id": "N096",
     "synthetic_customer": true,
-    "address": "7 Lê Lợi, TP Bắc Ninh",
+    "address": "134 Lê Lợi, TP Huế, Thừa Thiên Huế",
     "dates": {
       "call_1": "2026-10-25",
       "call_2": "2026-10-31",
       "call_3": "2026-11-02"
     },
     "choices": {
-      "cust": "N068",
+      "cust": "N096",
       "p": "SKU-SN-RUN1-41-DEN",
       "d1": "2026-10-25",
       "g1": 6,
       "g2": 2
-    }
+    },
+    "split_by": "instance"
   }
 }

@@ -41,13 +41,14 @@
     "split": "dev",
     "customer_id": "C032",
     "synthetic_customer": false,
-    "address": "30 Phan Đình Phùng, Quy Nhơn, Bình Định",
+    "address": "69 Lê Lợi, TP Huế, Thừa Thiên Huế",
     "dates": {
       "call_1": "2026-10-17"
     },
     "choices": {
       "cust": "C032",
       "d1": "2026-10-17"
-    }
+    },
+    "split_by": "template"
   }
 }

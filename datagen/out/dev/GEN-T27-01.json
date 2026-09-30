@@ -3,39 +3,39 @@
   "level": "M1",
   "persona": "khach_hoi_nhieu_khong_mua",
   "hard_case": null,
-  "customer_phone": "0980737028",
-  "customer_name": "Mai",
+  "customer_phone": "0949066882",
+  "customer_name": "Phương",
   "honorific": "chị",
   "notes": "Khách miền Nam → NAM-SHIP0 (freeship theo địa chỉ giao, stackable). Cuộc 2 chốt, không hỏi lại số người/địa chỉ.",
   "calls": {
     "call_1": {
-      "call_date": "2026-10-19",
-      "customer_goal": "hoi Máy lọc nước RO Kangaroo 10 lõi cho nha 5 nguoi",
+      "call_date": "2026-10-15",
+      "customer_goal": "hoi Máy lọc nước RO Karofi 9 lõi cho nha 2 nguoi",
       "customer_turns": [
-        "Em ơi Máy lọc nước RO Kangaroo 10 lõi nhà 5 người dùng có hợp không?",
-        "Giá bao nhiêu, giao về 120 Nguyễn Thị Thập, Quận 7, TP HCM có mất phí ship không em?",
+        "Em ơi Máy lọc nước RO Karofi 9 lõi nhà 2 người dùng có hợp không?",
+        "Giá bao nhiêu, giao về 81 Võ Văn Ngân, Thủ Đức, TP HCM có mất phí ship không em?",
         "Bảo hành mấy tháng em?",
         "Để chị xem thêm vài mẫu đã nhé."
       ],
       "facts_established": {
-        "product_advised": "SKU-WF-RO10",
-        "household_size": 5,
-        "address": "120 Nguyễn Thị Thập, Quận 7, TP HCM",
-        "price_quoted_vnd": 6890000,
+        "product_advised": "SKU-WF-RO9",
+        "household_size": 2,
+        "address": "81 Võ Văn Ngân, Thủ Đức, TP HCM",
+        "price_quoted_vnd": 5990000,
         "blocker": "xem them"
       },
       "expected_outcome": "hen_goi_lai",
       "ground_truth_facts": {
-        "price_vnd": 6890000,
+        "price_vnd": 5990000,
         "freeship": true,
         "promo_NAM-SHIP0_active": true,
         "warranty_months": 36
       }
     },
     "call_2": {
-      "days_later": 2,
+      "days_later": 3,
       "customer_turns": [
-        "Alo em, chị gọi lại về RO Kangaroo 10 lõi hôm trước.",
+        "Alo em, chị gọi lại về RO Karofi 9 lõi hôm trước.",
         "Ok chị lấy, giao chỗ cũ nhé, COD."
       ],
       "must_carry_over": [
@@ -51,13 +51,13 @@
       "success_if": {
         "tool_called": "order.create",
         "args_match": {
-          "sku": "SKU-WF-RO10",
-          "price_vnd": 6890000,
+          "sku": "SKU-WF-RO9",
+          "price_vnd": 5990000,
           "payment": "COD"
         }
       },
       "ground_truth_facts": {
-        "price_vnd": 6890000,
+        "price_vnd": 5990000,
         "freeship": true,
         "in_stock": true,
         "delivery_days": 2
@@ -69,18 +69,19 @@
     "instance": 0,
     "seed": 42,
     "split": "dev",
-    "customer_id": "C011",
+    "customer_id": "C036",
     "synthetic_customer": false,
-    "address": "120 Nguyễn Thị Thập, Quận 7, TP HCM",
+    "address": "81 Võ Văn Ngân, Thủ Đức, TP HCM",
     "dates": {
-      "call_1": "2026-10-19",
-      "call_2": "2026-10-21"
+      "call_1": "2026-10-15",
+      "call_2": "2026-10-18"
     },
     "choices": {
-      "cust": "C011",
-      "p": "SKU-WF-RO10",
-      "d1": "2026-10-19",
-      "gap": 2
-    }
+      "cust": "C036",
+      "p": "SKU-WF-RO9",
+      "d1": "2026-10-15",
+      "gap": 3
+    },
+    "split_by": "template"
   }
 }

@@ -3,9 +3,9 @@
   "level": "M1",
   "persona": "khach_so_gia",
   "hard_case": null,
-  "customer_phone": "0954742843",
-  "customer_name": "Giang",
-  "honorific": "chị",
+  "customer_phone": "0960454146",
+  "customer_name": "Kiên",
+  "honorific": "anh",
   "notes": "Agent KHÔNG được tự bịa giảm giá để chốt, không xác nhận/phủ nhận giá đối thủ (PB-02). Giá ở cuộc 2 phải bằng giá đã báo.",
   "calls": {
     "call_1": {
@@ -13,8 +13,8 @@
       "customer_goal": "so gia SKU-AP-PRO voi ben khac",
       "customer_turns": [
         "Em ơi Máy lọc không khí AirPure Pro bên em giá bao nhiêu?",
-        "Bên kia chị thấy đang bán 7390k thôi, sao bên em đắt hơn?",
-        "Thế bảo hành thế nào? Chị cân nhắc thêm rồi báo lại."
+        "Bên kia anh thấy đang bán 7390k thôi, sao bên em đắt hơn?",
+        "Thế bảo hành thế nào? Anh cân nhắc thêm rồi báo lại."
       ],
       "facts_established": {
         "product_advised": "SKU-AP-PRO",
@@ -29,9 +29,9 @@
     "call_2": {
       "days_later": 5,
       "customer_turns": [
-        "Chị gọi lại vụ Máy lọc không khí AirPure Pro hôm trước.",
+        "Anh gọi lại vụ Máy lọc không khí AirPure Pro hôm trước.",
         "Nếu bên em không giảm thêm được thì có tặng gì kèm không?",
-        "Thôi được, chị lấy cái đó, giao về 88 Trần Phú, Nha Trang, Khánh Hòa trong tuần này nhé."
+        "Thôi được, anh lấy cái đó, giao về 59 Lê Lợi, TP Huế, Thừa Thiên Huế trong tuần này nhé."
       ],
       "must_carry_over": [
         "product_advised",
@@ -64,19 +64,20 @@
     "instance": 0,
     "seed": 42,
     "split": "dev",
-    "customer_id": "C048",
+    "customer_id": "C024",
     "synthetic_customer": false,
-    "address": "88 Trần Phú, Nha Trang, Khánh Hòa",
+    "address": "59 Lê Lợi, TP Huế, Thừa Thiên Huế",
     "dates": {
       "call_1": "2026-10-16",
       "call_2": "2026-10-21"
     },
     "choices": {
-      "cust": "C048",
+      "cust": "C024",
       "p": "SKU-AP-PRO",
       "d1": "2026-10-16",
       "gap": 5,
       "cdrop": 300000
-    }
+    },
+    "split_by": "template"
   }
 }

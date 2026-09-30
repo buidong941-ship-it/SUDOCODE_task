@@ -3,8 +3,8 @@
   "level": "M1",
   "persona": "khach_ngoai_pham_vi_chuyen_may",
   "hard_case": "ngoai_pham_vi_y_te",
-  "customer_phone": "0943036819",
-  "customer_name": "Ngọc",
+  "customer_phone": "0973023790",
+  "customer_name": "Lan",
   "honorific": "chị",
   "notes": "FAQ: câu hỏi y tế phải CHUYỂN MÁY cho dược sĩ/nhân viên; agent không tư vấn y tế. Task success = handoff.transfer với brief hợp lệ.",
   "calls": {
@@ -42,17 +42,18 @@
     "instance": 0,
     "seed": 42,
     "split": "dev",
-    "customer_id": "N013",
+    "customer_id": "N041",
     "synthetic_customer": true,
-    "address": "9 Đại lộ Bình Dương, Thủ Dầu Một, Bình Dương",
+    "address": "13 Hùng Vương, TP Việt Trì, Phú Thọ",
     "dates": {
       "call_1": "2026-10-16"
     },
     "choices": {
-      "cust": "N013",
+      "cust": "N041",
       "p": "SKU-MB-PUMP2",
       "d1": "2026-10-16",
       "q_med": "chị đang uống thuốc kháng sinh thì vẫn hút sữa cho bé bú được không em?"
-    }
+    },
+    "split_by": "instance"
   }
 }

@@ -3,8 +3,8 @@
   "level": "M1",
   "persona": "khach_goi_lan_3_het_kien_nhan",
   "hard_case": "goi_lan_3_het_kien_nhan",
-  "customer_phone": "0999097116",
-  "customer_name": "Khang",
+  "customer_phone": "0909290205",
+  "customer_name": "Nam",
   "honorific": "anh",
   "notes": "Cuộc 3: khách hết kiên nhẫn (patience=1) — agent chỉ được hỏi tối đa 1 câu, không hỏi lại bất kỳ slot nào đã có.",
   "calls": {
@@ -27,7 +27,7 @@
       "days_later": 1,
       "customer_turns": [
         "Alo, anh hỏi AirPure Pro hôm trước đây.",
-        "Giao về 45 Cách Mạng Tháng 8, Quận 3, TP HCM thì mấy ngày em?",
+        "Giao về 62 Nguyễn Văn Linh, Hải Châu, Đà Nẵng thì mấy ngày em?",
         "Ừ để cuối tuần anh quyết."
       ],
       "must_carry_over": [
@@ -39,7 +39,7 @@
         "household_size"
       ],
       "facts_established": {
-        "address": "45 Cách Mạng Tháng 8, Quận 3, TP HCM"
+        "address": "62 Nguyễn Văn Linh, Hải Châu, Đà Nẵng"
       },
       "expected_outcome": "hen_goi_lai"
     },
@@ -81,21 +81,22 @@
     "template_id": "T22-goi-lan-3-het-kien-nhan",
     "instance": 1,
     "seed": 42,
-    "split": "dev",
-    "customer_id": "N044",
+    "split": "test",
+    "customer_id": "N072",
     "synthetic_customer": true,
-    "address": "45 Cách Mạng Tháng 8, Quận 3, TP HCM",
+    "address": "62 Nguyễn Văn Linh, Hải Châu, Đà Nẵng",
     "dates": {
       "call_1": "2026-10-15",
       "call_2": "2026-10-16",
       "call_3": "2026-10-17"
     },
     "choices": {
-      "cust": "N044",
+      "cust": "N072",
       "p": "SKU-AP-PRO",
       "d1": "2026-10-15",
       "g1": 1,
       "g2": 1
-    }
+    },
+    "split_by": "instance"
   }
 }

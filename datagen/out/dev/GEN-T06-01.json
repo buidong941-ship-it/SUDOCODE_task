@@ -3,31 +3,31 @@
   "level": "M1",
   "persona": "khach_do_du_hoi_nguoi_nha",
   "hard_case": "asr_loi_va_teencode",
-  "customer_phone": "0911265844",
-  "customer_name": "Toàn",
-  "honorific": "anh",
-  "notes": "Script chấm đưa customer_turns_asr vào hệ thống. Call_1: SKU-AP-PRO đang HẾT hàng, dự kiến về 2026-10-21 → agent không được hứa giao ngay. Call_2 (2026-10-24): đã có hàng; KM áp dụng: NAM-SHIP0, COD-0, AIR-OCT.",
+  "customer_phone": "0930048764",
+  "customer_name": "Hà",
+  "honorific": "chị",
+  "notes": "Script chấm đưa customer_turns_asr vào hệ thống. Call_1: SKU-AP-PRO đang HẾT hàng, dự kiến về 2026-10-21 → agent không được hứa giao ngay. Call_2 (2026-10-23): đã có hàng; KM áp dụng: COD-0, AIR-OCT.",
   "calls": {
     "call_1": {
-      "call_date": "2026-10-19",
+      "call_date": "2026-10-18",
       "customer_goal": "hoi may loc khong khi, transcript ASR loi",
       "input_mode": "asr_transcript",
       "customer_turns_asr": [
-        "a lô cho anh hỏi máy lọc không khí e pia pờ rô giá bao nhiêu",
-        "phòng anh bốn mươi mét vuông có được không",
-        "ngân sách anh tầm tám triệu thôi để anh hỏi vợ đã"
+        "a lô cho chị hỏi máy lọc không khí e pia pờ rô giá bao nhiêu",
+        "phòng chị ba mươi lăm mét vuông có được không",
+        "ngân sách chị tầm tám triệu thôi để chị hỏi chồng đã"
       ],
       "customer_turns": [
-        "Alo cho anh hỏi máy lọc không khí AirPure Pro giá bao nhiêu?",
-        "Phòng anh 40m² có được không?",
-        "Ngân sách anh tầm 8 triệu thôi, để anh hỏi vợ đã."
+        "Alo cho chị hỏi máy lọc không khí AirPure Pro giá bao nhiêu?",
+        "Phòng chị 35m² có được không?",
+        "Ngân sách chị tầm 8 triệu thôi, để chị hỏi chồng đã."
       ],
       "facts_established": {
         "product_advised": "SKU-AP-PRO",
-        "room_area_m2": 40,
+        "room_area_m2": 35,
         "budget_vnd": 8000000,
         "price_quoted_vnd": 7690000,
-        "blocker": "can hoi vo"
+        "blocker": "can hoi chong"
       },
       "expected_outcome": "hen_goi_lai",
       "ground_truth_facts": {
@@ -39,17 +39,17 @@
     "call_2": {
       "days_later": 5,
       "channel": "zalo_oa",
-      "channel_identity": "zalo_toàn15",
+      "channel_identity": "zalo_hà50",
       "input_mode": "chat_teencode",
       "customer_turns_asr": [
-        "e oi hom truoc a hoi cai airpure pro",
-        "vo a ok r, sp nay co ship cod k, a o 45 cach mang thang 8, quan 3, tp hcm",
-        "ok len don cho a nhe"
+        "e oi hom truoc c hoi cai airpure pro",
+        "chong c ok r, sp nay co ship cod k, c o 22 lach tray, ngo quyen, hai phong",
+        "ok len don cho c nhe"
       ],
       "customer_turns": [
-        "Em ơi hôm trước anh hỏi cái AirPure Pro.",
-        "Vợ anh ok rồi, sản phẩm này có ship COD không, anh ở 45 Cách Mạng Tháng 8, Quận 3, TP HCM.",
-        "Ok lên đơn cho anh nhé."
+        "Em ơi hôm trước chị hỏi cái AirPure Pro.",
+        "Chồng chị ok rồi, sản phẩm này có ship COD không, chị ở 22 Lạch Tray, Ngô Quyền, Hải Phòng.",
+        "Ok lên đơn cho chị nhé."
       ],
       "must_carry_over": [
         "product_advised",
@@ -73,8 +73,7 @@
         "price_vnd": 7690000,
         "in_stock": true,
         "restock_date": "2026-10-21",
-        "freeship": true,
-        "promo_NAM-SHIP0_active": true
+        "freeship": true
       }
     }
   },
@@ -83,18 +82,19 @@
     "instance": 0,
     "seed": 42,
     "split": "dev",
-    "customer_id": "C037",
+    "customer_id": "C029",
     "synthetic_customer": false,
-    "address": "45 Cách Mạng Tháng 8, Quận 3, TP HCM",
+    "address": "22 Lạch Tray, Ngô Quyền, Hải Phòng",
     "dates": {
-      "call_1": "2026-10-19",
-      "call_2": "2026-10-24"
+      "call_1": "2026-10-18",
+      "call_2": "2026-10-23"
     },
     "choices": {
-      "cust": "C037",
+      "cust": "C029",
       "p": "SKU-AP-PRO",
-      "d1": "2026-10-19",
+      "d1": "2026-10-18",
       "gap": 5
-    }
+    },
+    "split_by": "instance"
   }
 }

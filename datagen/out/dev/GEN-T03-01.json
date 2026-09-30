@@ -3,9 +3,9 @@
   "level": "M1",
   "persona": "khach_da_mua_doi_size",
   "hard_case": null,
-  "customer_phone": "0925877188",
-  "customer_name": "Huy",
-  "honorific": "anh",
+  "customer_phone": "0992566636",
+  "customer_name": "Chi",
+  "honorific": "chị",
   "notes": "Cuộc 2 (Case 3): hệ thống phải biết đơn nào, size/màu nào; áp chính sách đổi trả 7 ngày miễn phí đổi size lần đầu (DT-03).",
   "calls": {
     "call_1": {
@@ -14,7 +14,7 @@
       "customer_turns": [
         "Em ơi Giày sneaker Urban Classic còn size 41 màu đen không?",
         "Giá bao nhiêu, có giảm gì không em?",
-        "Ok em lên đơn cho anh, thanh toán COD nhé."
+        "Ok em lên đơn cho chị, thanh toán COD nhé."
       ],
       "facts_established": {
         "product_advised": "SKU-SN-CAS",
@@ -22,7 +22,7 @@
         "size": 41,
         "color": "den",
         "price_quoted_vnd": 890000,
-        "order_id": "OD357544",
+        "order_id": "OD165796",
         "payment": "COD"
       },
       "expected_outcome": "chot_don"
@@ -30,9 +30,9 @@
     "call_2": {
       "days_later": 3,
       "customer_turns": [
-        "Alo, anh mới nhận giày hôm qua mà size 41 hơi chật.",
+        "Alo, chị mới nhận giày hôm qua mà size 41 hơi chật.",
         "Đổi lên size 42 được không em? Mất phí gì không?",
-        "Ừ em làm thủ tục đổi cho anh nhé."
+        "Ừ em làm thủ tục đổi cho chị nhé."
       ],
       "must_carry_over": [
         "order_id",
@@ -49,7 +49,7 @@
       "success_if": {
         "tool_called": "order.update",
         "args_match": {
-          "order_id": "OD357544",
+          "order_id": "OD165796",
           "new_variant_sku": "SKU-SN-CAS-42-DEN",
           "action": "exchange_size"
         }
@@ -67,18 +67,19 @@
     "instance": 0,
     "seed": 42,
     "split": "dev",
-    "customer_id": "C014",
+    "customer_id": "C027",
     "synthetic_customer": false,
-    "address": "30 Phan Đình Phùng, Quy Nhơn, Bình Định",
+    "address": "197 Minh Khai, Hai Bà Trưng, Hà Nội",
     "dates": {
       "call_1": "2026-10-14",
       "call_2": "2026-10-17"
     },
     "choices": {
-      "cust": "C014",
+      "cust": "C027",
       "p": "SKU-SN-CAS-41-DEN",
       "d1": "2026-10-14",
       "gap": 3
-    }
+    },
+    "split_by": "template"
   }
 }

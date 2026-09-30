@@ -1,40 +1,40 @@
 {
-  "scenario_id": "GEN-T26-01",
+  "scenario_id": "GEN-T26-02",
   "level": "M1",
   "persona": "khach_do_du_hoi_nguoi_nha",
   "hard_case": null,
-  "customer_phone": "0932448452",
-  "customer_name": "Diệp",
+  "customer_phone": "0965237355",
+  "customer_name": "Xuân",
   "honorific": "chị",
   "notes": "Mẹ & bé: KM freeship MOM-FREESHIP (đơn ≥500k) cộng dồn; không tư vấn y tế. Cuộc 2 không hỏi lại tuổi bé / sản phẩm.",
   "calls": {
     "call_1": {
-      "call_date": "2026-10-13",
-      "customer_goal": "hoi Máy hút sữa điện đôi Spectra S1 cho be 4 tháng",
+      "call_date": "2026-10-14",
+      "customer_goal": "hoi Ghế ngồi ô tô cho bé Chicco cho be 6 tháng",
       "customer_turns": [
-        "Em ơi chị đang tìm Máy hút sữa điện đôi Spectra S1, bé nhà chị 4 tháng.",
+        "Em ơi chị đang tìm Ghế ngồi ô tô cho bé Chicco, bé nhà chị 6 tháng.",
         "Giá bao nhiêu em, có được miễn ship không?",
         "Bảo hành bao lâu em?",
         "Để chị bàn với chồng tối nay rồi chị nhắn lại."
       ],
       "facts_established": {
-        "product_advised": "SKU-MB-PUMP1",
-        "baby_age": "4 tháng",
-        "price_quoted_vnd": 4290000,
+        "product_advised": "SKU-MB-CAR",
+        "baby_age": "6 tháng",
+        "price_quoted_vnd": 4990000,
         "blocker": "can hoi chong"
       },
       "expected_outcome": "hen_goi_lai",
       "ground_truth_facts": {
-        "price_vnd": 4290000,
+        "price_vnd": 4990000,
         "warranty_months": 12,
         "freeship": true
       }
     },
     "call_2": {
-      "days_later": 3,
+      "days_later": 2,
       "customer_turns": [
-        "Alo em, hôm trước chị hỏi Spectra S1 cho bé đó.",
-        "Chồng chị ok rồi, em lên đơn giao về 56 Nguyễn Văn Linh, Hải Châu, Đà Nẵng nhé.",
+        "Alo em, hôm trước chị hỏi Chicco cho bé đó.",
+        "Chồng chị ok rồi, em lên đơn giao về 56 Võ Văn Ngân, Thủ Đức, TP HCM nhé.",
         "Thanh toán khi nhận hàng nhé em."
       ],
       "must_carry_over": [
@@ -49,13 +49,13 @@
       "success_if": {
         "tool_called": "order.create",
         "args_match": {
-          "sku": "SKU-MB-PUMP1",
-          "price_vnd": 4290000,
+          "sku": "SKU-MB-CAR",
+          "price_vnd": 4990000,
           "payment": "COD"
         }
       },
       "ground_truth_facts": {
-        "price_vnd": 4290000,
+        "price_vnd": 4990000,
         "in_stock": true,
         "freeship": true
       }
@@ -63,21 +63,22 @@
   },
   "_meta": {
     "template_id": "T26-me-be-qua-tang",
-    "instance": 0,
+    "instance": 1,
     "seed": 42,
-    "split": "dev",
-    "customer_id": "C038",
+    "split": "test",
+    "customer_id": "C046",
     "synthetic_customer": false,
-    "address": "56 Nguyễn Văn Linh, Hải Châu, Đà Nẵng",
+    "address": "56 Võ Văn Ngân, Thủ Đức, TP HCM",
     "dates": {
-      "call_1": "2026-10-13",
+      "call_1": "2026-10-14",
       "call_2": "2026-10-16"
     },
     "choices": {
-      "cust": "C038",
-      "p": "SKU-MB-PUMP1",
-      "d1": "2026-10-13",
-      "gap": 3
-    }
+      "cust": "C046",
+      "p": "SKU-MB-CAR",
+      "d1": "2026-10-14",
+      "gap": 2
+    },
+    "split_by": "template"
   }
 }

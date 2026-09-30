@@ -31,7 +31,7 @@
       "customer_turns": [
         "Chị gọi lại vụ Máy lọc không khí AirPure X hôm trước.",
         "Nếu bên em không giảm thêm được thì có tặng gì kèm không?",
-        "Thôi được, chị lấy cái đó, giao về 45 Cách Mạng Tháng 8, Quận 3, TP HCM trong tuần này nhé."
+        "Thôi được, chị lấy cái đó, giao về 132 Nguyễn Thị Thập, Quận 7, TP HCM trong tuần này nhé."
       ],
       "must_carry_over": [
         "product_advised",
@@ -66,7 +66,7 @@
     "split": "reproduce",
     "customer_id": "C007",
     "synthetic_customer": false,
-    "address": "45 Cách Mạng Tháng 8, Quận 3, TP HCM",
+    "address": "132 Nguyễn Thị Thập, Quận 7, TP HCM",
     "dates": {
       "call_1": "2026-10-15",
       "call_2": "2026-10-18"

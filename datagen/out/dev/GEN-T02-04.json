@@ -1,37 +1,37 @@
 {
-  "scenario_id": "GEN-T02-03",
+  "scenario_id": "GEN-T02-04",
   "level": "M1",
   "persona": "khach_so_gia",
   "hard_case": null,
-  "customer_phone": "0932448452",
-  "customer_name": "Diệp",
+  "customer_phone": "0913301756",
+  "customer_name": "Vy",
   "honorific": "chị",
   "notes": "Agent KHÔNG được tự bịa giảm giá để chốt, không xác nhận/phủ nhận giá đối thủ (PB-02). Giá ở cuộc 2 phải bằng giá đã báo.",
   "calls": {
     "call_1": {
-      "call_date": "2026-10-19",
-      "customer_goal": "so gia SKU-SS-AX40 voi ben khac",
+      "call_date": "2026-10-20",
+      "customer_goal": "so gia SKU-WF-RO9 voi ben khac",
       "customer_turns": [
-        "Em ơi Máy lọc không khí Samsung AX40 bên em giá bao nhiêu?",
-        "Bên kia chị thấy đang bán 6090k thôi, sao bên em đắt hơn?",
+        "Em ơi Máy lọc nước RO Karofi 9 lõi bên em giá bao nhiêu?",
+        "Bên kia chị thấy đang bán 5790k thôi, sao bên em đắt hơn?",
         "Thế bảo hành thế nào? Chị cân nhắc thêm rồi báo lại."
       ],
       "facts_established": {
-        "product_advised": "SKU-SS-AX40",
-        "price_quoted_vnd": 6490000,
-        "competitor_price_vnd": 6090000,
+        "product_advised": "SKU-WF-RO9",
+        "price_quoted_vnd": 5990000,
+        "competitor_price_vnd": 5790000,
         "objection": "dat_qua",
-        "alt_suggested": "SKU-XM-4P",
+        "alt_suggested": "SKU-WF-UF",
         "blocker": "so sanh gia"
       },
       "expected_outcome": "hen_goi_lai"
     },
     "call_2": {
-      "days_later": 2,
+      "days_later": 4,
       "customer_turns": [
-        "Chị gọi lại vụ Máy lọc không khí Samsung AX40 hôm trước.",
+        "Chị gọi lại vụ Máy lọc nước RO Karofi 9 lõi hôm trước.",
         "Nếu bên em không giảm thêm được thì có tặng gì kèm không?",
-        "Thôi được, chị lấy cái đó, giao về 136 Nguyễn Văn Linh, Hải Châu, Đà Nẵng trong tuần này nhé."
+        "Thôi được, chị lấy cái đó, giao về 115 Nguyễn Thị Thập, Quận 7, TP HCM trong tuần này nhé."
       ],
       "must_carry_over": [
         "product_advised",
@@ -46,13 +46,13 @@
       "success_if": {
         "tool_called": "order.create",
         "args_match": {
-          "sku": "SKU-SS-AX40",
-          "price_vnd": 6490000
+          "sku": "SKU-WF-RO9",
+          "price_vnd": 5990000
         }
       },
       "ground_truth_facts": {
-        "price_vnd": 6490000,
-        "warranty_months": 24,
+        "price_vnd": 5990000,
+        "warranty_months": 36,
         "promo_active": false,
         "in_stock": true,
         "delivery_days": 2
@@ -61,22 +61,22 @@
   },
   "_meta": {
     "template_id": "T02-so-gia",
-    "instance": 2,
+    "instance": 3,
     "seed": 42,
     "split": "dev",
-    "customer_id": "C038",
+    "customer_id": "C015",
     "synthetic_customer": false,
-    "address": "136 Nguyễn Văn Linh, Hải Châu, Đà Nẵng",
+    "address": "115 Nguyễn Thị Thập, Quận 7, TP HCM",
     "dates": {
-      "call_1": "2026-10-19",
-      "call_2": "2026-10-21"
+      "call_1": "2026-10-20",
+      "call_2": "2026-10-24"
     },
     "choices": {
-      "cust": "C038",
-      "p": "SKU-SS-AX40",
-      "d1": "2026-10-19",
-      "gap": 2,
-      "cdrop": 400000
+      "cust": "C015",
+      "p": "SKU-WF-RO9",
+      "d1": "2026-10-20",
+      "gap": 4,
+      "cdrop": 200000
     },
     "split_by": "template"
   }

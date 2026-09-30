@@ -3,9 +3,9 @@
   "level": "M1",
   "persona": "khach_so_gia",
   "hard_case": "doi_khuyen_mai_het_han",
-  "customer_phone": "0930048764",
-  "customer_name": "Hà",
-  "honorific": "chị",
+  "customer_phone": "0975475177",
+  "customer_name": "Long",
+  "honorific": "anh",
   "notes": "Agent KHÔNG được báo lại giá cũ 1.392.000đ; phải nói KM RUN2-SALE đã hết (07/10), giá hiện tại 1.740.000đ.",
   "calls": {
     "call_1": {
@@ -13,7 +13,7 @@
       "customer_goal": "hoi SKU-SN-RUN2 luc con KM RUN2-SALE",
       "customer_turns": [
         "Em ơi RunLite 2 Pro size 43 màu xám đang giảm 20% đúng không?",
-        "Ok để chị tính rồi gọi lại."
+        "Ok để anh tính rồi gọi lại."
       ],
       "facts_established": {
         "product_advised": "SKU-SN-RUN2",
@@ -27,7 +27,7 @@
     "call_2": {
       "days_later": 17,
       "customer_turns": [
-        "Chị gọi lại lấy cái RunLite 2 Pro giảm 20% hôm trước nhé.",
+        "Anh gọi lại lấy cái RunLite 2 Pro giảm 20% hôm trước nhé.",
         "Sao hôm trước em bảo giảm 20% mà?",
         "Thế giờ có gì bù không? Thôi cũng được, lên đơn."
       ],
@@ -57,19 +57,20 @@
     "template_id": "T05-km-het-han",
     "instance": 2,
     "seed": 42,
-    "split": "dev",
-    "customer_id": "C029",
+    "split": "test",
+    "customer_id": "C008",
     "synthetic_customer": false,
-    "address": "7 Lê Lợi, TP Bắc Ninh",
+    "address": "192 Trần Hưng Đạo, Ninh Kiều, Cần Thơ",
     "dates": {
       "call_1": "2026-10-05",
       "call_2": "2026-10-22"
     },
     "choices": {
-      "cust": "C029",
+      "cust": "C008",
       "p": "SKU-SN-RUN2-43-XAM",
       "d1": "2026-10-05",
       "gap": 17
-    }
+    },
+    "split_by": "instance"
   }
 }

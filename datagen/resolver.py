@@ -14,7 +14,7 @@ Cách dùng:
 Định dạng template (xem templates/*.json):
 {
   "template_id": "T05-km-het-han",
-  "split": "dev" | "test" | null,          # null → chia theo hash template_id với --test-ratio
+  "split": "dev" | "test" | null,          # null → plan_splits(): chia theo template trong từng nhóm hard_case (xem hàm)
   "instances": 2,                          # số kịch bản cần sinh (ghi đè bằng --instances)
   "choose": {"cust": "customers()", "p": "products(category='gia-dung')", "d1": "days('2026-10-12','2026-10-20')", "gap": "range(1,5)"},
   "dates":  {"call_1": "d1", "call_2": "add(d1, gap)"},
@@ -28,11 +28,18 @@ Cách dùng:
 - Giá trị DROP → xóa key/phần tử khỏi output.
 - call_date (call_1) / days_later (call_n) và channel_identity do resolver tự điền từ `dates` và khách.
 """
-import argparse, copy, glob, hashlib, json, os, random, re, sys, unicodedata
+import argparse, collections, copy, glob, hashlib, json, os, random, re, sys, unicodedata
 from datetime import date, timedelta
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-DEFAULT_BTC = os.path.join(HERE, "..", "BTC", "BTC-Data-Vong1-TEAMS")
+def _default_btc():
+    """Gói BTC nằm ở gốc repo (../eval/mock_tools.py); giữ đường dẫn cũ ../BTC/BTC-Data-Vong1-TEAMS làm dự phòng."""
+    for c in (os.path.join(HERE, ".."), os.path.join(HERE, "..", "BTC", "BTC-Data-Vong1-TEAMS")):
+        if os.path.exists(os.path.join(c, "eval", "mock_tools.py")): return os.path.abspath(c)
+    return os.path.abspath(os.path.join(HERE, ".."))
+
+
+DEFAULT_BTC = _default_btc()
 
 
 def load_btc(btc_dir):
@@ -58,13 +65,19 @@ SAFE_BUILTINS = {k: __builtins__[k] if isinstance(__builtins__, dict) else getat
                            "round", "dict", "set", "tuple", "bool", "float", "enumerate", "zip", "isinstance", "next")}
 
 # ----------------------------------------------------------------------------- dữ liệu phụ trợ
-ADDRESSES = {
-    "bac": ["25 Nguyễn Trãi, Thanh Xuân, Hà Nội", "102 Trần Duy Hưng, Cầu Giấy, Hà Nội", "18 Lạch Tray, Ngô Quyền, Hải Phòng",
-            "7 Lê Lợi, TP Bắc Ninh"],
-    "trung": ["56 Nguyễn Văn Linh, Hải Châu, Đà Nẵng", "12 Lê Lợi, TP Huế", "88 Trần Phú, Nha Trang, Khánh Hòa",
-              "30 Phan Đình Phùng, Quy Nhơn, Bình Định"],
-    "nam": ["120 Nguyễn Thị Thập, Quận 7, TP HCM", "45 Cách Mạng Tháng 8, Quận 3, TP HCM", "9 Đại lộ Bình Dương, Thủ Dầu Một, Bình Dương",
-            "45 Trần Hưng Đạo, Ninh Kiều, Cần Thơ"],
+# (đường, quận/huyện, tỉnh/thành) — thành phố lớn (Hà Nội / TP HCM / Đà Nẵng) giao 2 ngày, nơi khác 4 ngày (mock_tools._eta)
+STREETS = {
+    "bac": [("Nguyễn Trãi", "Thanh Xuân", "Hà Nội"), ("Trần Duy Hưng", "Cầu Giấy", "Hà Nội"), ("Kim Mã", "Ba Đình", "Hà Nội"),
+            ("Minh Khai", "Hai Bà Trưng", "Hà Nội"), ("Nguyễn Văn Cừ", "Long Biên", "Hà Nội"), ("Quang Trung", "Hà Đông", "Hà Nội"),
+            ("Lạch Tray", "Ngô Quyền", "Hải Phòng"), ("Lê Lợi", "TP Bắc Ninh", "Bắc Ninh"), ("Trần Hưng Đạo", "TP Nam Định", "Nam Định"),
+            ("Hùng Vương", "TP Việt Trì", "Phú Thọ")],
+    "trung": [("Nguyễn Văn Linh", "Hải Châu", "Đà Nẵng"), ("Ngô Quyền", "Sơn Trà", "Đà Nẵng"), ("Tôn Đức Thắng", "Liên Chiểu", "Đà Nẵng"),
+              ("Lê Lợi", "TP Huế", "Thừa Thiên Huế"), ("Trần Phú", "Nha Trang", "Khánh Hòa"), ("Phan Đình Phùng", "Quy Nhơn", "Bình Định"),
+              ("Quang Trung", "TP Vinh", "Nghệ An"), ("Hùng Vương", "Tam Kỳ", "Quảng Nam"), ("Lê Duẩn", "Buôn Ma Thuột", "Đắk Lắk")],
+    "nam": [("Nguyễn Thị Thập", "Quận 7", "TP HCM"), ("Cách Mạng Tháng 8", "Quận 3", "TP HCM"), ("Phan Xích Long", "Phú Nhuận", "TP HCM"),
+            ("Quang Trung", "Gò Vấp", "TP HCM"), ("Võ Văn Ngân", "Thủ Đức", "TP HCM"), ("Lũy Bán Bích", "Tân Phú", "TP HCM"),
+            ("Đại lộ Bình Dương", "Thủ Dầu Một", "Bình Dương"), ("Trần Hưng Đạo", "Ninh Kiều", "Cần Thơ"),
+            ("Phạm Văn Thuận", "Biên Hòa", "Đồng Nai"), ("Ba Cu", "TP Vũng Tàu", "Bà Rịa - Vũng Tàu")],
 }
 NAMES = {"chị": ["Lan", "Hương", "Mai", "Ngọc", "Trang", "Linh", "Yến", "Nhung", "Phương", "Thảo", "Vy", "Hà"],
          "anh": ["Minh", "Tuấn", "Hùng", "Dũng", "Nam", "Quân", "Huy", "Long", "Sơn", "Đức", "Phúc", "Khang"],
@@ -125,11 +138,12 @@ def k(x): return f"{int(x) // 1000}k"
 
 
 def trieu(x):
-    """5200000 → '5 triệu 2', 4890000 → '4 triệu 890', 5000000 → '5 triệu', 690000 → '690k'."""
+    """5200000 → '5 triệu 2', 5500000 → '5 triệu rưỡi', 4890000 → '4 triệu 890', 5000000 → '5 triệu', 690000 → '690k'."""
     x = int(x)
     if x < 1_000_000: return k(x)
     m, r = divmod(x, 1_000_000); r //= 1000
     if r == 0: return f"{m} triệu"
+    if r == 500: return f"{m} triệu rưỡi"
     if r % 100 == 0: return f"{m} triệu {r // 100}"
     return f"{m} triệu {r}"
 
@@ -172,7 +186,8 @@ def ddmm(d): dt = date.fromisoformat(d); return f"{dt.day:02d}/{dt.month:02d}"
 def weekday(d): return WEEKDAYS[date.fromisoformat(d).weekday()]
 def price_forms(x):
     """Các cách agent có thể đọc một số tiền — dùng cho must_say_any."""
-    x = int(x); return sorted({vnd(x)[:-1], f"{x:,}", str(x), trieu(x), k(x), trieu(x).replace(" triệu ", "tr").replace(" triệu", "tr")})
+    x = int(x); t = trieu(x).replace(" rưỡi", " 5")          # "5 triệu 5" / "5tr5" vẫn là cách nói phổ biến
+    return sorted({vnd(x)[:-1], f"{x:,}", str(x), trieu(x), t, k(x), t.replace(" triệu ", "tr").replace(" triệu", "tr")})
 
 
 def region_days(address): return 2 if any(x in (address or "").lower() for x in ("hà nội", "ha noi", "hcm", "hồ chí minh", "đà nẵng")) else 4
@@ -214,14 +229,27 @@ class Resolver:
         self.used_vals = {}
         self.used_phones, self.used_keys, self.used_order_ids = set(), {}, {o["order_id"] for c in self.crm for o in c.get("orders", [])}
         self.synth_phones = {c["phone"] for c in self.crm}
+        self.addr_of, self.addr_used = {}, set()
         self._synth_n = 0
         self.cur = {}   # trạng thái của lá DFS hiện tại: D (ngày), cust
         self.rng = random.Random(seed)
 
     # ---- khách
+    def _address(self, phone, region):
+        """Địa chỉ cố định theo SĐT và không trùng giữa hai khách (tránh nhiễu khi chấm nhận diện/ghi nhầm hồ sơ)."""
+        if phone in self.addr_of: return self.addr_of[phone]
+        streets = STREETS[region]
+        h = int(hashlib.md5(phone.encode()).hexdigest(), 16)
+        for i in range(10000):
+            x = h + i * 7919
+            num, (st, dist, city) = 1 + x % 199, streets[(x // 199) % len(streets)]
+            addr = f"{num} {st}, {dist}, {city}" if dist != city else f"{num} {st}, {city}"
+            if addr not in self.addr_used: break
+        self.addr_used.add(addr); self.addr_of[phone] = addr
+        return addr
+
     def _cust_obj(self, c, synthetic=False):
-        idx = int(hashlib.md5(c["phone"].encode()).hexdigest(), 16)
-        addr = ADDRESSES[c["region"]][idx % len(ADDRESSES[c["region"]])]
+        addr = self._address(c["phone"], c["region"])
         return Obj(id=c.get("customer_id"), name=c["name"], honorific=c["honorific"], xh=c["honorific"], Xh=c["honorific"].capitalize(),
                    phone=c["phone"], zalo_id=c.get("zalo_id"), fb_id=c.get("fb_id"), region=c["region"], address=addr,
                    orders=c.get("orders", []), sessions=c.get("sessions", []), shared_phone_with=c.get("shared_phone_with"),
@@ -518,10 +546,25 @@ def load_templates(path):
     return out
 
 
-def pick_split(tpl, test_ratio, seed):
-    if tpl.get("split"): return tpl["split"]
-    h = int(hashlib.md5(f"{seed}:{tpl['template_id']}".encode()).hexdigest(), 16) % 1000
-    return "test" if h < test_ratio * 1000 else "dev"
+def plan_splits(tpls, test_ratio, seed):
+    """template_id → 'dev' | 'test' | 'instance'.
+    Chia theo template (bản sinh cùng template giống câu chữ → để chung một phía thì không rò rỉ), nhưng tính trong từng
+    nhóm hard_case để loại ca nào cũng có mặt ở cả dev lẫn test:
+      - nhóm ≥ 2 template: hash template_id, ép tối thiểu 1 template ở dev và 1 ở test;
+      - nhóm chỉ 1 template: chia theo instance (bản cuối vào test). Chấp nhận rò câu chữ trong nhóm này — nên viết thêm
+        template thứ hai cho nhóm để bỏ trường hợp này."""
+    plan, groups = {}, collections.defaultdict(list)
+    for t in tpls:
+        if t.get("split"): plan[t["template_id"]] = t["split"]
+        else: groups[t["scenario"].get("hard_case") or "(thuong)"].append(t["template_id"])
+    for tids in groups.values():
+        if len(tids) == 1:
+            plan[tids[0]] = "instance"; continue
+        h = {tid: int(hashlib.md5(f"{seed}:{tid}".encode()).hexdigest(), 16) % 1000 for tid in tids}
+        for tid in tids: plan[tid] = "test" if h[tid] < test_ratio * 1000 else "dev"
+        if all(plan[t] == "test" for t in tids): plan[max(tids, key=h.get)] = "dev"
+        if all(plan[t] == "dev" for t in tids): plan[min(tids, key=h.get)] = "test"
+    return plan
 
 
 def main():
@@ -539,6 +582,8 @@ def main():
 
     R = Resolver(os.path.abspath(a.btc), seed=a.seed, exclude_sample_customers=not a.include_sample_customers)
     tpls = load_templates(a.templates)
+    # địa chỉ viết cứng trong template (cô Loan, địa chỉ cũ/mới…) không được cấp cho khách khác
+    R.addr_used.update(re.findall(r"'(\d+[^'\",]*, [^'\"]+)'", json.dumps(tpls, ensure_ascii=False)))
     if a.only: tpls = [t for t in tpls if t["template_id"] in a.only]
     for t in tpls:
         if t["scenario"].get("persona") not in R.personas and "{{" not in str(t["scenario"].get("persona")):
@@ -546,6 +591,7 @@ def main():
 
     # template có khách cố định (ids=) chạy trước để không bị template khác chiếm khách
     tpls.sort(key=lambda t: 0 if "ids=" in str(t.get("choose", {}).get("cust", "")) else 1)
+    plan = plan_splits(load_templates(a.templates), a.test_ratio, a.seed)   # tính trên toàn bộ template, kể cả khi --only
     manifest, failures = [], []
     for t in tpls:
         tid = t["template_id"]
@@ -555,11 +601,15 @@ def main():
             sc, st = R.build(t, 0, "reproduce", fix=t["reproduce"].get("fix", {}), scenario_id=sid)
             jobs = [(sc, st, "reproduce", 0)]
         else:
-            split = pick_split(t, a.test_ratio, a.seed)
+            mode = plan[tid]
             n = a.instances or t.get("instances", 2)
+            if mode == "instance" and n < 2:
+                print(f"[warn] {tid}: nhóm hard_case chỉ có 1 template và 1 instance → không có bản test; nên đặt instances ≥ 2")
             jobs = []
             for i in range(n):
+                split = mode if mode != "instance" else ("test" if n >= 2 and i == n - 1 else "dev")
                 sc, st = R.build(t, i, split, scenario_id=f"GEN-{tid.split('-')[0]}-{i + 1:02d}")
+                if sc: sc["_meta"]["split_by"] = "instance" if mode == "instance" else "template"
                 jobs.append((sc, st, split, i))
         for sc, st, split, i in jobs:
             if sc is None:

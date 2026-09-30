@@ -3,9 +3,9 @@
   "level": "M1",
   "persona": "khach_da_mua_doi_size",
   "hard_case": null,
-  "customer_phone": "0990853801",
-  "customer_name": "Nhung",
-  "honorific": "chị",
+  "customer_phone": "0932568855",
+  "customer_name": "Lâm",
+  "honorific": "anh",
   "notes": "Cuộc 2 (Case 3): hệ thống phải biết đơn nào, size/màu nào; áp chính sách đổi trả 7 ngày miễn phí đổi size lần đầu (DT-03).",
   "calls": {
     "call_1": {
@@ -14,7 +14,7 @@
       "customer_turns": [
         "Em ơi Giày trekking HikePro còn size 40 màu xám không?",
         "Giá bao nhiêu, có giảm gì không em?",
-        "Ok em lên đơn cho chị, thanh toán COD nhé."
+        "Ok em lên đơn cho anh, thanh toán COD nhé."
       ],
       "facts_established": {
         "product_advised": "SKU-SN-TRK",
@@ -30,9 +30,9 @@
     "call_2": {
       "days_later": 6,
       "customer_turns": [
-        "Alo, chị mới nhận giày hôm qua mà size 40 hơi chật.",
+        "Alo, anh mới nhận giày hôm qua mà size 40 hơi chật.",
         "Đổi lên size 41 được không em? Mất phí gì không?",
-        "Ừ em làm thủ tục đổi cho chị nhé."
+        "Ừ em làm thủ tục đổi cho anh nhé."
       ],
       "must_carry_over": [
         "order_id",
@@ -67,18 +67,19 @@
     "instance": 2,
     "seed": 42,
     "split": "dev",
-    "customer_id": "C025",
+    "customer_id": "C045",
     "synthetic_customer": false,
-    "address": "7 Lê Lợi, TP Bắc Ninh",
+    "address": "112 Lê Lợi, TP Huế, Thừa Thiên Huế",
     "dates": {
       "call_1": "2026-10-13",
       "call_2": "2026-10-19"
     },
     "choices": {
-      "cust": "C025",
+      "cust": "C045",
       "p": "SKU-SN-TRK-40-XAM",
       "d1": "2026-10-13",
       "gap": 6
-    }
+    },
+    "split_by": "template"
   }
 }

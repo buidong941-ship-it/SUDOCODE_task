@@ -3,9 +3,9 @@
   "level": "M1",
   "persona": "khach_da_mua_doi_size",
   "hard_case": "doi_san_pham_hoan_chenh_lech",
-  "customer_phone": "0923458540",
-  "customer_name": "Bích",
-  "honorific": "cô",
+  "customer_phone": "0941139782",
+  "customer_name": "Mai",
+  "honorific": "chị",
   "notes": "Đổi SKU-AP-X (4.890.000đ) sang SKU-AP-MINI (2.190.000đ) trong 7 ngày → hoàn chênh lệch 2.700.000đ, 3–5 ngày làm việc (DT-04).",
   "calls": {
     "call_1": {
@@ -13,23 +13,23 @@
       "customer_goal": "mua SKU-AP-X",
       "customer_turns": [
         "Em ơi Máy lọc không khí AirPure X giá bao nhiêu?",
-        "Ok lên đơn cho cô, COD, giao về 88 Trần Phú, Nha Trang, Khánh Hòa."
+        "Ok lên đơn cho chị, COD, giao về 102 Trần Duy Hưng, Cầu Giấy, Hà Nội."
       ],
       "facts_established": {
         "product_advised": "SKU-AP-X",
         "price_quoted_vnd": 4890000,
         "order_id": "OD957186",
         "payment": "COD",
-        "address": "88 Trần Phú, Nha Trang, Khánh Hòa"
+        "address": "102 Trần Duy Hưng, Cầu Giấy, Hà Nội"
       },
       "expected_outcome": "chot_don"
     },
     "call_2": {
       "days_later": 4,
       "customer_turns": [
-        "Alo em, cô nhận AirPure X rồi, chưa dùng, nhưng thấy to quá, cô muốn đổi sang AirPure Mini.",
-        "Đổi thì bên em hoàn lại tiền chênh cho cô đúng không, bao nhiêu em?",
-        "Ok em làm giúp cô."
+        "Alo em, chị nhận AirPure X rồi, chưa dùng, nhưng thấy to quá, chị muốn đổi sang AirPure Mini.",
+        "Đổi thì bên em hoàn lại tiền chênh cho chị đúng không, bao nhiêu em?",
+        "Ok em làm giúp chị."
       ],
       "must_carry_over": [
         "order_id",
@@ -69,20 +69,21 @@
     "template_id": "T20-doi-san-pham-hoan-chenh-lech",
     "instance": 0,
     "seed": 42,
-    "split": "test",
-    "customer_id": "N021",
+    "split": "dev",
+    "customer_id": "N049",
     "synthetic_customer": true,
-    "address": "88 Trần Phú, Nha Trang, Khánh Hòa",
+    "address": "102 Trần Duy Hưng, Cầu Giấy, Hà Nội",
     "dates": {
       "call_1": "2026-10-16",
       "call_2": "2026-10-20"
     },
     "choices": {
-      "cust": "N021",
+      "cust": "N049",
       "p": "SKU-AP-X",
       "p2": "SKU-AP-MINI",
       "d1": "2026-10-16",
       "gap": 4
-    }
+    },
+    "split_by": "instance"
   }
 }

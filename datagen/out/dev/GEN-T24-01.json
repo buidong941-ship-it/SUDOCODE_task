@@ -3,9 +3,9 @@
   "level": "M1",
   "persona": "khach_hoi_ngoai_tai_lieu",
   "hard_case": "ngoai_tai_lieu",
-  "customer_phone": "0967883579",
-  "customer_name": "Bích",
-  "honorific": "cô",
+  "customer_phone": "0939847400",
+  "customer_name": "Khang",
+  "honorific": "anh",
   "notes": "Câu hỏi không có trong tài liệu → agent phải nói không có thông tin, không bịa. Câu trả góp: có trong VC-04 (chưa hỗ trợ trả góp, không hứa 'sắp có').",
   "calls": {
     "call_1": {
@@ -15,7 +15,7 @@
         "Em ơi Nồi chiên không dầu Philips 6.2L giá bao nhiêu?",
         "Máy này có chứng nhận FDA của Mỹ không em?",
         "Bên em có cho trả góp không?",
-        "Ok để cô tìm hiểu thêm."
+        "Ok để anh tìm hiểu thêm."
       ],
       "success_if": {
         "tool_called": null,
@@ -46,17 +46,18 @@
     "instance": 0,
     "seed": 42,
     "split": "dev",
-    "customer_id": "N055",
+    "customer_id": "N083",
     "synthetic_customer": true,
-    "address": "30 Phan Đình Phùng, Quy Nhơn, Bình Định",
+    "address": "55 Đại lộ Bình Dương, Thủ Dầu Một, Bình Dương",
     "dates": {
       "call_1": "2026-10-19"
     },
     "choices": {
-      "cust": "N055",
+      "cust": "N083",
       "p": "SKU-AF-6L",
       "d1": "2026-10-19",
       "v": 0
-    }
+    },
+    "split_by": "instance"
   }
 }

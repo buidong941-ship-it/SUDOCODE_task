@@ -34,7 +34,7 @@
       "customer_turns": [
         "Alo, hôm trước chị có gọi hỏi máy lọc không khí đó em.",
         "Ông xã chị đồng ý rồi, giá vẫn như hôm trước đúng không?",
-        "Ừ em lên đơn cho chị đi, giao về 102 Trần Duy Hưng, Cầu Giấy, Hà Nội nhé."
+        "Ừ em lên đơn cho chị đi, giao về 139 Trần Duy Hưng, Cầu Giấy, Hà Nội nhé."
       ],
       "must_carry_over": [
         "product_advised",
@@ -70,7 +70,7 @@
     "split": "reproduce",
     "customer_id": "C001",
     "synthetic_customer": false,
-    "address": "102 Trần Duy Hưng, Cầu Giấy, Hà Nội",
+    "address": "139 Trần Duy Hưng, Cầu Giấy, Hà Nội",
     "dates": {
       "call_1": "2026-10-15",
       "call_2": "2026-10-17"

@@ -10,17 +10,17 @@
   "calls": {
     "call_1": {
       "call_date": "2026-10-15",
-      "customer_goal": "hoi Máy lọc không khí AirPure X cho phong 20m2, ngan sach 5 triệu 390",
+      "customer_goal": "hoi Máy lọc không khí AirPure X cho phong 20m2, ngan sach 5 triệu",
       "customer_turns": [
         "Alo, anh muốn hỏi máy lọc không khí cho phòng ngủ khoảng 20 mét vuông, anh đang xem mẫu AirPure X.",
-        "Ngân sách anh tầm 5 triệu 390 thôi em.",
+        "Ngân sách anh tầm 5 triệu thôi em.",
         "Máy này có khuyến mãi gì không em?",
         "Ừ để anh hỏi bà xã rồi gọi lại em nhé."
       ],
       "facts_established": {
         "room_area_m2": 20,
         "has_children": false,
-        "budget_vnd": 5390000,
+        "budget_vnd": 5000000,
         "product_advised": "SKU-AP-X",
         "price_quoted_vnd": 4890000,
         "promo_code": "GIFT-FILTER",
@@ -34,7 +34,7 @@
       "customer_turns": [
         "Alo, hôm trước anh có gọi hỏi máy lọc không khí đó em.",
         "Bà xã anh đồng ý rồi, giá vẫn như hôm trước đúng không?",
-        "Ừ em lên đơn cho anh đi, giao về 9 Đại lộ Bình Dương, Thủ Dầu Một, Bình Dương nhé."
+        "Ừ em lên đơn cho anh đi, giao về 160 Ba Cu, TP Vũng Tàu, Bà Rịa - Vũng Tàu nhé."
       ],
       "must_carry_over": [
         "product_advised",
@@ -70,7 +70,7 @@
     "split": "dev",
     "customer_id": "C018",
     "synthetic_customer": false,
-    "address": "9 Đại lộ Bình Dương, Thủ Dầu Một, Bình Dương",
+    "address": "160 Ba Cu, TP Vũng Tàu, Bà Rịa - Vũng Tàu",
     "dates": {
       "call_1": "2026-10-15",
       "call_2": "2026-10-16"
@@ -80,6 +80,7 @@
       "p": "SKU-AP-X",
       "d1": "2026-10-15",
       "gap": 1
-    }
+    },
+    "split_by": "template"
   }
 }

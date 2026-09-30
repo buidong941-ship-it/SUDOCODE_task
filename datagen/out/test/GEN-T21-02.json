@@ -3,23 +3,23 @@
   "level": "M1",
   "persona": "khach_goi_lan_3_het_kien_nhan",
   "hard_case": "3_phien_thong_tin_thay_doi",
-  "customer_phone": "0949478650",
-  "customer_name": "Phúc",
+  "customer_phone": "0964898031",
+  "customer_name": "Đức",
   "honorific": "anh",
-  "notes": "Địa chỉ đổi từ '30 Phan Đình Phùng, Quy Nhơn, Bình Định' (call_1) sang '210 Lê Văn Sỹ, Quận 3, TP HCM' (call_2) → giá trị cũ bị supersede. Call_3 hỏi trạng thái: dự kiến giao 2026-10-20 (thứ ba), không được nhắc địa chỉ cũ.",
+  "notes": "Địa chỉ đổi từ '118 Hùng Vương, TP Việt Trì, Phú Thọ' (call_1) sang '210 Lê Văn Sỹ, Quận 3, TP HCM' (call_2) → giá trị cũ bị supersede. Call_3 hỏi trạng thái: dự kiến giao 2026-10-20 (thứ ba), không được nhắc địa chỉ cũ.",
   "calls": {
     "call_1": {
       "call_date": "2026-10-15",
       "customer_goal": "hoi SKU-MB-STR1",
       "customer_turns": [
         "Em ơi Xe đẩy gấp gọn Joie Pact giá bao nhiêu?",
-        "Giao về 30 Phan Đình Phùng, Quy Nhơn, Bình Định thì mất mấy ngày em?",
+        "Giao về 118 Hùng Vương, TP Việt Trì, Phú Thọ thì mất mấy ngày em?",
         "Để anh nghĩ thêm rồi gọi lại."
       ],
       "facts_established": {
         "product_advised": "SKU-MB-STR1",
         "price_quoted_vnd": 3490000,
-        "address": "30 Phan Đình Phùng, Quy Nhơn, Bình Định"
+        "address": "118 Hùng Vương, TP Việt Trì, Phú Thọ"
       },
       "expected_outcome": "hen_goi_lai"
     },
@@ -51,7 +51,7 @@
       },
       "memory_expectation": {
         "address": "210 Lê Văn Sỹ, Quận 3, TP HCM",
-        "superseded": "30 Phan Đình Phùng, Quy Nhơn, Bình Định"
+        "superseded": "118 Hùng Vương, TP Việt Trì, Phú Thọ"
       },
       "ground_truth_facts": {
         "price_vnd": 3490000,
@@ -82,7 +82,7 @@
           "thứ ba"
         ],
         "forbidden_claims": [
-          "30 Phan Đình Phùng"
+          "118 Hùng Vương"
         ],
         "max_agent_questions": 1
       },
@@ -96,8 +96,8 @@
     "template_id": "T21-3-phien-thay-doi-thong-tin",
     "instance": 1,
     "seed": 42,
-    "split": "dev",
-    "customer_id": "N035",
+    "split": "test",
+    "customer_id": "N063",
     "synthetic_customer": true,
     "address": "210 Lê Văn Sỹ, Quận 3, TP HCM",
     "dates": {
@@ -106,12 +106,13 @@
       "call_3": "2026-10-19"
     },
     "choices": {
-      "cust": "N035",
+      "cust": "N063",
       "p": "SKU-MB-STR1",
       "d1": "2026-10-15",
       "g1": 3,
       "g2": 1,
       "addr_b": "210 Lê Văn Sỹ, Quận 3, TP HCM"
-    }
+    },
+    "split_by": "instance"
   }
 }

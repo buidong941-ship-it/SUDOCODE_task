@@ -3,8 +3,8 @@
   "level": "M1",
   "persona": "khach_da_mua_doi_size",
   "hard_case": "doi_san_pham_hoan_chenh_lech",
-  "customer_phone": "0913369222",
-  "customer_name": "Thảo",
+  "customer_phone": "0907525158",
+  "customer_name": "Ngọc",
   "honorific": "chị",
   "notes": "Đổi SKU-XM-4P (5.490.000đ) sang SKU-AP-X (4.890.000đ) trong 7 ngày → hoàn chênh lệch 600.000đ, 3–5 ngày làm việc (DT-04).",
   "calls": {
@@ -13,14 +13,14 @@
       "customer_goal": "mua SKU-XM-4P",
       "customer_turns": [
         "Em ơi Máy lọc không khí Xiaomi Smart 4 Pro giá bao nhiêu?",
-        "Ok lên đơn cho chị, COD, giao về 56 Nguyễn Văn Linh, Hải Châu, Đà Nẵng."
+        "Ok lên đơn cho chị, COD, giao về 21 Ba Cu, TP Vũng Tàu, Bà Rịa - Vũng Tàu."
       ],
       "facts_established": {
         "product_advised": "SKU-XM-4P",
         "price_quoted_vnd": 5490000,
         "order_id": "OD774286",
         "payment": "COD",
-        "address": "56 Nguyễn Văn Linh, Hải Châu, Đà Nẵng"
+        "address": "21 Ba Cu, TP Vũng Tàu, Bà Rịa - Vũng Tàu"
       },
       "expected_outcome": "chot_don"
     },
@@ -68,19 +68,20 @@
     "instance": 1,
     "seed": 42,
     "split": "test",
-    "customer_id": "N028",
+    "customer_id": "N056",
     "synthetic_customer": true,
-    "address": "56 Nguyễn Văn Linh, Hải Châu, Đà Nẵng",
+    "address": "21 Ba Cu, TP Vũng Tàu, Bà Rịa - Vũng Tàu",
     "dates": {
       "call_1": "2026-10-19",
       "call_2": "2026-10-24"
     },
     "choices": {
-      "cust": "N028",
+      "cust": "N056",
       "p": "SKU-XM-4P",
       "p2": "SKU-AP-X",
       "d1": "2026-10-19",
       "gap": 5
-    }
+    },
+    "split_by": "instance"
   }
 }

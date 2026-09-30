@@ -1,42 +1,42 @@
 {
-  "scenario_id": "GEN-T27-02",
+  "scenario_id": "GEN-T27-03",
   "level": "M1",
   "persona": "khach_hoi_nhieu_khong_mua",
   "hard_case": null,
-  "customer_phone": "0925822018",
-  "customer_name": "Quỳnh",
-  "honorific": "chị",
+  "customer_phone": "0936270107",
+  "customer_name": "Tuấn",
+  "honorific": "anh",
   "notes": "Khách miền Nam → NAM-SHIP0 (freeship theo địa chỉ giao, stackable). Cuộc 2 chốt, không hỏi lại số người/địa chỉ.",
   "calls": {
     "call_1": {
-      "call_date": "2026-10-17",
-      "customer_goal": "hoi Quạt đứng Senko TS16 cho nha 2 nguoi",
+      "call_date": "2026-10-18",
+      "customer_goal": "hoi Nồi chiên không dầu Xiaomi 4.5L cho nha 2 nguoi",
       "customer_turns": [
-        "Em ơi Quạt đứng Senko TS16 nhà 2 người dùng có hợp không?",
-        "Giá bao nhiêu, giao về 130 Đại lộ Bình Dương, Thủ Dầu Một, Bình Dương có mất phí ship không em?",
+        "Em ơi Nồi chiên không dầu Xiaomi 4.5L nhà 2 người dùng có hợp không?",
+        "Giá bao nhiêu, giao về 146 Cách Mạng Tháng 8, Quận 3, TP HCM có mất phí ship không em?",
         "Bảo hành mấy tháng em?",
-        "Để chị xem thêm vài mẫu đã nhé."
+        "Để anh xem thêm vài mẫu đã nhé."
       ],
       "facts_established": {
-        "product_advised": "SKU-FAN-SEN",
+        "product_advised": "SKU-AF-XM",
         "household_size": 2,
-        "address": "130 Đại lộ Bình Dương, Thủ Dầu Một, Bình Dương",
-        "price_quoted_vnd": 590000,
+        "address": "146 Cách Mạng Tháng 8, Quận 3, TP HCM",
+        "price_quoted_vnd": 1590000,
         "blocker": "xem them"
       },
       "expected_outcome": "hen_goi_lai",
       "ground_truth_facts": {
-        "price_vnd": 590000,
+        "price_vnd": 1590000,
         "freeship": true,
         "promo_NAM-SHIP0_active": true,
         "warranty_months": 12
       }
     },
     "call_2": {
-      "days_later": 1,
+      "days_later": 2,
       "customer_turns": [
-        "Alo em, chị gọi lại về Senko TS16 hôm trước.",
-        "Ok chị lấy, giao chỗ cũ nhé, COD."
+        "Alo em, anh gọi lại về Xiaomi 4.5L hôm trước.",
+        "Ok anh lấy, giao chỗ cũ nhé, COD."
       ],
       "must_carry_over": [
         "product_advised",
@@ -51,36 +51,36 @@
       "success_if": {
         "tool_called": "order.create",
         "args_match": {
-          "sku": "SKU-FAN-SEN",
-          "price_vnd": 590000,
+          "sku": "SKU-AF-XM",
+          "price_vnd": 1590000,
           "payment": "COD"
         }
       },
       "ground_truth_facts": {
-        "price_vnd": 590000,
+        "price_vnd": 1590000,
         "freeship": true,
         "in_stock": true,
-        "delivery_days": 4
+        "delivery_days": 2
       }
     }
   },
   "_meta": {
     "template_id": "T27-gia-dung-mien-nam",
-    "instance": 1,
+    "instance": 2,
     "seed": 42,
     "split": "dev",
-    "customer_id": "C040",
+    "customer_id": "C002",
     "synthetic_customer": false,
-    "address": "130 Đại lộ Bình Dương, Thủ Dầu Một, Bình Dương",
+    "address": "146 Cách Mạng Tháng 8, Quận 3, TP HCM",
     "dates": {
-      "call_1": "2026-10-17",
-      "call_2": "2026-10-18"
+      "call_1": "2026-10-18",
+      "call_2": "2026-10-20"
     },
     "choices": {
-      "cust": "C040",
-      "p": "SKU-FAN-SEN",
-      "d1": "2026-10-17",
-      "gap": 1
+      "cust": "C002",
+      "p": "SKU-AF-XM",
+      "d1": "2026-10-18",
+      "gap": 2
     },
     "split_by": "template"
   }

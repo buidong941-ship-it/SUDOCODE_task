@@ -64,7 +64,7 @@
     "template_id": "T10-quay-lai-8-thang",
     "instance": 0,
     "seed": 42,
-    "split": "test",
+    "split": "dev",
     "customer_id": "C031",
     "synthetic_customer": false,
     "address": "15 Xuân Thủy, Cầu Giấy, Hà Nội",
@@ -76,6 +76,7 @@
       "p": "SKU-AP-PRO",
       "d1": "2026-10-16",
       "new_address": "15 Xuân Thủy, Cầu Giấy, Hà Nội"
-    }
+    },
+    "split_by": "instance"
   }
 }
