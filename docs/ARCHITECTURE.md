@@ -398,6 +398,16 @@ SUDOCODE_task/
 
 ---
 
+## 6b. Vai trò model (đã chọn)
+
+| Vai trò | Model | Lý do |
+|---|---|---|
+| Orchestrator / router | **Jev** (TypeSafe System One, `jev-latest`) | trả nhãn có kiểu + xác suất, nhanh; đặt ngưỡng tin cậy, dự phòng bằng luật |
+| Sinh lời thoại | **DeepSeek** (`deepseek-v4-flash`, API tương thích OpenAI) | tiếng Việt tự nhiên, rẻ, có streaming để đo TTFT |
+| Gọi tool / tham số | code (planner) | giá & đơn luôn khớp mock BTC, tái lập được |
+
+Baseline và full dùng cùng hai model này với cùng tham số. Chi tiết chạy: `docs/HARNESS.md`.
+
 ## 7. Thứ tự triển khai
 
 1. `loader.py` + `mcp_servers` bọc `mock_tools` + `trace.py`; agent tối giản; chạy `run_eval.py` baseline trên 7 SAMPLE → có số vòng 0.

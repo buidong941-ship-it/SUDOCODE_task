@@ -129,7 +129,7 @@
       "newp": "next_size(p)",
       "price": "final(p.vsku,'call_1')",
       "item": "'giày' if '/giay' in p.category else 'áo'",
-      "oid": "new_order_id()"
+      "oid": "mock_order_id(1)"
     },
     "require": [
       "newp is not None", "in_stock(p.vsku,'call_1')", "in_stock(newp.vsku,'call_2')",

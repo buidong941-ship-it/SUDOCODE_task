@@ -212,7 +212,7 @@
     "let": {
       "address": "cust.address",
       "price": "final(p.vsku,'call_1')",
-      "oid": "new_order_id()",
+      "oid": "mock_order_id(1)",
       "stk": "new_digits(pick([10, 12, 13]))",
       "cccd": "'0' + new_digits(11)",
       "item": "'giày' if '/giay' in p.category else 'áo' if 'thoi-trang' in p.category else 'máy'",
@@ -547,7 +547,7 @@
       "price1": "final(p.vsku,'call_1')",
       "price2": "final(p2.vsku,'call_2')",
       "refund": "price1 - price2",
-      "oid": "new_order_id()"
+      "oid": "mock_order_id(1)"
     },
     "require": ["p2.category == p.category", "p2.sku != p.sku", "in_stock(p.vsku,'call_1')", "in_stock(p2.vsku,'call_2')", "price2 < price1"],
     "scenario": {
@@ -797,7 +797,7 @@
     "template_id": "T25-3-kenh-bao-gia-lech",
     "instances": 2,
     "choose": {
-      "cust": "customers(need=['fb_id','zalo_id'])",
+      "cust": "customers(kind='crm', need=['fb_id','zalo_id'], reuse=True)",
       "p": "products(skus=['SKU-SN-RUN1','SKU-SN-RUN2','SKU-AP-PRO'], size_not_in=[43])",
       "d1": "days('2026-10-17','2026-10-29')",
       "g1": "range(2,9)",

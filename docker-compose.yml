@@ -1,0 +1,14 @@
+# Postgres + pgvector cho server phát triển/chạy thử. Harness vẫn chạy được không cần file này (SQLite mặc định).
+#   docker compose up -d db
+#   DATABASE_URL=postgresql+psycopg://callcenter:callcenter@localhost:5432/callcenter python run_eval.py ...
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_USER: callcenter
+      POSTGRES_PASSWORD: callcenter
+      POSTGRES_DB: callcenter
+    ports: ["5432:5432"]
+    volumes: ["pgdata:/var/lib/postgresql/data"]
+volumes:
+  pgdata:

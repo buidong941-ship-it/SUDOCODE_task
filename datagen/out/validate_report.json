@@ -1,6 +1,6 @@
 {
   "errors": 0,
-  "warnings": 0,
+  "warnings": 2,
   "scenarios": [
     {
       "scenario_id": "GEN-T01-01",
@@ -485,7 +485,10 @@
   ],
   "global": {
     "errors": [],
-    "warnings": []
+    "warnings": [
+      "SĐT 0994157718 dùng ở 2 kịch bản: ['GEN-T04-03', 'GEN-T25-02']",
+      "SĐT 0905218549 dùng ở 2 kịch bản: ['GEN-T04-04', 'GEN-T25-01']"
+    ]
   },
   "coverage": {
     "totals": {

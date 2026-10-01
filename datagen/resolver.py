@@ -397,6 +397,12 @@ class Resolver:
             oid = f"OD{self.rng.randint(100000, 999999)}"
             if oid not in self.used_order_ids: self.used_order_ids.add(oid); return oid
 
+    @staticmethod
+    def mock_order_id(n=1):
+        """Mã đơn mà eval/mock_tools.py sinh cho đơn thứ n trong một kịch bản (OD600001, OD600002…).
+        Harness phải reset trạng thái mock giữa các kịch bản; mã đơn ngẫu nhiên (new_order_id) thì agent không thể khớp."""
+        return f"OD{600000 + int(n)}"
+
     def new_digits(self, n, first=None):
         return (str(first) if first is not None else str(self.rng.randint(1, 9))) + "".join(str(self.rng.randint(0, 9)) for _ in range(n - 1))
 
@@ -407,7 +413,7 @@ class Resolver:
             customers=self.customers, products=self.products, product=self.product, variant_of=self.variant_of, next_size=self.next_size,
             q=self.q, final=self.final, disc=self.disc, best_promo=self.best_promo, promos=self.promos, promo=self.promo,
             promo_end=self.promo_end, promo_active=self.promo_active, promo_label=self.promo_label, inv=self.inv, in_stock=self.in_stock,
-            restock=self.restock, eta=self.eta, basket_total=self.basket_total, new_order_id=self.new_order_id, new_digits=self.new_digits,
+            restock=self.restock, eta=self.eta, basket_total=self.basket_total, new_order_id=self.new_order_id, mock_order_id=self.mock_order_id, new_digits=self.new_digits,
             import_price=lambda s: self.import_price.get(s), money_regex=money_regex, price_forms=price_forms,
             add=add, diff=diff, days=days, ddmm=ddmm, weekday=weekday, region_days=region_days, vnd=vnd, k=k, trieu=trieu,
             trieu_words=trieu_words, num_words=num_words, spoken=spoken, teen=teen, strip_accents=strip_accents,

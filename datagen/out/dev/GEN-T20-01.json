@@ -18,7 +18,7 @@
       "facts_established": {
         "product_advised": "SKU-AP-X",
         "price_quoted_vnd": 4890000,
-        "order_id": "OD957186",
+        "order_id": "OD600001",
         "payment": "COD",
         "address": "102 Trần Duy Hưng, Cầu Giấy, Hà Nội"
       },
@@ -44,7 +44,7 @@
       "success_if": {
         "tool_called": "order.update",
         "args_match": {
-          "order_id": "OD957186",
+          "order_id": "OD600001",
           "action": "exchange_product",
           "new_variant_sku": "SKU-AP-MINI"
         },

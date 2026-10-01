@@ -18,7 +18,7 @@
       "facts_established": {
         "product_advised": "SKU-XM-4P",
         "price_quoted_vnd": 5490000,
-        "order_id": "OD774286",
+        "order_id": "OD600001",
         "payment": "COD",
         "address": "21 Ba Cu, TP Vũng Tàu, Bà Rịa - Vũng Tàu"
       },
@@ -44,7 +44,7 @@
       "success_if": {
         "tool_called": "order.update",
         "args_match": {
-          "order_id": "OD774286",
+          "order_id": "OD600001",
           "action": "exchange_product",
           "new_variant_sku": "SKU-AP-X"
         },

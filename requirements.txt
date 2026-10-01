@@ -1,0 +1,6 @@
+# Harness (chạy run_eval.py)
+sqlalchemy>=2.0
+openai>=1.40            # client tương thích OpenAI cho DeepSeek
+typesafe-sdk>=0.7       # Jev (TypeSafe System One) — router/orchestrator
+# Postgres trên server (tùy chọn, khi DATABASE_URL=postgresql+psycopg://...)
+psycopg[binary]>=3.1

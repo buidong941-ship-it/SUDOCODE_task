@@ -3,41 +3,41 @@
   "level": "M1",
   "persona": "khach_da_kenh_mau_thuan",
   "hard_case": "3_kenh_bao_gia_lech",
-  "customer_phone": "0970266397",
-  "customer_name": "Hùng",
+  "customer_phone": "0994157718",
+  "customer_name": "Tiến",
   "honorific": "anh",
-  "notes": "Fanpage (2026-10-25) báo 1.161.000đ theo RUN-10; Zalo (2026-10-31) báo 1.290.000đ vì RUN-10 hết 25/10. Hotline phải hợp nhất 3 kênh, giải thích lệch do KM theo thời điểm (PB-07), chốt đúng giá hiện tại.",
+  "notes": "Fanpage (2026-10-23) báo 1.521.000đ theo RUN-10; Zalo (2026-10-28) báo 1.690.000đ vì RUN-10 hết 25/10. Hotline phải hợp nhất 3 kênh, giải thích lệch do KM theo thời điểm (PB-07), chốt đúng giá hiện tại.",
   "calls": {
     "call_1": {
-      "call_date": "2026-10-25",
+      "call_date": "2026-10-23",
       "channel": "chat_fanpage",
-      "channel_identity": "fb.hung.556",
-      "customer_goal": "hoi gia SKU-SN-RUN1 qua fanpage",
+      "channel_identity": "fb.tiến.352",
+      "customer_goal": "hoi gia SKU-SN-RUN2 qua fanpage",
       "customer_turns": [
-        "shop oi Giày chạy bộ RunLite 1 size 41 màu đen gia bn",
+        "shop oi Giày chạy bộ RunLite 2 Pro size 41 màu đen gia bn",
         "co giam k shop",
         "ok de minh xem"
       ],
       "facts_established": {
-        "product_advised": "SKU-SN-RUN1",
-        "price_quoted_vnd": 1161000,
+        "product_advised": "SKU-SN-RUN2",
+        "price_quoted_vnd": 1521000,
         "promo_code": "RUN-10",
         "channel": "fanpage"
       },
       "expected_outcome": "hen_goi_lai"
     },
     "call_2": {
-      "days_later": 6,
+      "days_later": 5,
       "channel": "zalo_oa",
-      "channel_identity": "zalo_hung63",
+      "channel_identity": "zalo_tiến76",
       "input_mode": "chat_teencode",
       "customer_turns_asr": [
-        "e oi runlite 1 size 41 gia bn v",
+        "e oi runlite 2 pro size 41 gia bn v",
         "sao ben facebook bao re hon",
         "ok de a xem"
       ],
       "customer_turns": [
-        "Em ơi RunLite 1 size 41 giá bao nhiêu vậy?",
+        "Em ơi RunLite 2 Pro size 41 giá bao nhiêu vậy?",
         "Sao bên Facebook báo rẻ hơn?",
         "Ok để anh xem."
       ],
@@ -50,11 +50,11 @@
         "product_advised"
       ],
       "facts_established": {
-        "price_quoted_vnd": 1290000,
+        "price_quoted_vnd": 1690000,
         "channel": "zalo"
       },
       "ground_truth_facts": {
-        "price_vnd": 1290000,
+        "price_vnd": 1690000,
         "promo_RUN-10_active": false
       },
       "expected_outcome": "hen_goi_lai"
@@ -63,9 +63,9 @@
       "days_later": 2,
       "channel": "hotline",
       "customer_turns": [
-        "Alo, anh hỏi RunLite 1: Facebook báo 1161k, Zalo lại báo 1290k, rốt cuộc giá nào vậy em?",
+        "Alo, anh hỏi RunLite 2 Pro: Facebook báo 1521k, Zalo lại báo 1690k, rốt cuộc giá nào vậy em?",
         "Sao mỗi chỗ nói một kiểu thế?",
-        "Thôi lấy giá 1290k cũng được, lên đơn cho anh."
+        "Thôi lấy giá 1690k cũng được, lên đơn cho anh."
       ],
       "must_carry_over": [
         "product_advised",
@@ -79,8 +79,8 @@
       "success_if": {
         "tool_called": "order.create",
         "args_match": {
-          "sku": "SKU-SN-RUN1-41-DEN",
-          "price_vnd": 1290000
+          "sku": "SKU-SN-RUN2-41-DEN",
+          "price_vnd": 1690000
         },
         "must_say_any": [
           "hết hạn",
@@ -92,12 +92,12 @@
         "forbidden_claims": [
           {
             "field": "price_vnd",
-            "value": 1161000
+            "value": 1521000
           }
         ]
       },
       "ground_truth_facts": {
-        "price_vnd": 1290000,
+        "price_vnd": 1690000,
         "promo_RUN-10_active": false,
         "in_stock": true
       },
@@ -109,19 +109,19 @@
     "instance": 1,
     "seed": 42,
     "split": "test",
-    "customer_id": "N096",
-    "synthetic_customer": true,
-    "address": "134 Lê Lợi, TP Huế, Thừa Thiên Huế",
+    "customer_id": "C043",
+    "synthetic_customer": false,
+    "address": "185 Tôn Đức Thắng, Liên Chiểu, Đà Nẵng",
     "dates": {
-      "call_1": "2026-10-25",
-      "call_2": "2026-10-31",
-      "call_3": "2026-11-02"
+      "call_1": "2026-10-23",
+      "call_2": "2026-10-28",
+      "call_3": "2026-10-30"
     },
     "choices": {
-      "cust": "N096",
-      "p": "SKU-SN-RUN1-41-DEN",
-      "d1": "2026-10-25",
-      "g1": 6,
+      "cust": "C043",
+      "p": "SKU-SN-RUN2-41-DEN",
+      "d1": "2026-10-23",
+      "g1": 5,
       "g2": 2
     },
     "split_by": "instance"
