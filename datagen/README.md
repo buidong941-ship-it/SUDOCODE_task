@@ -37,3 +37,4 @@ Xem docstring đầu `resolver.py`. Các biến và hàm dùng được trong `{
 - SAMPLE-02 call_2: `promo_active=false`, nhưng ngày 18/10 GIFT-FILTER vẫn áp cho AP-X (hết hạn 22/10).
 - RUN-10 là KM `once_per_customer`: sau khi đã đặt đơn với RUN-10, `order.update` đổi size sẽ tính giá mới **không còn giảm**, nên mock thu thêm chênh lệch.
 - README của BTC nhắc tới `eval/validate_scenarios.py` nhưng gói không có file này. `validate.py` ở đây thay thế nó.
+- SAMPLE-03 yêu cầu `order.update` với `order_id = OD682761`, nhưng đơn được tạo ở call_1 bởi `mock_tools.order_create`, hàm này luôn sinh mã `OD600001`, `OD600002`… nên không hệ thống nào khớp được. Template ở đây dùng `mock_order_id(n)` (mã mock sẽ sinh cho đơn thứ n của kịch bản, với điều kiện harness reset trạng thái mock giữa các kịch bản).

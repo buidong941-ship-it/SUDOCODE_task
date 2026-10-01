@@ -22,7 +22,7 @@
         "size": 40,
         "color": "xam",
         "price_quoted_vnd": 1990000,
-        "order_id": "OD146007",
+        "order_id": "OD600001",
         "payment": "COD"
       },
       "expected_outcome": "chot_don"
@@ -49,7 +49,7 @@
       "success_if": {
         "tool_called": "order.update",
         "args_match": {
-          "order_id": "OD146007",
+          "order_id": "OD600001",
           "new_variant_sku": "SKU-SN-TRK-41-XAM",
           "action": "exchange_size"
         }

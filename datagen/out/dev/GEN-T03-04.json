@@ -22,7 +22,7 @@
         "size": "S",
         "color": "den",
         "price_quoted_vnd": 690000,
-        "order_id": "OD385194",
+        "order_id": "OD600001",
         "payment": "COD"
       },
       "expected_outcome": "chot_don"
@@ -49,7 +49,7 @@
       "success_if": {
         "tool_called": "order.update",
         "args_match": {
-          "order_id": "OD385194",
+          "order_id": "OD600001",
           "new_variant_sku": "SKU-JK-WND-M-DEN",
           "action": "exchange_size"
         }
