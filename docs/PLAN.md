@@ -50,16 +50,17 @@ Hạn nộp: BTC chưa công bố. Lịch dưới đây tính 4 tuần; khi có 
 - [ ] Gửi BTC 3 câu hỏi: SAMPLE-03 `OD682761` vs mock `OD600001`; SAMPLE-02 `promo_active=false`; xin bản sửa `asr/ground_truth.json` (entities ghi đè D01/D02) + cách chấm entity trong `reference_eval.py`.
 - **Xong khi:** có bảng A.6 vòng 0 với số thật, tái lập bằng 1 lệnh.
 
-### Tuần 1: MCP + PII + khởi động ASR
+### Tuần 1: MCP + PII + khởi động ASR — ✅ xong phần code (01/10), còn chạy ASR trên audio thật
 
-- [ ] **`mcp-memory`** (FastMCP): bọc `harness/memory.py` — `get_brief`, `get_facts`, `write_fact`, `add_session`, `forget_customer`, `merge_customer`. Phân quyền: chỉ Context & Memory được ghi.
-- [ ] **`mcp-commerce`** (hoặc tách `mcp-catalog` + `mcp-crm`): bọc `eval/mock_tools.py`, giữ đúng tên/tham số `schemas/tools.schema.json`.
-- [ ] `harness/tools.py` và `Memory` gọi qua MCP client (giữ chế độ gọi trực tiếp làm cờ `--transport direct|mcp` để so tốc độ).
-- [ ] Kiểm tương đương: chạy lại vòng 0 qua MCP → trace phải cho **cùng chỉ số** (chỉ khác latency). Ghi thêm độ trễ MCP vào báo cáo.
-- [ ] Viết vào `ARCHITECTURE.md`: vì sao chọn MCP thay vì A2A, và một tình huống cụ thể MCP giúp ích (vd. UI copilot và agent dùng chung `mcp-memory`, người và AI thấy cùng một bộ nhớ → giải Case 3).
-- [ ] **PII:** thay SĐT/địa chỉ bằng token (`<PHONE_1>`, `<ADDR_1>`) trước khi gửi DeepSeek/Jev; ghép lại sau khi sinh. Thêm `mask_pii` cho SĐT trong `<out>.log`.
-- [ ] **ASR:** `asr/transcribe.py` dùng faster-whisper (hoặc PhoWhisper) + ITN số tiền/SĐT/ngày → `asr/hypotheses.json`; chạy `reference_eval.py --asr` trên 4 hội thoại BTC.
-- **Xong khi:** `run_eval.py --transport mcp` cho cùng số với vòng 0; WER/CER đầu tiên trên audio BTC.
+- [x] **`mcp-memory`** (mcp SDK lowlevel): bọc `harness/memory.py` — `get_brief`, `get_facts`, `write_fact`, `add_session`, `forget_customer`, `merge_customer`. Phân quyền: chỉ Context & Memory được ghi.
+- [x] **`mcp-commerce`** (hoặc tách `mcp-catalog` + `mcp-crm`): bọc `eval/mock_tools.py`, giữ đúng tên/tham số `schemas/tools.schema.json`.
+- [x] `harness/tools.py` và `Memory` gọi qua MCP client (giữ chế độ gọi trực tiếp làm cờ `--transport direct|mcp` để so tốc độ).
+- [x] Kiểm tương đương: chạy lại vòng 0 qua MCP → trace phải cho **cùng chỉ số** (chỉ khác latency). Ghi thêm độ trễ MCP vào báo cáo.
+- [x] Viết vào `ARCHITECTURE.md`: vì sao chọn MCP thay vì A2A, và một tình huống cụ thể MCP giúp ích (vd. UI copilot và agent dùng chung `mcp-memory`, người và AI thấy cùng một bộ nhớ → giải Case 3).
+- [x] **PII:** thay SĐT/địa chỉ bằng token (`<PHONE_1>`, `<ADDR_1>`) trước khi gửi DeepSeek/Jev; ghép lại sau khi sinh. Thêm `mask_pii` cho SĐT trong `<out>.log`.
+- [x] **ASR:** `asr/transcribe.py` dùng faster-whisper (hoặc PhoWhisper) + ITN số tiền/SĐT/ngày → `asr/hypotheses.json`; chạy `reference_eval.py --asr` trên 4 hội thoại BTC.
+- **Xong khi:** `run_eval.py --transport mcp` cho cùng số với vòng 0 ✅ (870/870 lượt giống hệt); WER/CER đầu tiên trên audio BTC ⏳ — cần chạy trên máy có audio + tải được model (môi trường phát triển chặn HuggingFace).
+- Kết quả: `docs/ARCHITECTURE.md` mục 4.5 (MCP), 4.6 (PII), 5.2 (ASR).
 
 ### Tuần 2: Dữ liệu đủ chỉ tiêu + RAG
 
@@ -78,6 +79,7 @@ Hạn nộp: BTC chưa công bố. Lịch dưới đây tính 4 tuần; khi có 
 - [ ] **Người duyệt:** mọi thay đổi (FAQ mới, exemplar mới) vào `improve/pending/`; lệnh `python improve.py review` để duyệt/loại. Chỉ bản đã duyệt mới được nạp.
 - [ ] **Quay lui:** sau khi áp thay đổi, chạy lại dev; chỉ số nào tụt quá ngưỡng (vd. HR tăng, TSR giảm > 3 điểm) → tự hoàn tác về phiên bản trước. Không bao giờ học từ lượt có claim sai, kể cả khi kịch bản chốt được đơn (chống "hứa đại để chốt").
 - [ ] Chạy **vòng 1** trên cùng `datagen/out/test` (giữ nguyên) → bảng vòng 0 vs vòng 1.
+- [ ] Sửa lỗi đã thấy khi làm tuần 1: SAMPLE-06 call_2 (kênh Zalo, không có Zalo ID, khách không đọc SĐT) — agent vẫn gọi `order.create` thiếu `customer_phone` và nói mã lỗi nội bộ "(tool_exception)" cho khách. Đúng ra phải xin SĐT/xác minh trước khi lên đơn, và không bao giờ đọc mã lỗi cho khách.
 - [ ] **Phân tích ≥ 10 ca sai** từ trace/log (`<out>.log` giúp tìm nhanh): ca, nguyên nhân gốc (router, planner, generator, bộ trích, dữ liệu BTC), cách sửa hoặc lý do không sửa.
 - **Xong khi:** có bảng trước/sau trên cùng bộ test và danh sách thay đổi đã được người duyệt.
 

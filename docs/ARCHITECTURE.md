@@ -24,9 +24,8 @@ flowchart LR
   end
   subgraph MCP[MCP servers]
     MM[mcp-memory]
-    MC[mcp-catalog]
-    MO[mcp-crm-order]
-    MK[mcp-knowledge]
+    MC[mcp-commerce<br/>crm · catalog · tồn kho · giá/KM · đơn · hẹn gọi lại · chuyển máy]
+    MK[mcp-knowledge<br/>dự kiến M2]
   end
   subgraph STORE[Lưu trữ]
     DB[(SQLite<br/>memory.db)]
@@ -211,16 +210,18 @@ harness/
   extractor.py      # questions[] / claims[] / facts (regex + LLM, cấu hình được)
   memory_writer.py  # memory policy mục 3.1
   trace.py          # ghi JSONL đúng schemas/trace_log.schema.json
-mcp_servers/
-  memory_server.py      # mcp-memory: get_brief_data, get_facts, write_facts, close_session, forget_customer
-  catalog_server.py     # mcp-catalog: catalog.search, inventory.check, pricing.get_quote   (bọc mock_tools)
-  crm_order_server.py   # mcp-crm-order: crm.get_customer, order.*, schedule.callback, handoff.transfer
-  knowledge_server.py   # mcp-knowledge: policy.search (RAG, lọc theo ngày hiệu lực)
+mcp_servers/                # ĐÃ CÀI (mục 4.5)
+  common.py             # khung server stdio (mcp SDK lowlevel), inputSchema tự khai báo
+  commerce_server.py    # mcp-commerce: 9 tool BTC (crm.get_customer, catalog.search, inventory.check, pricing.get_quote,
+                        #   order.create/status/update, schedule.callback, handoff.transfer) — bọc eval/mock_tools.py
+  memory_server.py      # mcp-memory: memory.lookup/status/past_sessions/current_facts/past_quotes (đọc)
+                        #   + upsert_customer/write_fact/add_session/log_turn/add_quote/merge_customer/forget_customer/... (ghi)
+  (knowledge_server.py) # mcp-knowledge: policy.search — dự kiến M2, cùng lúc với RAG vector
 run_eval.py         # lệnh BTC yêu cầu
 app/                # FastAPI + Streamlit UI
 ```
 
-Chọn **MCP** (bắt buộc có `mcp-memory`), không làm A2A ở M1. Lý do: bộ nhớ và nghiệp vụ là dữ liệu dùng chung giữa bot, nhân viên và UI. Đóng gói thành server thì UI, agent và vòng cải tiến đều gọi cùng một cửa, và phân quyền được theo tool (chỉ `mcp-memory` được ghi `facts`).
+Chọn **MCP** (bắt buộc có `mcp-memory`), không làm A2A ở M1. Lý do: bộ nhớ và nghiệp vụ là dữ liệu dùng chung giữa bot, nhân viên và UI. Đóng gói thành server thì UI, agent và vòng cải tiến đều gọi cùng một cửa, và phân quyền được theo tool (chỉ `mcp-memory` được ghi `facts`). Chi tiết đã cài ở mục 4.5.
 
 ### 4.2 Luồng một cuộc gọi
 
@@ -229,7 +230,7 @@ sequenceDiagram
   participant K as Khách (kịch bản / UI)
   participant H as Harness
   participant M as mcp-memory
-  participant C as mcp-catalog / crm-order
+  participant C as mcp-commerce
   participant L as LLM
   K->>H: bắt đầu cuộc gọi (SĐT / zalo_id / fb_id, ngày on)
   H->>C: crm.get_customer
@@ -309,6 +310,37 @@ Toàn bộ lịch sử phiên cũ **không** đưa vào, chỉ có brief.
 
 ---
 
+### 4.5 MCP — đã cài
+
+```
+harness (run_eval.py / UI)                      tiến trình con, stdio, JSON-RPC
+  ToolBox.call(name, args) ──── MCP client ───► mcp-commerce  ──► eval/mock_tools.py (logic tham chiếu BTC)
+  RemoteMemory.<method>(…) ──── MCP client ───► mcp-memory    ──► harness/memory.py ──► SQLite / Postgres
+```
+
+- **Chọn đường đi:** `TOOL_TRANSPORT=mcp` (mặc định) hoặc `run_eval.py --transport mcp|direct`. `direct` gọi hàm Python trực tiếp, giữ lại để so sánh và làm phương án dự phòng.
+- **Schema:** `mcp-commerce` khai báo `inputSchema` lấy từ `schemas/tools.schema.json` (kiểu, enum `payment`, tham số bắt buộc) cộng tham số tùy chọn của mock (`on`, `basket_skus`…). SDK kiểm tra trước khi chạy tool, nên lời gọi sai kiểu bị từ chối với thông điệp rõ ràng thay vì lỗi Python.
+- **Phân quyền:** `MCP_MEMORY_MODE=ro` chỉ mở 5 tool đọc. Dùng cho giao diện xem dòng thời gian bộ nhớ và QA. Agent chạy `rw`.
+- **Trạng thái:** trạng thái runtime của mock (đơn, lịch gọi lại, ticket) sống trong tiến trình `mcp-commerce`; `world.reset` xóa giữa các kịch bản. Mỗi tiến trình harness (kể cả mỗi worker khi `--workers N`) tự mở server riêng nên không lẫn trạng thái. `mcp-memory` không giữ trạng thái, mọi thứ ở DB, phân tách theo `ns`.
+- **Giữ ngoài MCP:** dữ liệu catalog **tĩnh** (tên, biến thể, danh sách KM, ngày nghỉ) đọc trực tiếp để hiểu câu khách nói (NLU). Mọi thao tác có trạng thái hoặc phụ thuộc ngày đều đi qua tool.
+
+**Số đo** (`tests/mcp_parity.py`, router `rules`, generator `offline`, 7 SAMPLE + 45 dev + 22 test, cả `full` và `baseline`):
+
+| | Kết quả |
+|---|---|
+| Trace MCP so với direct | 870/870 lượt giống hệt (trừ trường thời gian) → mọi chỉ số chấm như nhau |
+| Độ trễ thêm mỗi lượt | trung vị ~35 ms, p95 ~85 ms (ngưỡng TTFT 3 s) |
+| Call Brief qua MCP | p50 61 ms, p95 84 ms (ngưỡng 5 s) |
+| `tests/mcp_check.py` | đủ 9 tool BTC; từ chối sai kiểu/thiếu tham số/tham số lạ/payment ngoài enum; kết quả = gọi trực tiếp; supersede khi khách đổi ý; baseline không đọc được; `ro` không ghi được |
+
+**Một tình huống MCP giúp ích cụ thể (Case 3, bàn giao):** giao diện cho nhân viên mở `mcp-memory` ở chế độ `ro` và thấy đúng bộ nhớ agent vừa ghi (fact, nguồn `call_1#turn3`, phiên trước), cùng một cửa, không cần copy dữ liệu, và không thể vô tình ghi đè. Khi thay mock bằng hệ thống CRM/đơn thật, chỉ thay `mcp-commerce`, harness không đổi.
+
+### 4.6 PII khi gọi model ngoài
+
+`core/pii.py`: trước khi gửi DeepSeek/Jev, SĐT và địa chỉ được thay bằng mã `[SĐT_1]`, `[ĐỊA_CHỈ_1]` (theo giá trị đã biết trong dữ liệu lượt, theo regex SĐT, theo cụm dẫn "giao về…/giờ ở…", và theo mẫu "số nhà Tên, Quận, Tỉnh"). Câu trả lời được ghép lại giá trị thật. CCCD/STK đã che từ lúc nhận câu nói và không khôi phục. File log che SĐT (`098****714`) và địa chỉ trên mọi dòng; trace JSONL cho BTC chấm giữ nguyên.
+
+Kiểm tra (`tests/pii_check.py` trên 45 kịch bản dev, qua API giả lập): 544 request gửi ra ngoài, 0 SĐT và 0 địa chỉ lọt; câu trả lời sau khi ghép lại trùng 263/263 lượt với bản không che; file log không còn PII nguyên văn.
+
 ## 5. Luồng file dữ liệu
 
 ### 5.1 Chấm hội thoại (chỉ số chính)
@@ -334,13 +366,17 @@ runs/<id>/full.jsonl + baseline.jsonl ─► eval/reference_eval.py --scenarios 
 ### 5.2 ASR
 
 ```
-asr/audio/*.wav (+ ≥ 20 file của team) ─► asr/transcribe.py (faster-whisper/PhoWhisper, local)
-                                          ─► perceive (ITN + từ điển sản phẩm) ─► extractor entities theo lượt
-                                          ─► asr/hypotheses.json  {"D01": {"text", "entities", "turns":[{speaker,start,end,text,entities}]}}
-                                          ─► reference_eval.py --asr asr/  → WER / CER / Entity Accuracy (+ theo lượt)
+asr/audio/*.wav (+ ≥ 20 file của team) ─► asr/transcribe.py: faster-whisper | PhoWhisper (local, initial_prompt = tên sản phẩm)
+                                          ─► asr/itn.py: itn() chữ → số (tiền, SĐT, ngày, mã đơn, COD)
+                                          ─► entities() theo từng segment, giá trị nhắc sau ghi đè giá trị trước
+                                          ─► to_spoken() đưa transcript về dạng chữ như ground truth
+                                          ─► asr/hypotheses.json {"D01": {"text", "text_itn", "entities", "segments"}}
+                                          ─► wer_cer() của eval/reference_eval.py → WER / CER / Entity Accuracy (+ riêng tiền, SĐT)
 ```
 
-Entities cấp hội thoại giữ **danh sách theo thứ tự nhắc** cho các trường nhắc nhiều lần, không gộp kiểu ghi đè (bài học D01: AP-Y rồi AP-X). Nên xuất `turns[]` để được chấm `entity_accuracy_per_turn`.
+Đã cài (tuần 1). Dạng chuẩn hóa để tính WER: **dạng chữ** như ground truth (đầu ra ASR có chữ số được `to_spoken()` đổi lại). Entities cấp hội thoại hiện theo đúng cách BTC gộp (giá trị nhắc sau thắng); khi BTC sửa cách chấm (D01: AP-Y rồi AP-X) sẽ xuất thêm danh sách theo thứ tự. Chưa có diarization (M2) nên không xuất `turns`.
+
+Kiểm thử không cần audio (`--from-ground-truth`): WER 0%, Entity Accuracy 29/29. Giả lập ASR viết chữ số (`--as-digits`): WER 0,5% (chỉ lệch "năm triệu bảy" ↔ "bảy trăm nghìn", "tư" ↔ "bốn"). **Lưu ý:** luật trích được chỉnh trên chính 4 hội thoại này, nên con số chỉ chứng minh pipeline chạy đúng; độ chính xác thật đo trên audio + 8 hội thoại BTC giữ lại.
 
 ### 5.3 RAG
 
