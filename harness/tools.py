@@ -2,7 +2,10 @@
 
 Mọi lời gọi đi qua ToolBox.call() để: (1) gắn `on` = ngày của cuộc gọi, (2) ghi lại {name, args, result} cho trace,
 (3) bắt lỗi tool (fallback), (4) reset trạng thái mock giữa các kịch bản.
-Sau này tách thành MCP server (mcp-catalog, mcp-crm-order) chỉ cần đổi phần thân call(), giao diện giữ nguyên.
+Transport (TOOL_TRANSPORT / --transport): `mcp` → gọi qua MCP server `mcp-commerce` (mcp_servers/commerce_server.py);
+`direct` → gọi hàm mock trong tiến trình. Hai đường cho cùng kết quả (tests/mcp_parity.py kiểm tra).
+Dữ liệu catalog TĨNH (tên, biến thể, danh sách KM, ngày nghỉ) vẫn đọc trực tiếp để hiểu câu nói của khách;
+mọi thao tác có trạng thái hoặc phụ thuộc ngày (giá, tồn kho, đơn, lịch, chuyển máy, tra CRM) đi qua tool.
 """
 import importlib.util
 import os
@@ -27,6 +30,10 @@ class ToolBox:
     @staticmethod
     def reset_world():
         """Trạng thái runtime của mock (đơn mới, lịch gọi lại, ticket, KM 1 lần/khách) — xóa khi sang kịch bản mới."""
+        if settings.tool_transport == "mcp":
+            from harness.mcp_client import connection
+            connection("commerce").call("world.reset", {})
+            return
         mt._ORDERS.clear(); mt._CALLBACKS.clear(); mt._TICKETS.clear(); mt._ONCE_USED.clear()
 
     def call(self, name, **args):
@@ -35,8 +42,15 @@ class ToolBox:
             args.setdefault("on", self.today)
         t0 = time.perf_counter()
         try:
-            res = mt.TOOLS[name](**args)
-        except Exception as e:              # tool lỗi → harness xử lý fallback, không làm sập cuộc gọi
+            if settings.tool_transport == "mcp":
+                from harness.mcp_client import McpToolError, connection
+                try:
+                    res = connection("commerce").call(name, args)
+                except McpToolError as e:     # server đã trả "<TênLỗi>: <chi tiết>"
+                    res = {"error": "tool_exception", "detail": str(e)}
+            else:
+                res = mt.TOOLS[name](**args)
+        except Exception as e:              # tool lỗi / timeout → harness xử lý fallback, không làm sập cuộc gọi
             res = {"error": "tool_exception", "detail": f"{type(e).__name__}: {e}"}
         self.log.append({"name": name, "args": args, "result": res, "ms": int((time.perf_counter() - t0) * 1000)})
         return res

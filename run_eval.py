@@ -71,7 +71,7 @@ def _run_scenario(scen, config, run_id, router_backend, gen_backend):
     from core.llm.router import Router
     from harness.agent import CallSession
     from harness.loader import agent_view
-    from harness.memory import Memory
+    from harness.memory import open_memory
     from harness.textnorm import mask_pii
     from harness.tools import ToolBox
 
@@ -81,7 +81,7 @@ def _run_scenario(scen, config, run_id, router_backend, gen_backend):
     cur = {"call": "call_1", "turn": 0, "text": ""}      # vị trí đang chạy → báo đúng chỗ khi lỗi
     cclog.set_context(sid)
     log.info("=== %s (%s, router=%s, generator=%s)", sid, config, router_backend, gen_backend)
-    mem = Memory(f"{run_id}:{config}:{sid}", read_enabled=(config == "full"))
+    mem = open_memory(f"{run_id}:{config}:{sid}", read_enabled=(config == "full"))
     mem.wipe()
     ToolBox.reset_world()
     router, gen = Router(router_backend), Generator(gen_backend)
@@ -138,6 +138,8 @@ def main():
     ap.add_argument("--generator", default=settings.generator_backend, choices=["deepseek", "offline"])
     ap.add_argument("--workers", type=int, default=1, help="số tiến trình chạy song song (mỗi kịch bản độc lập)")
     ap.add_argument("--only", nargs="*", help="chỉ chạy các scenario_id này")
+    ap.add_argument("--transport", default=settings.tool_transport, choices=["mcp", "direct"],
+                    help="mcp = tool + bộ nhớ qua MCP server (mặc định); direct = gọi hàm trực tiếp (để so sánh)")
     ap.add_argument("--verbose", "-v", action="store_true",
                     help="in khối từng lượt ra màn hình và ghi log mức DEBUG (đủ tham số/kết quả tool, HTTP status) vào <out>.log")
     ap.add_argument("--log-level", default=os.environ.get("LOG_LEVEL", "INFO"), choices=["DEBUG", "INFO", "WARNING", "ERROR"],
@@ -151,6 +153,7 @@ def main():
     os.makedirs(os.path.dirname(os.path.abspath(a.out)), exist_ok=True)
     from harness.memory import engine
     engine()                      # tạo bảng một lần trước khi chia tiến trình (tránh tranh chấp create_all)
+    os.environ["TOOL_TRANSPORT"] = settings.tool_transport = a.transport   # worker (fork/spawn) đọc lại giá trị này
     from core import log as cclog
     cclog.setup(a.log_level, a.verbose)
     jobs = [(s, a.config, run_id, a.router, a.generator, a.log_level, a.verbose) for s in scens]
@@ -193,7 +196,7 @@ def main():
             "errors": n_err, "router": a.router, "generator": a.generator, "settings": settings.describe(), "commit": commit,
             "seconds": round(time.time() - t0, 1)}
     json.dump(meta, open(os.path.splitext(a.out)[0] + ".config.json", "w", encoding="utf-8"), ensure_ascii=False, indent=2)
-    print(f"{len(scens)} kịch bản, {n_rows} lượt, {n_err} lỗi → {a.out}  ({meta['seconds']}s, router={a.router}, generator={a.generator})")
+    print(f"{len(scens)} kịch bản, {n_rows} lượt, {n_err} lỗi → {a.out}  ({meta['seconds']}s, router={a.router}, generator={a.generator}, transport={a.transport})")
     return 1 if n_err else 0
 
 

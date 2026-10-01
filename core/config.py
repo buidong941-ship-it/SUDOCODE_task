@@ -50,6 +50,10 @@ class Settings:
     # --- Lưu trữ: sqlite (mặc định, chạy ở đâu cũng được) hoặc postgresql+psycopg://... trên server
     database_url: str = field(default_factory=lambda: _env("DATABASE_URL", "sqlite:///" + os.path.join(ROOT, "data", "memory.db")))
 
+    # --- Cách harness gọi tool + bộ nhớ: mcp (qua mcp-commerce / mcp-memory, mặc định) | direct (gọi hàm Python trực tiếp)
+    tool_transport: str = field(default_factory=lambda: _env("TOOL_TRANSPORT", "mcp"))
+    mcp_timeout_s: float = field(default_factory=lambda: float(_env("MCP_TIMEOUT_S", "20")))
+
     # --- Dữ liệu BTC
     btc_dir: str = field(default_factory=lambda: _env("BTC_DIR", ROOT))
 
@@ -59,7 +63,7 @@ class Settings:
                 "router_min_confidence": self.router_min_confidence,
                 "generator_backend": self.generator_backend, "deepseek_model": self.deepseek_model,
                 "deepseek_base_url": self.deepseek_base_url, "llm_temperature": self.llm_temperature,
-                "llm_max_tokens": self.llm_max_tokens,
+                "llm_max_tokens": self.llm_max_tokens, "tool_transport": self.tool_transport,
                 "database": self.database_url.split("://", 1)[0]}
 
 

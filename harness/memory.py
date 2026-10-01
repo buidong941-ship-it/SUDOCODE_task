@@ -202,3 +202,32 @@ class Memory:
                 if r["slot"] in last:
                     c.execute(update(facts).where(facts.c.fact_id == last[r["slot"]]).values(status="superseded", superseded_by=r["fact_id"]))
                 last[r["slot"]] = r["fact_id"]
+
+
+class RemoteMemory:
+    """Cùng giao diện với Memory nhưng mọi đọc/ghi đi qua MCP server `mcp-memory` (mcp_servers/memory_server.py)."""
+
+    def __init__(self, ns, read_enabled=True):
+        from harness.mcp_client import connection
+        self.ns, self.read_enabled = ns, read_enabled
+        self._conn = connection("memory")
+
+    def _call(self, method, *args, **kwargs):
+        import inspect
+        bound = inspect.signature(getattr(Memory, method)).bind(None, *args, **kwargs)
+        params = {k: v for k, v in bound.arguments.items() if k != "self"}
+        if "identities_" in params:
+            params["identities_"] = [list(x) for x in params["identities_"]]
+        if "blockers" in params:
+            params["blockers"] = list(params["blockers"])
+        return self._conn.call(f"memory.{method}", {"ns": self.ns, "read_enabled": self.read_enabled, **params})
+
+
+for _m in ("wipe", "upsert_customer", "lookup", "set_status", "add_session", "past_sessions", "log_turn", "current_facts",
+           "write_fact", "status", "forget_customer", "add_quote", "past_quotes", "merge_customer"):
+    setattr(RemoteMemory, _m, (lambda m: lambda self, *a, **k: self._call(m, *a, **k))(_m))
+
+
+def open_memory(ns, read_enabled=True):
+    """Memory theo TOOL_TRANSPORT: `mcp` → RemoteMemory (qua mcp-memory), `direct` → Memory (SQL trực tiếp)."""
+    return (RemoteMemory if settings.tool_transport == "mcp" else Memory)(ns, read_enabled=read_enabled)

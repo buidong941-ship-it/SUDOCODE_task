@@ -2,5 +2,10 @@
 sqlalchemy>=2.0
 openai>=1.40            # client tương thích OpenAI cho DeepSeek
 typesafe-sdk>=0.7       # Jev (TypeSafe System One) — router/orchestrator
+mcp>=1.20,<2            # MCP server/client (mcp-commerce, mcp-memory); đã kiểm với 1.28
 # Postgres trên server (tùy chọn, khi DATABASE_URL=postgresql+psycopg://...)
 psycopg[binary]>=3.1
+
+# ASR local (asr/transcribe.py) — cài riêng khi chạy ASR, không cần cho run_eval.py:
+#   pip install faster-whisper            # CPU được (model small ~0,5 GB RAM, int8)
+#   pip install transformers torch        # nếu dùng --backend phowhisper
