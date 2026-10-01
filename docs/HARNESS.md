@@ -26,8 +26,34 @@ Tùy chọn:
 | `--workers N` | Chạy song song N tiến trình, mỗi kịch bản độc lập. |
 | `--only SAMPLE-01 …` | Chạy một số kịch bản. |
 | `--run-id` | Namespace bộ nhớ + tên lần chạy. |
+| `--verbose` / `-v` | In khối từng lượt ra màn hình và ghi log mức DEBUG vào `<out>.log`. |
+| `--log-level DEBUG\|INFO\|WARNING\|ERROR` | Mức log ghi vào `<out>.log` (mặc định `LOG_LEVEL` trong `.env`, hoặc `INFO`). |
 
 Mỗi lần chạy ghi thêm `<out>.config.json`: model, tham số, commit, thời gian. Không ghi khóa API.
+
+## Log và debug
+
+Mỗi lần chạy, cạnh file trace `<out>.jsonl` có:
+
+| File | Nội dung |
+|---|---|
+| `<out>.log` | Log từng lượt, gom theo kịch bản (không bị trộn khi `--workers > 1`). Mỗi dòng có nhãn `[SAMPLE-01 call_2 t3]`. |
+| `<out>.errors.jsonl` | Chỉ có khi có lỗi: `scenario_id`, `call`, `turn`, câu khách vừa nói, thông điệp lỗi, **traceback đầy đủ**. Tự xóa khi lần chạy sau không lỗi. |
+| `<out>.config.json` | Cấu hình lần chạy, số lỗi. |
+
+Mức log:
+- **Màn hình** mặc định chỉ hiện WARNING trở lên: router lỗi hoặc không chắc nên dùng luật (`router.fallback`), guardrail bắt lỗi rồi sinh lại, lỗi API (kèm HTTP status), traceback khi kịch bản lỗi. `-v` hiện thêm khối từng lượt.
+- **INFO** (mặc định trong file): đầu mỗi cuộc gọi (khách nhận diện được, `must_not_ask`, `stale_warnings`, thời gian Call Brief); mỗi lượt: câu khách, router (intent, độ tin cậy, cờ, ms), goals, tool đã gọi (đánh dấu tool trả lỗi), token và độ trễ LLM, câu agent, slot agent hỏi, bộ nhớ ghi gì.
+- **DEBUG** (`-v` hoặc `--log-level DEBUG`): thêm kết quả tool đầy đủ, prompt gửi DeepSeek, xác suất từng intent của Jev, và dòng HTTP của thư viện (`POST …/chat/completions "200 OK"`, `POST …/v1/systemone <- 200 in 210ms`, "Retrying request…").
+
+Không log khóa API: chỉ log URL, status, thời gian, token (header bí mật bị SDK che).
+
+Cách khoanh vùng lỗi:
+```bash
+python run_eval.py --scenarios test_set/public_sample --config full --out runs/dbg/full.jsonl --only SAMPLE-03 -v
+grep -n "WARNING\|ERROR" runs/dbg/full.log          # router fallback, guardrail, lỗi API
+grep -n "SAMPLE-03 call_2 t2" runs/dbg/full.log       # toàn bộ một lượt
+```
 
 ## Kiểm thử không cần mạng
 
@@ -61,6 +87,7 @@ lời khách ─► textnorm.perceive (teencode, ITN số tiền/SĐT/ngày, mas
 ## Các trường thêm trong trace (BTC bỏ qua, dùng cho phân tích lỗi)
 
 `router` (intent, confidence, flags, backend, ms, fallback), `goals`, `guardrail`, `llm_usage`, `call_brief` (lượt 1).
+Các trường này cũng được in trong `<out>.log` (xem "Log và debug").
 
 ## Cấu trúc thư mục
 

@@ -21,3 +21,5 @@ assert rows and not fb, f"router fallback: {fb[:3]}"
 assert all(r["router"]["backend"] == "jev" for r in rows)
 print(f"tích hợp OK: {len(rows)} lượt, Jev + DeepSeek (giả lập) không lỗi")
 PY
+# log từng lượt phải có cho mọi kịch bản; lần chạy không lỗi thì không có file errors
+test "$(grep -c '^.* === ' "$OUT/live.log")" -eq 7 && test ! -e "$OUT/live.errors.jsonl" && echo "log OK: $OUT/live.log"

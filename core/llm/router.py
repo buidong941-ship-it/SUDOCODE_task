@@ -10,6 +10,7 @@ import json
 import re
 import time
 
+from core import log as cclog
 from core.config import settings
 from harness.textnorm import fold
 
@@ -37,6 +38,9 @@ FLAGS = {
 }
 
 
+log = cclog.get("router")
+
+
 class Router:
     def __init__(self, backend=None):
         self.backend = backend or settings.router_backend
@@ -54,13 +58,18 @@ class Router:
                 out = _rules(text)
         except Exception as e:                       # router lỗi → luật từ khóa, ghi lại để báo cáo
             fallback = f"{type(e).__name__}: {str(e)[:160]}"
+            log.warning("router %s lỗi → dùng luật từ khóa: %s", self.backend, fallback)
+            log.debug("router traceback", exc_info=True)
             out = _rules(text)
         if self.backend != "rules" and fallback is None and out["confidence"] < settings.router_min_confidence:
             rule = _rules(text)
             if rule["confidence"] >= 0.8:            # mô hình không chắc nhưng có tín hiệu từ khóa rõ → dùng luật
                 fallback = f"low_confidence {out['intent']}:{out['confidence']:.2f}"
+                log.warning("router %s không chắc (%s) → dùng luật: %s", self.backend, fallback, rule["intent"])
                 out = {**rule, "flags": {**out["flags"], **{k: v for k, v in rule["flags"].items() if v >= 0.9}}}
         out.update(backend=self.backend, ms=int((time.perf_counter() - t0) * 1000), fallback=fallback)
+        log.debug("router %s %dms intent=%s probs=%s usage=%s", self.backend, out["ms"], out["intent"],
+                  out.get("probabilities"), out.get("usage"))
         return out
 
     # ------------------------------------------------------------------ Jev (TypeSafe System One)
