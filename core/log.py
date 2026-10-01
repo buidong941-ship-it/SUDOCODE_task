@@ -5,7 +5,7 @@
 - File `<out>.log`: mức `--log-level` / LOG_LEVEL (mặc định INFO). Mỗi tiến trình gom log của từng kịch bản
   vào bộ nhớ (`capture`) rồi tiến trình chính ghi lần lượt theo scenario_id → file không bị trộn khi `--workers > 1`.
 - Mỗi dòng mang nhãn `[scenario call tN]` (đặt bằng `set_context`) để biết dòng log thuộc lượt nào.
-- Không bao giờ log khóa API: chỉ log tên model, thời gian, token, mã lỗi.
+- Không bao giờ log khóa API: chỉ log tên model, thời gian, token, mã lỗi. SĐT và địa chỉ bị che trên mọi dòng (core/pii.py).
 """
 import logging
 import sys
@@ -28,6 +28,14 @@ class _TagFilter(logging.Filter):
     def filter(self, record):
         record.tag = _tag
         return True
+
+
+class _MaskingFormatter(logging.Formatter):
+    """Che SĐT (098****714) và địa chỉ trên MỌI dòng log — trace JSONL cho BTC chấm thì giữ nguyên."""
+
+    def format(self, record):
+        from core.pii import mask_for_log
+        return mask_for_log(super().format(record))
 
 
 class _ListHandler(logging.Handler):
@@ -53,7 +61,7 @@ def setup(file_level="INFO", verbose=False):
     root.setLevel(min(level, logging.INFO if verbose else logging.WARNING))
     if not getattr(root, "_cc_ready", False):
         con = logging.StreamHandler(sys.stderr)
-        con.setFormatter(logging.Formatter(FMT, "%H:%M:%S"))
+        con.setFormatter(_MaskingFormatter(FMT, "%H:%M:%S"))
         con.addFilter(_TagFilter())
         root.addHandler(con)
         root.propagate = False
@@ -69,7 +77,7 @@ def setup(file_level="INFO", verbose=False):
 def capture(level):
     """Gom mọi log (cc + thư viện HTTP) ở mức `level` trong khối with → list dòng."""
     h = _ListHandler(level)
-    h.setFormatter(logging.Formatter(FMT, "%H:%M:%S"))
+    h.setFormatter(_MaskingFormatter(FMT, "%H:%M:%S"))
     h.addFilter(_TagFilter())
     root = logging.getLogger(LOGGER)
     root.setLevel(min(root.level, level))

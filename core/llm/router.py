@@ -12,6 +12,7 @@ import time
 
 from core import log as cclog
 from core.config import settings
+from core.pii import Redactor
 from harness.textnorm import fold
 
 INTENTS = {
@@ -84,8 +85,8 @@ class Router:
                                       criteria=INTENTS)}
         for name, (yes, no) in FLAGS.items():
             questions[name] = Noul(instructions=yes, criteria={"true": yes, "false": no})
-        state = {"customer_said": text, "recent_dialogue": context.get("recent", [])[-4:],
-                 "known_context": context.get("summary", "")}
+        state = Redactor().redact({"customer_said": text, "recent_dialogue": context.get("recent", [])[-4:],
+                                   "known_context": context.get("summary", "")})          # SĐT/địa chỉ không ra ngoài
         r = self._client.system_one(state=state, questions=questions, model=settings.jev_model)
         ch = r.choices["intent"]
         return {"intent": ch.choice, "confidence": float(ch.confidence), "probabilities": dict(ch.probabilities),
@@ -95,6 +96,7 @@ class Router:
     # ------------------------------------------------------------------ LLM (DeepSeek JSON)
     def _llm(self, text, context):
         from core.llm.deepseek import DeepSeek
+        text, context = Redactor().redact([text, {"recent": context.get("recent", [])}])   # SĐT/địa chỉ không ra ngoài
         prompt = ("Phân loại câu khách trong cuộc gọi bán hàng. Trả JSON {\"intent\": <một nhãn>, \"confidence\": 0..1, "
                   "\"flags\": {<cờ>: 0..1}}.\nNhãn intent:\n" + "\n".join(f"- {k}: {v}" for k, v in INTENTS.items())
                   + "\nCờ:\n" + "\n".join(f"- {k}: {v[0]}" for k, v in FLAGS.items())

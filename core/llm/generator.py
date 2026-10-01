@@ -17,7 +17,8 @@ QUY TẮC BẮT BUỘC:
 4. Nếu FACTS không có thông tin khách hỏi: nói rõ "em chưa có thông tin" về điều đó, không đoán.
 5. Không bao giờ nói mình là người thật. Không nhắc giá nhập, giá vốn, nhà cung cấp. Không bình luận hay chê bên khác.
 6. Không đọc lại số CCCD/số tài khoản của khách.
-7. Ngắn gọn: 1–3 câu, như nói qua điện thoại."""
+7. Ngắn gọn: 1–3 câu, như nói qua điện thoại.
+8. Các mã như [SĐT_1], [ĐỊA_CHỈ_1] là số điện thoại / địa chỉ thật đã được che. Khi cần nhắc thì chép nguyên mã, không đoán giá trị."""
 
 
 class Generator:
@@ -27,12 +28,16 @@ class Generator:
     def generate(self, plan, retry_note=None):
         if self.backend == "deepseek":
             from core.llm.deepseek import DeepSeek
-            user = ("DỮ LIỆU LƯỢT NÀY (JSON):\n" + json.dumps(plan, ensure_ascii=False, default=str)
+            from core.pii import Redactor
+            red = Redactor()                  # SĐT/địa chỉ → [SĐT_1]/[ĐỊA_CHỈ_1] trước khi gửi, ghép lại sau khi nhận
+            safe = red.redact(json.loads(json.dumps(plan, ensure_ascii=False, default=str)))
+            user = ("DỮ LIỆU LƯỢT NÀY (JSON):\n" + json.dumps(safe, ensure_ascii=False)
                     + "\n\nViết câu trả lời của nhân viên cho lượt này.")
             if retry_note:
                 user += f"\nLƯU Ý: bản trước bị chặn vì: {retry_note}. Sửa lại, chỉ dùng số trong FACTS."
             msgs = [{"role": "system", "content": SYSTEM}, {"role": "user", "content": user}]
-            return DeepSeek().chat(msgs)
+            text, ttft, total, usage = DeepSeek().chat(msgs)
+            return red.restore(text), ttft, total, usage
         t0 = time.perf_counter()
         text = render_offline(plan)
         ms = int((time.perf_counter() - t0) * 1000)
