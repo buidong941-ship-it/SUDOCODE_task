@@ -72,6 +72,7 @@ def _run_scenario(scen, config, run_id, router_backend, gen_backend):
     from harness.agent import CallSession
     from harness.loader import agent_view
     from harness.memory import Memory
+    from harness.textnorm import mask_pii
     from harness.tools import ToolBox
 
     log = cclog.get("run")
@@ -110,7 +111,7 @@ def _run_scenario(scen, config, run_id, router_backend, gen_backend):
                      c["channel"], (sess.customer or {}).get("customer_id"), b.get("is_returning"), b.get("must_not_ask"),
                      b.get("stale_warnings"), sess.brief_ms)
             for i, t in enumerate(c["turns"], start=1):
-                cur.update(turn=i, text=t if isinstance(t, str) else json.dumps(t, ensure_ascii=False))
+                cur.update(turn=i, text=mask_pii(t if isinstance(t, str) else json.dumps(t, ensure_ascii=False)))  # log lỗi cũng phải che PII
                 cclog.set_context(f"{sid} {c['call']} t{i}")
                 row = sess.turn(t)
                 _log_turn(log, row)
