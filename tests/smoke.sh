@@ -21,3 +21,13 @@ assert rows and not fb, f"router fallback: {fb[:3]}"
 assert all(r["router"]["backend"] == "jev" for r in rows)
 print(f"tích hợp OK: {len(rows)} lượt, Jev + DeepSeek (giả lập) không lỗi")
 PY
+# log từng lượt phải có cho mọi kịch bản; lần chạy không lỗi thì không có file errors
+test "$(grep -c '^.* === ' "$OUT/live.log")" -eq 7 && test ! -e "$OUT/live.errors.jsonl" && echo "log OK: $OUT/live.log"
+
+# MCP: 2 server đúng giao thức + trace qua MCP == gọi trực tiếp
+python tests/mcp_check.py | tail -1
+python tests/mcp_parity.py --out-dir "$OUT/parity" | tail -1
+# PII không ra ngoài / không vào log (7 kịch bản mẫu)
+python tests/pii_check.py --scenarios test_set/public_sample | tail -1
+# hậu xử lý ASR (không cần audio)
+python asr/transcribe.py --from-ground-truth --out "$OUT/hypotheses.json" | sed -n 2,3p
